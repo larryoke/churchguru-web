@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='mobi'>
+
+ <inherits name='com.googlecode.mgwt.MGWT'/>
+ <inherits name="com.googlecode.mgwt.ui.client.theme.platform.Platform" />
+  <inherits name="net.customware.gwt.dispatch.Dispatch"/>
+  
+  <inherits name="com.laotek.churchguru.model.shared.enums.SharedMobModel"/>
+  <!-- inherits name="com.laotek.churchguru.daos.shared.SharedServices"/-->
+  
+  <inherits name="com.googlecode.mgwt.MGWT" />
+  <inherits name="com.googlecode.mgwt.linker.Linker" />
+  
+  <replace-with   class="com.laotek.churchguru.web.clientm.ClientFactoryImpl">
+    <when-type-is class="com.laotek.churchguru.web.clientm.ClientFactory"/>
+  </replace-with>
+  
+  <entry-point class="com.laotek.churchguru.web.clientm.MobileEntry"/>
+
+  <source path="clientm"/>  
+  <!-- source path="shared"/-->  
+	
+	<add-linker name="permutationmaplinker" />
+	
+	<set-property name="user.agent" value="safari" />
+	
+	<set-configuration-property name="mgwt.css" value="pretty" />
+
+</module>

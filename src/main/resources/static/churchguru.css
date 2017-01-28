@@ -1,0 +1,360 @@
+/** Add css rules here for your application. */
+
+
+/** Example rules used by the template application (remove for your app) */
+
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+  color: #777777;
+  background-color: #F0F0F0;
+  border-top: 1px solid #909090;
+}
+
+h2 {
+	margin: 0px;
+}
+
+#loading {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    margin-left: -100px;
+}
+
+.sendButton {
+  display: block;
+  font-size: 16pt;
+}
+
+/** Most GWT widgets already have a style name defined */
+.gwt-DialogBox {
+  width: 400px;
+}
+
+.dialogVPanel {
+  margin: 5px;
+}
+
+.serverResponseLabelError {
+  color: red;
+}
+
+/** Set ids using widget.getElement().setId("idOfElement") */
+#closeButton {
+  margin: 15px 6px 6px;
+}
+
+.textboxError{
+	color:red;
+	border-style:solid;
+	border-color:red;
+	height:20px;
+}
+
+.errorMessage{
+	color:red;
+}
+
+.obsolete{
+	color: red;
+	text-decoration: line-through;
+}
+
+.textboxInsideLabel{
+	color:#E8E8E8;
+}
+
+
+.whitebg{
+	background:white;
+	margin:5px 5px 5px 5px;
+}
+
+
+.estoreWhitebg{
+	background:white;
+}
+.estoreGreybg{
+	background:#E0E0E0;
+}
+.eStoreTableCellBorder{
+	padding:5px 5px 5px 5px;
+	min-height: 40px;
+	border-style:ridge;
+}
+
+
+.emailReview{
+	border-width:1px;	
+	border-style:solid;
+	border-color:gray;
+	padding:10px 10px 10px 10px;
+	width:600px;
+	clear:both;
+}
+
+
+.textboxNormal{
+	color:black;
+	font-weight:bold;
+	font-size: 11pt;
+	border-style:solid;
+	border-color:gray;
+	width:190px;
+	height:20px;
+}
+
+
+.fullNameTextboxInsideLabel{
+	color:#D0D0D0 ;
+	font-weight:bold;
+	font-size: 11pt;
+	border-style:solid;
+	border-color:gray;
+	width:190px;
+	height:20px;
+}
+
+.phoneItemBorder{
+	border:2px;
+	border-style:solid;
+	border-color:gray;
+	width:190px;
+	height:18px;
+	background:white;
+}
+
+.phoneTextboxNormal{
+	color:black;
+	font-weight:bold;
+	font-size: 11pt;
+	height:18px;
+}
+
+.phoneTextboxBlur{
+	color:#D0D0D0 ;
+	font-weight:bold;
+	font-size: 11pt;
+	border-color: none;
+	border: none 0;
+	margin:0,0,0,0;
+	height:18px;
+}
+
+.phoneTextboxError{
+	color:red;
+	border-style:solid;
+	border-color:red;
+}
+
+
+.phoneItemLeftBorder{
+	border:1px;
+	border-left:thick solid gray;
+	border-top:thick solid gray;
+	border-bottom:thick solid gray;
+}
+
+
+.textboxBorderless{
+	outline: none;
+	color:black;
+	font-weight:bold;
+	font-size: 11pt;
+	border-color: none;
+	height:20px;
+	border: none 0;
+	margin:0,0,0,0;
+}
+
+
+.newsletterTextarea{
+	color: black; 
+	background-color: white
+}
+
+
+.subdomainTextArea{
+	border:2px;
+	border-style:solid;
+	border-color:gray;
+	width:165px;
+	height:20px;
+}
+
+.blurredIndexSearchBorderBox{
+	border:1px;
+	border-style:solid;
+	border-color:gray;
+}
+
+.focusedIndexSearchBorderBox{
+	border:2px;
+	border-style:solid;
+	border-color:gray;
+}
+
+.blurredIndexSearchTextbox{
+	color:gray;
+	border:0px;
+}
+
+.focusedIndexSearchTextbox{
+	color:black;
+	font-weight:bold;
+	font-size: 11pt;
+	border:0px;
+}
+
+.subdomainTextboxDomain{
+	color:black;
+	font-weight:bold;
+	font-size: 11pt;
+	border-style:solid;
+	border:0px;
+	width:125px;
+	height:18px;
+}
+
+
+.selectboxNormal{
+	color:black;
+	font-weight:bold;
+	font-size: 10pt;
+	border-style:solid;
+	border-color:gray;
+	height:23px;
+}
+
+.selectboxError{
+	border: 1px solid red;
+	margin:0px;
+}
+
+.handPointer{
+	cursor: pointer;
+}
+
+.labelNormal{
+	color:black
+}
+
+.labelDisable{
+	color:gray;
+}
+
+.selectedRow{
+	background-color:#E8E8E8;
+}
+
+.selectRowBlue{
+	background-color:#99CCFF;
+}
+
+.unSelectedRow{
+	background-color:white
+}
+
+.flowPanel {
+   float: left;
+}
+
+
+.dottedBottomBorder{
+	border-width:1px;
+	border-color:gray;
+	border-bottom-style:dotted;
+}
+
+.clickedAnchor{
+	font-weight:bold;
+}
+
+.labelBlink{
+	color:red;
+}
+
+.mainTabBar{
+	background-image:url('/images/app/mainTab.png');
+}
+
+.mainTabBarAnchor{
+	font-size: 9pt;
+	color:white
+}
+
+.boldMainTabBarAnchor{
+	font-weight:bold;
+	color:#FF6666
+}
+
+.loginScreenHeader{
+	background: url(/images/app/bg2.png) repeat-x top;
+			margin: 0px;
+}
+
+.richTextHTML{
+	 visibility: hidden 
+}
+
+a.boldMainTabBarAnchor:link {color:#FF0000;}      /* unvisited link */
+a.boldMainTabBarAnchor:visited {color:#00FF00;}  /* visited link */
+a.boldMainTabBarAnchor:hover {color:#FF00FF;}  /* mouse over link */
+a.boldMainTabBarAnchor:active {color:#0000FF;}  /* selected link */
+
+
+.topSide {background: url("/images/app/edge.png") 0 0 repeat-x #e2eaf6; margin:10px 25px 25px 25px;}
+.bottomSide {background: url("/images/app/edge.png") 0 100% repeat-x}
+.leftSide {background: url("/images/app/edge.png") 0 0 repeat-y}
+.rightSide {background: url("/images/app/edge.png") 100% 0 repeat-y}
+.cornerBL {background: url("/images/app/cornerBL.png") 0 100% no-repeat }
+.cornerBR {background: url("/images/app/cornerBR.png") 100% 100% no-repeat }
+.cornerTL {background: url("/images/app/cornerTL.png") 0 0 no-repeat }
+.cornerTR {background: url("/images/app/cornerTR.png") 100% 0 no-repeat; padding:10px}
+
+
+.gwt-SliderBar-shell {
+  border: 2px solid #faf9f7;
+  border-right: 2px solid #848280;
+  border-bottom: 2px solid #848280;
+  background-color: #efebe7;
+  height: 34pt;
+  width: 50%;
+}
+.gwt-SliderBar-shell .gwt-SliderBar-line {
+  border: 1px solid black;
+  background-color: white;
+  height: 4px;
+  width: 95%;
+  top: 22pt;
+  overflow: hidden;
+}
+.gwt-SliderBar-shell .gwt-SliderBar-knob {
+  top: 14pt;
+  width: 11px;
+  height: 21px;
+  z-index: 1;
+  cursor: pointer;
+}
+.gwt-SliderBar-shell .gwt-SliderBar-tick {
+  top: 12pt;
+  width: 1px;
+  height: 8pt;
+  background: black;
+  overflow: hidden;
+}
+.gwt-SliderBar-shell .gwt-SliderBar-label {
+  top: 2pt;
+  font-size: 8pt;
+  cursor: default;
+}
+.gwt-SliderBar-shell-focused {
+}
+.gwt-SliderBar-shell .gwt-SliderBar-line-sliding {
+  background-color: #DDDDDD;
+  cursor: pointer;
+}
+

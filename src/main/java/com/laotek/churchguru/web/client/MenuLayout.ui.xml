@@ -1,0 +1,71 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+    xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+    
+	    <ui:style>
+	    	.header{font-size:15px;}
+	    	.verticalPanel {width:100%;height:100%;;}
+	    	.anchor{text-decoration:underline;cursor:pointer;font-size:14px;}
+	  	</ui:style>
+		
+		<g:HorizontalPanel>
+			<g:SimplePanel width='40'></g:SimplePanel>
+			<g:VerticalPanel ui:field='menuPanel'>
+				<g:DecoratorPanel width="200px">
+			    	<g:VerticalPanel ui:field='homeMenuPanel' stylePrimaryName='{style.verticalPanel}'>
+			    			<g:HTML stylePrimaryName='{style.header}'><b>Home</b></g:HTML>
+				    		<g:Anchor ui:field='myAccountAnchor' stylePrimaryName='{style.anchor}'>My Account</g:Anchor>
+				    		<g:Anchor ui:field='draftAnchor' stylePrimaryName='{style.anchor}'>My Draft Messages</g:Anchor>
+				    		<g:Anchor ui:field='sentMessageAnchor' stylePrimaryName='{style.anchor}'>My Sent Messages</g:Anchor>
+				    		<g:Anchor ui:field='emailNotificationsAnchor' stylePrimaryName='{style.anchor}'>My Email Notifications</g:Anchor>
+				    		<g:HTML><br/></g:HTML>
+			    	</g:VerticalPanel>
+		    	</g:DecoratorPanel>
+		 
+		 		<g:VerticalPanel><g:HTML><br/></g:HTML></g:VerticalPanel>
+			    
+				<g:DecoratorPanel width="200px">
+			    	<g:VerticalPanel ui:field='searchMenuPanel' stylePrimaryName='{style.verticalPanel}'>
+			    			<g:HTML stylePrimaryName='{style.header}'><b>Search</b></g:HTML>
+				    		<g:Anchor ui:field='quickSearchAnchor' stylePrimaryName='{style.anchor}'>Quick Search</g:Anchor>
+				    		<g:Anchor ui:field='advancedSearchAnchor' stylePrimaryName='{style.anchor}'>Advanced Search</g:Anchor>
+				    		<g:Anchor ui:field='usefulResultAnchor' stylePrimaryName='{style.anchor}'>Useful Result</g:Anchor>
+				    		<g:Anchor ui:field='savedSearchAnchor' stylePrimaryName='{style.anchor}'>Saved Search</g:Anchor>
+				    		<g:Anchor ui:field='currentSearchResultAnchor' stylePrimaryName='{style.anchor}'>Current Search Result</g:Anchor>
+				    		<g:HTML><br/></g:HTML>
+			    	</g:VerticalPanel>
+		    	</g:DecoratorPanel>
+		 
+		 		<g:VerticalPanel><g:HTML><br/></g:HTML></g:VerticalPanel>
+		 
+		 
+				<g:DecoratorPanel width="200px">
+			    	<g:VerticalPanel ui:field='memberAddingMenuPanel' stylePrimaryName='{style.verticalPanel}'>
+			    			<g:HTML stylePrimaryName='{style.header}'><b>Member Adding</b></g:HTML>
+				    		<g:Anchor ui:field='sendInvitationAnchor' stylePrimaryName='{style.anchor}'>Send Membership Invitation</g:Anchor>
+				    		<g:Anchor ui:field='maunualAddAnchor' stylePrimaryName='{style.anchor}'>Manual Add</g:Anchor>
+				    		<g:Anchor ui:field='verifyInvitationResAnchor' stylePrimaryName='{style.anchor}'>Verify Invitation Responses</g:Anchor>
+				    		<g:HTML><br/></g:HTML>
+			    	</g:VerticalPanel>
+		    	</g:DecoratorPanel>
+		 
+		 		<g:VerticalPanel><g:HTML><br/></g:HTML></g:VerticalPanel>
+		  
+		  
+				<g:DecoratorPanel width="200px">
+			    	<g:VerticalPanel ui:field='adminMenuPanel' stylePrimaryName='{style.verticalPanel}'>
+			    			<g:HTML stylePrimaryName='{style.header}'><b>Administration</b></g:HTML>
+				    		<g:Anchor ui:field='allAdminAnchor' stylePrimaryName='{style.anchor}'>All Administrators</g:Anchor>
+				    		<g:Anchor ui:field='permissionsAnchor' stylePrimaryName='{style.anchor}'>Manage Admin Permissions</g:Anchor>
+				    		<g:Anchor ui:field='systemSettingsAnchor' stylePrimaryName='{style.anchor}'>System Settings</g:Anchor>
+				    		<g:Anchor ui:field='functionalAuditLogsAnchor' stylePrimaryName='{style.anchor}'>Functional Audit Logs</g:Anchor>
+				    		<g:Anchor ui:field='delegateEmailNotificationAnchor' stylePrimaryName='{style.anchor}'>Delegate Email Notifications</g:Anchor>
+				    		<g:HTML><br/></g:HTML>
+			    	</g:VerticalPanel>
+		    	</g:DecoratorPanel>
+		 
+		 		<g:VerticalPanel><g:HTML><br/></g:HTML></g:VerticalPanel>
+		 		
+		    </g:VerticalPanel>
+		</g:HorizontalPanel>
+
+</ui:UiBinder>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='comm'>
+
+  <inherits name="com.google.gwt.user.User"/>
+  <inherits name="com.google.gwt.user.theme.clean.Clean"/>
+  <inherits name="net.customware.gwt.dispatch.Dispatch"/>
+  <inherits name="com.google.gwt.inject.Inject" />
+  
+  <inherits name="com.laotek.churchguru.model.shared.SharedModel"/>
+  <inherits name="com.laotek.churchguru.daos.shared.SharedServices"/>
+  
+  <inherits name="com.google.gwt.activity.Activity"/>
+  <inherits name="com.google.gwt.place.Place"/>
+  
+  <inherits name="gwtupload.GWTUpload"/>
+  <inherits name='com.google.gwt.visualization.Visualization'/>
+  <inherits name="com.google.gwt.logging.Logging"/>
+  
+  <stylesheet src="Upload.css"/>
+  
+  <replace-with   class="com.laotek.churchguru.web.client.ClientFactoryImpl">
+    <when-type-is class="com.laotek.churchguru.web.client.ClientFactory"/>
+  </replace-with>
+  
+  
+  
+  
+  <entry-point class="com.laotek.churchguru.web.client.ChurchGURU"/>
+
+  <source path="client"/>
+  <source path="shared"/>
+  
+  <set-property name="gwt.logging.logLevel" value="SEVERE"/>          # To change the default logLevel
+  <set-property name="gwt.logging.enabled" value="TRUE"/>            # To disable logging
+  <set-property name="gwt.logging.consoleHandler" value="ENABLED"/>  # To disable a default Handler
+  <set-property name="gwt.logging.popupHandler" value="DISABLED"/>
+    
+  <!-- >set-property name="user.agent" value="ie8,ie9,gecko1_8,safari" /--> 
+  <!--set-property name="user.agent" value="ie6,ie8,gecko,gecko1_8,safari,opera" /--> 
+  <set-property name="user.agent" value="ie8,ie9,safari,gecko1_8" />
+
+</module>
