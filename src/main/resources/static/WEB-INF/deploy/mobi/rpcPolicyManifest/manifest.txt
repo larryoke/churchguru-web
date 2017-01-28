@@ -1,0 +1,3 @@
+# Module mobi
+# RPC service class, partial path of RPC policy file
+com.laotek.churchguru.web.clientm.dispatch.DispatchMobileService, F4AD673C33ABEC51FA6BB904D84AAAA1.gwt.rpc

@@ -1,0 +1,2 @@
+serviceClass: com.laotek.churchguru.web.client.activity.DispatchService
+path: 66706E92AD16C6B700A80F34CB49C765.gwt.rpc
