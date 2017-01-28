@@ -34,3 +34,4 @@ src/main/resources/static/WEB-INF
 target/
 .idea/
 my-tomcat
+churchguru-web.iml
