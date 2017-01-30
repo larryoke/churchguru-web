@@ -1,2 +1,0 @@
-serviceClass: com.laotek.churchguru.web.clientm.dispatch.DispatchMobileService
-path: F4AD673C33ABEC51FA6BB904D84AAAA1.gwt.rpc
