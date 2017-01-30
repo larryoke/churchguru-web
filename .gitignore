@@ -1,6 +1,5 @@
 
 .DS_Store
-.idea/workspace.xml
 src/.DS_Store
 src/main/.DS_Store
 src/main/java/.DS_Store
@@ -32,6 +31,6 @@ src/main/webapp/WEB-INF/
 **/resources/static/mobi/
 **/resources/static/WEB-INF/
 **/target/
-.idea/
+*.idea/
 **/my-tomcat
-churchguru-web.iml
+**churchguru-web.iml
