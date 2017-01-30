@@ -9,9 +9,9 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.laotek.churchguru.web.client.ApplicationContext;
 import com.laotek.churchguru.web.client.ClientFactory;
 import com.laotek.churchguru.web.client.UserContext;
-import com.laotek.churchguru.web.client.activity.estore.CreateNewMessageAction;
-import com.laotek.churchguru.web.client.activity.estore.CreateNewMessageResult;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreMessageNewPlace;
+import com.laotek.churchguru.web.client.activity.listening.CreateNewMessageAction;
+import com.laotek.churchguru.web.client.activity.listening.CreateNewMessageResult;
+import com.laotek.churchguru.web.client.activity.website.listening.ListeningMessageNewPlace;
 
 public class WebsiteActivity extends AbstractActivity implements
 	WebsiteView.Presenter {
@@ -55,7 +55,7 @@ public class WebsiteActivity extends AbstractActivity implements
 
     @Override
     public void createMessage(String title) {
-	// This call is also used in EStoreMessagesActivity
+	// This call is also used in ListeningMessagesActivity
 	CreateNewMessageAction action = new CreateNewMessageAction(title);
 	UserContext.getInstance().decorateClientSessionId(action);
 	UserContext.getInstance().getDispatchClient()
@@ -70,7 +70,7 @@ public class WebsiteActivity extends AbstractActivity implements
 			ApplicationContext
 				.getInstance()
 				.getPlaceController()
-				.goTo(new EStoreMessageNewPlace(result
+				.goTo(new ListeningMessageNewPlace(result
 					.getNewMessageID()));
 		    }
 		});

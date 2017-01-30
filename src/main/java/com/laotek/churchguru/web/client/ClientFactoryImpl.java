@@ -37,28 +37,8 @@ import com.laotek.churchguru.web.client.activity.user.UserProfilesView;
 import com.laotek.churchguru.web.client.activity.user.UserProfilesViewImpl;
 import com.laotek.churchguru.web.client.activity.website.WebsiteView;
 import com.laotek.churchguru.web.client.activity.website.WebsiteViewImpl;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreCategoriesView;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreCategoriesViewImpl;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreCategoryNewView;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreCategoryNewViewImpl;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreCustomerDetailsView;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreCustomerDetailsViewImpl;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreCustomersView;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreCustomersViewImpl;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreGalleryNewView;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreGalleryNewViewImpl;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreGalleryView;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreGalleryViewImpl;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreMessageNewView;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreMessageNewViewImpl;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreMessagesView;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreMessagesViewImpl;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreNotificationsView;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreNotificationsViewImpl;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreSpeakerNewView;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreSpeakerNewViewImpl;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreSpeakersView;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreSpeakersViewImpl;
+import com.laotek.churchguru.web.client.activity.website.listening.*;
+import com.laotek.churchguru.web.client.activity.website.listening.ListeningMessagesViewImpl;
 
 public class ClientFactoryImpl implements ClientFactory {
     private EventBus eventBus = new SimpleEventBus();
@@ -77,27 +57,27 @@ public class ClientFactoryImpl implements ClientFactory {
     private NewUserSetupView newUserSetupView = new NewUserSetupViewImpl(placeController);
     private UserProfilesView userProfilesView = new UserProfilesViewImpl();
 
-    private EStoreCategoriesView eStoreCategoriesView = new EStoreCategoriesViewImpl();
+    private ListeningCategoriesView eStoreCategoriesView = new ListeningCategoriesViewImpl();
 
-    private EStoreCategoryNewView eStoreCategoryNewView = new EStoreCategoryNewViewImpl();
+    private ListeningCategoryNewView eStoreCategoryNewView = new ListeningCategoryNewViewImpl();
 
-    private EStoreCustomerDetailsView eStoreCustomerDetailsView = new EStoreCustomerDetailsViewImpl();
+    private ListeningCustomerDetailsView eStoreCustomerDetailsView = new ListeningCustomerDetailsViewImpl();
 
-    private EStoreCustomersView eStoreCustomersView = new EStoreCustomersViewImpl();
+    private ListeningCustomersView eStoreCustomersView = new ListeningCustomersViewImpl();
 
-    private EStoreGalleryNewView eStoreGalleryNewView = new EStoreGalleryNewViewImpl();
+    private ListeningGalleryNewView eStoreGalleryNewView = new ListeningGalleryNewViewImpl();
 
-    private EStoreGalleryView eStoreGalleryView = new EStoreGalleryViewImpl();
+    private ListeningGalleryView eStoreGalleryView = new ListeningGalleryViewImpl();
 
-    private EStoreMessageNewView eStoreMessageNewView = new EStoreMessageNewViewImpl();
+    private ListeningMessageNewView eStoreMessageNewView = new ListeningMessageNewViewImpl();
 
-    private EStoreMessagesView eStoreMessagesView = new EStoreMessagesViewImpl();
+    private ListeningMessagesView eStoreMessagesView = new ListeningMessagesViewImpl();
 
-    private EStoreNotificationsView eStoreNotificationsView = new EStoreNotificationsViewImpl();
+    private ListeningNotificationsView eStoreNotificationsView = new ListeningNotificationsViewImpl();
 
-    private EStoreSpeakerNewView eStoreSpeakerNewView = new EStoreSpeakerNewViewImpl();
+    private ListeningSpeakerNewView eStoreSpeakerNewView = new ListeningSpeakerNewViewImpl();
 
-    private EStoreSpeakersView eStoreSpeakersView = new EStoreSpeakersViewImpl();
+    private ListeningSpeakersView eStoreSpeakersView = new ListeningSpeakersViewImpl();
 
     private WebsiteView websiteView = new WebsiteViewImpl();
 
@@ -205,77 +185,77 @@ public class ClientFactoryImpl implements ClientFactory {
     }
 
     @Override
-    public EStoreCategoriesView getEStoreCategoriesView() {
+    public ListeningCategoriesView getEStoreCategoriesView() {
 	if (eStoreCategoriesView == null) {
 	}
 	return eStoreCategoriesView;
     }
 
     @Override
-    public EStoreCategoryNewView getEStoreCategoryNewView() {
+    public ListeningCategoryNewView getEStoreCategoryNewView() {
 	if (eStoreCategoryNewView == null) {
 	}
 	return eStoreCategoryNewView;
     }
 
     @Override
-    public EStoreCustomerDetailsView getEStoreCustomerDetailsView() {
+    public ListeningCustomerDetailsView getEStoreCustomerDetailsView() {
 	if (eStoreCustomerDetailsView == null) {
 	}
 	return eStoreCustomerDetailsView;
     }
 
     @Override
-    public EStoreCustomersView getEStoreCustomersView() {
+    public ListeningCustomersView getEStoreCustomersView() {
 	if (eStoreCustomersView == null) {
 	}
 	return eStoreCustomersView;
     }
 
     @Override
-    public EStoreGalleryNewView getEStoreGalleryNewView() {
+    public ListeningGalleryNewView getEStoreGalleryNewView() {
 	if (eStoreGalleryNewView == null) {
 	}
 	return eStoreGalleryNewView;
     }
 
     @Override
-    public EStoreGalleryView getEStoreGalleryView() {
+    public ListeningGalleryView getEStoreGalleryView() {
 	if (eStoreGalleryView == null) {
 	}
 	return eStoreGalleryView;
     }
 
     @Override
-    public EStoreMessageNewView getEStoreMessageNewView() {
+    public ListeningMessageNewView getEStoreMessageNewView() {
 	if (eStoreMessageNewView == null) {
 	}
 	return eStoreMessageNewView;
     }
 
     @Override
-    public EStoreMessagesView getEStoreMessagesView() {
+    public ListeningMessagesView getEStoreMessagesView() {
 	if (eStoreMessagesView == null) {
 	}
 	return eStoreMessagesView;
     }
 
     @Override
-    public EStoreNotificationsView getEStoreNotificationsView() {
+    public ListeningNotificationsView getEStoreNotificationsView() {
 	if (eStoreNotificationsView == null) {
 	}
 	return eStoreNotificationsView;
     }
 
     @Override
-    public EStoreSpeakerNewView getEStoreSpeakerNewView() {
+    public ListeningSpeakerNewView getEStoreSpeakerNewView() {
 	if (eStoreSpeakerNewView == null) {
 	}
 	return eStoreSpeakerNewView;
     }
 
     @Override
-    public EStoreSpeakersView getEStoreSpeakersView() {
+    public ListeningSpeakersView getEStoreSpeakersView() {
 	if (eStoreSpeakersView == null) {
 	}
 	return eStoreSpeakersView;

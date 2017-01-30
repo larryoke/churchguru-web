@@ -12,29 +12,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.laotek.churchguru.daos.listening.ListeningDao;
-import com.laotek.churchguru.web.client.activity.listening.GetEStoreMessagesAction;
-import com.laotek.churchguru.web.client.activity.listening.GetEStoreMessagesResult;
+import com.laotek.churchguru.web.client.activity.listening.GetListeningMessagesAction;
+import com.laotek.churchguru.web.client.activity.listening.GetListeningMessagesResult;
 import com.laotek.churchguru.web.server.handler.AbstractCommandHandler;
-import com.laotek.churchguru.web.shared.estore.EStoreMessageDto;
+import com.laotek.churchguru.web.shared.listening.ListeningMessageDto;
 
 @Component
-public class GetEStoreMessagesHandler extends AbstractCommandHandler implements
-	ActionHandler<GetEStoreMessagesAction, GetEStoreMessagesResult> {
+public class GetListeningMessagesHandler extends AbstractCommandHandler implements
+	ActionHandler<GetListeningMessagesAction, GetListeningMessagesResult> {
 
     @Autowired
     private ListeningDao eStoreDao;
 
     @Override
-    public GetEStoreMessagesResult execute(GetEStoreMessagesAction action,
-	    ExecutionContext context) throws DispatchException {
+    public GetListeningMessagesResult execute(GetListeningMessagesAction action,
+                                              ExecutionContext context) throws DispatchException {
 
 	List<ListeningMessage> messages = eStoreDao.getMessages();
-	List<EStoreMessageDto> dtos = get(messages);
-	return new GetEStoreMessagesResult(dtos);
+	List<ListeningMessageDto> dtos = get(messages);
+	return new GetListeningMessagesResult(dtos);
     }
 
-    private List<EStoreMessageDto> get(List<ListeningMessage> messages) {
-	List<EStoreMessageDto> dtos = new ArrayList<EStoreMessageDto>();
+    private List<ListeningMessageDto> get(List<ListeningMessage> messages) {
+	List<ListeningMessageDto> dtos = new ArrayList<ListeningMessageDto>();
 	for (ListeningMessage message : messages) {
 	    dtos.add(mapMessages(message));
 	}
@@ -42,13 +42,13 @@ public class GetEStoreMessagesHandler extends AbstractCommandHandler implements
     }
 
     @Override
-    public Class<GetEStoreMessagesAction> getActionType() {
-	return GetEStoreMessagesAction.class;
+    public Class<GetListeningMessagesAction> getActionType() {
+	return GetListeningMessagesAction.class;
     }
 
     @Override
-    public void rollback(GetEStoreMessagesAction action,
-	    GetEStoreMessagesResult result, ExecutionContext context)
+    public void rollback(GetListeningMessagesAction action,
+                         GetListeningMessagesResult result, ExecutionContext context)
 	    throws DispatchException {
     }
 

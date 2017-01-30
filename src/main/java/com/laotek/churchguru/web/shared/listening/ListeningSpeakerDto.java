@@ -1,10 +1,10 @@
-package com.laotek.churchguru.web.shared.estore;
+package com.laotek.churchguru.web.shared.listening;
 
 import java.io.Serializable;
 
 import com.laotek.churchguru.web.shared.FullnameDto;
 
-public class EStoreSpeakerDto implements Serializable {
+public class ListeningSpeakerDto implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private FullnameDto fullnameDto;

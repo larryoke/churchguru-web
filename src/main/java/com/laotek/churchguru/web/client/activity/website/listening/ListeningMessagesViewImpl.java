@@ -1,4 +1,4 @@
-package com.laotek.churchguru.web.client.activity.website.estore;
+package com.laotek.churchguru.web.client.activity.website.listening;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ import com.laotek.churchguru.web.client.ApplicationContext;
 import com.laotek.churchguru.web.client.MainMenuContext;
 import com.laotek.churchguru.web.client.widget.RoundedCornerPanel;
 import com.laotek.churchguru.web.shared.FullnameDto;
-import com.laotek.churchguru.web.shared.estore.EStoreMessageDto;
+import com.laotek.churchguru.web.shared.listening.ListeningMessageDto;
 
 public class ListeningMessagesViewImpl extends BaseViewImpl implements
         ListeningMessagesView {
@@ -70,7 +70,7 @@ public class ListeningMessagesViewImpl extends BaseViewImpl implements
 
     @Override
     public void initTab() {
-        MainMenuContext.getInstance().showEstorePanel("eStore");
+        MainMenuContext.getInstance().showListeningPanel("eStore");
     }
 
     @Override
@@ -79,7 +79,7 @@ public class ListeningMessagesViewImpl extends BaseViewImpl implements
     }
 
     @Override
-    public void init(List<EStoreMessageDto> dtos) {
+    public void init(List<ListeningMessageDto> dtos) {
         panelRows.clear();
 
         HorizontalPanel hPanel = new HorizontalPanel();
@@ -91,7 +91,7 @@ public class ListeningMessagesViewImpl extends BaseViewImpl implements
         cell(hPanel, "<b>Location</b>", 100);
         panelRows.add(hPanel);
 
-        for (final EStoreMessageDto dto : dtos) {
+        for (final ListeningMessageDto dto : dtos) {
             hPanel = new HorizontalPanel();
             if (dtos.indexOf(dto) % 2 == 0) {
                 hPanel.setStylePrimaryName("estoreGreybg");

@@ -1,10 +1,10 @@
-package com.laotek.churchguru.web.client.activity.website.estore;
+package com.laotek.churchguru.web.client.activity.website.listening;
 
 import java.util.List;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.laotek.churchguru.web.client.MainMenuContext;
-import com.laotek.churchguru.web.shared.estore.GalleryDto;
+import com.laotek.churchguru.web.shared.listening.GalleryDto;
 
 public class ListeningGalleryViewImpl implements ListeningGalleryView {
 

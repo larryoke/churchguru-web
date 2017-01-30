@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/estore")
-public class EStoreMediaSubmissionController {
+public class ListeningMediaSubmissionController {
 
     @RequestMapping(value = "/submit/message", method = RequestMethod.POST)
     @ResponseBody

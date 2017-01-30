@@ -13,7 +13,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class EStoreMemberMessage implements Comparable<EStoreMemberMessage> {
+public class ListeningMemberMessage implements Comparable<ListeningMemberMessage> {
 
     @Embeddable
     public static class Id implements Serializable {
@@ -53,20 +53,20 @@ public class EStoreMemberMessage implements Comparable<EStoreMemberMessage> {
 
     @ManyToOne
     @JoinColumn(name = "ID", insertable = false, updatable = false)
-    private EStoreMessage eStoreMessage;
+    private ListeningMessage eStoreMessage;
 
     @ManyToOne
     @JoinColumn(name = "ID", insertable = false, updatable = false)
-    private EStoreMember eStoreMember;
+    private ListeningMember eStoreMember;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate = new Date();
 
-    public EStoreMemberMessage() {
+    public ListeningMemberMessage() {
     }
 
-    public EStoreMemberMessage(EStoreMessage eStoreMessage,
-	    EStoreMember eStoreMember) {
+    public ListeningMemberMessage(ListeningMessage eStoreMessage,
+								  ListeningMember eStoreMember) {
 	this.eStoreMessage = eStoreMessage;
 	this.eStoreMember = eStoreMember;
 
@@ -85,24 +85,24 @@ public class EStoreMemberMessage implements Comparable<EStoreMemberMessage> {
 	return createdDate;
     }
 
-    public EStoreMessage getEStoreMessage() {
+    public ListeningMessage getEStoreMessage() {
 	return eStoreMessage;
     }
 
-    public void setEStoreMessage(EStoreMessage eStoreMessage) {
+    public void setEStoreMessage(ListeningMessage eStoreMessage) {
 	this.eStoreMessage = eStoreMessage;
     }
 
-    public EStoreMember getEStoreMember() {
+    public ListeningMember getEStoreMember() {
 	return eStoreMember;
     }
 
-    public void setEStoreMember(EStoreMember eStoreMember) {
+    public void setEStoreMember(ListeningMember eStoreMember) {
 	this.eStoreMember = eStoreMember;
     }
 
     @Override
-    public int compareTo(EStoreMemberMessage another) {
+    public int compareTo(ListeningMemberMessage another) {
 	if (eStoreMember.getIdentifier().compareTo(
 		another.getEStoreMember().getIdentifier()) < 0) {
 	    return -1;

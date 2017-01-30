@@ -14,7 +14,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class EStoreCategory {
+public class ListeningCategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,7 +34,7 @@ public class EStoreCategory {
     private Date lastUpdatedDate;
 
     @OneToMany(mappedBy = "eStoreCategory")
-    private Set<EStoreMessage> messages = new HashSet<EStoreMessage>();
+    private Set<ListeningMessage> messages = new HashSet<ListeningMessage>();
 
     public Long getId() {
 	return id;

@@ -1,8 +1,8 @@
-package com.laotek.churchguru.web.shared.estore;
+package com.laotek.churchguru.web.shared.listening;
 
 import java.io.Serializable;
 
-public class EStoreCategoryDto implements Serializable {
+public class ListeningCategoryDto implements Serializable {
     /**
      * 
      */

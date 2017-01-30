@@ -1,9 +1,9 @@
-package com.laotek.churchguru.web.client.activity.website.estore;
+package com.laotek.churchguru.web.client.activity.website.listening;
 
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 import com.laotek.churchguru.web.client.MainMenuContext;
-import com.laotek.churchguru.web.shared.estore.EStoreCategoryDto;
+import com.laotek.churchguru.web.shared.listening.ListeningCategoryDto;
 
 public class ListeningCategoryNewViewImpl implements ListeningCategoryNewView {
 
@@ -37,8 +37,8 @@ public class ListeningCategoryNewViewImpl implements ListeningCategoryNewView {
     }
 
     @Override
-    public EStoreCategoryDto add() {
-	EStoreCategoryDto categoryDto = new EStoreCategoryDto();
+    public ListeningCategoryDto add() {
+	ListeningCategoryDto categoryDto = new ListeningCategoryDto();
 	return categoryDto;
     }
 

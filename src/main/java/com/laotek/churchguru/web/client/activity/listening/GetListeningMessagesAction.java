@@ -5,9 +5,9 @@ import net.customware.gwt.dispatch.shared.Action;
 import com.laotek.churchguru.web.client.activity.AbstractDispatchAction;
 import com.laotek.churchguru.web.shared.role.org.HasOrganisationViewRole;
 
-public class GetEStoreMessagesAction extends AbstractDispatchAction implements
-	Action<GetEStoreMessagesResult>, HasOrganisationViewRole {
+public class GetListeningMessagesAction extends AbstractDispatchAction implements
+	Action<GetListeningMessagesResult>, HasOrganisationViewRole {
 
-    public GetEStoreMessagesAction() {
+    public GetListeningMessagesAction() {
     }
 }

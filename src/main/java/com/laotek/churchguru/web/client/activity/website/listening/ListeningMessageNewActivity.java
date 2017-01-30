@@ -1,4 +1,4 @@
-package com.laotek.churchguru.web.client.activity.website.estore;
+package com.laotek.churchguru.web.client.activity.website.listening;
 
 import java.util.List;
 import java.util.Map;
@@ -11,14 +11,14 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.laotek.churchguru.web.client.ClientFactory;
 import com.laotek.churchguru.web.client.UserContext;
-import com.laotek.churchguru.web.client.activity.estore.GetEStoreMessageAction;
-import com.laotek.churchguru.web.client.activity.estore.GetEStoreMessageResult;
-import com.laotek.churchguru.web.client.activity.estore.SubmitEStoreMessageAction;
-import com.laotek.churchguru.web.client.activity.estore.SubmitEStoreMessageResult;
-import com.laotek.churchguru.web.shared.estore.EStoreCategoryDto;
-import com.laotek.churchguru.web.shared.estore.EStoreMessageDto;
-import com.laotek.churchguru.web.shared.estore.EStoreMessagePictureDto;
-import com.laotek.churchguru.web.shared.estore.EStoreSpeakerDto;
+import com.laotek.churchguru.web.client.activity.listening.GetListeningMessageAction;
+import com.laotek.churchguru.web.client.activity.listening.GetListeningMessageResult;
+import com.laotek.churchguru.web.client.activity.listening.SubmitListeningMessageAction;
+import com.laotek.churchguru.web.client.activity.listening.SubmitListeningMessageResult;
+import com.laotek.churchguru.web.shared.listening.ListeningCategoryDto;
+import com.laotek.churchguru.web.shared.listening.ListeningMessageDto;
+import com.laotek.churchguru.web.shared.listening.ListeningMessagePictureDto;
+import com.laotek.churchguru.web.shared.listening.ListeningSpeakerDto;
 
 public class ListeningMessageNewActivity extends AbstractActivity implements
 	ListeningMessageNewView.Presenter {
@@ -64,22 +64,22 @@ public class ListeningMessageNewActivity extends AbstractActivity implements
     }
 
     private void getNewMessage(String identifier) {
-	GetEStoreMessageAction action = new GetEStoreMessageAction(identifier);
+	GetListeningMessageAction action = new GetListeningMessageAction(identifier);
 	UserContext.getInstance().decorateClientSessionId(action);
 	UserContext.getInstance().getDispatchClient()
-		.execute(action, new AsyncCallback<GetEStoreMessageResult>() {
+		.execute(action, new AsyncCallback<GetListeningMessageResult>() {
 		    @Override
 		    public void onFailure(Throwable throwable) {
 			Window.alert("Unable to retrieve the message request due to a server error");
 		    }
 
 		    @Override
-		    public void onSuccess(GetEStoreMessageResult result) {
-			EStoreMessageDto dto = result.getMessage();
-			List<EStoreSpeakerDto> speakers = result.getSpeakers();
-			List<EStoreCategoryDto> categories = result
+		    public void onSuccess(GetListeningMessageResult result) {
+			ListeningMessageDto dto = result.getMessage();
+			List<ListeningSpeakerDto> speakers = result.getSpeakers();
+			List<ListeningCategoryDto> categories = result
 				.getCategories();
-			List<EStoreMessagePictureDto> pictures = result
+			List<ListeningMessagePictureDto> pictures = result
 				.getPictures();
 			Map<String, Boolean> workersSelectedForFreeMessages = result
 				.getWorkersSelectedForFreeMessages();
@@ -92,20 +92,20 @@ public class ListeningMessageNewActivity extends AbstractActivity implements
     }
 
     @Override
-    public void submit(SubmitEStoreMessageAction action) {
+    public void submit(SubmitListeningMessageAction action) {
 	UserContext.getInstance().decorateClientSessionId(action);
 	UserContext
 		.getInstance()
 		.getDispatchClient()
 		.execute(action,
-			new AsyncCallback<SubmitEStoreMessageResult>() {
+			new AsyncCallback<SubmitListeningMessageResult>() {
 			    @Override
 			    public void onFailure(Throwable throwable) {
 			    }
 
 			    @Override
 			    public void onSuccess(
-				    SubmitEStoreMessageResult result) {
+				    SubmitListeningMessageResult result) {
 				view.uploadPhotosByWorker();
 			    }
 			});

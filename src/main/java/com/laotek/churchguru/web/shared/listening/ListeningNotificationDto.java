@@ -1,27 +1,27 @@
-package com.laotek.churchguru.web.shared.estore;
+package com.laotek.churchguru.web.shared.listening;
 
 import java.io.Serializable;
 
-import com.laotek.churchguru.model.shared.enums.EStoreNotificationType;
+import com.laotek.churchguru.model.shared.enums.ListeningNotificationType;
 
-public class EStoreNotificationDto implements Serializable {
+public class ListeningNotificationDto implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    public EStoreNotificationDto() {
+    public ListeningNotificationDto() {
     }
 
-    public EStoreNotificationDto(EStoreNotificationType notificationType) {
+    public ListeningNotificationDto(ListeningNotificationType notificationType) {
 	super();
 	this.notificationType = notificationType;
     }
 
-    private EStoreNotificationType notificationType;
+    private ListeningNotificationType notificationType;
 
-    public EStoreNotificationType getNotificationType() {
+    public ListeningNotificationType getNotificationType() {
 	return notificationType;
     }
 
-    public void setNotificationType(EStoreNotificationType notificationType) {
+    public void setNotificationType(ListeningNotificationType notificationType) {
 	this.notificationType = notificationType;
     }
 }

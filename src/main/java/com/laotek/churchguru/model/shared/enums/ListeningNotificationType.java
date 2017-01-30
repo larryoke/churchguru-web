@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
 
-public enum EStoreNotificationType implements Serializable, IsSerializable {
+public enum ListeningNotificationType implements Serializable, IsSerializable {
     NOTIFY_ONLINE_MEMBERS("notifyOnlineMembers", "Notify Online Members"),
 
     NOTIFY_ALL_FULL_MEMBERS("notifyFullMembers", "Notify Full Members"),
@@ -18,7 +18,7 @@ public enum EStoreNotificationType implements Serializable, IsSerializable {
     private String key;
     private String desc;
 
-    private EStoreNotificationType(String key, String desc) {
+    private ListeningNotificationType(String key, String desc) {
 	this.key = key;
 	this.desc = desc;
     }
@@ -31,8 +31,8 @@ public enum EStoreNotificationType implements Serializable, IsSerializable {
 	return key;
     }
 
-    public static EStoreNotificationType findKey(String key) {
-	for (EStoreNotificationType type : EStoreNotificationType.values()) {
+    public static ListeningNotificationType findKey(String key) {
+	for (ListeningNotificationType type : ListeningNotificationType.values()) {
 	    if (type.getKey().equals(key)) {
 		return type;
 	    }
@@ -40,8 +40,8 @@ public enum EStoreNotificationType implements Serializable, IsSerializable {
 	return null;
     }
 
-    public static EStoreNotificationType findDesc(String desc) {
-	for (EStoreNotificationType type : EStoreNotificationType.values()) {
+    public static ListeningNotificationType findDesc(String desc) {
+	for (ListeningNotificationType type : ListeningNotificationType.values()) {
 	    if (type.getDesc().equals(desc)) {
 		return type;
 	    }

@@ -37,28 +37,8 @@ import com.laotek.churchguru.web.client.activity.user.UserProfilesActivity;
 import com.laotek.churchguru.web.client.activity.user.UserProfilesPlace;
 import com.laotek.churchguru.web.client.activity.website.WebsiteActivity;
 import com.laotek.churchguru.web.client.activity.website.WebsitePlace;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreCategoriesActivity;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreCategoriesPlace;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreCategoryNewActivity;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreCategoryNewPlace;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreCustomerDetailsActivity;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreCustomerDetailsPlace;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreCustomersActivity;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreCustomersPlace;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreGalleryActivity;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreGalleryNewItemActivity;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreGalleryNewItemPlace;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreGalleryPlace;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreMessageNewActivity;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreMessageNewPlace;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreMessagesActivity;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreMessagesPlace;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreNotificationsActivity;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreNotificationsPlace;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreSpeakerNewActivity;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreSpeakerNewPlace;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreSpeakersActivity;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreSpeakersPlace;
+import com.laotek.churchguru.web.client.activity.website.listening.*;
+import com.laotek.churchguru.web.client.activity.website.listening.ListeningCategoriesActivity;
 
 public class AppActivityMapper implements ActivityMapper {
     private ClientFactory clientFactory;
@@ -102,38 +82,38 @@ public class AppActivityMapper implements ActivityMapper {
 	else if (place instanceof UserProfilesPlace)
 	    return new UserProfilesActivity((UserProfilesPlace) place, clientFactory);
 
-	else if (place instanceof EStoreSpeakerNewPlace)
-	    return new EStoreSpeakerNewActivity((EStoreSpeakerNewPlace) place, clientFactory);
+	else if (place instanceof ListeningSpeakerNewPlace)
+	    return new ListeningSpeakerNewActivity((ListeningSpeakerNewPlace) place, clientFactory);
 
-	else if (place instanceof EStoreCustomersPlace)
-	    return new EStoreCustomersActivity((EStoreCustomersPlace) place, clientFactory);
+	else if (place instanceof ListeningCustomersPlace)
+	    return new ListeningCustomersActivity((ListeningCustomersPlace) place, clientFactory);
 
-	else if (place instanceof EStoreCustomerDetailsPlace)
-	    return new EStoreCustomerDetailsActivity((EStoreCustomerDetailsPlace) place, clientFactory);
+	else if (place instanceof ListeningCustomerDetailsPlace)
+	    return new ListeningCustomerDetailsActivity((ListeningCustomerDetailsPlace) place, clientFactory);
 
-	else if (place instanceof EStoreSpeakersPlace)
-	    return new EStoreSpeakersActivity((EStoreSpeakersPlace) place, clientFactory);
+	else if (place instanceof ListeningSpeakersPlace)
+	    return new ListeningSpeakersActivity((ListeningSpeakersPlace) place, clientFactory);
 
-	else if (place instanceof EStoreCategoryNewPlace)
-	    return new EStoreCategoryNewActivity((EStoreCategoryNewPlace) place, clientFactory);
+	else if (place instanceof ListeningCategoryNewPlace)
+	    return new ListeningCategoryNewActivity((ListeningCategoryNewPlace) place, clientFactory);
 
-	else if (place instanceof EStoreMessagesPlace)
-	    return new EStoreMessagesActivity((EStoreMessagesPlace) place, clientFactory);
+	else if (place instanceof ListeningMessagesPlace)
+	    return new ListeningMessagesActivity((ListeningMessagesPlace) place, clientFactory);
 
-	else if (place instanceof EStoreCategoriesPlace)
-	    return new EStoreCategoriesActivity((EStoreCategoriesPlace) place, clientFactory);
+	else if (place instanceof ListeningCategoriesPlace)
+	    return new ListeningCategoriesActivity((ListeningCategoriesPlace) place, clientFactory);
 
-	else if (place instanceof EStoreNotificationsPlace)
-	    return new EStoreNotificationsActivity((EStoreNotificationsPlace) place, clientFactory);
+	else if (place instanceof ListeningNotificationsPlace)
+	    return new ListeningNotificationsActivity((ListeningNotificationsPlace) place, clientFactory);
 
-	else if (place instanceof EStoreMessageNewPlace)
-	    return new EStoreMessageNewActivity((EStoreMessageNewPlace) place, clientFactory);
+	else if (place instanceof ListeningMessageNewPlace)
+	    return new ListeningMessageNewActivity((ListeningMessageNewPlace) place, clientFactory);
 
-	else if (place instanceof EStoreGalleryPlace)
-	    return new EStoreGalleryActivity((EStoreGalleryPlace) place, clientFactory);
+	else if (place instanceof ListeningGalleryPlace)
+	    return new ListeningGalleryActivity((ListeningGalleryPlace) place, clientFactory);
 
-	else if (place instanceof EStoreGalleryNewItemPlace)
-	    return new EStoreGalleryNewItemActivity((EStoreGalleryNewItemPlace) place, clientFactory);
+	else if (place instanceof ListeningGalleryNewItemPlace)
+	    return new ListeningGalleryNewItemActivity((ListeningGalleryNewItemPlace) place, clientFactory);
 
 	else if (place instanceof WebsitePlace)
 	    return new WebsiteActivity((WebsitePlace) place, clientFactory);

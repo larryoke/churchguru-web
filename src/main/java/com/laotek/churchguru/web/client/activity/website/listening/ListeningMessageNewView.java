@@ -1,23 +1,23 @@
-package com.laotek.churchguru.web.client.activity.website.estore;
+package com.laotek.churchguru.web.client.activity.website.listening;
 
 import java.util.List;
 import java.util.Map;
 
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.IsWidget;
-import com.laotek.churchguru.web.client.activity.estore.SubmitEStoreMessageAction;
-import com.laotek.churchguru.web.shared.estore.EStoreCategoryDto;
-import com.laotek.churchguru.web.shared.estore.EStoreMessageDto;
-import com.laotek.churchguru.web.shared.estore.EStoreMessagePictureDto;
-import com.laotek.churchguru.web.shared.estore.EStoreSpeakerDto;
+import com.laotek.churchguru.web.client.activity.listening.SubmitListeningMessageAction;
+import com.laotek.churchguru.web.shared.listening.ListeningCategoryDto;
+import com.laotek.churchguru.web.shared.listening.ListeningMessageDto;
+import com.laotek.churchguru.web.shared.listening.ListeningMessagePictureDto;
+import com.laotek.churchguru.web.shared.listening.ListeningSpeakerDto;
 
 public interface ListeningMessageNewView extends IsWidget {
     void setPresenter(Presenter presenter);
 
-    void initNewMessage(EStoreMessageDto dto, List<EStoreSpeakerDto> speakers,
-	    List<EStoreCategoryDto> categories,
-	    List<EStoreMessagePictureDto> pictures,
-	    Map<String, Boolean> workersSelectedForFreeMessages);
+    void initNewMessage(ListeningMessageDto dto, List<ListeningSpeakerDto> speakers,
+                        List<ListeningCategoryDto> categories,
+                        List<ListeningMessagePictureDto> pictures,
+                        Map<String, Boolean> workersSelectedForFreeMessages);
 
     void init();
 
@@ -28,7 +28,7 @@ public interface ListeningMessageNewView extends IsWidget {
     void uploadPhotosByWorker();
 
     public interface Presenter {
-	void submit(SubmitEStoreMessageAction action);
+	void submit(SubmitListeningMessageAction action);
 
 	void goTo(Place place);
     }

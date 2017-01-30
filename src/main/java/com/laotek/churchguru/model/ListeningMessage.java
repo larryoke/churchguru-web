@@ -19,10 +19,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.laotek.churchguru.model.shared.enums.EStoreMessageStatus;
+import com.laotek.churchguru.model.shared.enums.ListeningMessageStatus;
 
 @Entity
-public class EStoreMessage {
+public class ListeningMessage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,7 +43,7 @@ public class EStoreMessage {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, unique = false)
-    private EStoreMessageStatus eStoreMessageStatus = EStoreMessageStatus.NEW;
+    private ListeningMessageStatus eStoreMessageStatus = ListeningMessageStatus.NEW;
 
     @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
@@ -61,7 +61,7 @@ public class EStoreMessage {
 
     @ManyToOne
     @JoinColumn
-    private EStoreMessagePicture eStoreMessagePicture;
+    private ListeningMessagePicture eStoreMessagePicture;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false, unique = false)
@@ -175,12 +175,12 @@ public class EStoreMessage {
 	this.eStoreCategory = eStoreCategory;
     }
 
-    public EStoreMessagePicture geteStoreMessagePicture() {
+    public ListeningMessagePicture geteStoreMessagePicture() {
 	return eStoreMessagePicture;
     }
 
     public void seteStoreMessagePicture(
-	    EStoreMessagePicture eStoreMessagePicture) {
+	    ListeningMessagePicture eStoreMessagePicture) {
 	this.eStoreMessagePicture = eStoreMessagePicture;
     }
 

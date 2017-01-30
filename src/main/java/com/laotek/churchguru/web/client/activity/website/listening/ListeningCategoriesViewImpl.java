@@ -1,11 +1,11 @@
-package com.laotek.churchguru.web.client.activity.website.estore;
+package com.laotek.churchguru.web.client.activity.website.listening;
 
 import java.util.List;
 
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 import com.laotek.churchguru.web.client.MainMenuContext;
-import com.laotek.churchguru.web.shared.estore.EStoreCategoryDto;
+import com.laotek.churchguru.web.shared.listening.ListeningCategoryDto;
 
 public class ListeningCategoriesViewImpl implements ListeningCategoriesView {
 
@@ -24,12 +24,12 @@ public class ListeningCategoriesViewImpl implements ListeningCategoriesView {
 
     @Override
     public void init() {
-	Window.setTitle("EStore Categories");
+	Window.setTitle("Listen Categories");
     }
 
     @Override
     public void initTab() {
-	MainMenuContext.getInstance().showEstorePanel("estore");
+	MainMenuContext.getInstance().showListeningPanel("listening");
     }
 
     @Override
@@ -39,7 +39,7 @@ public class ListeningCategoriesViewImpl implements ListeningCategoriesView {
     }
 
     @Override
-    public void initCategories(List<EStoreCategoryDto> dtos) {
+    public void initCategories(List<ListeningCategoryDto> dtos) {
 	// TODO Auto-generated method stub
 
     }

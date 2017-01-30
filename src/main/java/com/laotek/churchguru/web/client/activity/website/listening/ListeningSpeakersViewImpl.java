@@ -1,9 +1,9 @@
-package com.laotek.churchguru.web.client.activity.website.estore;
+package com.laotek.churchguru.web.client.activity.website.listening;
 
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 import com.laotek.churchguru.web.client.MainMenuContext;
-import com.laotek.churchguru.web.shared.estore.EStoreSpeakerDto;
+import com.laotek.churchguru.web.shared.listening.ListeningSpeakerDto;
 
 public class ListeningSpeakersViewImpl implements ListeningSpeakersView {
 
@@ -27,7 +27,7 @@ public class ListeningSpeakersViewImpl implements ListeningSpeakersView {
 
     @Override
     public void initTab() {
-	MainMenuContext.getInstance().showEstorePanel("eStore");
+	MainMenuContext.getInstance().showListeningPanel("eStore");
     }
 
     @Override
@@ -37,7 +37,7 @@ public class ListeningSpeakersViewImpl implements ListeningSpeakersView {
     }
 
     @Override
-    public void init(EStoreSpeakerDto dto) {
+    public void init(ListeningSpeakerDto dto) {
 	// TODO Auto-generated method stub
 
     }

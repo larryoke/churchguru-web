@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.laotek.churchguru.model.shared.enums.ListeningNotificationType;
 import net.customware.gwt.dispatch.shared.Action;
 
-import com.laotek.churchguru.model.shared.enums.EStoreNotificationType;
 import com.laotek.churchguru.web.client.activity.AbstractDispatchAction;
 import com.laotek.churchguru.web.shared.FullnameDto;
 import com.laotek.churchguru.web.shared.role.org.HasOrganisationViewRole;
 
-public class SubmitEStoreMessageAction extends AbstractDispatchAction implements
-	Action<SubmitEStoreMessageResult>, HasOrganisationViewRole {
+public class SubmitListeningMessageAction extends AbstractDispatchAction implements
+	Action<SubmitListeningMessageResult>, HasOrganisationViewRole {
 
     private String identifier;
     private FullnameDto newSpeaker = new FullnameDto();
@@ -30,11 +30,11 @@ public class SubmitEStoreMessageAction extends AbstractDispatchAction implements
 
     private Date messageDate;
 
-    private List<EStoreNotificationType> notifications = new ArrayList<EStoreNotificationType>();
+    private List<ListeningNotificationType> notifications = new ArrayList<ListeningNotificationType>();
 
     private List<String> workersWithFreeAccessToMessage;
 
-    public SubmitEStoreMessageAction() {
+    public SubmitListeningMessageAction() {
     }
 
     public String getIdentifier() {
@@ -109,11 +109,11 @@ public class SubmitEStoreMessageAction extends AbstractDispatchAction implements
 	this.salesChargePerMessage = salesChargePerMessage;
     }
 
-    public List<EStoreNotificationType> getNotifications() {
+    public List<ListeningNotificationType> getNotifications() {
 	return notifications;
     }
 
-    public void setNotifications(List<EStoreNotificationType> notifications) {
+    public void setNotifications(List<ListeningNotificationType> notifications) {
 	this.notifications = notifications;
     }
 

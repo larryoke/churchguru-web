@@ -1,4 +1,4 @@
-package com.laotek.churchguru.web.client.activity.estore;
+package com.laotek.churchguru.web.client.activity.listening;
 
 import net.customware.gwt.dispatch.shared.Result;
 

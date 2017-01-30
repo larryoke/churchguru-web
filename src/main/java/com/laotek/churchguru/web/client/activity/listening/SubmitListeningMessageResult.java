@@ -2,20 +2,20 @@ package com.laotek.churchguru.web.client.activity.listening;
 
 import net.customware.gwt.dispatch.shared.Result;
 
-import com.laotek.churchguru.web.shared.estore.EStoreMessageDto;
+import com.laotek.churchguru.web.shared.listening.ListeningMessageDto;
 
-public class SubmitEStoreMessageResult implements Result {
+public class SubmitListeningMessageResult implements Result {
 
-    private EStoreMessageDto message;
+    private ListeningMessageDto message;
 
-    public SubmitEStoreMessageResult() {
+    public SubmitListeningMessageResult() {
     }
 
-    public SubmitEStoreMessageResult(EStoreMessageDto message) {
+    public SubmitListeningMessageResult(ListeningMessageDto message) {
 	this.message = message;
     }
 
-    public EStoreMessageDto getMessage() {
+    public ListeningMessageDto getMessage() {
 	return message;
     }
 

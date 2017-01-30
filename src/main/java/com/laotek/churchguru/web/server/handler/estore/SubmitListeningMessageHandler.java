@@ -15,23 +15,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.laotek.churchguru.daos.listening.ListeningDao;
-import com.laotek.churchguru.model.shared.enums.EStoreNotificationType;
-import com.laotek.churchguru.web.client.activity.listening.SubmitEStoreMessageAction;
-import com.laotek.churchguru.web.client.activity.listening.SubmitEStoreMessageResult;
+import com.laotek.churchguru.model.shared.enums.ListeningNotificationType;
+import com.laotek.churchguru.web.client.activity.listening.SubmitListeningMessageAction;
+import com.laotek.churchguru.web.client.activity.listening.SubmitListeningMessageResult;
 import com.laotek.churchguru.web.server.handler.AbstractCommandHandler;
-import com.laotek.churchguru.web.shared.estore.EStoreMessageDto;
+import com.laotek.churchguru.web.shared.listening.ListeningMessageDto;
 
 @Component
-public class SubmitEStoreMessageHandler extends AbstractCommandHandler
+public class SubmitListeningMessageHandler extends AbstractCommandHandler
 	implements
-	ActionHandler<SubmitEStoreMessageAction, SubmitEStoreMessageResult> {
+	ActionHandler<SubmitListeningMessageAction, SubmitListeningMessageResult> {
 
     @Autowired
     private ListeningDao eStoreDao;
 
     @Override
-    public SubmitEStoreMessageResult execute(SubmitEStoreMessageAction action,
-	    ExecutionContext context) throws DispatchException {
+    public SubmitListeningMessageResult execute(SubmitListeningMessageAction action,
+												ExecutionContext context) throws DispatchException {
 
 	String identifier = action.getIdentifier();
 
@@ -68,7 +68,7 @@ public class SubmitEStoreMessageHandler extends AbstractCommandHandler
 	}
 
 	StringBuffer notificationsSpaceDelimited = new StringBuffer();
-	for (EStoreNotificationType notificationType : action
+	for (ListeningNotificationType notificationType : action
 		.getNotifications()) {
 	    notificationsSpaceDelimited.append(notificationType.name());
 	    notificationsSpaceDelimited.append(" ");
@@ -91,11 +91,11 @@ public class SubmitEStoreMessageHandler extends AbstractCommandHandler
 
 	eStoreDao.updateMessage(message, otherDetails);
 
-	return new SubmitEStoreMessageResult(map(message));
+	return new SubmitListeningMessageResult(map(message));
     }
 
-    private EStoreMessageDto map(ListeningMessage message) {
-	EStoreMessageDto dto = new EStoreMessageDto();
+    private ListeningMessageDto map(ListeningMessage message) {
+	ListeningMessageDto dto = new ListeningMessageDto();
 	dto.setDescription(message.getDescription());
 	dto.setTitle(message.getTitle());
 	dto.setIdentifier(message.getIdentifier());
@@ -103,13 +103,13 @@ public class SubmitEStoreMessageHandler extends AbstractCommandHandler
     }
 
     @Override
-    public Class<SubmitEStoreMessageAction> getActionType() {
-	return SubmitEStoreMessageAction.class;
+    public Class<SubmitListeningMessageAction> getActionType() {
+	return SubmitListeningMessageAction.class;
     }
 
     @Override
-    public void rollback(SubmitEStoreMessageAction action,
-	    SubmitEStoreMessageResult result, ExecutionContext context)
+    public void rollback(SubmitListeningMessageAction action,
+						 SubmitListeningMessageResult result, ExecutionContext context)
 	    throws DispatchException {
     }
 

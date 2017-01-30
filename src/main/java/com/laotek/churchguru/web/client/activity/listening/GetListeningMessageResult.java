@@ -5,27 +5,27 @@ import java.util.Map;
 
 import net.customware.gwt.dispatch.shared.Result;
 
-import com.laotek.churchguru.web.shared.estore.EStoreCategoryDto;
-import com.laotek.churchguru.web.shared.estore.EStoreMessageDto;
-import com.laotek.churchguru.web.shared.estore.EStoreMessagePictureDto;
-import com.laotek.churchguru.web.shared.estore.EStoreSpeakerDto;
+import com.laotek.churchguru.web.shared.listening.ListeningCategoryDto;
+import com.laotek.churchguru.web.shared.listening.ListeningMessageDto;
+import com.laotek.churchguru.web.shared.listening.ListeningMessagePictureDto;
+import com.laotek.churchguru.web.shared.listening.ListeningSpeakerDto;
 
-public class GetEStoreMessageResult implements Result {
+public class GetListeningMessageResult implements Result {
 
-    private EStoreMessageDto message;
-    private List<EStoreSpeakerDto> speakers;
-    private List<EStoreCategoryDto> categories;
-    private List<EStoreMessagePictureDto> pictures;
+    private ListeningMessageDto message;
+    private List<ListeningSpeakerDto> speakers;
+    private List<ListeningCategoryDto> categories;
+    private List<ListeningMessagePictureDto> pictures;
     private Map<String, Boolean> workersSelectedForFreeMessages;
 
-    public GetEStoreMessageResult() {
+    public GetListeningMessageResult() {
     }
 
-    public GetEStoreMessageResult(EStoreMessageDto message,
-	    List<EStoreSpeakerDto> speakers,
-	    List<EStoreCategoryDto> categories,
-	    List<EStoreMessagePictureDto> pictures,
-	    Map<String, Boolean> workersSelectedForFreeMessages) {
+    public GetListeningMessageResult(ListeningMessageDto message,
+                                     List<ListeningSpeakerDto> speakers,
+                                     List<ListeningCategoryDto> categories,
+                                     List<ListeningMessagePictureDto> pictures,
+                                     Map<String, Boolean> workersSelectedForFreeMessages) {
 	this.message = message;
 	this.speakers = speakers;
 	this.categories = categories;
@@ -33,23 +33,23 @@ public class GetEStoreMessageResult implements Result {
 	this.setWorkersSelectedForFreeMessages(workersSelectedForFreeMessages);
     }
 
-    public EStoreMessageDto getMessage() {
+    public ListeningMessageDto getMessage() {
 	return message;
     }
 
-    public List<EStoreSpeakerDto> getSpeakers() {
+    public List<ListeningSpeakerDto> getSpeakers() {
 	return speakers;
     }
 
-    public List<EStoreCategoryDto> getCategories() {
+    public List<ListeningCategoryDto> getCategories() {
 	return categories;
     }
 
-    public void setCategories(List<EStoreCategoryDto> categories) {
+    public void setCategories(List<ListeningCategoryDto> categories) {
 	this.categories = categories;
     }
 
-    public List<EStoreMessagePictureDto> getPictures() {
+    public List<ListeningMessagePictureDto> getPictures() {
 	return pictures;
     }
 

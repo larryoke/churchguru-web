@@ -1,8 +1,8 @@
-package com.laotek.churchguru.web.client.activity.website.estore;
+package com.laotek.churchguru.web.client.activity.website.listening;
 
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.IsWidget;
-import com.laotek.churchguru.web.shared.estore.EStoreSpeakerDto;
+import com.laotek.churchguru.web.shared.listening.ListeningSpeakerDto;
 
 public interface ListeningSpeakerNewView extends IsWidget {
     void setPresenter(Presenter presenter);
@@ -13,7 +13,7 @@ public interface ListeningSpeakerNewView extends IsWidget {
 
     void initWidgets();
 
-    EStoreSpeakerDto add();
+    ListeningSpeakerDto add();
 
     public interface Presenter {
 	void goTo(Place place);

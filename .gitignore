@@ -34,3 +34,6 @@ src/main/webapp/WEB-INF/
 *.idea/
 **/my-tomcat
 **churchguru-web.iml
+/.settings/
+/.classpath
+/.project

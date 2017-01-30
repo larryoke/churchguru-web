@@ -19,17 +19,17 @@ import com.laotek.churchguru.web.client.activity.user.NewUserSetupView;
 import com.laotek.churchguru.web.client.activity.user.SingleUserView;
 import com.laotek.churchguru.web.client.activity.user.UserProfilesView;
 import com.laotek.churchguru.web.client.activity.website.WebsiteView;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreCategoriesView;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreCategoryNewView;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreCustomerDetailsView;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreCustomersView;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreGalleryNewView;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreGalleryView;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreMessageNewView;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreMessagesView;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreNotificationsView;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreSpeakerNewView;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreSpeakersView;
+import com.laotek.churchguru.web.client.activity.website.listening.ListeningCategoriesView;
+import com.laotek.churchguru.web.client.activity.website.listening.ListeningCategoryNewView;
+import com.laotek.churchguru.web.client.activity.website.listening.ListeningCustomerDetailsView;
+import com.laotek.churchguru.web.client.activity.website.listening.ListeningCustomersView;
+import com.laotek.churchguru.web.client.activity.website.listening.ListeningGalleryNewView;
+import com.laotek.churchguru.web.client.activity.website.listening.ListeningGalleryView;
+import com.laotek.churchguru.web.client.activity.website.listening.ListeningMessageNewView;
+import com.laotek.churchguru.web.client.activity.website.listening.ListeningMessagesView;
+import com.laotek.churchguru.web.client.activity.website.listening.ListeningNotificationsView;
+import com.laotek.churchguru.web.client.activity.website.listening.ListeningSpeakerNewView;
+import com.laotek.churchguru.web.client.activity.website.listening.ListeningSpeakersView;
 
 public interface ClientFactory {
     EventBus getEventBus();
@@ -64,27 +64,27 @@ public interface ClientFactory {
 
     NewUserSetupView getNewUserSetupView();
 
-    EStoreCategoriesView getEStoreCategoriesView();
+    ListeningCategoriesView getEStoreCategoriesView();
 
-    EStoreCategoryNewView getEStoreCategoryNewView();
+    ListeningCategoryNewView getEStoreCategoryNewView();
 
-    EStoreCustomerDetailsView getEStoreCustomerDetailsView();
+    ListeningCustomerDetailsView getEStoreCustomerDetailsView();
 
-    EStoreCustomersView getEStoreCustomersView();
+    ListeningCustomersView getEStoreCustomersView();
 
-    EStoreGalleryNewView getEStoreGalleryNewView();
+    ListeningGalleryNewView getEStoreGalleryNewView();
 
-    EStoreGalleryView getEStoreGalleryView();
+    ListeningGalleryView getEStoreGalleryView();
 
-    EStoreMessageNewView getEStoreMessageNewView();
+    ListeningMessageNewView getEStoreMessageNewView();
 
-    EStoreMessagesView getEStoreMessagesView();
+    ListeningMessagesView getEStoreMessagesView();
 
-    EStoreNotificationsView getEStoreNotificationsView();
+    ListeningNotificationsView getEStoreNotificationsView();
 
-    EStoreSpeakerNewView getEStoreSpeakerNewView();
+    ListeningSpeakerNewView getEStoreSpeakerNewView();
 
-    EStoreSpeakersView getEStoreSpeakersView();
+    ListeningSpeakersView getEStoreSpeakersView();
 
     WebsiteView getWebsiteView();
 

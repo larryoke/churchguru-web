@@ -1,4 +1,4 @@
-package com.laotek.churchguru.daos.estore;
+package com.laotek.churchguru.daos.listening;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.laotek.churchguru.model.*;
+import com.laotek.churchguru.model.shared.enums.ListeningNotificationType;
 import org.apache.commons.lang.RandomStringUtils;
 import org.hibernate.Hibernate;
 import org.hibernate.Query;
@@ -16,7 +17,6 @@ import org.springframework.util.StringUtils;
 
 import com.laotek.churchguru.daos.BaseSessionFactory;
 import com.laotek.churchguru.model.ListeningCategory;
-import com.laotek.churchguru.model.shared.enums.EStoreNotificationType;
 import com.laotek.churchguru.model.shared.enums.Title;
 
 @Repository
@@ -71,14 +71,14 @@ public class ListeningDaoImpl extends BaseSessionFactory implements ListeningDao
         }
 
         // for all notifications possible
-        for (EStoreNotificationType type : EStoreNotificationType.values()) {
+        for (ListeningNotificationType type : ListeningNotificationType.values()) {
 
             boolean selectedByUser = false;
 
             // for each notification checked
             for (String notificationType : notificationTypeArr) {
 
-                if (type.equals(EStoreNotificationType
+                if (type.equals(ListeningNotificationType
                         .valueOf(notificationType))) {
 
                     selectedByUser = true;
@@ -87,7 +87,7 @@ public class ListeningDaoImpl extends BaseSessionFactory implements ListeningDao
                     // selected by user
                     if (!isMessageNotificationExists(eStoreMessage, type)) {
 
-                        ListeningNotification notification = getEStoreNotification(EStoreNotificationType
+                        ListeningNotification notification = getEStoreNotification(ListeningNotificationType
                                 .valueOf(notificationType));
 
                         // Create the message notification
@@ -232,7 +232,7 @@ public class ListeningDaoImpl extends BaseSessionFactory implements ListeningDao
 
     @Override
     public void loadNotifications() {
-        for (EStoreNotificationType notificationType : EStoreNotificationType
+        for (ListeningNotificationType notificationType : ListeningNotificationType
                 .values()) {
             ListeningNotification notification = getEStoreNotification(notificationType);
             if (notification == null) {
@@ -242,7 +242,7 @@ public class ListeningDaoImpl extends BaseSessionFactory implements ListeningDao
     }
 
     private void createEStoreNotification(
-            EStoreNotificationType notificationType) {
+            ListeningNotificationType notificationType) {
         ListeningNotification messageNotification = new ListeningNotification();
         messageNotification.setEStoreNotificationType(notificationType);
         messageNotification.setCreatedDate(new Date());
@@ -264,7 +264,7 @@ public class ListeningDaoImpl extends BaseSessionFactory implements ListeningDao
     }
 
     private ListeningNotification getEStoreNotification(
-            EStoreNotificationType notificationType) {
+            ListeningNotificationType notificationType) {
         Query query = getCurrentSession()
                 .createQuery(
                         "from ListeningNotification e where e.eStoreNotificationType = :notificationType");
@@ -276,7 +276,7 @@ public class ListeningDaoImpl extends BaseSessionFactory implements ListeningDao
     }
 
     private boolean isMessageNotificationExists(ListeningMessage message,
-                                                EStoreNotificationType notificationType) {
+                                                ListeningNotificationType notificationType) {
         Query query = getCurrentSession()
                 .createQuery(
                         "from ListeningNotification e where e.eStoreNotificationType = :notificationType");

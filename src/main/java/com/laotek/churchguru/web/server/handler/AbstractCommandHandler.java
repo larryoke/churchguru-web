@@ -7,20 +7,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import com.laotek.churchguru.model.*;
 import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.util.StringUtils;
 
-import com.laotek.churchguru.model.Donation;
-import com.laotek.churchguru.model.EStoreCategory;
-import com.laotek.churchguru.model.EStoreMember;
-import com.laotek.churchguru.model.EStoreMessage;
-import com.laotek.churchguru.model.EStoreMessageNotification;
-import com.laotek.churchguru.model.EStoreMessagePicture;
-import com.laotek.churchguru.model.EStoreSpeaker;
-import com.laotek.churchguru.model.LogoItem;
-import com.laotek.churchguru.model.NoticeAndEvent;
-import com.laotek.churchguru.model.Organisation;
-import com.laotek.churchguru.model.User;
+import com.laotek.churchguru.model.ListeningSpeaker;
 import com.laotek.churchguru.model.shared.enums.LogoItemType;
 import com.laotek.churchguru.web.client.activity.churchapp.instantmessage.NoticeOrEventDto;
 import com.laotek.churchguru.web.client.activity.donation.DonationDto;
@@ -30,11 +21,11 @@ import com.laotek.churchguru.web.shared.FullnameDto;
 import com.laotek.churchguru.web.shared.OrganisationDto;
 import com.laotek.churchguru.web.shared.PhoneDto;
 import com.laotek.churchguru.web.shared.UserDto;
-import com.laotek.churchguru.web.shared.estore.EStoreCategoryDto;
-import com.laotek.churchguru.web.shared.estore.EStoreMessageDto;
-import com.laotek.churchguru.web.shared.estore.EStoreMessagePictureDto;
-import com.laotek.churchguru.web.shared.estore.EStoreNotificationDto;
-import com.laotek.churchguru.web.shared.estore.EStoreSpeakerDto;
+import com.laotek.churchguru.web.shared.listening.ListeningCategoryDto;
+import com.laotek.churchguru.web.shared.listening.ListeningMessageDto;
+import com.laotek.churchguru.web.shared.listening.ListeningMessagePictureDto;
+import com.laotek.churchguru.web.shared.listening.ListeningNotificationDto;
+import com.laotek.churchguru.web.shared.listening.ListeningSpeakerDto;
 
 public abstract class AbstractCommandHandler {
 
@@ -85,10 +76,10 @@ public abstract class AbstractCommandHandler {
 	return dtos;
     }
 
-    protected List<EStoreSpeakerDto> mapSpeakers(List<EStoreSpeaker> speakers) {
-	List<EStoreSpeakerDto> dtos = new ArrayList<EStoreSpeakerDto>();
-	for (EStoreSpeaker speaker : speakers) {
-	    EStoreSpeakerDto dto = new EStoreSpeakerDto();
+    protected List<ListeningSpeakerDto> mapSpeakers(List<ListeningSpeaker> speakers) {
+	List<ListeningSpeakerDto> dtos = new ArrayList<ListeningSpeakerDto>();
+	for (ListeningSpeaker speaker : speakers) {
+	    ListeningSpeakerDto dto = new ListeningSpeakerDto();
 	    dto.setIdentifier(speaker.getIdentifier());
 	    dto.setDescription(speaker.getDescription());
 
@@ -102,11 +93,11 @@ public abstract class AbstractCommandHandler {
 	return dtos;
     }
 
-    protected List<EStoreMessagePictureDto> mapMessagePictures(
-	    List<EStoreMessagePicture> eStoreMessagePictures) {
-	List<EStoreMessagePictureDto> dtos = new ArrayList<EStoreMessagePictureDto>();
-	for (EStoreMessagePicture picture : eStoreMessagePictures) {
-	    EStoreMessagePictureDto dto = new EStoreMessagePictureDto();
+    protected List<ListeningMessagePictureDto> mapMessagePictures(
+	    List<ListeningMessagePicture> eStoreMessagePictures) {
+	List<ListeningMessagePictureDto> dtos = new ArrayList<ListeningMessagePictureDto>();
+	for (ListeningMessagePicture picture : eStoreMessagePictures) {
+	    ListeningMessagePictureDto dto = new ListeningMessagePictureDto();
 	    dto.setName(picture.getPictureName());
 	    dtos.add(dto);
 	}
@@ -114,11 +105,11 @@ public abstract class AbstractCommandHandler {
 
     }
 
-    protected List<EStoreCategoryDto> mapCategories(
-	    List<EStoreCategory> categories) {
-	List<EStoreCategoryDto> dtos = new ArrayList<EStoreCategoryDto>();
-	for (EStoreCategory category : categories) {
-	    EStoreCategoryDto dto = new EStoreCategoryDto();
+    protected List<ListeningCategoryDto> mapCategories(
+	    List<ListeningCategory> categories) {
+	List<ListeningCategoryDto> dtos = new ArrayList<ListeningCategoryDto>();
+	for (ListeningCategory category : categories) {
+	    ListeningCategoryDto dto = new ListeningCategoryDto();
 	    dto.setName(category.getCategoryName());
 	    dto.setIdentifier(category.getIdentifier());
 	    dtos.add(dto);
@@ -126,8 +117,8 @@ public abstract class AbstractCommandHandler {
 	return dtos;
     }
 
-    protected EStoreMessageDto mapMessages(EStoreMessage message) {
-	EStoreMessageDto dto = new EStoreMessageDto();
+    protected ListeningMessageDto mapMessages(ListeningMessage message) {
+	ListeningMessageDto dto = new ListeningMessageDto();
 	dto.setDescription(message.getDescription());
 	dto.setTitle(message.getTitle());
 	dto.setIdentifier(message.getIdentifier());
@@ -137,9 +128,9 @@ public abstract class AbstractCommandHandler {
 	dto.setMessageDateAsString(new SimpleDateFormat("dd-MM-yyyy")
 		.format(message.getMessageDate()));
 
-	EStoreSpeaker speaker = message.getEStoreSpeaker();
+	ListeningSpeaker speaker = message.getEStoreSpeaker();
 	if (speaker != null) {
-	    EStoreSpeakerDto speakerDto = new EStoreSpeakerDto();
+	    ListeningSpeakerDto speakerDto = new ListeningSpeakerDto();
 	    speakerDto.setDescription(speaker.getDescription());
 
 	    FullnameDto fullnameDto = new FullnameDto();
@@ -152,35 +143,35 @@ public abstract class AbstractCommandHandler {
 	    dto.setSpeakerDto(speakerDto);
 	}
 
-	EStoreCategory category = message.geteStoreCategory();
+	ListeningCategory category = message.geteStoreCategory();
 	if (category != null) {
-	    EStoreCategoryDto categoryDto = new EStoreCategoryDto();
+	    ListeningCategoryDto categoryDto = new ListeningCategoryDto();
 	    categoryDto.setIdentifier(category.getIdentifier());
 	    categoryDto.setName(category.getCategoryName());
 	    dto.setCategoryDto(categoryDto);
 	}
 
-	EStoreMessagePicture picture = message.geteStoreMessagePicture();
+	ListeningMessagePicture picture = message.geteStoreMessagePicture();
 	if (picture != null) {
-	    EStoreMessagePictureDto pictureDto = new EStoreMessagePictureDto();
+	    ListeningMessagePictureDto pictureDto = new ListeningMessagePictureDto();
 	    pictureDto.setName(picture.getPictureName());
 	    pictureDto.setIdentifier(picture.getIdentifier());
 	}
 
-	Set<EStoreMessageNotification> messageNotifications = message
+	Set<ListeningMessageNotification> messageNotifications = message
 		.getEStoreMessageNotifications();
 	if (messageNotifications != null && messageNotifications.size() > 0) {
-	    List<EStoreNotificationDto> dtos = map(messageNotifications);
+	    List<ListeningNotificationDto> dtos = map(messageNotifications);
 	    dto.setNotificationDtos(dtos);
 	}
 	return dto;
     }
 
-    protected List<EStoreNotificationDto> map(
-	    Set<EStoreMessageNotification> messageNotifications) {
-	List<EStoreNotificationDto> dtos = new ArrayList<EStoreNotificationDto>();
-	for (EStoreMessageNotification notification : messageNotifications) {
-	    dtos.add(new EStoreNotificationDto(notification
+    protected List<ListeningNotificationDto> map(
+	    Set<ListeningMessageNotification> messageNotifications) {
+	List<ListeningNotificationDto> dtos = new ArrayList<ListeningNotificationDto>();
+	for (ListeningMessageNotification notification : messageNotifications) {
+	    dtos.add(new ListeningNotificationDto(notification
 		    .getEStoreNotification().getEStoreNotificationType()));
 	}
 	return dtos;
@@ -270,9 +261,9 @@ public abstract class AbstractCommandHandler {
 	return dto;
     }
 
-    protected List<EStoreCategoryDto> mapCategoryDto(
-	    List<EStoreMember> categories) {
-	List<EStoreCategoryDto> categoryDtos = new ArrayList<EStoreCategoryDto>();
+    protected List<ListeningCategoryDto> mapCategoryDto(
+	    List<ListeningMember> categories) {
+	List<ListeningCategoryDto> categoryDtos = new ArrayList<ListeningCategoryDto>();
 	return categoryDtos;
     }
 

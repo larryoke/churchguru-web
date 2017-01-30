@@ -10,10 +10,10 @@ import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.laotek.churchguru.web.client.ApplicationContext;
 import com.laotek.churchguru.web.client.MainMenuContext;
-import com.laotek.churchguru.web.client.activity.website.estore.BaseViewImpl;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreCategoriesPlace;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreMessagesPlace;
-import com.laotek.churchguru.web.client.activity.website.estore.EStoreSpeakersPlace;
+import com.laotek.churchguru.web.client.activity.website.listening.BaseViewImpl;
+import com.laotek.churchguru.web.client.activity.website.listening.ListeningCategoriesPlace;
+import com.laotek.churchguru.web.client.activity.website.listening.ListeningMessagesPlace;
+import com.laotek.churchguru.web.client.activity.website.listening.ListeningSpeakersPlace;
 import com.laotek.churchguru.web.client.widget.RoundedCornerPanel;
 
 public class WebsiteViewImpl extends BaseViewImpl implements WebsiteView {
@@ -25,7 +25,7 @@ public class WebsiteViewImpl extends BaseViewImpl implements WebsiteView {
 	FlowPanel flowPanel = new FlowPanel();
 	flowPanel.setWidth("100%");
 
-	Widget widget = getBorderedButton("Messages", new EStoreMessagesPlace(
+	Widget widget = getBorderedButton("Messages", new ListeningMessagesPlace(
 		"messages"));
 	widget.setStylePrimaryName("flowPanel");
 	flowPanel.add(widget);
@@ -34,12 +34,12 @@ public class WebsiteViewImpl extends BaseViewImpl implements WebsiteView {
 	widget.setStylePrimaryName("flowPanel");
 	flowPanel.add(widget);
 
-	widget = getBorderedButton("Speakers", new EStoreSpeakersPlace(
+	widget = getBorderedButton("Speakers", new ListeningSpeakersPlace(
 		"Speakers"));
 	widget.setStylePrimaryName("flowPanel");
 	flowPanel.add(widget);
 
-	widget = getBorderedButton("Categories", new EStoreCategoriesPlace(
+	widget = getBorderedButton("Categories", new ListeningCategoriesPlace(
 		"Categories"));
 	widget.setStylePrimaryName("flowPanel");
 	flowPanel.add(widget);

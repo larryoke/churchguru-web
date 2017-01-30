@@ -14,7 +14,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class EStoreMessagePicture {
+public class ListeningMessagePicture {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,7 +34,7 @@ public class EStoreMessagePicture {
     private Date lastUpdatedDate;
 
     @OneToMany(mappedBy = "eStoreMessagePicture")
-    private Set<EStoreMessage> messages = new HashSet<EStoreMessage>();
+    private Set<ListeningMessage> messages = new HashSet<ListeningMessage>();
 
     public Long getId() {
 	return id;
@@ -76,11 +76,11 @@ public class EStoreMessagePicture {
 	this.pictureName = pictureName;
     }
 
-    public Set<EStoreMessage> getMessages() {
+    public Set<ListeningMessage> getMessages() {
 	return messages;
     }
 
-    public void setMessages(Set<EStoreMessage> messages) {
+    public void setMessages(Set<ListeningMessage> messages) {
 	this.messages = messages;
     }
 

@@ -1,4 +1,4 @@
-package com.laotek.churchguru.web.client.activity.website.estore;
+package com.laotek.churchguru.web.client.activity.website.listening;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
@@ -9,13 +9,13 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.laotek.churchguru.web.client.ApplicationContext;
 import com.laotek.churchguru.web.client.ClientFactory;
 import com.laotek.churchguru.web.client.UserContext;
-import com.laotek.churchguru.web.client.activity.estore.CreateNewMessageAction;
-import com.laotek.churchguru.web.client.activity.estore.CreateNewMessageResult;
-import com.laotek.churchguru.web.client.activity.estore.GetEStoreMessagesAction;
-import com.laotek.churchguru.web.client.activity.estore.GetEStoreMessagesResult;
+import com.laotek.churchguru.web.client.activity.listening.CreateNewMessageAction;
+import com.laotek.churchguru.web.client.activity.listening.CreateNewMessageResult;
+import com.laotek.churchguru.web.client.activity.listening.GetListeningMessagesAction;
+import com.laotek.churchguru.web.client.activity.listening.GetListeningMessagesResult;
 
 public class ListeningMessagesActivity extends AbstractActivity implements
-	ListeningMessagesView.Presenter {
+        ListeningMessagesView.Presenter {
 
     private ClientFactory clientFactory;
     private String name;
@@ -23,8 +23,8 @@ public class ListeningMessagesActivity extends AbstractActivity implements
 
     public ListeningMessagesActivity(ListeningMessagesPlace place,
                                      ClientFactory clientFactory) {
-	this.name = place.getName();
-	this.clientFactory = clientFactory;
+        this.name = place.getName();
+        this.clientFactory = clientFactory;
     }
 
     /**
@@ -32,13 +32,13 @@ public class ListeningMessagesActivity extends AbstractActivity implements
      */
     @Override
     public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
-	view = clientFactory.getEStoreMessagesView();
-	view.setPresenter(this);
-	view.initTab();
-	containerWidget.setWidget(view.asWidget());
-	view.init();
-	view.initWidgets();
-	getMessages();
+        view = clientFactory.getEStoreMessagesView();
+        view.setPresenter(this);
+        view.initTab();
+        containerWidget.setWidget(view.asWidget());
+        view.init();
+        view.initWidgets();
+        getMessages();
     }
 
     /**
@@ -46,54 +46,54 @@ public class ListeningMessagesActivity extends AbstractActivity implements
      */
     @Override
     public String mayStop() {
-	return null;
+        return null;
     }
 
     /**
      * Navigate to a new Place in the browser
      */
     public void goTo(Place place) {
-	clientFactory.getPlaceController().goTo(place);
+        clientFactory.getPlaceController().goTo(place);
     }
 
     private void getMessages() {
-	GetEStoreMessagesAction action = new GetEStoreMessagesAction();
-	UserContext.getInstance().decorateClientSessionId(action);
-	UserContext.getInstance().getDispatchClient()
-		.execute(action, new AsyncCallback<GetEStoreMessagesResult>() {
-		    @Override
-		    public void onFailure(Throwable throwable) {
-		    }
+        GetListeningMessagesAction action = new GetListeningMessagesAction();
+        UserContext.getInstance().decorateClientSessionId(action);
+        UserContext.getInstance().getDispatchClient()
+                .execute(action, new AsyncCallback<GetListeningMessagesResult>() {
+                    @Override
+                    public void onFailure(Throwable throwable) {
+                    }
 
-		    @Override
-		    public void onSuccess(GetEStoreMessagesResult result) {
-			view.init(result.getMessages());
-		    }
-		});
+                    @Override
+                    public void onSuccess(GetListeningMessagesResult result) {
+                        view.init(result.getMessages());
+                    }
+                });
 
     }
 
     @Override
     public void createMessage(String title) {
-	// This call is also used in WebsiteActivity
-	CreateNewMessageAction action = new CreateNewMessageAction(title);
-	UserContext.getInstance().decorateClientSessionId(action);
-	UserContext.getInstance().getDispatchClient()
-		.execute(action, new AsyncCallback<CreateNewMessageResult>() {
-		    @Override
-		    public void onFailure(Throwable throwable) {
-			Window.alert("A server error occured when attempting to create a new message.");
-		    }
+        // This call is also used in WebsiteActivity
+        CreateNewMessageAction action = new CreateNewMessageAction(title);
+        UserContext.getInstance().decorateClientSessionId(action);
+        UserContext.getInstance().getDispatchClient()
+                .execute(action, new AsyncCallback<CreateNewMessageResult>() {
+                    @Override
+                    public void onFailure(Throwable throwable) {
+                        Window.alert("A server error occured when attempting to create a new message.");
+                    }
 
-		    @Override
-		    public void onSuccess(CreateNewMessageResult result) {
-			ApplicationContext
-				.getInstance()
-				.getPlaceController()
-				.goTo(new ListeningMessageNewPlace(result
-					.getNewMessageID()));
-		    }
-		});
+                    @Override
+                    public void onSuccess(CreateNewMessageResult result) {
+                        ApplicationContext
+                                .getInstance()
+                                .getPlaceController()
+                                .goTo(new ListeningMessageNewPlace(result
+                                        .getNewMessageID()));
+                    }
+                });
 
     }
 }

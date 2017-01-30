@@ -15,10 +15,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.laotek.churchguru.model.shared.enums.EStoreNotificationType;
+import com.laotek.churchguru.model.shared.enums.ListeningNotificationType;
 
 @Entity
-public class EStoreNotification {
+public class ListeningNotification {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +30,7 @@ public class EStoreNotification {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, unique = false)
-    private EStoreNotificationType eStoreNotificationType;
+    private ListeningNotificationType eStoreNotificationType;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
@@ -82,12 +82,12 @@ public class EStoreNotification {
 	this.identifier = identifier;
     }
 
-    public EStoreNotificationType getEStoreNotificationType() {
+    public ListeningNotificationType getEStoreNotificationType() {
 	return eStoreNotificationType;
     }
 
     public void setEStoreNotificationType(
-	    EStoreNotificationType eStoreNotificationType) {
+	    ListeningNotificationType eStoreNotificationType) {
 	this.eStoreNotificationType = eStoreNotificationType;
     }
 }

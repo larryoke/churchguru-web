@@ -1,10 +1,10 @@
-package com.laotek.churchguru.web.client.activity.website.estore;
+package com.laotek.churchguru.web.client.activity.website.listening;
 
 import java.util.List;
 
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.IsWidget;
-import com.laotek.churchguru.web.shared.estore.EStoreCategoryDto;
+import com.laotek.churchguru.web.shared.listening.ListeningCategoryDto;
 
 public interface ListeningCategoriesView extends IsWidget {
     void setPresenter(Presenter presenter);
@@ -15,7 +15,7 @@ public interface ListeningCategoriesView extends IsWidget {
 
     void initWidgets();
 
-    void initCategories(List<EStoreCategoryDto> dtos);
+    void initCategories(List<ListeningCategoryDto> dtos);
 
     public interface Presenter {
 	void goTo(Place place);

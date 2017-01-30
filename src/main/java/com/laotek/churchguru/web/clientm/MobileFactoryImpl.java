@@ -31,7 +31,7 @@ import com.laotek.churchguru.web.clientm.activity.website.WebsiteUrlViewImpl;
 public class MobileFactoryImpl implements MobileFactory {
     private final EventBus eventBus = new SimpleEventBus();
     private final PlaceController placeController = new PlaceController(
-	    eventBus);
+            eventBus);
 
     private MobileHomeView mobileHomeView = null;
     private GiveView giveView = null;
@@ -47,103 +47,103 @@ public class MobileFactoryImpl implements MobileFactory {
 
     @Override
     public EventBus getEventBus() {
-	return eventBus;
+        return eventBus;
     }
 
     @Override
     public PlaceController getPlaceController() {
-	return placeController;
+        return placeController;
     }
 
     @Override
     public MobileHomeView getMobileHomeView() {
-	if (mobileHomeView == null) {
-	    mobileHomeView = new MobileHomeViewImpl();
-	}
-	return mobileHomeView;
+        if (mobileHomeView == null) {
+            mobileHomeView = new MobileHomeViewImpl();
+        }
+        return mobileHomeView;
     }
 
     @Override
     public GiveView getGiveView() {
-	if (giveView == null) {
-	    giveView = new GiveViewImpl();
-	}
-	return giveView;
+        if (giveView == null) {
+            giveView = new GiveViewImpl();
+        }
+        return giveView;
     }
 
     @Override
     public UnderConstructionView getUnderConstructionView() {
-	if (underConstructionView == null) {
-	    underConstructionView = new UnderConstructionViewImpl();
-	}
-	return underConstructionView;
+        if (underConstructionView == null) {
+            underConstructionView = new UnderConstructionViewImpl();
+        }
+        return underConstructionView;
     }
 
     public AboutUsView getAboutUsView() {
-	if (aboutUsView == null) {
-	    aboutUsView = new AboutUsViewImpl();
-	}
-	return aboutUsView;
+        if (aboutUsView == null) {
+            aboutUsView = new AboutUsViewImpl();
+        }
+        return aboutUsView;
     }
 
     @Override
     public TwitterView getTwitterView() {
-	return new TwitterViewImpl();
+        return new TwitterViewImpl();
     }
 
     @Override
     public FacebookView getFacebookView() {
-	if (facebookView == null) {
-	    facebookView = new FacebookViewImpl();
-	}
-	return facebookView;
+        if (facebookView == null) {
+            facebookView = new FacebookViewImpl();
+        }
+        return facebookView;
     }
 
     @Override
     public PastorDeskView getPastorDeskView() {
-	if (pastorDeskView == null) {
-	    pastorDeskView = new PastorDeskViewImpl();
-	}
-	return pastorDeskView;
+        if (pastorDeskView == null) {
+            pastorDeskView = new PastorDeskViewImpl();
+        }
+        return pastorDeskView;
     }
 
     @Override
     public NoticeAndEventTitlesView getNewsTitlesView() {
-	if (newsTitlesView == null) {
-	    newsTitlesView = new NoticeAndEventTitlesViewImpl();
-	}
-	return newsTitlesView;
+        if (newsTitlesView == null) {
+            newsTitlesView = new NoticeAndEventTitlesViewImpl();
+        }
+        return newsTitlesView;
     }
 
     @Override
     public SingleNoticeAndEventView getSingleMessageView() {
-	if (singleMessageView == null) {
-	    singleMessageView = new SingleNoticeAndEventViewImpl();
-	}
-	return singleMessageView;
+        if (singleMessageView == null) {
+            singleMessageView = new SingleNoticeAndEventViewImpl();
+        }
+        return singleMessageView;
     }
 
     @Override
     public WebsiteUrlView getWebsiteUrlView() {
-	if (websiteUrlView == null) {
-	    websiteUrlView = new WebsiteUrlViewImpl();
-	}
-	return websiteUrlView;
+        if (websiteUrlView == null) {
+            websiteUrlView = new WebsiteUrlViewImpl();
+        }
+        return websiteUrlView;
     }
 
     @Override
     public PrayerRequestView getPrayerRequestView() {
-	if (prayerRequestView == null) {
-	    prayerRequestView = new PrayerRequestViewImpl();
-	}
-	return prayerRequestView;
+        if (prayerRequestView == null) {
+            prayerRequestView = new PrayerRequestViewImpl();
+        }
+        return prayerRequestView;
     }
 
     @Override
     public WatchView getWatchView() {
-	if (watchView == null) {
-	    watchView = new WatchViewImpl();
-	}
-	return watchView;
+        if (watchView == null) {
+            watchView = new WatchViewImpl();
+        }
+        return watchView;
     }
 }

@@ -38,58 +38,58 @@ public class MobileActivityMapper implements ActivityMapper {
 
     @Override
     public Activity getActivity(Place place) {
-	if (place instanceof MobileHomePlace) {
-	    return new MobileHomeActivity((MobileHomePlace) place,
-		    clientFactory);
-	}
+		if (place instanceof MobileHomePlace) {
+			return new MobileHomeActivity((MobileHomePlace) place,
+				clientFactory);
+		}
 
-	if (place instanceof GivePlace) {
-	    return new GiveActivity((GivePlace) place, clientFactory);
-	}
+		if (place instanceof GivePlace) {
+			return new GiveActivity((GivePlace) place, clientFactory);
+		}
 
-	if (place instanceof PastorDeskPlace) {
-	    return new PastorDeskActivity(clientFactory);
-	}
+		if (place instanceof PastorDeskPlace) {
+			return new PastorDeskActivity(clientFactory);
+		}
 
-	if (place instanceof AboutUsPlace) {
-	    return new AboutUsActivity((AboutUsPlace) place, clientFactory);
-	}
+		if (place instanceof AboutUsPlace) {
+			return new AboutUsActivity((AboutUsPlace) place, clientFactory);
+		}
 
-	if (place instanceof TwitterPlace) {
-	    return new TwitterActivity((TwitterPlace) place, clientFactory);
-	}
+		if (place instanceof TwitterPlace) {
+			return new TwitterActivity((TwitterPlace) place, clientFactory);
+		}
 
-	if (place instanceof FacebookPlace) {
-	    return new FacebookActivity((FacebookPlace) place, clientFactory);
-	}
+		if (place instanceof FacebookPlace) {
+			return new FacebookActivity((FacebookPlace) place, clientFactory);
+		}
 
-	if (place instanceof NoticeAndEventTitlesPlace) {
-	    return new NoticeAndEventTitlesActivity(
-		    (NoticeAndEventTitlesPlace) place, clientFactory);
-	}
+		if (place instanceof NoticeAndEventTitlesPlace) {
+			return new NoticeAndEventTitlesActivity(
+				(NoticeAndEventTitlesPlace) place, clientFactory);
+		}
 
-	if (place instanceof SingleNoticeAndEventPlace) {
-	    return new SingleNoticeAndEventActivity(
-		    (SingleNoticeAndEventPlace) place, clientFactory);
-	}
+		if (place instanceof SingleNoticeAndEventPlace) {
+			return new SingleNoticeAndEventActivity(
+				(SingleNoticeAndEventPlace) place, clientFactory);
+		}
 
-	if (place instanceof WebsiteUrlPlace) {
-	    return new WebsiteUrlActivity(clientFactory);
-	}
+		if (place instanceof WebsiteUrlPlace) {
+			return new WebsiteUrlActivity(clientFactory);
+		}
 
-	if (place instanceof PrayerRequestPlace) {
-	    return new PrayerRequestActivity(clientFactory);
-	}
+		if (place instanceof PrayerRequestPlace) {
+			return new PrayerRequestActivity(clientFactory);
+		}
 
-	if (place instanceof WatchPlace) {
-	    return new WatchActivity(clientFactory);
-	}
+		if (place instanceof WatchPlace) {
+			return new WatchActivity(clientFactory);
+		}
 
-	if (place instanceof UnderConstructionPlace) {
-	    return new UnderConstructionActivity(clientFactory);
-	}
+		if (place instanceof UnderConstructionPlace) {
+			return new UnderConstructionActivity(clientFactory);
+		}
 
-	return null;
+		return null;
     }
 
 }

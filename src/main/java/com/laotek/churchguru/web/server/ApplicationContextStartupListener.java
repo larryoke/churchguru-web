@@ -13,7 +13,7 @@ import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import com.laotek.churchguru.daos.estore.EStoreDao;
+import com.laotek.churchguru.daos.listening.ListeningDao;
 import com.laotek.churchguru.daos.notification.NotificationDao;
 import com.laotek.churchguru.daos.org.OrganisationDao;
 import com.laotek.churchguru.daos.user.UserAuditDao;
@@ -39,7 +39,7 @@ public class ApplicationContextStartupListener implements ServletContextListener
     private NotificationDao notificationDao;
 
     @Autowired
-    private EStoreDao eStoreDao;
+    private ListeningDao eStoreDao;
 
     @Autowired
     @Value("${org.name}")

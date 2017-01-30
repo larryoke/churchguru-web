@@ -19,7 +19,7 @@ import com.laotek.churchguru.model.shared.enums.CountryCode;
 import com.laotek.churchguru.model.shared.enums.Title;
 
 @Entity
-public class EStoreMember {
+public class ListeningMember {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -56,7 +56,7 @@ public class EStoreMember {
     private Date lastUpdatedDate;
 
     @OneToMany(mappedBy = "eStoreMember")
-    private List<EStoreMemberMessage> eStoreMemberMessages = new ArrayList<EStoreMemberMessage>();
+    private List<ListeningMemberMessage> eStoreMemberMessages = new ArrayList<ListeningMemberMessage>();
 
     public Long getId() {
 	return id;
@@ -82,12 +82,12 @@ public class EStoreMember {
 	this.lastUpdatedDate = lastUpdatedDate;
     }
 
-    public List<EStoreMemberMessage> getEStoreMemberMessages() {
+    public List<ListeningMemberMessage> getEStoreMemberMessages() {
 	return eStoreMemberMessages;
     }
 
     public void setEStoreMemberMessages(
-	    List<EStoreMemberMessage> eStoreMemberMessages) {
+	    List<ListeningMemberMessage> eStoreMemberMessages) {
 	this.eStoreMemberMessages = eStoreMemberMessages;
     }
 

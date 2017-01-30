@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
 
-public enum EStoreMessageStatus implements Serializable, IsSerializable {
+public enum ListeningMessageStatus implements Serializable, IsSerializable {
     NEW("New"),
 
     INCOMPLETE("Incomplete"),
@@ -15,7 +15,7 @@ public enum EStoreMessageStatus implements Serializable, IsSerializable {
 
     private String desc;
 
-    private EStoreMessageStatus(String desc) {
+    private ListeningMessageStatus(String desc) {
 	this.desc = desc;
     }
 
@@ -23,8 +23,8 @@ public enum EStoreMessageStatus implements Serializable, IsSerializable {
 	return desc;
     }
 
-    public static EStoreMessageStatus find(String desc) {
-	for (EStoreMessageStatus title : EStoreMessageStatus.values()) {
+    public static ListeningMessageStatus find(String desc) {
+	for (ListeningMessageStatus title : ListeningMessageStatus.values()) {
 	    if (title.getDesc().equals(desc)) {
 		return title;
 	    }

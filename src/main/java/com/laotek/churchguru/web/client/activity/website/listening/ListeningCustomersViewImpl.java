@@ -1,9 +1,9 @@
-package com.laotek.churchguru.web.client.activity.website.estore;
+package com.laotek.churchguru.web.client.activity.website.listening;
 
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 import com.laotek.churchguru.web.client.MainMenuContext;
-import com.laotek.churchguru.web.shared.estore.CustomerDto;
+import com.laotek.churchguru.web.shared.listening.CustomerDto;
 
 public class ListeningCustomersViewImpl implements ListeningCustomersView {
 

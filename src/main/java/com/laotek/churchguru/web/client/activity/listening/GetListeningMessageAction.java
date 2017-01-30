@@ -5,16 +5,16 @@ import net.customware.gwt.dispatch.shared.Action;
 import com.laotek.churchguru.web.client.activity.AbstractDispatchAction;
 import com.laotek.churchguru.web.shared.role.org.HasOrganisationViewRole;
 
-public class GetEStoreMessageAction extends AbstractDispatchAction implements
-	Action<GetEStoreMessageResult>, HasOrganisationViewRole {
+public class GetListeningMessageAction extends AbstractDispatchAction implements
+	Action<GetListeningMessageResult>, HasOrganisationViewRole {
 
     private String identifier;
 
-    public GetEStoreMessageAction(String identifier) {
+    public GetListeningMessageAction(String identifier) {
 	this.identifier = identifier;
     }
 
-    public GetEStoreMessageAction() {
+    public GetListeningMessageAction() {
     }
 
     public String getIdentifier() {

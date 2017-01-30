@@ -1,4 +1,4 @@
-package com.laotek.churchguru.web.shared.estore;
+package com.laotek.churchguru.web.shared.listening;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
 
-public class EStoreMessageDto implements Serializable, IsSerializable {
+public class ListeningMessageDto implements Serializable, IsSerializable {
 
     private static final long serialVersionUID = 1L;
     private String identifier;
@@ -18,10 +18,10 @@ public class EStoreMessageDto implements Serializable, IsSerializable {
     private Date messageDate;
     private String messageDateAsString;
     private String lastUpdatedDate;
-    private EStoreSpeakerDto speakerDto;
-    private EStoreCategoryDto categoryDto;
-    private EStoreMessagePictureDto pictureDto;
-    private List<EStoreNotificationDto> notiicationDtos;
+    private ListeningSpeakerDto speakerDto;
+    private ListeningCategoryDto categoryDto;
+    private ListeningMessagePictureDto pictureDto;
+    private List<ListeningNotificationDto> notiicationDtos;
 
     public String getIdentifier() {
 	return identifier;
@@ -75,27 +75,27 @@ public class EStoreMessageDto implements Serializable, IsSerializable {
 	this.salePoints = salePoints;
     }
 
-    public EStoreSpeakerDto getSpeakerDto() {
+    public ListeningSpeakerDto getSpeakerDto() {
 	return speakerDto;
     }
 
-    public void setSpeakerDto(EStoreSpeakerDto speakerDto) {
+    public void setSpeakerDto(ListeningSpeakerDto speakerDto) {
 	this.speakerDto = speakerDto;
     }
 
-    public EStoreCategoryDto getCategoryDto() {
+    public ListeningCategoryDto getCategoryDto() {
 	return categoryDto;
     }
 
-    public void setCategoryDto(EStoreCategoryDto categoryDto) {
+    public void setCategoryDto(ListeningCategoryDto categoryDto) {
 	this.categoryDto = categoryDto;
     }
 
-    public EStoreMessagePictureDto getPictureDto() {
+    public ListeningMessagePictureDto getPictureDto() {
 	return pictureDto;
     }
 
-    public void setPictureDto(EStoreMessagePictureDto pictureDto) {
+    public void setPictureDto(ListeningMessagePictureDto pictureDto) {
 	this.pictureDto = pictureDto;
     }
 
@@ -115,11 +115,11 @@ public class EStoreMessageDto implements Serializable, IsSerializable {
 	this.messageDateAsString = messageDateAsString;
     }
 
-    public List<EStoreNotificationDto> getNotificationDtos() {
+    public List<ListeningNotificationDto> getNotificationDtos() {
 	return notiicationDtos;
     }
 
-    public void setNotificationDtos(List<EStoreNotificationDto> notiicationDtos) {
+    public void setNotificationDtos(List<ListeningNotificationDto> notiicationDtos) {
 	this.notiicationDtos = notiicationDtos;
     }
 

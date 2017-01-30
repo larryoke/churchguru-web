@@ -18,7 +18,7 @@ import javax.persistence.TemporalType;
 import com.laotek.churchguru.model.shared.enums.Title;
 
 @Entity
-public class EStoreSpeaker {
+public class ListeningSpeaker {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,7 +48,7 @@ public class EStoreSpeaker {
     private Date lastUpdatedDate;
 
     @OneToMany(mappedBy = "eStoreSpeaker")
-    private Set<EStoreMessage> messages = new HashSet<EStoreMessage>();
+    private Set<ListeningMessage> messages = new HashSet<ListeningMessage>();
 
     public Long getId() {
 	return id;

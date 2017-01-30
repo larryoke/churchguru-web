@@ -13,8 +13,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class EStoreMessageNotification implements
-	Comparable<EStoreMessageNotification> {
+public class ListeningMessageNotification implements
+	Comparable<ListeningMessageNotification> {
 
     @Embeddable
     public static class Id implements Serializable {
@@ -55,20 +55,20 @@ public class EStoreMessageNotification implements
 
     @ManyToOne
     @JoinColumn(name = "MESSAGE_ID", insertable = false, updatable = false)
-    private EStoreMessage eStoreMessage;
+    private ListeningMessage eStoreMessage;
 
     @ManyToOne
     @JoinColumn(name = "NOTIF_ID", insertable = false, updatable = false)
-    private EStoreNotification eStoreNotification;
+    private ListeningNotification eStoreNotification;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate = new Date();
 
-    public EStoreMessageNotification() {
+    public ListeningMessageNotification() {
     }
 
-    public EStoreMessageNotification(EStoreMessage eStoreMessage,
-	    EStoreNotification eStoreNotification) {
+    public ListeningMessageNotification(ListeningMessage eStoreMessage,
+                                        ListeningNotification eStoreNotification) {
 	this.eStoreMessage = eStoreMessage;
 	this.eStoreNotification = eStoreNotification;
 
@@ -87,24 +87,24 @@ public class EStoreMessageNotification implements
 	return createdDate;
     }
 
-    public EStoreMessage getEStoreMessage() {
+    public ListeningMessage getEStoreMessage() {
 	return eStoreMessage;
     }
 
-    public void setEStoreMessage(EStoreMessage eStoreMessage) {
+    public void setEStoreMessage(ListeningMessage eStoreMessage) {
 	this.eStoreMessage = eStoreMessage;
     }
 
-    public EStoreNotification getEStoreNotification() {
+    public ListeningNotification getEStoreNotification() {
 	return eStoreNotification;
     }
 
-    public void setEStoreNotification(EStoreNotification eStoreNotification) {
+    public void setEStoreNotification(ListeningNotification eStoreNotification) {
 	this.eStoreNotification = eStoreNotification;
     }
 
     @Override
-    public int compareTo(EStoreMessageNotification another) {
+    public int compareTo(ListeningMessageNotification another) {
 	if (eStoreNotification.getEStoreNotificationType().compareTo(
 		another.getEStoreNotification().getEStoreNotificationType()) < 0) {
 	    return -1;

@@ -8,9 +8,9 @@ import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.laotek.churchguru.daos.estore.EStoreDao;
-import com.laotek.churchguru.web.client.activity.estore.CreateNewMessageAction;
-import com.laotek.churchguru.web.client.activity.estore.CreateNewMessageResult;
+import com.laotek.churchguru.daos.listening.ListeningDao;
+import com.laotek.churchguru.web.client.activity.listening.CreateNewMessageAction;
+import com.laotek.churchguru.web.client.activity.listening.CreateNewMessageResult;
 import com.laotek.churchguru.web.server.handler.AbstractCommandHandler;
 
 @Component
@@ -18,7 +18,7 @@ public class CreateNewMessageHandler extends AbstractCommandHandler implements
 	ActionHandler<CreateNewMessageAction, CreateNewMessageResult> {
 
     @Autowired
-    private EStoreDao eStoreDao;
+    private ListeningDao eStoreDao;
 
     @Override
     public CreateNewMessageResult execute(CreateNewMessageAction action,
