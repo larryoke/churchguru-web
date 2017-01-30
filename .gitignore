@@ -27,11 +27,11 @@ src/main/resources/static/images/app/.DS_Store
 src/main/webapp/.DS_Store
 src/main/webapp/WEB-INF/
 
-src/main/resources/gwt-unitCache
-src/main/resources/static/comm/
-src/main/resources/static/mobi/
-src/main/resources/static/WEB-INF
-target/
+**/gwt-unitCache
+**/resources/static/comm/
+**/resources/static/mobi/
+**/resources/static/WEB-INF/
+**/target/
 .idea/
-my-tomcat
+**/my-tomcat
 churchguru-web.iml
