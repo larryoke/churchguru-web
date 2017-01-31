@@ -27,7 +27,7 @@ public class ListeningCustomersViewImpl implements ListeningCustomersView {
 
     @Override
     public void initTab() {
-	MainMenuContext.getInstance().showWebsitePanel("EStore");
+	MainMenuContext.getInstance().showWebsitePanel("Customer");
     }
 
     @Override

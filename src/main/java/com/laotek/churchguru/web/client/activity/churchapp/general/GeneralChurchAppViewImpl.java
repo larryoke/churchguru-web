@@ -234,7 +234,7 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
 
     @Override
     public void initTab() {
-	MainMenuContext.getInstance().showWebsitePanel("website");
+	MainMenuContext.getInstance().showDashboardPanel("mobileAppOptions");
     }
 
     @Override

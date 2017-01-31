@@ -29,7 +29,7 @@ public class ListeningNotificationsViewImpl implements ListeningNotificationsVie
 
     @Override
     public void initTab() {
-	MainMenuContext.getInstance().showWebsitePanel("EStore");
+	MainMenuContext.getInstance().showWebsitePanel("notif");
     }
 
     @Override

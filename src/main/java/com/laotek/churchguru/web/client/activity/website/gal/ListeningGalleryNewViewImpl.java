@@ -27,7 +27,7 @@ public class ListeningGalleryNewViewImpl implements ListeningGalleryNewView {
 
     @Override
     public void initTab() {
-	MainMenuContext.getInstance().showWebsitePanel("EStore");
+	MainMenuContext.getInstance().showMessageMediaPanel("gallery");
     }
 
     @Override

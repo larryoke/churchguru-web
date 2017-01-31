@@ -27,7 +27,7 @@ public class ListeningCategoryNewViewImpl implements ListeningCategoryNewView {
 
     @Override
     public void initTab() {
-	MainMenuContext.getInstance().showWebsitePanel("EStore");
+	MainMenuContext.getInstance().showMessageMediaPanel("category");
     }
 
     @Override

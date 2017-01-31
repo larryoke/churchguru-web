@@ -9,6 +9,7 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.datepicker.client.DatePicker;
 import com.laotek.churchguru.web.client.MainMenuContext;
 import com.laotek.churchguru.web.client.activity.website.listening.BaseViewImpl;
+import com.laotek.churchguru.web.client.widget.RoundedCornerPanel;
 import com.laotek.churchguru.web.client.widget.TextItem;
 import com.laotek.churchguru.web.shared.watching.WatchingMessageDto;
 
@@ -61,7 +62,8 @@ public class WatchingMessageNewViewImpl extends BaseViewImpl implements Watching
 	errorMessageAndMainPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 	errorMessageAndMainPanel.add(mainPanel);
 
-	return getMainLayout("images/app/watch_live.png", "Manage Watching", errorMessageAndMainPanel);
+	return getMainLayout("images/app/watch_live.png", "Manage New Video Message",
+		new RoundedCornerPanel(errorMessageAndMainPanel));
     }
 
     @Override
@@ -71,12 +73,12 @@ public class WatchingMessageNewViewImpl extends BaseViewImpl implements Watching
 
     @Override
     public void init() {
-	Window.setTitle("EStore New Message");
+	Window.setTitle("New Video Message");
     }
 
     @Override
     public void initTab() {
-	MainMenuContext.getInstance().showMessageMediaPanel("EStore");
+	MainMenuContext.getInstance().showMessageMediaPanel("New Video Message");
     }
 
     @Override

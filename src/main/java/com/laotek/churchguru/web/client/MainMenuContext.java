@@ -45,8 +45,6 @@ public class MainMenuContext extends BaseMainMenuContext {
 
 	createDashboardPanel(stackMenu);
 
-	createWebsitePanel(stackMenu);
-
 	createNoticeAndEventPanel(stackMenu);
 
 	createMessageMediaPanel(stackMenu);
@@ -91,6 +89,10 @@ public class MainMenuContext extends BaseMainMenuContext {
 	createLink(new Image("images/app/home.png"), "Home", false, dashboardPanel, new HomePlace("home"),
 		UserRoleName.ORGANISATION_DATA_VIEW_ONLY, dto.getOrganisationRole());
 
+	createLink(new Image("images/app/system_update.png"), "Mobile App Options", false, dashboardPanel,
+		new GeneralChurchAppPlace("churchApp"), UserRoleName.ORGANISATION_DATA_VIEW_ONLY,
+		dto.getOrganisationRole());
+
 	// createHelpLink(new Image("images/app/help.png"),
 	// createHelpAnchor("/help"), dashboardPanel,
 	// "/help/dashboardHelp");
@@ -107,22 +109,10 @@ public class MainMenuContext extends BaseMainMenuContext {
 	// AccountQuotaPlace("accountQuotas"));
     }
 
-    private void createWebsitePanel(StackLayoutPanel stackMenu) {
-	websitePanel.setHeight("100%");
-	UserDto dto = UserContext.getInstance().getUserDto();
-	initStackLayoutPanel(websitePanel, "images/app/website.png", "Manage Mobile Application", stackMenu,
-		new GeneralChurchAppPlace("churchApp"), UserRoleName.ORGANISATION_DATA_VIEW_ONLY,
-		dto.getOrganisationRole());
-
-	createLink(new Image("images/app/system_update.png"), "Mobile App Options", false, websitePanel,
-		new GeneralChurchAppPlace("churchApp"), UserRoleName.ORGANISATION_DATA_VIEW_ONLY,
-		dto.getOrganisationRole());
-    }
-
     private void createMessageMediaPanel(StackLayoutPanel stackMenu) {
 	listeningPanel.setHeight("100%");
 	UserDto dto = UserContext.getInstance().getUserDto();
-	initStackLayoutPanel(listeningPanel, "images/app/media.png", "Manage Message Media", stackMenu,
+	initStackLayoutPanel(listeningPanel, "images/app/media.png", "Manage Media Messages", stackMenu,
 		new ListeningMessagesPlace("messages"), UserRoleName.ORGANISATION_DATA_VIEW_ONLY,
 		dto.getOrganisationRole());
 
@@ -133,7 +123,7 @@ public class MainMenuContext extends BaseMainMenuContext {
 	createNewListeningMessageLink(new Image("images/app/audio.png"), listeningPanel,
 		UserRoleName.ORGANISATION_DATA_VIEW_ONLY, dto.getOrganisationRole());
 
-	createLink(new Image("images/app/watch_live.png"), "Manage Video Message", false, listeningPanel,
+	createLink(new Image("images/app/watch_live.png"), "Manage Video Messages", false, listeningPanel,
 		new WatchingMessagesPlace("video"), UserRoleName.ORGANISATION_DATA_VIEW_ONLY,
 		dto.getOrganisationRole());
 

@@ -29,7 +29,7 @@ public class ListeningGalleryViewImpl implements ListeningGalleryView {
 
     @Override
     public void initTab() {
-	MainMenuContext.getInstance().showWebsitePanel("EStore");
+	MainMenuContext.getInstance().showMessageMediaPanel("gallery");
     }
 
     @Override

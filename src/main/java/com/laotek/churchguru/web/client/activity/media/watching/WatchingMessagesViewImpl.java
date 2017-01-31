@@ -50,7 +50,7 @@ public class WatchingMessagesViewImpl extends BaseViewImpl implements WatchingMe
 		}
 	    }
 	});
-	return getMainLayout("images/app/watch_live.png", "Manage Watching",
+	return getMainLayout("images/app/watch_live.png", "Manage Video Messages",
 		new RoundedCornerPanel(mainPanel, newMessageButton));
     }
 
