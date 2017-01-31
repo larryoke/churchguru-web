@@ -12,7 +12,7 @@ import com.laotek.churchguru.web.client.activity.dashboard.PeopleChartView;
 import com.laotek.churchguru.web.client.activity.dashboard.WeeklyAttendanceChartView;
 import com.laotek.churchguru.web.client.activity.donation.DonationSearchView;
 import com.laotek.churchguru.web.client.activity.home.HomeView;
-import com.laotek.churchguru.web.client.activity.media.watching.WatchingMessageNewView;
+import com.laotek.churchguru.web.client.activity.media.watching.VideoMessageNewView;
 import com.laotek.churchguru.web.client.activity.media.watching.WatchingMessagesView;
 import com.laotek.churchguru.web.client.activity.password.PasswordResetView;
 import com.laotek.churchguru.web.client.activity.user.AllUserView;
@@ -21,17 +21,17 @@ import com.laotek.churchguru.web.client.activity.user.NewUserSetupView;
 import com.laotek.churchguru.web.client.activity.user.SingleUserView;
 import com.laotek.churchguru.web.client.activity.user.UserProfilesView;
 import com.laotek.churchguru.web.client.activity.website.WebsiteView;
-import com.laotek.churchguru.web.client.activity.website.gal.ListeningGalleryNewView;
-import com.laotek.churchguru.web.client.activity.website.gal.ListeningGalleryView;
-import com.laotek.churchguru.web.client.activity.website.listening.AudioMessageMessageNewView;
-import com.laotek.churchguru.web.client.activity.website.listening.AudioMessageMessagesView;
-import com.laotek.churchguru.web.client.activity.website.listening.cat.AudioMessageCategoriesView;
-import com.laotek.churchguru.web.client.activity.website.listening.cat.AudioMessageCategoryNewView;
-import com.laotek.churchguru.web.client.activity.website.listening.cust.ListeningCustomerDetailsView;
-import com.laotek.churchguru.web.client.activity.website.listening.cust.ListeningCustomersView;
-import com.laotek.churchguru.web.client.activity.website.listening.notif.ListeningNotificationsView;
-import com.laotek.churchguru.web.client.activity.website.listening.speaker.ListeningSpeakerNewView;
-import com.laotek.churchguru.web.client.activity.website.listening.speaker.ListeningSpeakersView;
+import com.laotek.churchguru.web.client.activity.website.audio.AudioMessageNewView;
+import com.laotek.churchguru.web.client.activity.website.audio.AudioMessagesView;
+import com.laotek.churchguru.web.client.activity.website.audio.cat.AudioMessageCategoriesView;
+import com.laotek.churchguru.web.client.activity.website.audio.cat.AudioMessageCategoryNewView;
+import com.laotek.churchguru.web.client.activity.website.audio.cust.AudioMessageCustomerDetailsView;
+import com.laotek.churchguru.web.client.activity.website.audio.cust.AudioMessageCustomersView;
+import com.laotek.churchguru.web.client.activity.website.audio.notif.AudioMessageNotificationsView;
+import com.laotek.churchguru.web.client.activity.website.audio.speaker.AudioMessageSpeakerNewView;
+import com.laotek.churchguru.web.client.activity.website.audio.speaker.AudioMessageSpeakersView;
+import com.laotek.churchguru.web.client.activity.website.gal.AudioMessageGalleryNewView;
+import com.laotek.churchguru.web.client.activity.website.gal.AudioMessageGalleryView;
 
 public interface ClientFactory {
     EventBus getEventBus();
@@ -70,25 +70,25 @@ public interface ClientFactory {
 
     AudioMessageCategoryNewView getEStoreCategoryNewView();
 
-    ListeningCustomerDetailsView getEStoreCustomerDetailsView();
+    AudioMessageCustomerDetailsView getEStoreCustomerDetailsView();
 
-    ListeningCustomersView getEStoreCustomersView();
+    AudioMessageCustomersView getEStoreCustomersView();
 
-    ListeningGalleryNewView getEStoreGalleryNewView();
+    AudioMessageGalleryNewView getEStoreGalleryNewView();
 
-    ListeningGalleryView getEStoreGalleryView();
+    AudioMessageGalleryView getEStoreGalleryView();
 
-    AudioMessageMessageNewView getEStoreMessageNewView();
+    AudioMessageNewView getEStoreMessageNewView();
 
-    AudioMessageMessagesView getEStoreMessagesView();
+    AudioMessagesView getEStoreMessagesView();
 
-    ListeningNotificationsView getEStoreNotificationsView();
+    AudioMessageNotificationsView getEStoreNotificationsView();
 
-    ListeningSpeakerNewView getEStoreSpeakerNewView();
+    AudioMessageSpeakerNewView getEStoreSpeakerNewView();
 
-    ListeningSpeakersView getEStoreSpeakersView();
+    AudioMessageSpeakersView getEStoreSpeakersView();
 
-    WatchingMessageNewView getWatchingMessageNewView();
+    VideoMessageNewView getWatchingMessageNewView();
 
     WatchingMessagesView getWatchingMessagesView();
 

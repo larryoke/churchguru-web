@@ -6,12 +6,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.laotek.churchguru.daos.media.ListeningDao;
+import com.laotek.churchguru.daos.media.AudioMessageDao;
 import com.laotek.churchguru.model.AudioMessage;
-import com.laotek.churchguru.web.client.activity.listening.GetListeningMessagesAction;
-import com.laotek.churchguru.web.client.activity.listening.GetListeningMessagesResult;
+import com.laotek.churchguru.web.client.activity.audio.GetAudioMessagesAction;
+import com.laotek.churchguru.web.client.activity.audio.GetAudioMessagesResult;
 import com.laotek.churchguru.web.server.handler.AbstractCommandHandler;
-import com.laotek.churchguru.web.shared.listening.AudioMessageMessageDto;
+import com.laotek.churchguru.web.shared.listening.AudioMessageDto;
 
 import net.customware.gwt.dispatch.server.ActionHandler;
 import net.customware.gwt.dispatch.server.ExecutionContext;
@@ -19,22 +19,22 @@ import net.customware.gwt.dispatch.shared.DispatchException;
 
 @Component
 public class GetListeningMessagesHandler extends AbstractCommandHandler
-	implements ActionHandler<GetListeningMessagesAction, GetListeningMessagesResult> {
+	implements ActionHandler<GetAudioMessagesAction, GetAudioMessagesResult> {
 
     @Autowired
-    private ListeningDao eStoreDao;
+    private AudioMessageDao eStoreDao;
 
     @Override
-    public GetListeningMessagesResult execute(GetListeningMessagesAction action, ExecutionContext context)
+    public GetAudioMessagesResult execute(GetAudioMessagesAction action, ExecutionContext context)
 	    throws DispatchException {
 
 	List<AudioMessage> messages = eStoreDao.getMessages();
-	List<AudioMessageMessageDto> dtos = get(messages);
-	return new GetListeningMessagesResult(dtos);
+	List<AudioMessageDto> dtos = get(messages);
+	return new GetAudioMessagesResult(dtos);
     }
 
-    private List<AudioMessageMessageDto> get(List<AudioMessage> messages) {
-	List<AudioMessageMessageDto> dtos = new ArrayList<AudioMessageMessageDto>();
+    private List<AudioMessageDto> get(List<AudioMessage> messages) {
+	List<AudioMessageDto> dtos = new ArrayList<AudioMessageDto>();
 	for (AudioMessage message : messages) {
 	    dtos.add(mapMessages(message));
 	}
@@ -42,12 +42,12 @@ public class GetListeningMessagesHandler extends AbstractCommandHandler
     }
 
     @Override
-    public Class<GetListeningMessagesAction> getActionType() {
-	return GetListeningMessagesAction.class;
+    public Class<GetAudioMessagesAction> getActionType() {
+	return GetAudioMessagesAction.class;
     }
 
     @Override
-    public void rollback(GetListeningMessagesAction action, GetListeningMessagesResult result, ExecutionContext context)
+    public void rollback(GetAudioMessagesAction action, GetAudioMessagesResult result, ExecutionContext context)
 	    throws DispatchException {
     }
 

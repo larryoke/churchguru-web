@@ -10,10 +10,10 @@ import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.laotek.churchguru.web.client.ApplicationContext;
 import com.laotek.churchguru.web.client.MainMenuContext;
-import com.laotek.churchguru.web.client.activity.website.listening.BaseViewImpl;
-import com.laotek.churchguru.web.client.activity.website.listening.AudioMessageMessagesPlace;
-import com.laotek.churchguru.web.client.activity.website.listening.cat.AudioMessageCategoriesPlace;
-import com.laotek.churchguru.web.client.activity.website.listening.speaker.ListeningSpeakersPlace;
+import com.laotek.churchguru.web.client.activity.website.audio.AudioMessagesPlace;
+import com.laotek.churchguru.web.client.activity.website.audio.BaseViewImpl;
+import com.laotek.churchguru.web.client.activity.website.audio.cat.AudioMessageCategoriesPlace;
+import com.laotek.churchguru.web.client.activity.website.audio.speaker.AudioMessageSpeakersPlace;
 import com.laotek.churchguru.web.client.widget.RoundedCornerPanel;
 
 public class WebsiteViewImpl extends BaseViewImpl implements WebsiteView {
@@ -25,7 +25,7 @@ public class WebsiteViewImpl extends BaseViewImpl implements WebsiteView {
 	FlowPanel flowPanel = new FlowPanel();
 	flowPanel.setWidth("100%");
 
-	Widget widget = getBorderedButton("Messages", new AudioMessageMessagesPlace("messages"));
+	Widget widget = getBorderedButton("Messages", new AudioMessagesPlace("messages"));
 	widget.setStylePrimaryName("flowPanel");
 	flowPanel.add(widget);
 
@@ -33,7 +33,7 @@ public class WebsiteViewImpl extends BaseViewImpl implements WebsiteView {
 	widget.setStylePrimaryName("flowPanel");
 	flowPanel.add(widget);
 
-	widget = getBorderedButton("Speakers", new ListeningSpeakersPlace("Speakers"));
+	widget = getBorderedButton("Speakers", new AudioMessageSpeakersPlace("Speakers"));
 	widget.setStylePrimaryName("flowPanel");
 	flowPanel.add(widget);
 

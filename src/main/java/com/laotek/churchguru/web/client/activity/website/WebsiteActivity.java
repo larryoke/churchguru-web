@@ -11,7 +11,7 @@ import com.laotek.churchguru.web.client.ClientFactory;
 import com.laotek.churchguru.web.client.UserContext;
 import com.laotek.churchguru.web.client.activity.media.watching.CreateNewWatchingMessageAction;
 import com.laotek.churchguru.web.client.activity.media.watching.CreateNewWatchingMessageResult;
-import com.laotek.churchguru.web.client.activity.website.listening.AudioMessageMessageNewPlace;
+import com.laotek.churchguru.web.client.activity.website.audio.AudioMessageNewPlace;
 
 public class WebsiteActivity extends AbstractActivity implements WebsiteView.Presenter {
 
@@ -67,7 +67,7 @@ public class WebsiteActivity extends AbstractActivity implements WebsiteView.Pre
 		    @Override
 		    public void onSuccess(CreateNewWatchingMessageResult result) {
 			ApplicationContext.getInstance().getPlaceController()
-				.goTo(new AudioMessageMessageNewPlace(result.getNewMessageID()));
+				.goTo(new AudioMessageNewPlace(result.getNewMessageID()));
 		    }
 		});
 

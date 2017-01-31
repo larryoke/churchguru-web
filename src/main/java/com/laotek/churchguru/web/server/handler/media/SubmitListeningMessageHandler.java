@@ -9,13 +9,12 @@ import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.laotek.churchguru.daos.media.ListeningDao;
+import com.laotek.churchguru.daos.media.AudioMessageDao;
 import com.laotek.churchguru.model.AudioMessage;
-import com.laotek.churchguru.model.shared.enums.ListeningNotificationType;
-import com.laotek.churchguru.web.client.activity.listening.SubmitListeningMessageAction;
-import com.laotek.churchguru.web.client.activity.listening.SubmitListeningMessageResult;
+import com.laotek.churchguru.web.client.activity.audio.SubmitAudioMessageResult;
+import com.laotek.churchguru.web.client.activity.audio.SubmitAudioMessageAction;
 import com.laotek.churchguru.web.server.handler.AbstractCommandHandler;
-import com.laotek.churchguru.web.shared.listening.AudioMessageMessageDto;
+import com.laotek.churchguru.web.shared.listening.AudioMessageDto;
 
 import net.customware.gwt.dispatch.server.ActionHandler;
 import net.customware.gwt.dispatch.server.ExecutionContext;
@@ -23,13 +22,13 @@ import net.customware.gwt.dispatch.shared.DispatchException;
 
 @Component
 public class SubmitListeningMessageHandler extends AbstractCommandHandler
-	implements ActionHandler<SubmitListeningMessageAction, SubmitListeningMessageResult> {
+	implements ActionHandler<SubmitAudioMessageAction, SubmitAudioMessageResult> {
 
     @Autowired
-    private ListeningDao eStoreDao;
+    private AudioMessageDao eStoreDao;
 
     @Override
-    public SubmitListeningMessageResult execute(SubmitListeningMessageAction action, ExecutionContext context)
+    public SubmitAudioMessageResult execute(SubmitAudioMessageAction action, ExecutionContext context)
 	    throws DispatchException {
 
 	String identifier = action.getIdentifier();
@@ -59,30 +58,13 @@ public class SubmitListeningMessageHandler extends AbstractCommandHandler
 	    otherDetails.put("newCategoryName", action.getNewCategory());
 	}
 
-	StringBuffer notificationsSpaceDelimited = new StringBuffer();
-	for (ListeningNotificationType notificationType : action.getNotifications()) {
-	    notificationsSpaceDelimited.append(notificationType.name());
-	    notificationsSpaceDelimited.append(" ");
-	}
-	String notificationTypes = notificationsSpaceDelimited.toString().trim();
-	if (notificationTypes != null && !notificationTypes.equals("")) {
-	    otherDetails.put("notificationTypes", notificationTypes);
-	}
-
-	List<String> workersWithFreeAccessToMessage = action.getWorkersWithFreeAccessToMessage();
-	if (workersWithFreeAccessToMessage != null && workersWithFreeAccessToMessage.size() > 0) {
-	    String workersWithFreeAccessToMessageStr = reformatWorkersWithFreeAccessToMessage(
-		    action.getWorkersWithFreeAccessToMessage());
-	    otherDetails.put("workersWithFreeAccessToMessage", workersWithFreeAccessToMessageStr);
-	}
-
 	eStoreDao.updateMessage(message, otherDetails);
 
-	return new SubmitListeningMessageResult(map(message));
+	return new SubmitAudioMessageResult(map(message));
     }
 
-    private AudioMessageMessageDto map(AudioMessage message) {
-	AudioMessageMessageDto dto = new AudioMessageMessageDto();
+    private AudioMessageDto map(AudioMessage message) {
+	AudioMessageDto dto = new AudioMessageDto();
 	dto.setDescription(message.getDescription());
 	dto.setTitle(message.getTitle());
 	dto.setIdentifier(message.getIdentifier());
@@ -90,12 +72,12 @@ public class SubmitListeningMessageHandler extends AbstractCommandHandler
     }
 
     @Override
-    public Class<SubmitListeningMessageAction> getActionType() {
-	return SubmitListeningMessageAction.class;
+    public Class<SubmitAudioMessageAction> getActionType() {
+	return SubmitAudioMessageAction.class;
     }
 
     @Override
-    public void rollback(SubmitListeningMessageAction action, SubmitListeningMessageResult result,
+    public void rollback(SubmitAudioMessageAction action, SubmitAudioMessageResult result,
 	    ExecutionContext context) throws DispatchException {
     }
 

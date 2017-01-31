@@ -2,9 +2,7 @@ package com.laotek.churchguru.model;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,7 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.laotek.churchguru.model.shared.enums.ListeningMessageStatus;
+import com.laotek.churchguru.model.shared.enums.AudioMessageStatus;
 
 @Entity
 public class AudioMessage {
@@ -43,21 +41,18 @@ public class AudioMessage {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, unique = false)
-    private ListeningMessageStatus eStoreMessageStatus = ListeningMessageStatus.NEW;
+    private AudioMessageStatus eStoreMessageStatus = AudioMessageStatus.NEW;
 
     @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
 
-    @OneToMany(mappedBy = "eStoreMessage")
-    private Set<AudioMessageNotification> eStoreMessageNotifications = new HashSet<AudioMessageNotification>();
+    @ManyToOne
+    @JoinColumn
+    private AudioMessageSpeaker eStoreSpeaker;
 
     @ManyToOne
     @JoinColumn
-    private AudioSpeaker eStoreSpeaker;
-
-    @ManyToOne
-    @JoinColumn
-    private AudioCategory eStoreCategory;
+    private AudioMessageCategory eStoreCategory;
 
     @ManyToOne
     @JoinColumn
@@ -130,8 +125,7 @@ public class AudioMessage {
 	return eStoreMemberMessages;
     }
 
-    public void setEStoreMemberMessages(
-	    List<AudioMemberMessage> eStoreMessageCategories) {
+    public void setEStoreMemberMessages(List<AudioMemberMessage> eStoreMessageCategories) {
 	this.eStoreMemberMessages = eStoreMessageCategories;
     }
 
@@ -151,27 +145,27 @@ public class AudioMessage {
 	this.location = location;
     }
 
-    public AudioSpeaker getEStoreSpeaker() {
+    public AudioMessageSpeaker getEStoreSpeaker() {
 	return eStoreSpeaker;
     }
 
-    public void setEStoreSpeaker(AudioSpeaker eStoreSpeaker) {
+    public void setEStoreSpeaker(AudioMessageSpeaker eStoreSpeaker) {
 	this.eStoreSpeaker = eStoreSpeaker;
     }
 
-    public AudioSpeaker geteStoreSpeaker() {
+    public AudioMessageSpeaker geteStoreSpeaker() {
 	return eStoreSpeaker;
     }
 
-    public void seteStoreSpeaker(AudioSpeaker eStoreSpeaker) {
+    public void seteStoreSpeaker(AudioMessageSpeaker eStoreSpeaker) {
 	this.eStoreSpeaker = eStoreSpeaker;
     }
 
-    public AudioCategory geteStoreCategory() {
+    public AudioMessageCategory geteStoreCategory() {
 	return eStoreCategory;
     }
 
-    public void seteStoreCategory(AudioCategory eStoreCategory) {
+    public void seteStoreCategory(AudioMessageCategory eStoreCategory) {
 	this.eStoreCategory = eStoreCategory;
     }
 
@@ -179,8 +173,7 @@ public class AudioMessage {
 	return eStoreMessagePicture;
     }
 
-    public void seteStoreMessagePicture(
-	    AudioMessagePicture eStoreMessagePicture) {
+    public void seteStoreMessagePicture(AudioMessagePicture eStoreMessagePicture) {
 	this.eStoreMessagePicture = eStoreMessagePicture;
     }
 
@@ -188,8 +181,7 @@ public class AudioMessage {
 	return eStoreMemberMessages;
     }
 
-    public void seteStoreMemberMessages(
-	    List<AudioMemberMessage> eStoreMemberMessages) {
+    public void seteStoreMemberMessages(List<AudioMemberMessage> eStoreMemberMessages) {
 	this.eStoreMemberMessages = eStoreMemberMessages;
     }
 
@@ -200,14 +192,4 @@ public class AudioMessage {
     public void setMessageDate(Date messageDate) {
 	this.messageDate = messageDate;
     }
-
-    public Set<AudioMessageNotification> getEStoreMessageNotifications() {
-	return eStoreMessageNotifications;
-    }
-
-    public void setEStoreMessageNotifications(
-	    Set<AudioMessageNotification> eStoreMessageNotifications) {
-	this.eStoreMessageNotifications = eStoreMessageNotifications;
-    }
-
 }

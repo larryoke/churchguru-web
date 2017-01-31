@@ -13,7 +13,7 @@ import com.laotek.churchguru.web.client.activity.dashboard.PeopleChartPlace;
 import com.laotek.churchguru.web.client.activity.dashboard.WeeklyAttendanceChartPlace;
 import com.laotek.churchguru.web.client.activity.donation.DonationSearchPlace;
 import com.laotek.churchguru.web.client.activity.home.HomePlace;
-import com.laotek.churchguru.web.client.activity.media.watching.WatchingMessageNewPlace;
+import com.laotek.churchguru.web.client.activity.media.watching.VideoMessageNewPlace;
 import com.laotek.churchguru.web.client.activity.media.watching.WatchingMessagesPlace;
 import com.laotek.churchguru.web.client.activity.password.PasswordResetPlace;
 import com.laotek.churchguru.web.client.activity.user.AllUserPlace;
@@ -22,32 +22,32 @@ import com.laotek.churchguru.web.client.activity.user.NewUserSetupPlace;
 import com.laotek.churchguru.web.client.activity.user.SingleUserPlace;
 import com.laotek.churchguru.web.client.activity.user.UserProfilesPlace;
 import com.laotek.churchguru.web.client.activity.website.WebsitePlace;
-import com.laotek.churchguru.web.client.activity.website.gal.ListeningGalleryNewItemPlace;
-import com.laotek.churchguru.web.client.activity.website.gal.ListeningGalleryPlace;
-import com.laotek.churchguru.web.client.activity.website.listening.AudioMessageMessageNewPlace;
-import com.laotek.churchguru.web.client.activity.website.listening.AudioMessageMessagesPlace;
-import com.laotek.churchguru.web.client.activity.website.listening.cat.AudioMessageCategoriesPlace;
-import com.laotek.churchguru.web.client.activity.website.listening.cat.AudioMessageCategoryNewPlace;
-import com.laotek.churchguru.web.client.activity.website.listening.cust.ListeningCustomerDetailsPlace;
-import com.laotek.churchguru.web.client.activity.website.listening.cust.ListeningCustomersPlace;
-import com.laotek.churchguru.web.client.activity.website.listening.notif.ListeningNotificationsPlace;
-import com.laotek.churchguru.web.client.activity.website.listening.speaker.ListeningSpeakerNewPlace;
-import com.laotek.churchguru.web.client.activity.website.listening.speaker.ListeningSpeakersPlace;
+import com.laotek.churchguru.web.client.activity.website.audio.AudioMessageNewPlace;
+import com.laotek.churchguru.web.client.activity.website.audio.AudioMessagesPlace;
+import com.laotek.churchguru.web.client.activity.website.audio.cat.AudioMessageCategoriesPlace;
+import com.laotek.churchguru.web.client.activity.website.audio.cat.AudioMessageCategoryNewPlace;
+import com.laotek.churchguru.web.client.activity.website.audio.cust.AudioMessageCustomerDetailsPlace;
+import com.laotek.churchguru.web.client.activity.website.audio.cust.AudioMessageCustomersPlace;
+import com.laotek.churchguru.web.client.activity.website.audio.notif.AudioMessageNotificationsPlace;
+import com.laotek.churchguru.web.client.activity.website.audio.speaker.AudioMessageSpeakerNewPlace;
+import com.laotek.churchguru.web.client.activity.website.audio.speaker.AudioMessageSpeakersPlace;
+import com.laotek.churchguru.web.client.activity.website.gal.AudioMessageGalleryNewItemPlace;
+import com.laotek.churchguru.web.client.activity.website.gal.AudioMessageGalleryPlace;
 
 @WithTokenizers({ HomePlace.Tokenizer.class, AccountQuotaPlace.Tokenizer.class, NewslettersChartPlace.Tokenizer.class,
 	WeeklyAttendanceChartPlace.Tokenizer.class, PeopleChartPlace.Tokenizer.class, AllUserPlace.Tokenizer.class,
 	SystemSettingsPlace.Tokenizer.class, SingleUserPlace.Tokenizer.class, LoginPlace.Tokenizer.class,
 	PasswordResetPlace.Tokenizer.class, NewUserSetupPlace.Tokenizer.class, UserProfilesPlace.Tokenizer.class,
 
-	AudioMessageMessagesPlace.Tokenizer.class, AudioMessageMessageNewPlace.Tokenizer.class,
-	ListeningGalleryPlace.Tokenizer.class, ListeningGalleryNewItemPlace.Tokenizer.class,
-	ListeningCustomersPlace.Tokenizer.class, ListeningCustomerDetailsPlace.Tokenizer.class,
+	AudioMessagesPlace.Tokenizer.class, AudioMessageNewPlace.Tokenizer.class,
+	AudioMessageGalleryPlace.Tokenizer.class, AudioMessageGalleryNewItemPlace.Tokenizer.class,
+	AudioMessageCustomersPlace.Tokenizer.class, AudioMessageCustomerDetailsPlace.Tokenizer.class,
 	AudioMessageCategoryNewPlace.Tokenizer.class, AudioMessageCategoriesPlace.Tokenizer.class,
-	ListeningNotificationsPlace.Tokenizer.class, ListeningSpeakerNewPlace.Tokenizer.class,
+	AudioMessageNotificationsPlace.Tokenizer.class, AudioMessageSpeakerNewPlace.Tokenizer.class,
 
-	WatchingMessagesPlace.Tokenizer.class, WatchingMessageNewPlace.Tokenizer.class,
+	WatchingMessagesPlace.Tokenizer.class, VideoMessageNewPlace.Tokenizer.class,
 
-	ListeningSpeakersPlace.Tokenizer.class, WebsitePlace.Tokenizer.class, DonationSearchPlace.Tokenizer.class,
+	AudioMessageSpeakersPlace.Tokenizer.class, WebsitePlace.Tokenizer.class, DonationSearchPlace.Tokenizer.class,
 	GeneralChurchAppPlace.Tokenizer.class, PostNoticeOrEventChurchAppPlace.Tokenizer.class,
 	PreviewNoticeOrEventChurchAppPlace.Tokenizer.class, GetCurrentNoticesAndEventsHistoryPlace.Tokenizer.class })
 public interface AppPlaceHistoryMapper extends PlaceHistoryMapper {

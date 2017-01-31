@@ -81,7 +81,7 @@ public class WatchingMessagesActivity extends AbstractActivity implements Watchi
 		    @Override
 		    public void onSuccess(CreateNewWatchingMessageResult result) {
 			ApplicationContext.getInstance().getPlaceController()
-				.goTo(new WatchingMessageNewPlace(result.getNewMessageID()));
+				.goTo(new VideoMessageNewPlace(result.getNewMessageID()));
 		    }
 		});
 

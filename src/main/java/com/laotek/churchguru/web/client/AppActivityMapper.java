@@ -24,8 +24,8 @@ import com.laotek.churchguru.web.client.activity.donation.DonationSearchActivity
 import com.laotek.churchguru.web.client.activity.donation.DonationSearchPlace;
 import com.laotek.churchguru.web.client.activity.home.HomeActivity;
 import com.laotek.churchguru.web.client.activity.home.HomePlace;
-import com.laotek.churchguru.web.client.activity.media.watching.WatchingMessageNewActivity;
-import com.laotek.churchguru.web.client.activity.media.watching.WatchingMessageNewPlace;
+import com.laotek.churchguru.web.client.activity.media.watching.VideoMessageNewActivity;
+import com.laotek.churchguru.web.client.activity.media.watching.VideoMessageNewPlace;
 import com.laotek.churchguru.web.client.activity.media.watching.WatchingMessagesActivity;
 import com.laotek.churchguru.web.client.activity.media.watching.WatchingMessagesPlace;
 import com.laotek.churchguru.web.client.activity.password.PasswordResetActivity;
@@ -41,28 +41,28 @@ import com.laotek.churchguru.web.client.activity.user.UserProfilesActivity;
 import com.laotek.churchguru.web.client.activity.user.UserProfilesPlace;
 import com.laotek.churchguru.web.client.activity.website.WebsiteActivity;
 import com.laotek.churchguru.web.client.activity.website.WebsitePlace;
-import com.laotek.churchguru.web.client.activity.website.gal.ListeningGalleryActivity;
-import com.laotek.churchguru.web.client.activity.website.gal.ListeningGalleryNewItemActivity;
-import com.laotek.churchguru.web.client.activity.website.gal.ListeningGalleryNewItemPlace;
-import com.laotek.churchguru.web.client.activity.website.gal.ListeningGalleryPlace;
-import com.laotek.churchguru.web.client.activity.website.listening.AudioMessageMessageNewActivity;
-import com.laotek.churchguru.web.client.activity.website.listening.AudioMessageMessageNewPlace;
-import com.laotek.churchguru.web.client.activity.website.listening.AudioMessageMessagesActivity;
-import com.laotek.churchguru.web.client.activity.website.listening.AudioMessageMessagesPlace;
-import com.laotek.churchguru.web.client.activity.website.listening.cat.AudioMessageCategoriesActivity;
-import com.laotek.churchguru.web.client.activity.website.listening.cat.AudioMessageCategoriesPlace;
-import com.laotek.churchguru.web.client.activity.website.listening.cat.AudioMessageCategoryNewActivity;
-import com.laotek.churchguru.web.client.activity.website.listening.cat.AudioMessageCategoryNewPlace;
-import com.laotek.churchguru.web.client.activity.website.listening.cust.ListeningCustomerDetailsActivity;
-import com.laotek.churchguru.web.client.activity.website.listening.cust.ListeningCustomerDetailsPlace;
-import com.laotek.churchguru.web.client.activity.website.listening.cust.ListeningCustomersActivity;
-import com.laotek.churchguru.web.client.activity.website.listening.cust.ListeningCustomersPlace;
-import com.laotek.churchguru.web.client.activity.website.listening.notif.ListeningNotificationsActivity;
-import com.laotek.churchguru.web.client.activity.website.listening.notif.ListeningNotificationsPlace;
-import com.laotek.churchguru.web.client.activity.website.listening.speaker.ListeningSpeakerNewActivity;
-import com.laotek.churchguru.web.client.activity.website.listening.speaker.ListeningSpeakerNewPlace;
-import com.laotek.churchguru.web.client.activity.website.listening.speaker.ListeningSpeakersActivity;
-import com.laotek.churchguru.web.client.activity.website.listening.speaker.ListeningSpeakersPlace;
+import com.laotek.churchguru.web.client.activity.website.audio.AudioMessageNewActivity;
+import com.laotek.churchguru.web.client.activity.website.audio.AudioMessageNewPlace;
+import com.laotek.churchguru.web.client.activity.website.audio.AudioMessagesActivity;
+import com.laotek.churchguru.web.client.activity.website.audio.AudioMessagesPlace;
+import com.laotek.churchguru.web.client.activity.website.audio.cat.AudioMessageCategoriesActivity;
+import com.laotek.churchguru.web.client.activity.website.audio.cat.AudioMessageCategoriesPlace;
+import com.laotek.churchguru.web.client.activity.website.audio.cat.AudioMessageCategoryNewActivity;
+import com.laotek.churchguru.web.client.activity.website.audio.cat.AudioMessageCategoryNewPlace;
+import com.laotek.churchguru.web.client.activity.website.audio.cust.AudioMessageCustomerDetailsActivity;
+import com.laotek.churchguru.web.client.activity.website.audio.cust.AudioMessageCustomerDetailsPlace;
+import com.laotek.churchguru.web.client.activity.website.audio.cust.AudioMessageCustomersActivity;
+import com.laotek.churchguru.web.client.activity.website.audio.cust.AudioMessageCustomersPlace;
+import com.laotek.churchguru.web.client.activity.website.audio.notif.AudioMessageNotificationsActivity;
+import com.laotek.churchguru.web.client.activity.website.audio.notif.AudioMessageNotificationsPlace;
+import com.laotek.churchguru.web.client.activity.website.audio.speaker.AudioMessageSpeakerNewActivity;
+import com.laotek.churchguru.web.client.activity.website.audio.speaker.AudioMessageSpeakerNewPlace;
+import com.laotek.churchguru.web.client.activity.website.audio.speaker.AudioMessageSpeakersActivity;
+import com.laotek.churchguru.web.client.activity.website.audio.speaker.AudioMessageSpeakersPlace;
+import com.laotek.churchguru.web.client.activity.website.gal.AudioMessageGalleryActivity;
+import com.laotek.churchguru.web.client.activity.website.gal.AudioMessageGalleryNewItemActivity;
+import com.laotek.churchguru.web.client.activity.website.gal.AudioMessageGalleryNewItemPlace;
+import com.laotek.churchguru.web.client.activity.website.gal.AudioMessageGalleryPlace;
 
 public class AppActivityMapper implements ActivityMapper {
     private ClientFactory clientFactory;
@@ -107,41 +107,41 @@ public class AppActivityMapper implements ActivityMapper {
 	else if (place instanceof UserProfilesPlace)
 	    return new UserProfilesActivity((UserProfilesPlace) place, clientFactory);
 
-	else if (place instanceof ListeningSpeakerNewPlace)
-	    return new ListeningSpeakerNewActivity((ListeningSpeakerNewPlace) place, clientFactory);
+	else if (place instanceof AudioMessageSpeakerNewPlace)
+	    return new AudioMessageSpeakerNewActivity((AudioMessageSpeakerNewPlace) place, clientFactory);
 
-	else if (place instanceof ListeningCustomersPlace)
-	    return new ListeningCustomersActivity((ListeningCustomersPlace) place, clientFactory);
+	else if (place instanceof AudioMessageCustomersPlace)
+	    return new AudioMessageCustomersActivity((AudioMessageCustomersPlace) place, clientFactory);
 
-	else if (place instanceof ListeningCustomerDetailsPlace)
-	    return new ListeningCustomerDetailsActivity((ListeningCustomerDetailsPlace) place, clientFactory);
+	else if (place instanceof AudioMessageCustomerDetailsPlace)
+	    return new AudioMessageCustomerDetailsActivity((AudioMessageCustomerDetailsPlace) place, clientFactory);
 
-	else if (place instanceof ListeningSpeakersPlace)
-	    return new ListeningSpeakersActivity((ListeningSpeakersPlace) place, clientFactory);
+	else if (place instanceof AudioMessageSpeakersPlace)
+	    return new AudioMessageSpeakersActivity((AudioMessageSpeakersPlace) place, clientFactory);
 
 	else if (place instanceof AudioMessageCategoryNewPlace)
 	    return new AudioMessageCategoryNewActivity((AudioMessageCategoryNewPlace) place, clientFactory);
 
-	else if (place instanceof AudioMessageMessagesPlace)
-	    return new AudioMessageMessagesActivity((AudioMessageMessagesPlace) place, clientFactory);
+	else if (place instanceof AudioMessagesPlace)
+	    return new AudioMessagesActivity((AudioMessagesPlace) place, clientFactory);
 
 	else if (place instanceof AudioMessageCategoriesPlace)
 	    return new AudioMessageCategoriesActivity((AudioMessageCategoriesPlace) place, clientFactory);
 
-	else if (place instanceof ListeningNotificationsPlace)
-	    return new ListeningNotificationsActivity((ListeningNotificationsPlace) place, clientFactory);
+	else if (place instanceof AudioMessageNotificationsPlace)
+	    return new AudioMessageNotificationsActivity((AudioMessageNotificationsPlace) place, clientFactory);
 
-	else if (place instanceof AudioMessageMessageNewPlace)
-	    return new AudioMessageMessageNewActivity((AudioMessageMessageNewPlace) place, clientFactory);
+	else if (place instanceof AudioMessageNewPlace)
+	    return new AudioMessageNewActivity((AudioMessageNewPlace) place, clientFactory);
 
-	else if (place instanceof ListeningGalleryPlace)
-	    return new ListeningGalleryActivity((ListeningGalleryPlace) place, clientFactory);
+	else if (place instanceof AudioMessageGalleryPlace)
+	    return new AudioMessageGalleryActivity((AudioMessageGalleryPlace) place, clientFactory);
 
-	else if (place instanceof ListeningGalleryNewItemPlace)
-	    return new ListeningGalleryNewItemActivity((ListeningGalleryNewItemPlace) place, clientFactory);
+	else if (place instanceof AudioMessageGalleryNewItemPlace)
+	    return new AudioMessageGalleryNewItemActivity((AudioMessageGalleryNewItemPlace) place, clientFactory);
 
-	else if (place instanceof WatchingMessageNewPlace)
-	    return new WatchingMessageNewActivity((WatchingMessageNewPlace) place, clientFactory);
+	else if (place instanceof VideoMessageNewPlace)
+	    return new VideoMessageNewActivity((VideoMessageNewPlace) place, clientFactory);
 
 	else if (place instanceof WatchingMessagesPlace)
 	    return new WatchingMessagesActivity((WatchingMessagesPlace) place, clientFactory);

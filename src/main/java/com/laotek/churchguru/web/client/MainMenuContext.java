@@ -24,7 +24,7 @@ import com.laotek.churchguru.web.client.activity.user.AllUserPlace;
 import com.laotek.churchguru.web.client.activity.user.NewUserDialog;
 import com.laotek.churchguru.web.client.activity.user.NewUserProfileDialog;
 import com.laotek.churchguru.web.client.activity.user.UserProfilesPlace;
-import com.laotek.churchguru.web.client.activity.website.listening.AudioMessageMessagesPlace;
+import com.laotek.churchguru.web.client.activity.website.audio.AudioMessagesPlace;
 import com.laotek.churchguru.web.shared.UserDto;
 
 public class MainMenuContext extends BaseMainMenuContext {
@@ -110,24 +110,24 @@ public class MainMenuContext extends BaseMainMenuContext {
     }
 
     private void createMessageMediaPanel(StackLayoutPanel stackMenu) {
-	listeningPanel.setHeight("100%");
+	messageMediaPanel.setHeight("100%");
 	UserDto dto = UserContext.getInstance().getUserDto();
-	initStackLayoutPanel(listeningPanel, "images/app/media.png", "Manage Media Messages", stackMenu,
-		new AudioMessageMessagesPlace("messages"), UserRoleName.ORGANISATION_DATA_VIEW_ONLY,
+	initStackLayoutPanel(messageMediaPanel, "images/app/media.png", "Manage Media Messages", stackMenu,
+		new AudioMessagesPlace("messages"), UserRoleName.ORGANISATION_DATA_VIEW_ONLY,
 		dto.getOrganisationRole());
 
-	createLink(new Image("images/app/audio.png"), "Manage Audio Message", false, listeningPanel,
-		new AudioMessageMessagesPlace("audio"), UserRoleName.ORGANISATION_DATA_VIEW_ONLY,
+	createLink(new Image("images/app/audio.png"), "Manage Audio Message", false, messageMediaPanel,
+		new AudioMessagesPlace("audio"), UserRoleName.ORGANISATION_DATA_VIEW_ONLY,
 		dto.getOrganisationRole());
 
-	createNewListeningMessageLink(new Image("images/app/audio.png"), listeningPanel,
+	createNewListeningMessageLink(new Image("images/app/audio.png"), messageMediaPanel,
 		UserRoleName.ORGANISATION_DATA_VIEW_ONLY, dto.getOrganisationRole());
 
-	createLink(new Image("images/app/watch_live.png"), "Manage Video Messages", false, listeningPanel,
+	createLink(new Image("images/app/watch_live.png"), "Manage Video Messages", false, messageMediaPanel,
 		new WatchingMessagesPlace("video"), UserRoleName.ORGANISATION_DATA_VIEW_ONLY,
 		dto.getOrganisationRole());
 
-	createNewWatchingMessageLink(new Image("images/app/watch_live.png"), listeningPanel,
+	createNewWatchingMessageLink(new Image("images/app/watch_live.png"), messageMediaPanel,
 		UserRoleName.ORGANISATION_DATA_VIEW_ONLY, dto.getOrganisationRole());
     }
 
@@ -234,8 +234,8 @@ public class MainMenuContext extends BaseMainMenuContext {
     }
 
     public void showMessageMediaPanel(String anchorLabel) {
-	stackMenu.showWidget(listeningPanel);
-	highlightSelection(listeningPanel, anchorLabel);
+	stackMenu.showWidget(messageMediaPanel);
+	highlightSelection(messageMediaPanel, anchorLabel);
     }
 
     public void showInstantMessagePanel(String anchorLabel) {

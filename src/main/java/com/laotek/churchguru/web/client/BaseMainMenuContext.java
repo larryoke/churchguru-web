@@ -16,23 +16,23 @@ import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.Image;
 import com.laotek.churchguru.model.shared.enums.UserRoleName;
+import com.laotek.churchguru.web.client.activity.audio.CreateNewAudioMessageAction;
+import com.laotek.churchguru.web.client.activity.audio.CreateNewAudioMessageResult;
 import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.EnumNoticeOrEventAction;
 import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.NoticeAndEventAction;
 import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.NoticeAndEventActionResult;
 import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.PostNoticeOrEventChurchAppPlace;
-import com.laotek.churchguru.web.client.activity.listening.CreateNewListeningMessageAction;
-import com.laotek.churchguru.web.client.activity.listening.CreateNewListeningMessageResult;
 import com.laotek.churchguru.web.client.activity.media.watching.CreateNewWatchingMessageAction;
 import com.laotek.churchguru.web.client.activity.media.watching.CreateNewWatchingMessageResult;
-import com.laotek.churchguru.web.client.activity.media.watching.WatchingMessageNewPlace;
-import com.laotek.churchguru.web.client.activity.website.listening.AudioMessageMessageNewPlace;
+import com.laotek.churchguru.web.client.activity.media.watching.VideoMessageNewPlace;
+import com.laotek.churchguru.web.client.activity.website.audio.AudioMessageNewPlace;
 
 public abstract class BaseMainMenuContext {
 
     protected FlexTable dashboardPanel = new FlexTable();
     protected FlexTable websitePanel = new FlexTable();
     protected FlexTable noticesAndEventsPanel = new FlexTable();
-    protected FlexTable listeningPanel = new FlexTable();
+    protected FlexTable messageMediaPanel = new FlexTable();
     protected FlexTable donationPanel = new FlexTable();
     protected FlexTable socialMediaPanel = new FlexTable();
     protected FlexTable userPanel = new FlexTable();
@@ -167,19 +167,19 @@ public abstract class BaseMainMenuContext {
 		String subject = Window.prompt("Please provide the title of the new audio message to be uploaded", "");
 		if (subject != null && !subject.trim().equals("")) {
 
-		    CreateNewListeningMessageAction action = new CreateNewListeningMessageAction(subject);
+		    CreateNewAudioMessageAction action = new CreateNewAudioMessageAction(subject);
 		    UserContext.getInstance().decorateClientSessionId(action);
 		    UserContext.getInstance().getDispatchClient().execute(action,
-			    new AsyncCallback<CreateNewListeningMessageResult>() {
+			    new AsyncCallback<CreateNewAudioMessageResult>() {
 				@Override
 				public void onFailure(Throwable throwable) {
 				    Window.alert("A server error occured when attempting to create a new message.");
 				}
 
 				@Override
-				public void onSuccess(CreateNewListeningMessageResult result) {
+				public void onSuccess(CreateNewAudioMessageResult result) {
 				    ApplicationContext.getInstance().getPlaceController()
-					    .goTo(new AudioMessageMessageNewPlace(result.getNewMessageID()));
+					    .goTo(new AudioMessageNewPlace(result.getNewMessageID()));
 				}
 			    });
 		}
@@ -216,7 +216,7 @@ public abstract class BaseMainMenuContext {
 				@Override
 				public void onSuccess(CreateNewWatchingMessageResult result) {
 				    ApplicationContext.getInstance().getPlaceController()
-					    .goTo(new WatchingMessageNewPlace(result.getNewMessageID()));
+					    .goTo(new VideoMessageNewPlace(result.getNewMessageID()));
 				}
 			    });
 		}
