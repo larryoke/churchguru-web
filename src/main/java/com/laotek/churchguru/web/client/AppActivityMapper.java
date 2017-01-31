@@ -24,6 +24,10 @@ import com.laotek.churchguru.web.client.activity.donation.DonationSearchActivity
 import com.laotek.churchguru.web.client.activity.donation.DonationSearchPlace;
 import com.laotek.churchguru.web.client.activity.home.HomeActivity;
 import com.laotek.churchguru.web.client.activity.home.HomePlace;
+import com.laotek.churchguru.web.client.activity.media.watching.WatchingMessageNewActivity;
+import com.laotek.churchguru.web.client.activity.media.watching.WatchingMessageNewPlace;
+import com.laotek.churchguru.web.client.activity.media.watching.WatchingMessagesActivity;
+import com.laotek.churchguru.web.client.activity.media.watching.WatchingMessagesPlace;
 import com.laotek.churchguru.web.client.activity.password.PasswordResetActivity;
 import com.laotek.churchguru.web.client.activity.password.PasswordResetPlace;
 import com.laotek.churchguru.web.client.activity.user.AllUserActivity;
@@ -81,6 +85,7 @@ public class AppActivityMapper implements ActivityMapper {
 
 	else if (place instanceof WeeklyAttendanceChartPlace)
 	    return new WeeklyAttendanceChartActivity((WeeklyAttendanceChartPlace) place, clientFactory);
+
 	else if (place instanceof AllUserPlace)
 	    return new AllUserActivity((AllUserPlace) place, clientFactory);
 
@@ -134,6 +139,12 @@ public class AppActivityMapper implements ActivityMapper {
 
 	else if (place instanceof ListeningGalleryNewItemPlace)
 	    return new ListeningGalleryNewItemActivity((ListeningGalleryNewItemPlace) place, clientFactory);
+
+	else if (place instanceof WatchingMessageNewPlace)
+	    return new WatchingMessageNewActivity((WatchingMessageNewPlace) place, clientFactory);
+
+	else if (place instanceof WatchingMessagesPlace)
+	    return new WatchingMessagesActivity((WatchingMessagesPlace) place, clientFactory);
 
 	else if (place instanceof WebsitePlace)
 	    return new WebsiteActivity((WebsitePlace) place, clientFactory);

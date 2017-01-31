@@ -13,6 +13,8 @@ import com.laotek.churchguru.web.client.activity.dashboard.PeopleChartPlace;
 import com.laotek.churchguru.web.client.activity.dashboard.WeeklyAttendanceChartPlace;
 import com.laotek.churchguru.web.client.activity.donation.DonationSearchPlace;
 import com.laotek.churchguru.web.client.activity.home.HomePlace;
+import com.laotek.churchguru.web.client.activity.media.watching.WatchingMessageNewPlace;
+import com.laotek.churchguru.web.client.activity.media.watching.WatchingMessagesPlace;
 import com.laotek.churchguru.web.client.activity.password.PasswordResetPlace;
 import com.laotek.churchguru.web.client.activity.user.AllUserPlace;
 import com.laotek.churchguru.web.client.activity.user.LoginPlace;
@@ -42,6 +44,9 @@ import com.laotek.churchguru.web.client.activity.website.listening.speaker.Liste
 	ListeningCustomersPlace.Tokenizer.class, ListeningCustomerDetailsPlace.Tokenizer.class,
 	ListeningCategoryNewPlace.Tokenizer.class, ListeningCategoriesPlace.Tokenizer.class,
 	ListeningNotificationsPlace.Tokenizer.class, ListeningSpeakerNewPlace.Tokenizer.class,
+
+	WatchingMessagesPlace.Tokenizer.class, WatchingMessageNewPlace.Tokenizer.class,
+
 	ListeningSpeakersPlace.Tokenizer.class, WebsitePlace.Tokenizer.class, DonationSearchPlace.Tokenizer.class,
 	GeneralChurchAppPlace.Tokenizer.class, PostNoticeOrEventChurchAppPlace.Tokenizer.class,
 	PreviewNoticeOrEventChurchAppPlace.Tokenizer.class, GetCurrentNoticesAndEventsHistoryPlace.Tokenizer.class })

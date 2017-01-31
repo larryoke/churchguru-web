@@ -50,7 +50,7 @@ public class ListeningMessagesViewImpl extends BaseViewImpl implements Listening
 		}
 	    }
 	});
-	return getMainLayout("images/app/shop_cart.png", "Manage E-Store",
+	return getMainLayout("images/app/shop_cart.png", "Manage Audio Messages",
 		new RoundedCornerPanel(mainPanel, newMessageButton));
     }
 
