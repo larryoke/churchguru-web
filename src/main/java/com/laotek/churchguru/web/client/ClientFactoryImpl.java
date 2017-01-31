@@ -45,14 +45,14 @@ import com.laotek.churchguru.web.client.activity.website.gal.ListeningGalleryNew
 import com.laotek.churchguru.web.client.activity.website.gal.ListeningGalleryNewViewImpl;
 import com.laotek.churchguru.web.client.activity.website.gal.ListeningGalleryView;
 import com.laotek.churchguru.web.client.activity.website.gal.ListeningGalleryViewImpl;
-import com.laotek.churchguru.web.client.activity.website.listening.ListeningMessageNewView;
-import com.laotek.churchguru.web.client.activity.website.listening.ListeningMessageNewViewImpl;
-import com.laotek.churchguru.web.client.activity.website.listening.ListeningMessagesView;
-import com.laotek.churchguru.web.client.activity.website.listening.ListeningMessagesViewImpl;
-import com.laotek.churchguru.web.client.activity.website.listening.cat.ListeningCategoriesView;
-import com.laotek.churchguru.web.client.activity.website.listening.cat.ListeningCategoriesViewImpl;
-import com.laotek.churchguru.web.client.activity.website.listening.cat.ListeningCategoryNewView;
-import com.laotek.churchguru.web.client.activity.website.listening.cat.ListeningCategoryNewViewImpl;
+import com.laotek.churchguru.web.client.activity.website.listening.AudioMessageMessageNewView;
+import com.laotek.churchguru.web.client.activity.website.listening.AudioMessageMessageNewViewImpl;
+import com.laotek.churchguru.web.client.activity.website.listening.AudioMessageMessagesView;
+import com.laotek.churchguru.web.client.activity.website.listening.AudioMessageMessagesViewImpl;
+import com.laotek.churchguru.web.client.activity.website.listening.cat.AudioMessageCategoriesView;
+import com.laotek.churchguru.web.client.activity.website.listening.cat.AudioMessageCategoriesViewImpl;
+import com.laotek.churchguru.web.client.activity.website.listening.cat.AudioMessageCategoryNewView;
+import com.laotek.churchguru.web.client.activity.website.listening.cat.AudioMessageCategoryNewViewImpl;
 import com.laotek.churchguru.web.client.activity.website.listening.cust.ListeningCustomerDetailsView;
 import com.laotek.churchguru.web.client.activity.website.listening.cust.ListeningCustomerDetailsViewImpl;
 import com.laotek.churchguru.web.client.activity.website.listening.cust.ListeningCustomersView;
@@ -81,9 +81,9 @@ public class ClientFactoryImpl implements ClientFactory {
     private NewUserSetupView newUserSetupView = new NewUserSetupViewImpl(placeController);
     private UserProfilesView userProfilesView = new UserProfilesViewImpl();
 
-    private ListeningCategoriesView eStoreCategoriesView = new ListeningCategoriesViewImpl();
+    private AudioMessageCategoriesView eStoreCategoriesView = new AudioMessageCategoriesViewImpl();
 
-    private ListeningCategoryNewView eStoreCategoryNewView = new ListeningCategoryNewViewImpl();
+    private AudioMessageCategoryNewView eStoreCategoryNewView = new AudioMessageCategoryNewViewImpl();
 
     private ListeningCustomerDetailsView eStoreCustomerDetailsView = new ListeningCustomerDetailsViewImpl();
 
@@ -93,9 +93,9 @@ public class ClientFactoryImpl implements ClientFactory {
 
     private ListeningGalleryView eStoreGalleryView = new ListeningGalleryViewImpl();
 
-    private ListeningMessageNewView eStoreMessageNewView = new ListeningMessageNewViewImpl();
+    private AudioMessageMessageNewView eStoreMessageNewView = new AudioMessageMessageNewViewImpl();
 
-    private ListeningMessagesView eStoreMessagesView = new ListeningMessagesViewImpl();
+    private AudioMessageMessagesView eStoreMessagesView = new AudioMessageMessagesViewImpl();
 
     private ListeningNotificationsView eStoreNotificationsView = new ListeningNotificationsViewImpl();
 
@@ -213,14 +213,14 @@ public class ClientFactoryImpl implements ClientFactory {
     }
 
     @Override
-    public ListeningCategoriesView getEStoreCategoriesView() {
+    public AudioMessageCategoriesView getEStoreCategoriesView() {
 	if (eStoreCategoriesView == null) {
 	}
 	return eStoreCategoriesView;
     }
 
     @Override
-    public ListeningCategoryNewView getEStoreCategoryNewView() {
+    public AudioMessageCategoryNewView getEStoreCategoryNewView() {
 	if (eStoreCategoryNewView == null) {
 	}
 	return eStoreCategoryNewView;
@@ -255,14 +255,14 @@ public class ClientFactoryImpl implements ClientFactory {
     }
 
     @Override
-    public ListeningMessageNewView getEStoreMessageNewView() {
+    public AudioMessageMessageNewView getEStoreMessageNewView() {
 	if (eStoreMessageNewView == null) {
 	}
 	return eStoreMessageNewView;
     }
 
     @Override
-    public ListeningMessagesView getEStoreMessagesView() {
+    public AudioMessageMessagesView getEStoreMessagesView() {
 	if (eStoreMessagesView == null) {
 	}
 	return eStoreMessagesView;

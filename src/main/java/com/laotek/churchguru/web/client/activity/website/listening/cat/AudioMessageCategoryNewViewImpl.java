@@ -1,17 +1,16 @@
-package com.laotek.churchguru.web.client.activity.website.listening.speaker;
+package com.laotek.churchguru.web.client.activity.website.listening.cat;
 
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 import com.laotek.churchguru.web.client.MainMenuContext;
-import com.laotek.churchguru.web.shared.listening.AudioMessageSpeakerDto;
+import com.laotek.churchguru.web.shared.listening.AudioMessageCategoryDto;
 
-public class ListeningSpeakersViewImpl implements ListeningSpeakersView {
+public class AudioMessageCategoryNewViewImpl implements AudioMessageCategoryNewView {
 
     private Presenter presenter;
 
     @Override
     public Widget asWidget() {
-	// TODO Auto-generated method stub
 	return null;
     }
 
@@ -22,12 +21,12 @@ public class ListeningSpeakersViewImpl implements ListeningSpeakersView {
 
     @Override
     public void init() {
-	Window.setTitle("EStore Speakers");
+	Window.setTitle("AudioMessage New Category");
     }
 
     @Override
     public void initTab() {
-	MainMenuContext.getInstance().showMessageMediaPanel("eStore");
+	MainMenuContext.getInstance().showMessageMediaPanel("category");
     }
 
     @Override
@@ -37,9 +36,9 @@ public class ListeningSpeakersViewImpl implements ListeningSpeakersView {
     }
 
     @Override
-    public void init(AudioMessageSpeakerDto dto) {
-	// TODO Auto-generated method stub
-
+    public AudioMessageCategoryDto add() {
+	AudioMessageCategoryDto categoryDto = new AudioMessageCategoryDto();
+	return categoryDto;
     }
 
 }

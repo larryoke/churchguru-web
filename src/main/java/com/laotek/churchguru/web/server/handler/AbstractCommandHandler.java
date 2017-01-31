@@ -11,17 +11,17 @@ import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.util.StringUtils;
 
 import com.laotek.churchguru.model.Donation;
-import com.laotek.churchguru.model.ListeningCategory;
-import com.laotek.churchguru.model.ListeningMember;
-import com.laotek.churchguru.model.ListeningMessage;
-import com.laotek.churchguru.model.ListeningMessageNotification;
-import com.laotek.churchguru.model.ListeningMessagePicture;
-import com.laotek.churchguru.model.ListeningSpeaker;
+import com.laotek.churchguru.model.AudioCategory;
+import com.laotek.churchguru.model.AudioMember;
+import com.laotek.churchguru.model.AudioMessage;
+import com.laotek.churchguru.model.AudioMessageNotification;
+import com.laotek.churchguru.model.AudioMessagePicture;
+import com.laotek.churchguru.model.AudioSpeaker;
 import com.laotek.churchguru.model.LogoItem;
 import com.laotek.churchguru.model.NoticeAndEvent;
 import com.laotek.churchguru.model.Organisation;
 import com.laotek.churchguru.model.User;
-import com.laotek.churchguru.model.WatchingMessage;
+import com.laotek.churchguru.model.VideoMessage;
 import com.laotek.churchguru.model.shared.enums.LogoItemType;
 import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.NoticeOrEventDto;
 import com.laotek.churchguru.web.client.activity.donation.DonationDto;
@@ -31,11 +31,11 @@ import com.laotek.churchguru.web.shared.FullnameDto;
 import com.laotek.churchguru.web.shared.OrganisationDto;
 import com.laotek.churchguru.web.shared.PhoneDto;
 import com.laotek.churchguru.web.shared.UserDto;
-import com.laotek.churchguru.web.shared.listening.ListeningCategoryDto;
-import com.laotek.churchguru.web.shared.listening.ListeningMessageDto;
-import com.laotek.churchguru.web.shared.listening.ListeningMessagePictureDto;
-import com.laotek.churchguru.web.shared.listening.ListeningNotificationDto;
-import com.laotek.churchguru.web.shared.listening.ListeningSpeakerDto;
+import com.laotek.churchguru.web.shared.listening.AudioMessageCategoryDto;
+import com.laotek.churchguru.web.shared.listening.AudioMessageMessageDto;
+import com.laotek.churchguru.web.shared.listening.AudioMessageMessagePictureDto;
+import com.laotek.churchguru.web.shared.listening.AudioMessageNotificationDto;
+import com.laotek.churchguru.web.shared.listening.AudioMessageSpeakerDto;
 import com.laotek.churchguru.web.shared.watching.WatchingMessageDto;
 
 public abstract class AbstractCommandHandler {
@@ -86,10 +86,10 @@ public abstract class AbstractCommandHandler {
 	return dtos;
     }
 
-    protected List<ListeningSpeakerDto> mapSpeakers(List<ListeningSpeaker> speakers) {
-	List<ListeningSpeakerDto> dtos = new ArrayList<ListeningSpeakerDto>();
-	for (ListeningSpeaker speaker : speakers) {
-	    ListeningSpeakerDto dto = new ListeningSpeakerDto();
+    protected List<AudioMessageSpeakerDto> mapSpeakers(List<AudioSpeaker> speakers) {
+	List<AudioMessageSpeakerDto> dtos = new ArrayList<AudioMessageSpeakerDto>();
+	for (AudioSpeaker speaker : speakers) {
+	    AudioMessageSpeakerDto dto = new AudioMessageSpeakerDto();
 	    dto.setIdentifier(speaker.getIdentifier());
 	    dto.setDescription(speaker.getDescription());
 
@@ -103,10 +103,10 @@ public abstract class AbstractCommandHandler {
 	return dtos;
     }
 
-    protected List<ListeningMessagePictureDto> mapMessagePictures(List<ListeningMessagePicture> eStoreMessagePictures) {
-	List<ListeningMessagePictureDto> dtos = new ArrayList<ListeningMessagePictureDto>();
-	for (ListeningMessagePicture picture : eStoreMessagePictures) {
-	    ListeningMessagePictureDto dto = new ListeningMessagePictureDto();
+    protected List<AudioMessageMessagePictureDto> mapMessagePictures(List<AudioMessagePicture> eStoreMessagePictures) {
+	List<AudioMessageMessagePictureDto> dtos = new ArrayList<AudioMessageMessagePictureDto>();
+	for (AudioMessagePicture picture : eStoreMessagePictures) {
+	    AudioMessageMessagePictureDto dto = new AudioMessageMessagePictureDto();
 	    dto.setName(picture.getPictureName());
 	    dtos.add(dto);
 	}
@@ -114,10 +114,10 @@ public abstract class AbstractCommandHandler {
 
     }
 
-    protected List<ListeningCategoryDto> mapCategories(List<ListeningCategory> categories) {
-	List<ListeningCategoryDto> dtos = new ArrayList<ListeningCategoryDto>();
-	for (ListeningCategory category : categories) {
-	    ListeningCategoryDto dto = new ListeningCategoryDto();
+    protected List<AudioMessageCategoryDto> mapCategories(List<AudioCategory> categories) {
+	List<AudioMessageCategoryDto> dtos = new ArrayList<AudioMessageCategoryDto>();
+	for (AudioCategory category : categories) {
+	    AudioMessageCategoryDto dto = new AudioMessageCategoryDto();
 	    dto.setName(category.getCategoryName());
 	    dto.setIdentifier(category.getIdentifier());
 	    dtos.add(dto);
@@ -125,8 +125,8 @@ public abstract class AbstractCommandHandler {
 	return dtos;
     }
 
-    protected ListeningMessageDto mapMessages(ListeningMessage message) {
-	ListeningMessageDto dto = new ListeningMessageDto();
+    protected AudioMessageMessageDto mapMessages(AudioMessage message) {
+	AudioMessageMessageDto dto = new AudioMessageMessageDto();
 	dto.setDescription(message.getDescription());
 	dto.setTitle(message.getTitle());
 	dto.setIdentifier(message.getIdentifier());
@@ -135,9 +135,9 @@ public abstract class AbstractCommandHandler {
 	dto.setMessageDate(message.getMessageDate());
 	dto.setMessageDateAsString(new SimpleDateFormat("dd-MM-yyyy").format(message.getMessageDate()));
 
-	ListeningSpeaker speaker = message.getEStoreSpeaker();
+	AudioSpeaker speaker = message.getEStoreSpeaker();
 	if (speaker != null) {
-	    ListeningSpeakerDto speakerDto = new ListeningSpeakerDto();
+	    AudioMessageSpeakerDto speakerDto = new AudioMessageSpeakerDto();
 	    speakerDto.setDescription(speaker.getDescription());
 
 	    FullnameDto fullnameDto = new FullnameDto();
@@ -150,30 +150,30 @@ public abstract class AbstractCommandHandler {
 	    dto.setSpeakerDto(speakerDto);
 	}
 
-	ListeningCategory category = message.geteStoreCategory();
+	AudioCategory category = message.geteStoreCategory();
 	if (category != null) {
-	    ListeningCategoryDto categoryDto = new ListeningCategoryDto();
+	    AudioMessageCategoryDto categoryDto = new AudioMessageCategoryDto();
 	    categoryDto.setIdentifier(category.getIdentifier());
 	    categoryDto.setName(category.getCategoryName());
 	    dto.setCategoryDto(categoryDto);
 	}
 
-	ListeningMessagePicture picture = message.geteStoreMessagePicture();
+	AudioMessagePicture picture = message.geteStoreMessagePicture();
 	if (picture != null) {
-	    ListeningMessagePictureDto pictureDto = new ListeningMessagePictureDto();
+	    AudioMessageMessagePictureDto pictureDto = new AudioMessageMessagePictureDto();
 	    pictureDto.setName(picture.getPictureName());
 	    pictureDto.setIdentifier(picture.getIdentifier());
 	}
 
-	Set<ListeningMessageNotification> messageNotifications = message.getEStoreMessageNotifications();
+	Set<AudioMessageNotification> messageNotifications = message.getEStoreMessageNotifications();
 	if (messageNotifications != null && messageNotifications.size() > 0) {
-	    List<ListeningNotificationDto> dtos = map(messageNotifications);
+	    List<AudioMessageNotificationDto> dtos = map(messageNotifications);
 	    dto.setNotificationDtos(dtos);
 	}
 	return dto;
     }
 
-    protected WatchingMessageDto mapWatchingMessages(WatchingMessage message) {
+    protected WatchingMessageDto mapWatchingMessages(VideoMessage message) {
 	WatchingMessageDto dto = new WatchingMessageDto();
 	dto.setDescription(message.getDescription());
 	dto.setTitle(message.getTitle());
@@ -185,10 +185,10 @@ public abstract class AbstractCommandHandler {
 	return dto;
     }
 
-    protected List<ListeningNotificationDto> map(Set<ListeningMessageNotification> messageNotifications) {
-	List<ListeningNotificationDto> dtos = new ArrayList<ListeningNotificationDto>();
-	for (ListeningMessageNotification notification : messageNotifications) {
-	    dtos.add(new ListeningNotificationDto(notification.getEStoreNotification().getEStoreNotificationType()));
+    protected List<AudioMessageNotificationDto> map(Set<AudioMessageNotification> messageNotifications) {
+	List<AudioMessageNotificationDto> dtos = new ArrayList<AudioMessageNotificationDto>();
+	for (AudioMessageNotification notification : messageNotifications) {
+	    dtos.add(new AudioMessageNotificationDto(notification.getEStoreNotification().getEStoreNotificationType()));
 	}
 	return dtos;
     }
@@ -272,8 +272,8 @@ public abstract class AbstractCommandHandler {
 	return dto;
     }
 
-    protected List<ListeningCategoryDto> mapCategoryDto(List<ListeningMember> categories) {
-	List<ListeningCategoryDto> categoryDtos = new ArrayList<ListeningCategoryDto>();
+    protected List<AudioMessageCategoryDto> mapCategoryDto(List<AudioMember> categories) {
+	List<AudioMessageCategoryDto> categoryDtos = new ArrayList<AudioMessageCategoryDto>();
 	return categoryDtos;
     }
 

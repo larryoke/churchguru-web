@@ -1,11 +1,13 @@
-package com.laotek.churchguru.web.client.activity.website.listening.speaker;
+package com.laotek.churchguru.web.client.activity.website.listening.cat;
+
+import java.util.List;
 
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 import com.laotek.churchguru.web.client.MainMenuContext;
-import com.laotek.churchguru.web.shared.listening.AudioMessageSpeakerDto;
+import com.laotek.churchguru.web.shared.listening.AudioMessageCategoryDto;
 
-public class ListeningSpeakersViewImpl implements ListeningSpeakersView {
+public class AudioMessageCategoriesViewImpl implements AudioMessageCategoriesView {
 
     private Presenter presenter;
 
@@ -22,12 +24,12 @@ public class ListeningSpeakersViewImpl implements ListeningSpeakersView {
 
     @Override
     public void init() {
-	Window.setTitle("EStore Speakers");
+	Window.setTitle("Listen Categories");
     }
 
     @Override
     public void initTab() {
-	MainMenuContext.getInstance().showMessageMediaPanel("eStore");
+	MainMenuContext.getInstance().showMessageMediaPanel("listening");
     }
 
     @Override
@@ -37,7 +39,7 @@ public class ListeningSpeakersViewImpl implements ListeningSpeakersView {
     }
 
     @Override
-    public void init(AudioMessageSpeakerDto dto) {
+    public void initCategories(List<AudioMessageCategoryDto> dtos) {
 	// TODO Auto-generated method stub
 
     }

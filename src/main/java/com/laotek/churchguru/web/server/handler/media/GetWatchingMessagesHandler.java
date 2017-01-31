@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.laotek.churchguru.daos.media.WatchingDao;
-import com.laotek.churchguru.model.WatchingMessage;
+import com.laotek.churchguru.model.VideoMessage;
 import com.laotek.churchguru.web.client.activity.media.watching.GetWatchingMessagesAction;
 import com.laotek.churchguru.web.client.activity.media.watching.GetWatchingMessagesResult;
 import com.laotek.churchguru.web.server.handler.AbstractCommandHandler;
@@ -28,7 +28,7 @@ public class GetWatchingMessagesHandler extends AbstractCommandHandler
     public GetWatchingMessagesResult execute(GetWatchingMessagesAction action, ExecutionContext context)
 	    throws DispatchException {
 
-	List<WatchingMessage> messages = eStoreDao.getMessages();
+	List<VideoMessage> messages = eStoreDao.getMessages();
 	List<WatchingMessageDto> dtos = new ArrayList<WatchingMessageDto>();
 	messages.stream().forEach(message -> dtos.add(mapWatchingMessages(message)));
 	return new GetWatchingMessagesResult(dtos);

@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.laotek.churchguru.daos.BaseSessionFactory;
-import com.laotek.churchguru.model.WatchingMessage;
+import com.laotek.churchguru.model.VideoMessage;
 
 @Repository
 @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
@@ -18,7 +18,7 @@ public class WatchingDaoImpl extends BaseSessionFactory implements WatchingDao {
 
     @Override
     public void createNewMessage(String messageId, String title) {
-	WatchingMessage eStoreMessage = new WatchingMessage();
+	VideoMessage eStoreMessage = new VideoMessage();
 	eStoreMessage.setTitle(title);
 	eStoreMessage.setDescription("desc...");
 	eStoreMessage.setIdentifier(messageId);
@@ -28,24 +28,24 @@ public class WatchingDaoImpl extends BaseSessionFactory implements WatchingDao {
     }
 
     @Override
-    public WatchingMessage getMessageByIdentifier(String identifier) {
+    public VideoMessage getMessageByIdentifier(String identifier) {
 	Query query = getCurrentSession().createQuery("from WatchingMessage m where m.identifier = :identifier");
 	query.setParameter("identifier", identifier);
-	WatchingMessage message = (WatchingMessage) query.uniqueResult();
+	VideoMessage message = (VideoMessage) query.uniqueResult();
 	return message;
     }
 
     @Override
-    public void updateMessage(WatchingMessage eStoreMessage, Map<String, String> otherDetails) {
-	eStoreMessage = (WatchingMessage) getCurrentSession().merge(eStoreMessage);
+    public void updateMessage(VideoMessage eStoreMessage, Map<String, String> otherDetails) {
+	eStoreMessage = (VideoMessage) getCurrentSession().merge(eStoreMessage);
 
 	getCurrentSession().update(eStoreMessage);
     }
 
     @Override
-    public List<WatchingMessage> getMessages() {
+    public List<VideoMessage> getMessages() {
 	@SuppressWarnings("unchecked")
-	List<WatchingMessage> list = getCurrentSession()
+	List<VideoMessage> list = getCurrentSession()
 		.createQuery("from WatchingMessage e order by e.messageDate desc").list();
 	return list;
     }

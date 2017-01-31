@@ -3,7 +3,7 @@ package com.laotek.churchguru.web.client.activity.website.listening.speaker;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 import com.laotek.churchguru.web.client.MainMenuContext;
-import com.laotek.churchguru.web.shared.listening.ListeningSpeakerDto;
+import com.laotek.churchguru.web.shared.listening.AudioMessageSpeakerDto;
 
 public class ListeningSpeakerNewViewImpl implements ListeningSpeakerNewView {
 
@@ -36,7 +36,7 @@ public class ListeningSpeakerNewViewImpl implements ListeningSpeakerNewView {
     }
 
     @Override
-    public ListeningSpeakerDto add() {
+    public AudioMessageSpeakerDto add() {
 	// TODO Auto-generated method stub
 	return null;
     }

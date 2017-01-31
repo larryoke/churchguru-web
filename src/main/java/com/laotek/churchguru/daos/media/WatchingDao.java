@@ -3,14 +3,14 @@ package com.laotek.churchguru.daos.media;
 import java.util.List;
 import java.util.Map;
 
-import com.laotek.churchguru.model.WatchingMessage;
+import com.laotek.churchguru.model.VideoMessage;
 
 public interface WatchingDao {
     void createNewMessage(String messageId, String title);
 
-    WatchingMessage getMessageByIdentifier(String identifier);
+    VideoMessage getMessageByIdentifier(String identifier);
 
-    List<WatchingMessage> getMessages();
+    List<VideoMessage> getMessages();
 
-    void updateMessage(WatchingMessage eStoreMessage, Map<String, String> otherDetails);
+    void updateMessage(VideoMessage eStoreMessage, Map<String, String> otherDetails);
 }

@@ -3,25 +3,25 @@ package com.laotek.churchguru.daos.media;
 import java.util.List;
 import java.util.Map;
 
-import com.laotek.churchguru.model.ListeningCategory;
-import com.laotek.churchguru.model.ListeningMessage;
-import com.laotek.churchguru.model.ListeningMessagePicture;
-import com.laotek.churchguru.model.ListeningSpeaker;
+import com.laotek.churchguru.model.AudioCategory;
+import com.laotek.churchguru.model.AudioMessage;
+import com.laotek.churchguru.model.AudioMessagePicture;
+import com.laotek.churchguru.model.AudioSpeaker;
 
 public interface ListeningDao {
     void createNewMessage(String messageId, String title);
 
-    ListeningMessage getMessageByIdentifier(String identifier);
+    AudioMessage getMessageByIdentifier(String identifier);
 
-    List<ListeningMessage> getMessages();
+    List<AudioMessage> getMessages();
 
-    List<ListeningSpeaker> getSpeakers();
+    List<AudioSpeaker> getSpeakers();
 
-    List<ListeningCategory> getCategories();
+    List<AudioCategory> getCategories();
 
-    List<ListeningMessagePicture> getEStoreMessagePicture();
+    List<AudioMessagePicture> getEStoreMessagePicture();
 
-    void updateMessage(ListeningMessage eStoreMessage, Map<String, String> otherDetails);
+    void updateMessage(AudioMessage eStoreMessage, Map<String, String> otherDetails);
 
     void loadNotifications();
 

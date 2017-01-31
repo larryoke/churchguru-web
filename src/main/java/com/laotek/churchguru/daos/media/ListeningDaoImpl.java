@@ -14,12 +14,12 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import com.laotek.churchguru.daos.BaseSessionFactory;
-import com.laotek.churchguru.model.ListeningCategory;
-import com.laotek.churchguru.model.ListeningMessage;
-import com.laotek.churchguru.model.ListeningMessageNotification;
-import com.laotek.churchguru.model.ListeningMessagePicture;
-import com.laotek.churchguru.model.ListeningNotification;
-import com.laotek.churchguru.model.ListeningSpeaker;
+import com.laotek.churchguru.model.AudioCategory;
+import com.laotek.churchguru.model.AudioMessage;
+import com.laotek.churchguru.model.AudioMessageNotification;
+import com.laotek.churchguru.model.AudioMessagePicture;
+import com.laotek.churchguru.model.AudioNotification;
+import com.laotek.churchguru.model.AudioSpeaker;
 import com.laotek.churchguru.model.shared.enums.ListeningNotificationType;
 import com.laotek.churchguru.model.shared.enums.Title;
 
@@ -29,7 +29,7 @@ public class ListeningDaoImpl extends BaseSessionFactory implements ListeningDao
 
     @Override
     public void createNewMessage(String messageId, String title) {
-	ListeningMessage eStoreMessage = new ListeningMessage();
+	AudioMessage eStoreMessage = new AudioMessage();
 	eStoreMessage.setTitle(title);
 	eStoreMessage.setDescription("desc...");
 	eStoreMessage.setIdentifier(messageId);
@@ -39,17 +39,17 @@ public class ListeningDaoImpl extends BaseSessionFactory implements ListeningDao
     }
 
     @Override
-    public ListeningMessage getMessageByIdentifier(String identifier) {
+    public AudioMessage getMessageByIdentifier(String identifier) {
 	Query query = getCurrentSession().createQuery("from ListeningMessage m where m.identifier = :identifier");
 	query.setParameter("identifier", identifier);
-	ListeningMessage message = (ListeningMessage) query.uniqueResult();
+	AudioMessage message = (AudioMessage) query.uniqueResult();
 	Hibernate.initialize(message.getEStoreMessageNotifications());
 	return message;
     }
 
     @Override
-    public void updateMessage(ListeningMessage eStoreMessage, Map<String, String> otherDetails) {
-	eStoreMessage = (ListeningMessage) getCurrentSession().merge(eStoreMessage);
+    public void updateMessage(AudioMessage eStoreMessage, Map<String, String> otherDetails) {
+	eStoreMessage = (AudioMessage) getCurrentSession().merge(eStoreMessage);
 
 	processAddSpeaker(eStoreMessage, otherDetails);
 
@@ -60,7 +60,7 @@ public class ListeningDaoImpl extends BaseSessionFactory implements ListeningDao
 	getCurrentSession().update(eStoreMessage);
     }
 
-    public void processAddNotifications(ListeningMessage eStoreMessage, Map<String, String> otherDetails) {
+    public void processAddNotifications(AudioMessage eStoreMessage, Map<String, String> otherDetails) {
 	String notificationTypesSpaceDelimited = otherDetails.get("notificationTypes");
 
 	// user checked 1 or more notifications
@@ -85,11 +85,11 @@ public class ListeningDaoImpl extends BaseSessionFactory implements ListeningDao
 		    // selected by user
 		    if (!isMessageNotificationExists(eStoreMessage, type)) {
 
-			ListeningNotification notification = getEStoreNotification(
+			AudioNotification notification = getEStoreNotification(
 				ListeningNotificationType.valueOf(notificationType));
 
 			// Create the message notification
-			getCurrentSession().persist(new ListeningMessageNotification(eStoreMessage, notification));
+			getCurrentSession().persist(new AudioMessageNotification(eStoreMessage, notification));
 		    }
 
 		}
@@ -99,10 +99,10 @@ public class ListeningDaoImpl extends BaseSessionFactory implements ListeningDao
 		// if not selected by user but does exist
 		if (isMessageNotificationExists(eStoreMessage, type)) {
 
-		    ListeningNotification notification = getEStoreNotification(type);
+		    AudioNotification notification = getEStoreNotification(type);
 
 		    // Delete the message notification
-		    ListeningMessageNotification mesgNotification = getEStoreMessageNotification(eStoreMessage,
+		    AudioMessageNotification mesgNotification = getEStoreMessageNotification(eStoreMessage,
 			    notification);
 		    getCurrentSession().delete(mesgNotification);
 		}
@@ -111,14 +111,14 @@ public class ListeningDaoImpl extends BaseSessionFactory implements ListeningDao
 	}
     }
 
-    public void processAddCategory(ListeningMessage eStoreMessage, Map<String, String> otherDetails) {
+    public void processAddCategory(AudioMessage eStoreMessage, Map<String, String> otherDetails) {
 	String categoryIdentifier = otherDetails.get("existingCategoryIdentifier");
 
 	// setupe message with existing category
 	if (categoryIdentifier != null) {
 	    Query query = getCurrentSession().createQuery("from ListeningCategory c Where c.identifier = :identifier");
 	    query.setParameter("identifier", categoryIdentifier);
-	    ListeningCategory eStoreCategory = (ListeningCategory) query.uniqueResult();
+	    AudioCategory eStoreCategory = (AudioCategory) query.uniqueResult();
 	    eStoreMessage.seteStoreCategory(eStoreCategory);
 
 	} else {
@@ -128,12 +128,12 @@ public class ListeningDaoImpl extends BaseSessionFactory implements ListeningDao
 	    Query query = getCurrentSession()
 		    .createQuery("from ListeningCategory c Where c.categoryName = :categoryName");
 	    query.setParameter("categoryName", name);
-	    ListeningCategory eStoreCategory = (ListeningCategory) query.uniqueResult();
+	    AudioCategory eStoreCategory = (AudioCategory) query.uniqueResult();
 
 	    // create a new cat if not existing
 	    if (eStoreCategory == null) {
 		String identifier = otherDetails.get("newCategoryIdentifier");
-		eStoreCategory = new ListeningCategory();
+		eStoreCategory = new AudioCategory();
 		eStoreCategory.setCategoryName(name);
 		eStoreCategory.setIdentifier(identifier);
 		getCurrentSession().persist(eStoreCategory);
@@ -142,12 +142,12 @@ public class ListeningDaoImpl extends BaseSessionFactory implements ListeningDao
 	}
     }
 
-    public void processAddSpeaker(ListeningMessage eStoreMessage, Map<String, String> otherDetails) {
+    public void processAddSpeaker(AudioMessage eStoreMessage, Map<String, String> otherDetails) {
 	String speakerIdentifier = otherDetails.get("existingSpeakerIdentifier");
 	if (speakerIdentifier != null) {
 	    Query query = getCurrentSession().createQuery("from ListeningSpeaker s Where s.identifier = :identifier");
 	    query.setParameter("identifier", speakerIdentifier);
-	    ListeningSpeaker eStoreSpeaker = (ListeningSpeaker) query.uniqueResult();
+	    AudioSpeaker eStoreSpeaker = (AudioSpeaker) query.uniqueResult();
 	    eStoreMessage.setEStoreSpeaker(eStoreSpeaker);
 
 	} else {
@@ -160,7 +160,7 @@ public class ListeningDaoImpl extends BaseSessionFactory implements ListeningDao
 	    query.setParameter("title", title);
 	    query.setParameter("forenames", forenames);
 	    query.setParameter("surname", surname);
-	    ListeningSpeaker eStoreSpeaker = (ListeningSpeaker) query.uniqueResult();
+	    AudioSpeaker eStoreSpeaker = (AudioSpeaker) query.uniqueResult();
 
 	    // create a new speaker if not existing
 	    if (eStoreSpeaker == null) {
@@ -168,7 +168,7 @@ public class ListeningDaoImpl extends BaseSessionFactory implements ListeningDao
 		String desc = otherDetails.get("newSpeakerDesc");
 		String identifier = otherDetails.get("newSpeakerIdentifier");
 
-		eStoreSpeaker = new ListeningSpeaker();
+		eStoreSpeaker = new AudioSpeaker();
 		eStoreSpeaker.setIdentifier(identifier);
 		eStoreSpeaker.setForenames(forenames);
 		eStoreSpeaker.setSurname(surname);
@@ -182,41 +182,41 @@ public class ListeningDaoImpl extends BaseSessionFactory implements ListeningDao
     }
 
     @Override
-    public List<ListeningMessage> getMessages() {
+    public List<AudioMessage> getMessages() {
 	@SuppressWarnings("unchecked")
-	List<ListeningMessage> list = getCurrentSession()
+	List<AudioMessage> list = getCurrentSession()
 		.createQuery("from ListeningMessage e order by e.messageDate desc").list();
-	for (ListeningMessage msg : list) {
+	for (AudioMessage msg : list) {
 	    msg.getEStoreMessageNotifications().size();
 	}
 	return list;
     }
 
     @Override
-    public List<ListeningSpeaker> getSpeakers() {
+    public List<AudioSpeaker> getSpeakers() {
 	@SuppressWarnings("unchecked")
-	List<ListeningSpeaker> list = getCurrentSession().createQuery("from ListeningSpeaker ").list();
+	List<AudioSpeaker> list = getCurrentSession().createQuery("from ListeningSpeaker ").list();
 	return list;
     }
 
     @Override
-    public List<ListeningCategory> getCategories() {
+    public List<AudioCategory> getCategories() {
 	@SuppressWarnings("unchecked")
-	List<ListeningCategory> list = getCurrentSession().createQuery("from ListeningCategory ").list();
+	List<AudioCategory> list = getCurrentSession().createQuery("from ListeningCategory ").list();
 	return list;
     }
 
     @Override
-    public List<ListeningMessagePicture> getEStoreMessagePicture() {
+    public List<AudioMessagePicture> getEStoreMessagePicture() {
 	@SuppressWarnings("unchecked")
-	List<ListeningMessagePicture> list = getCurrentSession().createQuery("from ListeningMessagePicture ").list();
+	List<AudioMessagePicture> list = getCurrentSession().createQuery("from ListeningMessagePicture ").list();
 	return list;
     }
 
     @Override
     public void loadNotifications() {
 	for (ListeningNotificationType notificationType : ListeningNotificationType.values()) {
-	    ListeningNotification notification = getEStoreNotification(notificationType);
+	    AudioNotification notification = getEStoreNotification(notificationType);
 	    if (notification == null) {
 		createEStoreNotification(notificationType);
 	    }
@@ -224,7 +224,7 @@ public class ListeningDaoImpl extends BaseSessionFactory implements ListeningDao
     }
 
     private void createEStoreNotification(ListeningNotificationType notificationType) {
-	ListeningNotification messageNotification = new ListeningNotification();
+	AudioNotification messageNotification = new AudioNotification();
 	messageNotification.setEStoreNotificationType(notificationType);
 	messageNotification.setCreatedDate(new Date());
 	messageNotification.setLastUpdatedDate(new Date());
@@ -232,35 +232,35 @@ public class ListeningDaoImpl extends BaseSessionFactory implements ListeningDao
 	getCurrentSession().persist(messageNotification);
     }
 
-    private ListeningMessageNotification getEStoreMessageNotification(ListeningMessage message,
-	    ListeningNotification notification) {
-	ListeningMessageNotification.Id id = new ListeningMessageNotification.Id(message.getId(), notification.getId());
+    private AudioMessageNotification getEStoreMessageNotification(AudioMessage message,
+	    AudioNotification notification) {
+	AudioMessageNotification.Id id = new AudioMessageNotification.Id(message.getId(), notification.getId());
 
 	Query query = getCurrentSession().createQuery("from ListeningMessageNotification e where e.id = :id");
 	query.setParameter("id", id);
-	return (ListeningMessageNotification) query.uniqueResult();
+	return (AudioMessageNotification) query.uniqueResult();
     }
 
-    private ListeningNotification getEStoreNotification(ListeningNotificationType notificationType) {
+    private AudioNotification getEStoreNotification(ListeningNotificationType notificationType) {
 	Query query = getCurrentSession()
 		.createQuery("from ListeningNotification e where e.eStoreNotificationType = :notificationType");
 	query.setParameter("notificationType", notificationType);
-	ListeningNotification notification = (ListeningNotification) query.uniqueResult();
+	AudioNotification notification = (AudioNotification) query.uniqueResult();
 
 	return notification;
     }
 
-    private boolean isMessageNotificationExists(ListeningMessage message, ListeningNotificationType notificationType) {
+    private boolean isMessageNotificationExists(AudioMessage message, ListeningNotificationType notificationType) {
 	Query query = getCurrentSession()
 		.createQuery("from ListeningNotification e where e.eStoreNotificationType = :notificationType");
 	query.setParameter("notificationType", notificationType);
-	ListeningNotification notification = (ListeningNotification) query.uniqueResult();
+	AudioNotification notification = (AudioNotification) query.uniqueResult();
 
-	ListeningMessageNotification.Id id = new ListeningMessageNotification.Id(message.getId(), notification.getId());
+	AudioMessageNotification.Id id = new AudioMessageNotification.Id(message.getId(), notification.getId());
 
 	query = getCurrentSession().createQuery("from ListeningMessageNotification e where e.id = :id");
 	query.setParameter("id", id);
-	ListeningMessageNotification messageNotification = (ListeningMessageNotification) query.uniqueResult();
+	AudioMessageNotification messageNotification = (AudioMessageNotification) query.uniqueResult();
 	if (messageNotification != null) {
 	    return true;
 	}

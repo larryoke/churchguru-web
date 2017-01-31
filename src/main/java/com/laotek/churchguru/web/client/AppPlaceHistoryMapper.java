@@ -24,10 +24,10 @@ import com.laotek.churchguru.web.client.activity.user.UserProfilesPlace;
 import com.laotek.churchguru.web.client.activity.website.WebsitePlace;
 import com.laotek.churchguru.web.client.activity.website.gal.ListeningGalleryNewItemPlace;
 import com.laotek.churchguru.web.client.activity.website.gal.ListeningGalleryPlace;
-import com.laotek.churchguru.web.client.activity.website.listening.ListeningMessageNewPlace;
-import com.laotek.churchguru.web.client.activity.website.listening.ListeningMessagesPlace;
-import com.laotek.churchguru.web.client.activity.website.listening.cat.ListeningCategoriesPlace;
-import com.laotek.churchguru.web.client.activity.website.listening.cat.ListeningCategoryNewPlace;
+import com.laotek.churchguru.web.client.activity.website.listening.AudioMessageMessageNewPlace;
+import com.laotek.churchguru.web.client.activity.website.listening.AudioMessageMessagesPlace;
+import com.laotek.churchguru.web.client.activity.website.listening.cat.AudioMessageCategoriesPlace;
+import com.laotek.churchguru.web.client.activity.website.listening.cat.AudioMessageCategoryNewPlace;
 import com.laotek.churchguru.web.client.activity.website.listening.cust.ListeningCustomerDetailsPlace;
 import com.laotek.churchguru.web.client.activity.website.listening.cust.ListeningCustomersPlace;
 import com.laotek.churchguru.web.client.activity.website.listening.notif.ListeningNotificationsPlace;
@@ -39,10 +39,10 @@ import com.laotek.churchguru.web.client.activity.website.listening.speaker.Liste
 	SystemSettingsPlace.Tokenizer.class, SingleUserPlace.Tokenizer.class, LoginPlace.Tokenizer.class,
 	PasswordResetPlace.Tokenizer.class, NewUserSetupPlace.Tokenizer.class, UserProfilesPlace.Tokenizer.class,
 
-	ListeningMessagesPlace.Tokenizer.class, ListeningMessageNewPlace.Tokenizer.class,
+	AudioMessageMessagesPlace.Tokenizer.class, AudioMessageMessageNewPlace.Tokenizer.class,
 	ListeningGalleryPlace.Tokenizer.class, ListeningGalleryNewItemPlace.Tokenizer.class,
 	ListeningCustomersPlace.Tokenizer.class, ListeningCustomerDetailsPlace.Tokenizer.class,
-	ListeningCategoryNewPlace.Tokenizer.class, ListeningCategoriesPlace.Tokenizer.class,
+	AudioMessageCategoryNewPlace.Tokenizer.class, AudioMessageCategoriesPlace.Tokenizer.class,
 	ListeningNotificationsPlace.Tokenizer.class, ListeningSpeakerNewPlace.Tokenizer.class,
 
 	WatchingMessagesPlace.Tokenizer.class, WatchingMessageNewPlace.Tokenizer.class,

@@ -24,7 +24,7 @@ import com.laotek.churchguru.web.client.activity.user.AllUserPlace;
 import com.laotek.churchguru.web.client.activity.user.NewUserDialog;
 import com.laotek.churchguru.web.client.activity.user.NewUserProfileDialog;
 import com.laotek.churchguru.web.client.activity.user.UserProfilesPlace;
-import com.laotek.churchguru.web.client.activity.website.listening.ListeningMessagesPlace;
+import com.laotek.churchguru.web.client.activity.website.listening.AudioMessageMessagesPlace;
 import com.laotek.churchguru.web.shared.UserDto;
 
 public class MainMenuContext extends BaseMainMenuContext {
@@ -113,11 +113,11 @@ public class MainMenuContext extends BaseMainMenuContext {
 	listeningPanel.setHeight("100%");
 	UserDto dto = UserContext.getInstance().getUserDto();
 	initStackLayoutPanel(listeningPanel, "images/app/media.png", "Manage Media Messages", stackMenu,
-		new ListeningMessagesPlace("messages"), UserRoleName.ORGANISATION_DATA_VIEW_ONLY,
+		new AudioMessageMessagesPlace("messages"), UserRoleName.ORGANISATION_DATA_VIEW_ONLY,
 		dto.getOrganisationRole());
 
 	createLink(new Image("images/app/audio.png"), "Manage Audio Message", false, listeningPanel,
-		new ListeningMessagesPlace("audio"), UserRoleName.ORGANISATION_DATA_VIEW_ONLY,
+		new AudioMessageMessagesPlace("audio"), UserRoleName.ORGANISATION_DATA_VIEW_ONLY,
 		dto.getOrganisationRole());
 
 	createNewListeningMessageLink(new Image("images/app/audio.png"), listeningPanel,

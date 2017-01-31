@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.laotek.churchguru.daos.media.WatchingDao;
-import com.laotek.churchguru.model.WatchingMessage;
+import com.laotek.churchguru.model.VideoMessage;
 import com.laotek.churchguru.web.client.activity.media.watching.SubmitWatchingMessageAction;
 import com.laotek.churchguru.web.client.activity.media.watching.SubmitWatchingMessageResult;
 import com.laotek.churchguru.web.server.handler.AbstractCommandHandler;
@@ -33,7 +33,7 @@ public class SubmitWatchingMessageHandler extends AbstractCommandHandler
 
 	String identifier = action.getIdentifier();
 
-	WatchingMessage message = eStoreDao.getMessageByIdentifier(identifier);
+	VideoMessage message = eStoreDao.getMessageByIdentifier(identifier);
 	message.setDescription(action.getBriefDescription());
 	message.setLocation(action.getLocation());
 	message.setLastUpdatedDate(new Date());
@@ -62,7 +62,7 @@ public class SubmitWatchingMessageHandler extends AbstractCommandHandler
 	return new SubmitWatchingMessageResult(map(message));
     }
 
-    private WatchingMessageDto map(WatchingMessage message) {
+    private WatchingMessageDto map(VideoMessage message) {
 	WatchingMessageDto dto = new WatchingMessageDto();
 	dto.setDescription(message.getDescription());
 	dto.setTitle(message.getTitle());

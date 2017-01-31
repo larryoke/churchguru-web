@@ -1,25 +1,20 @@
-package com.laotek.churchguru.web.client.activity.website;
+package com.laotek.churchguru.web.client.activity.website.listening.cat;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
-import com.laotek.churchguru.web.client.ApplicationContext;
 import com.laotek.churchguru.web.client.ClientFactory;
 import com.laotek.churchguru.web.client.UserContext;
-import com.laotek.churchguru.web.client.activity.media.watching.CreateNewWatchingMessageAction;
-import com.laotek.churchguru.web.client.activity.media.watching.CreateNewWatchingMessageResult;
-import com.laotek.churchguru.web.client.activity.website.listening.AudioMessageMessageNewPlace;
 
-public class WebsiteActivity extends AbstractActivity implements WebsiteView.Presenter {
+public class AudioMessageCategoriesActivity extends AbstractActivity implements AudioMessageCategoriesView.Presenter {
 
     private ClientFactory clientFactory;
-    private WebsiteView view;
     private String name;
+    private AudioMessageCategoriesView view;
 
-    public WebsiteActivity(WebsitePlace place, ClientFactory clientFactory) {
+    public AudioMessageCategoriesActivity(AudioMessageCategoriesPlace place, ClientFactory clientFactory) {
 	this.name = place.getName();
 	this.clientFactory = clientFactory;
     }
@@ -29,12 +24,13 @@ public class WebsiteActivity extends AbstractActivity implements WebsiteView.Pre
      */
     @Override
     public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
-	view = clientFactory.getWebsiteView();
+	view = clientFactory.getEStoreCategoriesView();
 	view.setPresenter(this);
 	view.initTab();
 	containerWidget.setWidget(view.asWidget());
 	view.init();
 	view.initWidgets();
+	getCategories();
     }
 
     /**
@@ -52,22 +48,18 @@ public class WebsiteActivity extends AbstractActivity implements WebsiteView.Pre
 	clientFactory.getPlaceController().goTo(place);
     }
 
-    @Override
-    public void createMessage(String title) {
-	// This call is also used in ListeningMessagesActivity
-	CreateNewWatchingMessageAction action = new CreateNewWatchingMessageAction(title);
+    private void getCategories() {
+	GetAudioMessageCategoriesAction action = new GetAudioMessageCategoriesAction();
 	UserContext.getInstance().decorateClientSessionId(action);
 	UserContext.getInstance().getDispatchClient().execute(action,
-		new AsyncCallback<CreateNewWatchingMessageResult>() {
+		new AsyncCallback<GetAudioMessageCategoriesResult>() {
 		    @Override
 		    public void onFailure(Throwable throwable) {
-			Window.alert("A server error occured when attempting to create a new message.");
 		    }
 
 		    @Override
-		    public void onSuccess(CreateNewWatchingMessageResult result) {
-			ApplicationContext.getInstance().getPlaceController()
-				.goTo(new AudioMessageMessageNewPlace(result.getNewMessageID()));
+		    public void onSuccess(GetAudioMessageCategoriesResult result) {
+			view.initCategories(result.getCategoryDtos());
 		    }
 		});
 

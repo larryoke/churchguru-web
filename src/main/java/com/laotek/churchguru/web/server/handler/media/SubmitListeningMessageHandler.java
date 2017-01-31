@@ -10,12 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.laotek.churchguru.daos.media.ListeningDao;
-import com.laotek.churchguru.model.ListeningMessage;
+import com.laotek.churchguru.model.AudioMessage;
 import com.laotek.churchguru.model.shared.enums.ListeningNotificationType;
 import com.laotek.churchguru.web.client.activity.listening.SubmitListeningMessageAction;
 import com.laotek.churchguru.web.client.activity.listening.SubmitListeningMessageResult;
 import com.laotek.churchguru.web.server.handler.AbstractCommandHandler;
-import com.laotek.churchguru.web.shared.listening.ListeningMessageDto;
+import com.laotek.churchguru.web.shared.listening.AudioMessageMessageDto;
 
 import net.customware.gwt.dispatch.server.ActionHandler;
 import net.customware.gwt.dispatch.server.ExecutionContext;
@@ -34,7 +34,7 @@ public class SubmitListeningMessageHandler extends AbstractCommandHandler
 
 	String identifier = action.getIdentifier();
 
-	ListeningMessage message = eStoreDao.getMessageByIdentifier(identifier);
+	AudioMessage message = eStoreDao.getMessageByIdentifier(identifier);
 	message.setSalePointPerMessage(action.getSalesChargePerMessage());
 	message.setDescription(action.getBriefDescription());
 	message.setLocation(action.getLocation());
@@ -81,8 +81,8 @@ public class SubmitListeningMessageHandler extends AbstractCommandHandler
 	return new SubmitListeningMessageResult(map(message));
     }
 
-    private ListeningMessageDto map(ListeningMessage message) {
-	ListeningMessageDto dto = new ListeningMessageDto();
+    private AudioMessageMessageDto map(AudioMessage message) {
+	AudioMessageMessageDto dto = new AudioMessageMessageDto();
 	dto.setDescription(message.getDescription());
 	dto.setTitle(message.getTitle());
 	dto.setIdentifier(message.getIdentifier());

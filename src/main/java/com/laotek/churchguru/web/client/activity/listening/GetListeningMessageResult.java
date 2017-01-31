@@ -5,26 +5,26 @@ import java.util.Map;
 
 import net.customware.gwt.dispatch.shared.Result;
 
-import com.laotek.churchguru.web.shared.listening.ListeningCategoryDto;
-import com.laotek.churchguru.web.shared.listening.ListeningMessageDto;
-import com.laotek.churchguru.web.shared.listening.ListeningMessagePictureDto;
-import com.laotek.churchguru.web.shared.listening.ListeningSpeakerDto;
+import com.laotek.churchguru.web.shared.listening.AudioMessageCategoryDto;
+import com.laotek.churchguru.web.shared.listening.AudioMessageMessageDto;
+import com.laotek.churchguru.web.shared.listening.AudioMessageMessagePictureDto;
+import com.laotek.churchguru.web.shared.listening.AudioMessageSpeakerDto;
 
 public class GetListeningMessageResult implements Result {
 
-    private ListeningMessageDto message;
-    private List<ListeningSpeakerDto> speakers;
-    private List<ListeningCategoryDto> categories;
-    private List<ListeningMessagePictureDto> pictures;
+    private AudioMessageMessageDto message;
+    private List<AudioMessageSpeakerDto> speakers;
+    private List<AudioMessageCategoryDto> categories;
+    private List<AudioMessageMessagePictureDto> pictures;
     private Map<String, Boolean> workersSelectedForFreeMessages;
 
     public GetListeningMessageResult() {
     }
 
-    public GetListeningMessageResult(ListeningMessageDto message,
-                                     List<ListeningSpeakerDto> speakers,
-                                     List<ListeningCategoryDto> categories,
-                                     List<ListeningMessagePictureDto> pictures,
+    public GetListeningMessageResult(AudioMessageMessageDto message,
+                                     List<AudioMessageSpeakerDto> speakers,
+                                     List<AudioMessageCategoryDto> categories,
+                                     List<AudioMessageMessagePictureDto> pictures,
                                      Map<String, Boolean> workersSelectedForFreeMessages) {
 	this.message = message;
 	this.speakers = speakers;
@@ -33,23 +33,23 @@ public class GetListeningMessageResult implements Result {
 	this.setWorkersSelectedForFreeMessages(workersSelectedForFreeMessages);
     }
 
-    public ListeningMessageDto getMessage() {
+    public AudioMessageMessageDto getMessage() {
 	return message;
     }
 
-    public List<ListeningSpeakerDto> getSpeakers() {
+    public List<AudioMessageSpeakerDto> getSpeakers() {
 	return speakers;
     }
 
-    public List<ListeningCategoryDto> getCategories() {
+    public List<AudioMessageCategoryDto> getCategories() {
 	return categories;
     }
 
-    public void setCategories(List<ListeningCategoryDto> categories) {
+    public void setCategories(List<AudioMessageCategoryDto> categories) {
 	this.categories = categories;
     }
 
-    public List<ListeningMessagePictureDto> getPictures() {
+    public List<AudioMessageMessagePictureDto> getPictures() {
 	return pictures;
     }
 

@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.laotek.churchguru.daos.media.ListeningDao;
-import com.laotek.churchguru.model.ListeningCategory;
-import com.laotek.churchguru.model.ListeningMessage;
-import com.laotek.churchguru.model.ListeningMessagePicture;
-import com.laotek.churchguru.model.ListeningSpeaker;
+import com.laotek.churchguru.model.AudioCategory;
+import com.laotek.churchguru.model.AudioMessage;
+import com.laotek.churchguru.model.AudioMessagePicture;
+import com.laotek.churchguru.model.AudioSpeaker;
 import com.laotek.churchguru.web.client.activity.listening.GetListeningMessageAction;
 import com.laotek.churchguru.web.client.activity.listening.GetListeningMessageResult;
 import com.laotek.churchguru.web.server.handler.AbstractCommandHandler;
@@ -32,13 +32,13 @@ public class GetListeningMessageHandler extends AbstractCommandHandler
 
 	String identifier = action.getIdentifier();
 
-	ListeningMessage message = eStoreDao.getMessageByIdentifier(identifier);
+	AudioMessage message = eStoreDao.getMessageByIdentifier(identifier);
 
-	List<ListeningCategory> categories = eStoreDao.getCategories();
+	List<AudioCategory> categories = eStoreDao.getCategories();
 
-	List<ListeningMessagePicture> pictures = eStoreDao.getEStoreMessagePicture();
+	List<AudioMessagePicture> pictures = eStoreDao.getEStoreMessagePicture();
 
-	List<ListeningSpeaker> speakers = eStoreDao.getSpeakers();
+	List<AudioSpeaker> speakers = eStoreDao.getSpeakers();
 
 	Map<String, Boolean> workersSelectedForFreeMessages = eStoreDao.getWorkersSelectedForFreeMessages();
 

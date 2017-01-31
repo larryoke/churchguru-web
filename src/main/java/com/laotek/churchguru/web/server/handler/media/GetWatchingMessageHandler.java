@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.laotek.churchguru.daos.media.WatchingDao;
-import com.laotek.churchguru.model.WatchingMessage;
+import com.laotek.churchguru.model.VideoMessage;
 import com.laotek.churchguru.web.client.activity.media.watching.GetWatchingMessageAction;
 import com.laotek.churchguru.web.client.activity.media.watching.GetWatchingMessageResult;
 import com.laotek.churchguru.web.server.handler.AbstractCommandHandler;
@@ -26,7 +26,7 @@ public class GetWatchingMessageHandler extends AbstractCommandHandler
 
 	String identifier = action.getIdentifier();
 
-	WatchingMessage message = eStoreDao.getMessageByIdentifier(identifier);
+	VideoMessage message = eStoreDao.getMessageByIdentifier(identifier);
 
 	return new GetWatchingMessageResult(mapWatchingMessages(message));
     }

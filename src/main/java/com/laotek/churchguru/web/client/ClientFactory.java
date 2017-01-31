@@ -23,10 +23,10 @@ import com.laotek.churchguru.web.client.activity.user.UserProfilesView;
 import com.laotek.churchguru.web.client.activity.website.WebsiteView;
 import com.laotek.churchguru.web.client.activity.website.gal.ListeningGalleryNewView;
 import com.laotek.churchguru.web.client.activity.website.gal.ListeningGalleryView;
-import com.laotek.churchguru.web.client.activity.website.listening.ListeningMessageNewView;
-import com.laotek.churchguru.web.client.activity.website.listening.ListeningMessagesView;
-import com.laotek.churchguru.web.client.activity.website.listening.cat.ListeningCategoriesView;
-import com.laotek.churchguru.web.client.activity.website.listening.cat.ListeningCategoryNewView;
+import com.laotek.churchguru.web.client.activity.website.listening.AudioMessageMessageNewView;
+import com.laotek.churchguru.web.client.activity.website.listening.AudioMessageMessagesView;
+import com.laotek.churchguru.web.client.activity.website.listening.cat.AudioMessageCategoriesView;
+import com.laotek.churchguru.web.client.activity.website.listening.cat.AudioMessageCategoryNewView;
 import com.laotek.churchguru.web.client.activity.website.listening.cust.ListeningCustomerDetailsView;
 import com.laotek.churchguru.web.client.activity.website.listening.cust.ListeningCustomersView;
 import com.laotek.churchguru.web.client.activity.website.listening.notif.ListeningNotificationsView;
@@ -66,9 +66,9 @@ public interface ClientFactory {
 
     NewUserSetupView getNewUserSetupView();
 
-    ListeningCategoriesView getEStoreCategoriesView();
+    AudioMessageCategoriesView getEStoreCategoriesView();
 
-    ListeningCategoryNewView getEStoreCategoryNewView();
+    AudioMessageCategoryNewView getEStoreCategoryNewView();
 
     ListeningCustomerDetailsView getEStoreCustomerDetailsView();
 
@@ -78,9 +78,9 @@ public interface ClientFactory {
 
     ListeningGalleryView getEStoreGalleryView();
 
-    ListeningMessageNewView getEStoreMessageNewView();
+    AudioMessageMessageNewView getEStoreMessageNewView();
 
-    ListeningMessagesView getEStoreMessagesView();
+    AudioMessageMessagesView getEStoreMessagesView();
 
     ListeningNotificationsView getEStoreNotificationsView();
 

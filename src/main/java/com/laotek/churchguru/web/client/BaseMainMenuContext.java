@@ -25,7 +25,7 @@ import com.laotek.churchguru.web.client.activity.listening.CreateNewListeningMes
 import com.laotek.churchguru.web.client.activity.media.watching.CreateNewWatchingMessageAction;
 import com.laotek.churchguru.web.client.activity.media.watching.CreateNewWatchingMessageResult;
 import com.laotek.churchguru.web.client.activity.media.watching.WatchingMessageNewPlace;
-import com.laotek.churchguru.web.client.activity.website.listening.ListeningMessageNewPlace;
+import com.laotek.churchguru.web.client.activity.website.listening.AudioMessageMessageNewPlace;
 
 public abstract class BaseMainMenuContext {
 
@@ -179,7 +179,7 @@ public abstract class BaseMainMenuContext {
 				@Override
 				public void onSuccess(CreateNewListeningMessageResult result) {
 				    ApplicationContext.getInstance().getPlaceController()
-					    .goTo(new ListeningMessageNewPlace(result.getNewMessageID()));
+					    .goTo(new AudioMessageMessageNewPlace(result.getNewMessageID()));
 				}
 			    });
 		}
