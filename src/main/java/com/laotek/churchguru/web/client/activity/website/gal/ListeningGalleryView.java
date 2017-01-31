@@ -1,4 +1,4 @@
-package com.laotek.churchguru.web.client.activity.website.listening;
+package com.laotek.churchguru.web.client.activity.website.gal;
 
 import java.util.List;
 

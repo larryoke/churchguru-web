@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 
 import com.laotek.churchguru.daos.mobile.instantmessage.NoticeAndEventDao;
 import com.laotek.churchguru.services.GoogleServiceNotificationService;
-import com.laotek.churchguru.web.client.activity.churchapp.instantmessage.SubmitNoticeAndEventAction;
-import com.laotek.churchguru.web.client.activity.churchapp.instantmessage.SubmitNoticeAndEventResult;
+import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.SubmitNoticeAndEventAction;
+import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.SubmitNoticeAndEventResult;
 import com.laotek.churchguru.web.server.handler.AbstractCommandHandler;
 
 @Component

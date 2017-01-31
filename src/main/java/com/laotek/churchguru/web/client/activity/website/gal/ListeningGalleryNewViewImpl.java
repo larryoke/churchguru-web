@@ -1,4 +1,4 @@
-package com.laotek.churchguru.web.client.activity.website.listening;
+package com.laotek.churchguru.web.client.activity.website.gal;
 
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;

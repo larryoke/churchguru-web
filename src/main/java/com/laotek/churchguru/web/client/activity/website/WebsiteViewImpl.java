@@ -11,9 +11,9 @@ import com.google.gwt.user.client.ui.Widget;
 import com.laotek.churchguru.web.client.ApplicationContext;
 import com.laotek.churchguru.web.client.MainMenuContext;
 import com.laotek.churchguru.web.client.activity.website.listening.BaseViewImpl;
-import com.laotek.churchguru.web.client.activity.website.listening.ListeningCategoriesPlace;
 import com.laotek.churchguru.web.client.activity.website.listening.ListeningMessagesPlace;
-import com.laotek.churchguru.web.client.activity.website.listening.ListeningSpeakersPlace;
+import com.laotek.churchguru.web.client.activity.website.listening.cat.ListeningCategoriesPlace;
+import com.laotek.churchguru.web.client.activity.website.listening.speaker.ListeningSpeakersPlace;
 import com.laotek.churchguru.web.client.widget.RoundedCornerPanel;
 
 public class WebsiteViewImpl extends BaseViewImpl implements WebsiteView {
@@ -25,8 +25,7 @@ public class WebsiteViewImpl extends BaseViewImpl implements WebsiteView {
 	FlowPanel flowPanel = new FlowPanel();
 	flowPanel.setWidth("100%");
 
-	Widget widget = getBorderedButton("Messages", new ListeningMessagesPlace(
-		"messages"));
+	Widget widget = getBorderedButton("Messages", new ListeningMessagesPlace("messages"));
 	widget.setStylePrimaryName("flowPanel");
 	flowPanel.add(widget);
 
@@ -34,13 +33,11 @@ public class WebsiteViewImpl extends BaseViewImpl implements WebsiteView {
 	widget.setStylePrimaryName("flowPanel");
 	flowPanel.add(widget);
 
-	widget = getBorderedButton("Speakers", new ListeningSpeakersPlace(
-		"Speakers"));
+	widget = getBorderedButton("Speakers", new ListeningSpeakersPlace("Speakers"));
 	widget.setStylePrimaryName("flowPanel");
 	flowPanel.add(widget);
 
-	widget = getBorderedButton("Categories", new ListeningCategoriesPlace(
-		"Categories"));
+	widget = getBorderedButton("Categories", new ListeningCategoriesPlace("Categories"));
 	widget.setStylePrimaryName("flowPanel");
 	flowPanel.add(widget);
 
@@ -48,8 +45,7 @@ public class WebsiteViewImpl extends BaseViewImpl implements WebsiteView {
 	ft.setWidget(0, 0, flowPanel);
 	RoundedCornerPanel panel = new RoundedCornerPanel("E-Store", ft);
 
-	return getMainLayout("images/app/website.png",
-		"Manage Mobile Application", panel);
+	return getMainLayout("images/app/website.png", "Manage Mobile Application", panel);
     }
 
     @Override
@@ -77,8 +73,7 @@ public class WebsiteViewImpl extends BaseViewImpl implements WebsiteView {
 	speakersButton.addClickHandler(new ClickHandler() {
 	    @Override
 	    public void onClick(ClickEvent event) {
-		ApplicationContext.getInstance().getPlaceController()
-			.goTo(place);
+		ApplicationContext.getInstance().getPlaceController().goTo(place);
 	    }
 	});
 	FlexTable panel = new FlexTable();
@@ -93,9 +88,7 @@ public class WebsiteViewImpl extends BaseViewImpl implements WebsiteView {
 	speakersButton.addClickHandler(new ClickHandler() {
 	    @Override
 	    public void onClick(ClickEvent event) {
-		String title = Window
-			.prompt("Please provide the title of the new message to be uploaded",
-				"");
+		String title = Window.prompt("Please provide the title of the new message to be uploaded", "");
 		if (!"".equals(title) && title != null) {
 		    presenter.createMessage(title);
 		}

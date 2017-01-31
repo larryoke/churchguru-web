@@ -1,4 +1,4 @@
-package com.laotek.churchguru.daos.listening;
+package com.laotek.churchguru.daos.media;
 
 import java.util.List;
 import java.util.Map;
@@ -21,8 +21,7 @@ public interface ListeningDao {
 
     List<ListeningMessagePicture> getEStoreMessagePicture();
 
-    void updateMessage(ListeningMessage eStoreMessage,
-	    Map<String, String> otherDetails);
+    void updateMessage(ListeningMessage eStoreMessage, Map<String, String> otherDetails);
 
     void loadNotifications();
 

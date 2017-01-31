@@ -1,4 +1,4 @@
-package com.laotek.churchguru.web.client.activity.website.listening;
+package com.laotek.churchguru.web.client.activity.website.listening.notif;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;

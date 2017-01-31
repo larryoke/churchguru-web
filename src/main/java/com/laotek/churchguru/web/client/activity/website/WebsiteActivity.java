@@ -9,12 +9,11 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.laotek.churchguru.web.client.ApplicationContext;
 import com.laotek.churchguru.web.client.ClientFactory;
 import com.laotek.churchguru.web.client.UserContext;
-import com.laotek.churchguru.web.client.activity.listening.CreateNewMessageAction;
-import com.laotek.churchguru.web.client.activity.listening.CreateNewMessageResult;
+import com.laotek.churchguru.web.client.activity.media.watching.CreateNewWatchingMessageAction;
+import com.laotek.churchguru.web.client.activity.media.watching.CreateNewWatchingMessageResult;
 import com.laotek.churchguru.web.client.activity.website.listening.ListeningMessageNewPlace;
 
-public class WebsiteActivity extends AbstractActivity implements
-	WebsiteView.Presenter {
+public class WebsiteActivity extends AbstractActivity implements WebsiteView.Presenter {
 
     private ClientFactory clientFactory;
     private WebsiteView view;
@@ -56,22 +55,19 @@ public class WebsiteActivity extends AbstractActivity implements
     @Override
     public void createMessage(String title) {
 	// This call is also used in ListeningMessagesActivity
-	CreateNewMessageAction action = new CreateNewMessageAction(title);
+	CreateNewWatchingMessageAction action = new CreateNewWatchingMessageAction(title);
 	UserContext.getInstance().decorateClientSessionId(action);
-	UserContext.getInstance().getDispatchClient()
-		.execute(action, new AsyncCallback<CreateNewMessageResult>() {
+	UserContext.getInstance().getDispatchClient().execute(action,
+		new AsyncCallback<CreateNewWatchingMessageResult>() {
 		    @Override
 		    public void onFailure(Throwable throwable) {
 			Window.alert("A server error occured when attempting to create a new message.");
 		    }
 
 		    @Override
-		    public void onSuccess(CreateNewMessageResult result) {
-			ApplicationContext
-				.getInstance()
-				.getPlaceController()
-				.goTo(new ListeningMessageNewPlace(result
-					.getNewMessageID()));
+		    public void onSuccess(CreateNewWatchingMessageResult result) {
+			ApplicationContext.getInstance().getPlaceController()
+				.goTo(new ListeningMessageNewPlace(result.getNewMessageID()));
 		    }
 		});
 

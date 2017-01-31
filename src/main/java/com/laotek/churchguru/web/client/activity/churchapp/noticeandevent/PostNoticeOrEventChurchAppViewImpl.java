@@ -1,10 +1,4 @@
-package com.laotek.churchguru.web.client.activity.churchapp.instantmessage;
-
-import gwtupload.client.IFileInput.FileInputType;
-import gwtupload.client.IUploadStatus.Status;
-import gwtupload.client.IUploader;
-import gwtupload.client.IUploader.UploadedInfo;
-import gwtupload.client.SingleUploader;
+package com.laotek.churchguru.web.client.activity.churchapp.noticeandevent;
 
 import java.util.Date;
 
@@ -38,8 +32,13 @@ import com.laotek.churchguru.web.client.widget.MyRichTextToolbar;
 import com.laotek.churchguru.web.client.widget.RoundedCornerPanel;
 import com.laotek.churchguru.web.client.widget.SelectItem;
 
-public class PostNoticeOrEventChurchAppViewImpl implements
-	PostNoticeOrEventChurchAppView {
+import gwtupload.client.IFileInput.FileInputType;
+import gwtupload.client.IUploadStatus.Status;
+import gwtupload.client.IUploader;
+import gwtupload.client.IUploader.UploadedInfo;
+import gwtupload.client.SingleUploader;
+
+public class PostNoticeOrEventChurchAppViewImpl implements PostNoticeOrEventChurchAppView {
 
     private static final String TABLES_WIDTH = "100%";
 
@@ -62,8 +61,7 @@ public class PostNoticeOrEventChurchAppViewImpl implements
 
     private Anchor removePictureAnchor = new Anchor("Remove Picture");
 
-    private MyRichTextToolbar richTextToolbar = new MyRichTextToolbar(
-	    richTextArea);
+    private MyRichTextToolbar richTextToolbar = new MyRichTextToolbar(richTextArea);
 
     private HTML richTextHTML = new HTML();
 
@@ -94,49 +92,41 @@ public class PostNoticeOrEventChurchAppViewImpl implements
 	deleteButton.addClickHandler(new ClickHandler() {
 	    @Override
 	    public void onClick(ClickEvent event) {
-		if (Window
-			.confirm("Are you sure you want to delete this message? '"
-				+ subjectBox.getText() + "'")) {
+		if (Window.confirm("Are you sure you want to delete this message? '" + subjectBox.getText() + "'")) {
 		    presenter.deleteMessage();
 		}
 	    }
 	});
 
-	pictureUploader = new SingleUploader(
-		FileInputType.CUSTOM.with(new InsertAnchor()));
-	pictureUploader
-		.setValidExtensions(new String[] { "png", "jpg", "gif" });
+	pictureUploader = new SingleUploader(FileInputType.CUSTOM.with(new InsertAnchor()));
+	pictureUploader.setValidExtensions(new String[] { "png", "jpg", "gif" });
 	pictureUploader.setAutoSubmit(true);
-	pictureUploader
-		.addOnFinishUploadHandler(new IUploader.OnFinishUploaderHandler() {
-		    public void onFinish(IUploader uploader) {
-			if (uploader.getStatus() == Status.SUCCESS) {
-			    UploadedInfo info = uploader.getServerInfo();
-			    presenter.refresh();
-			}
-		    }
-		});
+	pictureUploader.addOnFinishUploadHandler(new IUploader.OnFinishUploaderHandler() {
+	    public void onFinish(IUploader uploader) {
+		if (uploader.getStatus() == Status.SUCCESS) {
+		    UploadedInfo info = uploader.getServerInfo();
+		    presenter.refresh();
+		}
+	    }
+	});
 
-	pictureUploader
-		.addOnStartUploadHandler(new IUploader.OnStartUploaderHandler() {
-		    @Override
-		    public void onStart(IUploader uploader) {
+	pictureUploader.addOnStartUploadHandler(new IUploader.OnStartUploaderHandler() {
+	    @Override
+	    public void onStart(IUploader uploader) {
 
-			String subject = subjectBox.getText();
-			String message = richTextArea.getHTML();
-			Date eventDate = dateBox.getValue();
-			EventTime eventTime = getCurrentEventTime();
-			presenter.saveAsDraft(subject, message, eventDate,
-				eventTime, false);
-			setServletPath();
-		    }
-		});
+		String subject = subjectBox.getText();
+		String message = richTextArea.getHTML();
+		Date eventDate = dateBox.getValue();
+		EventTime eventTime = getCurrentEventTime();
+		presenter.saveAsDraft(subject, message, eventDate, eventTime, false);
+		setServletPath();
+	    }
+	});
 
 	removePictureAnchor.addClickHandler(new ClickHandler() {
 	    @Override
 	    public void onClick(ClickEvent event) {
-		if (Window
-			.confirm("Are you sure you want to remove the current picture?")) {
+		if (Window.confirm("Are you sure you want to remove the current picture?")) {
 		    presenter.removePicture();
 		}
 	    }
@@ -155,19 +145,16 @@ public class PostNoticeOrEventChurchAppViewImpl implements
 	FlexTable headerPanel = new FlexTable();
 	headerPanel.setWidth(TABLES_WIDTH);
 	headerPanel.setWidget(1, 0, topPanel);
-	headerPanel.getCellFormatter().setHorizontalAlignment(1, 0,
-		HasHorizontalAlignment.ALIGN_CENTER);
+	headerPanel.getCellFormatter().setHorizontalAlignment(1, 0, HasHorizontalAlignment.ALIGN_CENTER);
 
 	layout.setWidth("100%");
 	layout.setBorderWidth(0);
 	layout.setWidget(0, 0, new RoundedCornerPanel(headerPanel));
-	layout.getCellFormatter().setHorizontalAlignment(0, 0,
-		HasHorizontalAlignment.ALIGN_CENTER);
+	layout.getCellFormatter().setHorizontalAlignment(0, 0, HasHorizontalAlignment.ALIGN_CENTER);
 
 	initNoticesAndEventsPostMessage(0, mainBody);
 	layout.setWidget(2, 0, new RoundedCornerPanel(mainBody));
-	layout.getCellFormatter().setHorizontalAlignment(2, 0,
-		HasHorizontalAlignment.ALIGN_CENTER);
+	layout.getCellFormatter().setHorizontalAlignment(2, 0, HasHorizontalAlignment.ALIGN_CENTER);
 	richTextHTML.setStylePrimaryName("richTextHTML");
 	layout.setWidget(3, 0, richTextHTML);
 
@@ -194,24 +181,21 @@ public class PostNoticeOrEventChurchAppViewImpl implements
 	eventTimeSelect.addItem("");
 	for (EventTime eventTime : EventTime.values()) {
 	    if (eventTime.equals(dto.getEventTime())) {
-		eventTimeSelect.addItem(eventTime.getDesc(), eventTime.name(),
-			true);
+		eventTimeSelect.addItem(eventTime.getDesc(), eventTime.name(), true);
 	    } else {
 		eventTimeSelect.addItem(eventTime.getDesc(), eventTime.name());
 	    }
 	}
 
 	if (BrowseMessagesType.DRAFT.equals(dto.getMessageType())
-		&& (dto.getBody() == null || (dto.getBody() != null && dto
-			.getBody().trim().equals("")))) {
+		&& (dto.getBody() == null || (dto.getBody() != null && dto.getBody().trim().equals("")))) {
 	    pageTitle.setHTML("<h2>Post new notice or event</h2>");
 
 	} else if (BrowseMessagesType.DRAFT.equals(dto.getMessageType())) {
 	    pageTitle.setHTML("<h2>Edit and post draft notice or event</h2>");
 
 	} else if (BrowseMessagesType.POSTED.equals(dto.getMessageType())) {
-	    pageTitle
-		    .setHTML("<h2>Edit and repost already posted notice or event</h2>");
+	    pageTitle.setHTML("<h2>Edit and repost already posted notice or event</h2>");
 	}
 
 	toolsBar.add(new HTML("&nbsp;"));
@@ -282,14 +266,14 @@ public class PostNoticeOrEventChurchAppViewImpl implements
 	    Window.alert("The subject line cannot be empty");
 
 	    // } else if (eventDate == null) {
-	    // Window.alert("Please select a date and time for this notice or event");
+	    // Window.alert("Please select a date and time for this notice or
+	    // event");
 
 	} else if ("".equals(message) || message == null) {
 	    Window.alert("Please provide the event or notice message to post");
 
 	} else if (preview) {
-	    presenter.previewNoticeOrEvent(subject, message, eventDate,
-		    eventTime);
+	    presenter.previewNoticeOrEvent(subject, message, eventDate, eventTime);
 	} else {
 	    presenter.saveAsDraft(subject, message, eventDate, eventTime, true);
 	}
@@ -306,10 +290,8 @@ public class PostNoticeOrEventChurchAppViewImpl implements
 
     private void initTextArea(int row, FlexTable panel) {
 	panel.setWidget(row, 0, new HTML("Post Message: "));
-	panel.getFlexCellFormatter().setVerticalAlignment(row, 0,
-		HasVerticalAlignment.ALIGN_TOP);
-	panel.getFlexCellFormatter().setHorizontalAlignment(row, 0,
-		HasHorizontalAlignment.ALIGN_RIGHT);
+	panel.getFlexCellFormatter().setVerticalAlignment(row, 0, HasVerticalAlignment.ALIGN_TOP);
+	panel.getFlexCellFormatter().setHorizontalAlignment(row, 0, HasHorizontalAlignment.ALIGN_RIGHT);
 
 	VerticalPanel richToolAndArea = new VerticalPanel();
 
@@ -320,60 +302,46 @@ public class PostNoticeOrEventChurchAppViewImpl implements
 	richToolAndArea.add(richTextArea);
 
 	panel.setWidget(row, 1, richToolAndArea);
-	panel.getFlexCellFormatter().setVerticalAlignment(row, 1,
-		HasVerticalAlignment.ALIGN_MIDDLE);
-	panel.getFlexCellFormatter().setHorizontalAlignment(row, 1,
-		HasHorizontalAlignment.ALIGN_LEFT);
+	panel.getFlexCellFormatter().setVerticalAlignment(row, 1, HasVerticalAlignment.ALIGN_MIDDLE);
+	panel.getFlexCellFormatter().setHorizontalAlignment(row, 1, HasHorizontalAlignment.ALIGN_LEFT);
     }
 
     private void initMessageSubjectPanel(int row, FlexTable panel) {
 	panel.setWidget(row, 0, new HTML("Subject: "));
-	panel.getFlexCellFormatter().setVerticalAlignment(row, 0,
-		HasVerticalAlignment.ALIGN_TOP);
-	panel.getFlexCellFormatter().setHorizontalAlignment(row, 0,
-		HasHorizontalAlignment.ALIGN_RIGHT);
+	panel.getFlexCellFormatter().setVerticalAlignment(row, 0, HasVerticalAlignment.ALIGN_TOP);
+	panel.getFlexCellFormatter().setHorizontalAlignment(row, 0, HasHorizontalAlignment.ALIGN_RIGHT);
 
 	subjectBox.setWidth("60%");
 	panel.setWidget(row, 1, subjectBox);
-	panel.getFlexCellFormatter().setVerticalAlignment(row, 1,
-		HasVerticalAlignment.ALIGN_MIDDLE);
-	panel.getFlexCellFormatter().setHorizontalAlignment(row, 1,
-		HasHorizontalAlignment.ALIGN_LEFT);
+	panel.getFlexCellFormatter().setVerticalAlignment(row, 1, HasVerticalAlignment.ALIGN_MIDDLE);
+	panel.getFlexCellFormatter().setHorizontalAlignment(row, 1, HasHorizontalAlignment.ALIGN_LEFT);
     }
 
     private void initMessageDatePickerPanel(int row, FlexTable panel) {
 	panel.setWidget(row, 0, new HTML("Event or Notice Date: "));
-	panel.getFlexCellFormatter().setVerticalAlignment(row, 0,
-		HasVerticalAlignment.ALIGN_TOP);
-	panel.getFlexCellFormatter().setHorizontalAlignment(row, 0,
-		HasHorizontalAlignment.ALIGN_RIGHT);
+	panel.getFlexCellFormatter().setVerticalAlignment(row, 0, HasVerticalAlignment.ALIGN_TOP);
+	panel.getFlexCellFormatter().setHorizontalAlignment(row, 0, HasHorizontalAlignment.ALIGN_RIGHT);
 	DateTimeFormat dateTimeFormat = DateTimeFormat.getFormat("dd/MM/yyyy");
 	dateBox.setFormat(new DateBox.DefaultFormat(dateTimeFormat));
 	// dateBox.setYearAndMonthDropdownVisible(true);
 	// dateBox.setYearArrowsVisible(true);
 	panel.setWidget(row, 1, dateBox);
-	panel.getFlexCellFormatter().setVerticalAlignment(row, 1,
-		HasVerticalAlignment.ALIGN_MIDDLE);
-	panel.getFlexCellFormatter().setHorizontalAlignment(row, 1,
-		HasHorizontalAlignment.ALIGN_LEFT);
+	panel.getFlexCellFormatter().setVerticalAlignment(row, 1, HasVerticalAlignment.ALIGN_MIDDLE);
+	panel.getFlexCellFormatter().setHorizontalAlignment(row, 1, HasHorizontalAlignment.ALIGN_LEFT);
     }
 
     private void initMessageEventTime(int row, FlexTable panel) {
 	panel.setWidget(row, 0, new HTML("Event or Notice Time: "));
-	panel.getFlexCellFormatter().setVerticalAlignment(row, 0,
-		HasVerticalAlignment.ALIGN_TOP);
-	panel.getFlexCellFormatter().setHorizontalAlignment(row, 0,
-		HasHorizontalAlignment.ALIGN_RIGHT);
+	panel.getFlexCellFormatter().setVerticalAlignment(row, 0, HasVerticalAlignment.ALIGN_TOP);
+	panel.getFlexCellFormatter().setHorizontalAlignment(row, 0, HasHorizontalAlignment.ALIGN_RIGHT);
 
 	panel.setWidget(row, 1, eventTimeSelect);
-	panel.getFlexCellFormatter().setVerticalAlignment(row, 1,
-		HasVerticalAlignment.ALIGN_MIDDLE);
-	panel.getFlexCellFormatter().setHorizontalAlignment(row, 1,
-		HasHorizontalAlignment.ALIGN_LEFT);
+	panel.getFlexCellFormatter().setVerticalAlignment(row, 1, HasVerticalAlignment.ALIGN_MIDDLE);
+	panel.getFlexCellFormatter().setHorizontalAlignment(row, 1, HasHorizontalAlignment.ALIGN_LEFT);
     }
 
-    private void buttonPanel(int row, FlexTable panel,
-	    Button saveAsDraftButton, Button submitButton, Button deleteButton) {
+    private void buttonPanel(int row, FlexTable panel, Button saveAsDraftButton, Button submitButton,
+	    Button deleteButton) {
 	HorizontalPanel butPanel = new HorizontalPanel();
 	butPanel.add(saveAsDraftButton);
 	butPanel.add(new HTML("&nbsp;"));
@@ -381,10 +349,8 @@ public class PostNoticeOrEventChurchAppViewImpl implements
 	butPanel.add(new HTML("&nbsp;"));
 	butPanel.add(deleteButton);
 	panel.setWidget(row, 1, butPanel);
-	panel.getFlexCellFormatter().setVerticalAlignment(row, 1,
-		HasVerticalAlignment.ALIGN_MIDDLE);
-	panel.getFlexCellFormatter().setHorizontalAlignment(row, 1,
-		HasHorizontalAlignment.ALIGN_LEFT);
+	panel.getFlexCellFormatter().setVerticalAlignment(row, 1, HasVerticalAlignment.ALIGN_MIDDLE);
+	panel.getFlexCellFormatter().setHorizontalAlignment(row, 1, HasHorizontalAlignment.ALIGN_LEFT);
     }
 
     @Override
@@ -453,8 +419,7 @@ public class PostNoticeOrEventChurchAppViewImpl implements
 	    richTextArea.setHeight("200px");
 	}
 
-	if (richTextArea.getHTML() != null
-		&& !richTextArea.getHTML().trim().equals("")) {
+	if (richTextArea.getHTML() != null && !richTextArea.getHTML().trim().equals("")) {
 	    submitButton.setEnabled(true);
 	} else {
 	    submitButton.setEnabled(false);
@@ -466,23 +431,22 @@ public class PostNoticeOrEventChurchAppViewImpl implements
     }
 
     private native void handleOnLoad(JavaScriptObject jso) /*-{
-
+							   
 							   var instance=this;
-
+							   
 							   var func = function() {
-
-							   instance.@com.laotek.churchguru.web.client.activity.churchapp.instantmessage.PostNoticeOrEventChurchAppViewImpl::onFinishLoading()();
-
+							   
+							   instance.@com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.PostNoticeOrEventChurchAppViewImpl::onFinishLoading()();
+							   
 							   };
-
+							   
 							   jso.addEventListener("load", func, true);
-
+							   
 							   }-*/;
 
     @Override
     public void setServletPath() {
-	pictureUploader
-		.setServletPath("servlet.uploadNoticeOrEventPhotoServlet?key="
-			+ MESSAGE_KEY + "&identifier=" + MESSAGE_IDENTIFIER);
+	pictureUploader.setServletPath(
+		"servlet.uploadNoticeOrEventPhotoServlet?key=" + MESSAGE_KEY + "&identifier=" + MESSAGE_IDENTIFIER);
     }
 }

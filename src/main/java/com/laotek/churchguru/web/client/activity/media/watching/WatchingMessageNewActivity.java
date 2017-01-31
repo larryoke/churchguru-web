@@ -27,7 +27,6 @@ public class WatchingMessageNewActivity extends AbstractActivity implements Watc
     @Override
     public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
 
-	Window.alert("1Act");
 	view = clientFactory.getWatchingMessageNewView();
 	view.setPresenter(this);
 	view.initTab();

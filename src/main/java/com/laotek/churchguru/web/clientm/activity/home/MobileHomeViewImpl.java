@@ -178,7 +178,7 @@ public class MobileHomeViewImpl implements MobileHomeView {
 			return new Image("/images/app/twitter.png");
 		    }
 		    if (ChurchAppTopicEnum.LISTEN.equals(current)) {
-			return new Image("/images/app/e-store.png");
+			return new Image("/images/app/audio.png");
 		    }
 		    if (ChurchAppTopicEnum.WATCH.equals(current)) {
 			return new Image("/images/app/watch_live.png");

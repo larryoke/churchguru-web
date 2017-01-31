@@ -44,8 +44,6 @@ public class WatchingMessageNewViewImpl extends BaseViewImpl implements Watching
     @Override
     public Widget asWidget() {
 
-	Window.alert("1");
-
 	mainPanel.setBorderWidth(0);
 
 	mainPanel.setWidget(0, 0, messageTitle);
@@ -54,15 +52,11 @@ public class WatchingMessageNewViewImpl extends BaseViewImpl implements Watching
 	mainPanel.setWidget(1, 0, youtubeUrl);
 	mainPanel.getFlexCellFormatter().setHorizontalAlignment(1, 0, HasHorizontalAlignment.ALIGN_CENTER);
 
-	Window.alert("2");
-
 	mainPanel.setWidget(2, 0, speaker);
 	mainPanel.getFlexCellFormatter().setHorizontalAlignment(6, 0, HasHorizontalAlignment.ALIGN_CENTER);
 
 	mainPanel.setWidget(3, 0, location);
 	mainPanel.getFlexCellFormatter().setHorizontalAlignment(7, 0, HasHorizontalAlignment.ALIGN_CENTER);
-
-	Window.alert("3");
 
 	errorMessageAndMainPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 	errorMessageAndMainPanel.add(mainPanel);

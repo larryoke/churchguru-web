@@ -7,13 +7,23 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-import com.laotek.churchguru.model.*;
 import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.util.StringUtils;
 
+import com.laotek.churchguru.model.Donation;
+import com.laotek.churchguru.model.ListeningCategory;
+import com.laotek.churchguru.model.ListeningMember;
+import com.laotek.churchguru.model.ListeningMessage;
+import com.laotek.churchguru.model.ListeningMessageNotification;
+import com.laotek.churchguru.model.ListeningMessagePicture;
 import com.laotek.churchguru.model.ListeningSpeaker;
+import com.laotek.churchguru.model.LogoItem;
+import com.laotek.churchguru.model.NoticeAndEvent;
+import com.laotek.churchguru.model.Organisation;
+import com.laotek.churchguru.model.User;
+import com.laotek.churchguru.model.WatchingMessage;
 import com.laotek.churchguru.model.shared.enums.LogoItemType;
-import com.laotek.churchguru.web.client.activity.churchapp.instantmessage.NoticeOrEventDto;
+import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.NoticeOrEventDto;
 import com.laotek.churchguru.web.client.activity.donation.DonationDto;
 import com.laotek.churchguru.web.clientm.activity.message.titles.NoticeAndEventDto;
 import com.laotek.churchguru.web.server.UserRoleHelper;
@@ -26,6 +36,7 @@ import com.laotek.churchguru.web.shared.listening.ListeningMessageDto;
 import com.laotek.churchguru.web.shared.listening.ListeningMessagePictureDto;
 import com.laotek.churchguru.web.shared.listening.ListeningNotificationDto;
 import com.laotek.churchguru.web.shared.listening.ListeningSpeakerDto;
+import com.laotek.churchguru.web.shared.watching.WatchingMessageDto;
 
 public abstract class AbstractCommandHandler {
 
@@ -61,8 +72,7 @@ public abstract class AbstractCommandHandler {
 	    dto.setFullAddress(sb.toString());
 	    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy h:mm");
 	    dto.setDonationDateAsString(sdf.format(donation.getCreatedDate()));
-	    dto.setDonationTransactionStatus(donation
-		    .getDonationTransactionStatus());
+	    dto.setDonationTransactionStatus(donation.getDonationTransactionStatus());
 	    dto.setEmailAddress(donation.getEmailAddress());
 	    dto.setMember(donation.isMember());
 	    dto.setInMailingList(donation.isInMailingList());
@@ -93,8 +103,7 @@ public abstract class AbstractCommandHandler {
 	return dtos;
     }
 
-    protected List<ListeningMessagePictureDto> mapMessagePictures(
-	    List<ListeningMessagePicture> eStoreMessagePictures) {
+    protected List<ListeningMessagePictureDto> mapMessagePictures(List<ListeningMessagePicture> eStoreMessagePictures) {
 	List<ListeningMessagePictureDto> dtos = new ArrayList<ListeningMessagePictureDto>();
 	for (ListeningMessagePicture picture : eStoreMessagePictures) {
 	    ListeningMessagePictureDto dto = new ListeningMessagePictureDto();
@@ -105,8 +114,7 @@ public abstract class AbstractCommandHandler {
 
     }
 
-    protected List<ListeningCategoryDto> mapCategories(
-	    List<ListeningCategory> categories) {
+    protected List<ListeningCategoryDto> mapCategories(List<ListeningCategory> categories) {
 	List<ListeningCategoryDto> dtos = new ArrayList<ListeningCategoryDto>();
 	for (ListeningCategory category : categories) {
 	    ListeningCategoryDto dto = new ListeningCategoryDto();
@@ -125,8 +133,7 @@ public abstract class AbstractCommandHandler {
 	dto.setLocation(message.getLocation());
 	dto.setSalePoints(message.getSalePointPerMessage());
 	dto.setMessageDate(message.getMessageDate());
-	dto.setMessageDateAsString(new SimpleDateFormat("dd-MM-yyyy")
-		.format(message.getMessageDate()));
+	dto.setMessageDateAsString(new SimpleDateFormat("dd-MM-yyyy").format(message.getMessageDate()));
 
 	ListeningSpeaker speaker = message.getEStoreSpeaker();
 	if (speaker != null) {
@@ -158,8 +165,7 @@ public abstract class AbstractCommandHandler {
 	    pictureDto.setIdentifier(picture.getIdentifier());
 	}
 
-	Set<ListeningMessageNotification> messageNotifications = message
-		.getEStoreMessageNotifications();
+	Set<ListeningMessageNotification> messageNotifications = message.getEStoreMessageNotifications();
 	if (messageNotifications != null && messageNotifications.size() > 0) {
 	    List<ListeningNotificationDto> dtos = map(messageNotifications);
 	    dto.setNotificationDtos(dtos);
@@ -167,12 +173,22 @@ public abstract class AbstractCommandHandler {
 	return dto;
     }
 
-    protected List<ListeningNotificationDto> map(
-	    Set<ListeningMessageNotification> messageNotifications) {
+    protected WatchingMessageDto mapWatchingMessages(WatchingMessage message) {
+	WatchingMessageDto dto = new WatchingMessageDto();
+	dto.setDescription(message.getDescription());
+	dto.setTitle(message.getTitle());
+	dto.setIdentifier(message.getIdentifier());
+	dto.setLocation(message.getLocation());
+	dto.setMessageDate(message.getMessageDate());
+	dto.setSpeakers(message.getSpeakers());
+	dto.setMessageDateAsString(new SimpleDateFormat("dd-MM-yyyy").format(message.getMessageDate()));
+	return dto;
+    }
+
+    protected List<ListeningNotificationDto> map(Set<ListeningMessageNotification> messageNotifications) {
 	List<ListeningNotificationDto> dtos = new ArrayList<ListeningNotificationDto>();
 	for (ListeningMessageNotification notification : messageNotifications) {
-	    dtos.add(new ListeningNotificationDto(notification
-		    .getEStoreNotification().getEStoreNotificationType()));
+	    dtos.add(new ListeningNotificationDto(notification.getEStoreNotification().getEStoreNotificationType()));
 	}
 	return dtos;
     }
@@ -189,8 +205,7 @@ public abstract class AbstractCommandHandler {
     protected NoticeAndEventDto mapMessageTitle(NoticeAndEvent emailNewsLetter) {
 	NoticeAndEventDto dto = new NoticeAndEventDto();
 	dto.setTitle(emailNewsLetter.getSubject());
-	dto.setCreatedTimeDesc(formatCreatedTimeDesc(emailNewsLetter
-		.getCreatedDate()));
+	dto.setCreatedTimeDesc(formatCreatedTimeDesc(emailNewsLetter.getCreatedDate()));
 	dto.setId(emailNewsLetter.getId());
 	if (emailNewsLetter.getEventDate() != null) {
 	    dto.setEventDate(formatDateAndTime(emailNewsLetter.getEventDate()));
@@ -220,8 +235,7 @@ public abstract class AbstractCommandHandler {
 	dto.setDonationChurchAppTopic(org.getDonationChurchAppTopic());
 	dto.setFacebookChurchAppTopic(org.getFacebookChurchAppTopic());
 	dto.setListenChurchAppTopic(org.getListenChurchAppTopic());
-	dto.setNoticesAndEventsChurchAppTopic(org
-		.getNoticesAndEventsChurchAppTopic());
+	dto.setNoticesAndEventsChurchAppTopic(org.getNoticesAndEventsChurchAppTopic());
 	dto.setPastorDeskChurchAppTopic(org.getPastorDeskChurchAppTopic());
 	dto.setTwitterChurchAppTopic(org.getTwitterChurchAppTopic());
 	dto.setWatchChurchAppTopic(org.getWatchChurchAppTopic());
@@ -232,13 +246,11 @@ public abstract class AbstractCommandHandler {
 	dto.setFacebookChurchAppTopicFlag(org.isFacebookChurchAppTopicFlag());
 	dto.setListenChurchAppTopicFlag(org.isListenChurchAppTopicFlag());
 	dto.setMessagesChurchAppTopicFlag(org.isMessagesChurchAppTopicFlag());
-	dto.setPastorDeskChurchAppTopicFlag(org
-		.isPastorDeskChurchAppTopicFlag());
+	dto.setPastorDeskChurchAppTopicFlag(org.isPastorDeskChurchAppTopicFlag());
 	dto.setTwitterChurchAppTopicFlag(org.isTwitterChurchAppTopicFlag());
 	dto.setWatchChurchAppTopicFlag(org.isWatchChurchAppTopicFlag());
 	dto.setAboutUsChurchAppTopicFlag(org.isAboutUsChurchAppTopicFlag());
-	dto.setPrayerRequestChurchAppTopicFlag(org
-		.isPrayerRequestChurchAppTopicFlag());
+	dto.setPrayerRequestChurchAppTopicFlag(org.isPrayerRequestChurchAppTopicFlag());
 
 	dto.setAboutUsMessage(org.getAboutUsMessage());
 	dto.setAboutPastorMessage(org.getAboutPastorMessage());
@@ -256,13 +268,11 @@ public abstract class AbstractCommandHandler {
 	dto.setWebsiteUrl(org.getWebsiteUrl());
 
 	LogoItem logoItem = getChurchLogo(org);
-	dto.setHasLogo(logoItem != null
-		&& !StringUtils.isEmpty(logoItem.getBase64Data()));
+	dto.setHasLogo(logoItem != null && !StringUtils.isEmpty(logoItem.getBase64Data()));
 	return dto;
     }
 
-    protected List<ListeningCategoryDto> mapCategoryDto(
-	    List<ListeningMember> categories) {
+    protected List<ListeningCategoryDto> mapCategoryDto(List<ListeningMember> categories) {
 	List<ListeningCategoryDto> categoryDtos = new ArrayList<ListeningCategoryDto>();
 	return categoryDtos;
     }
@@ -276,8 +286,7 @@ public abstract class AbstractCommandHandler {
 	    dto.setEmailAddress(user.getEmailAddress());
 	    dto.setForenames(user.getForenames());
 	    dto.setSurname(user.getSurname());
-	    dto.setMobile(new PhoneDto(user.getMobileCountryCode(), user
-		    .getMobile()));
+	    dto.setMobile(new PhoneDto(user.getMobileCountryCode(), user.getMobile()));
 	    dto.setUserAccountStatus(user.getUserAccountStatus());
 	    dto.setIdentifier(user.getIdentifier());
 	    dtos.add(dto);

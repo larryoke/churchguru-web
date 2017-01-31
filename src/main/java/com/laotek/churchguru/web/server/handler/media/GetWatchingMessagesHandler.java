@@ -29,16 +29,9 @@ public class GetWatchingMessagesHandler extends AbstractCommandHandler
 	    throws DispatchException {
 
 	List<WatchingMessage> messages = eStoreDao.getMessages();
-	List<WatchingMessageDto> dtos = get(messages);
-	return new GetWatchingMessagesResult(dtos);
-    }
-
-    private List<WatchingMessageDto> get(List<WatchingMessage> messages) {
 	List<WatchingMessageDto> dtos = new ArrayList<WatchingMessageDto>();
-	for (WatchingMessage message : messages) {
-	    dtos.add(mapWatchingMessages(message));
-	}
-	return dtos;
+	messages.stream().forEach(message -> dtos.add(mapWatchingMessages(message)));
+	return new GetWatchingMessagesResult(dtos);
     }
 
     @Override

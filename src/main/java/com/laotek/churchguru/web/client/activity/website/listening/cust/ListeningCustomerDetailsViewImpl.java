@@ -1,4 +1,4 @@
-package com.laotek.churchguru.web.client.activity.website.listening;
+package com.laotek.churchguru.web.client.activity.website.listening.cust;
 
 import java.util.List;
 
@@ -29,7 +29,7 @@ public class ListeningCustomerDetailsViewImpl implements ListeningCustomerDetail
 
     @Override
     public void initTab() {
-	MainMenuContext.getInstance().showListeningPanel("eStore");
+	MainMenuContext.getInstance().showMessageMediaPanel("eStore");
     }
 
     @Override

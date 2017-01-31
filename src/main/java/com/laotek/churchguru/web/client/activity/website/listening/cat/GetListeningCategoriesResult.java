@@ -1,10 +1,10 @@
-package com.laotek.churchguru.web.client.activity.website.listening;
+package com.laotek.churchguru.web.client.activity.website.listening.cat;
 
 import java.util.List;
 
-import net.customware.gwt.dispatch.shared.Result;
-
 import com.laotek.churchguru.web.shared.listening.ListeningCategoryDto;
+
+import net.customware.gwt.dispatch.shared.Result;
 
 public class GetListeningCategoriesResult implements Result {
     private List<ListeningCategoryDto> categoryDtos;

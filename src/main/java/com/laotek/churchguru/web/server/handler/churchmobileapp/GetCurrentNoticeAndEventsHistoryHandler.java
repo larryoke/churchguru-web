@@ -15,8 +15,8 @@ import org.springframework.stereotype.Component;
 import com.laotek.churchguru.daos.mobile.instantmessage.NoticeAndEventDao;
 import com.laotek.churchguru.model.NoticeAndEvent;
 import com.laotek.churchguru.model.shared.enums.BrowseMessagesType;
-import com.laotek.churchguru.web.client.activity.churchapp.instantmessage.GetCurrentNoticesAndEventsHistoryAction;
-import com.laotek.churchguru.web.client.activity.churchapp.instantmessage.GetCurrentNoticesAndEventsHistoryResult;
+import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.GetCurrentNoticesAndEventsHistoryAction;
+import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.GetCurrentNoticesAndEventsHistoryResult;
 import com.laotek.churchguru.web.server.handler.AbstractCommandHandler;
 import com.laotek.churchguru.web.shared.instantmessage.MessageDto;
 

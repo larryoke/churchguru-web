@@ -1,4 +1,4 @@
-package com.laotek.churchguru.web.client.activity.website.listening;
+package com.laotek.churchguru.web.client.activity.website.listening.cat;
 
 import java.util.List;
 
@@ -29,7 +29,7 @@ public class ListeningCategoriesViewImpl implements ListeningCategoriesView {
 
     @Override
     public void initTab() {
-	MainMenuContext.getInstance().showListeningPanel("listening");
+	MainMenuContext.getInstance().showMessageMediaPanel("listening");
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.laotek.churchguru.web.client.activity.churchapp.instantmessage;
+package com.laotek.churchguru.web.client.activity.churchapp.noticeandevent;
 
 import gwtupload.client.IFileInput.FileInputType;
 import gwtupload.client.IUploadStatus.Status;

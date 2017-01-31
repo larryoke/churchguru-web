@@ -1,4 +1,4 @@
-package com.laotek.churchguru.web.client.activity.website.listening;
+package com.laotek.churchguru.web.client.activity.website.listening.cust;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
@@ -10,7 +10,8 @@ import com.laotek.churchguru.web.client.UserContext;
 import com.laotek.churchguru.web.client.activity.GetOrgDetailAction;
 import com.laotek.churchguru.web.client.activity.GetOrgDetailResult;
 
-public class ListeningCustomerDetailsActivity extends AbstractActivity implements ListeningCustomerDetailsView.Presenter {
+public class ListeningCustomerDetailsActivity extends AbstractActivity
+	implements ListeningCustomerDetailsView.Presenter {
 
     private ClientFactory clientFactory;
     private String name;

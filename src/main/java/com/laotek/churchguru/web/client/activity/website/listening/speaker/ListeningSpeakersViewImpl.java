@@ -1,4 +1,4 @@
-package com.laotek.churchguru.web.client.activity.website.listening;
+package com.laotek.churchguru.web.client.activity.website.listening.speaker;
 
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
@@ -27,7 +27,7 @@ public class ListeningSpeakersViewImpl implements ListeningSpeakersView {
 
     @Override
     public void initTab() {
-	MainMenuContext.getInstance().showListeningPanel("eStore");
+	MainMenuContext.getInstance().showMessageMediaPanel("eStore");
     }
 
     @Override

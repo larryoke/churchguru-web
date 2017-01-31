@@ -7,12 +7,12 @@ import com.laotek.churchguru.web.client.activity.SystemSettingsView;
 import com.laotek.churchguru.web.client.activity.SystemSettingsViewImpl;
 import com.laotek.churchguru.web.client.activity.churchapp.general.GeneralChurchAppView;
 import com.laotek.churchguru.web.client.activity.churchapp.general.GeneralChurchAppViewImpl;
-import com.laotek.churchguru.web.client.activity.churchapp.instantmessage.GetCurrentNoticesAndEventsHistoryView;
-import com.laotek.churchguru.web.client.activity.churchapp.instantmessage.GetCurrentNoticesAndEventsHistoryViewImpl;
-import com.laotek.churchguru.web.client.activity.churchapp.instantmessage.PostNoticeOrEventChurchAppView;
-import com.laotek.churchguru.web.client.activity.churchapp.instantmessage.PostNoticeOrEventChurchAppViewImpl;
-import com.laotek.churchguru.web.client.activity.churchapp.instantmessage.PreviewNoticeOrEventChurchAppView;
-import com.laotek.churchguru.web.client.activity.churchapp.instantmessage.PreviewNoticeOrEventChurchAppViewImpl;
+import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.GetCurrentNoticesAndEventsHistoryView;
+import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.GetCurrentNoticesAndEventsHistoryViewImpl;
+import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.PostNoticeOrEventChurchAppView;
+import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.PostNoticeOrEventChurchAppViewImpl;
+import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.PreviewNoticeOrEventChurchAppView;
+import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.PreviewNoticeOrEventChurchAppViewImpl;
 import com.laotek.churchguru.web.client.activity.dashboard.NewsLettersChartView;
 import com.laotek.churchguru.web.client.activity.dashboard.NewsLettersChartViewImpl;
 import com.laotek.churchguru.web.client.activity.dashboard.PeopleChartView;
@@ -23,6 +23,10 @@ import com.laotek.churchguru.web.client.activity.donation.DonationSearchView;
 import com.laotek.churchguru.web.client.activity.donation.DonationSearchViewImpl;
 import com.laotek.churchguru.web.client.activity.home.HomeView;
 import com.laotek.churchguru.web.client.activity.home.HomeViewImpl;
+import com.laotek.churchguru.web.client.activity.media.watching.WatchingMessageNewView;
+import com.laotek.churchguru.web.client.activity.media.watching.WatchingMessageNewViewImpl;
+import com.laotek.churchguru.web.client.activity.media.watching.WatchingMessagesView;
+import com.laotek.churchguru.web.client.activity.media.watching.WatchingMessagesViewImpl;
 import com.laotek.churchguru.web.client.activity.password.PasswordResetView;
 import com.laotek.churchguru.web.client.activity.password.PasswordResetViewImpl;
 import com.laotek.churchguru.web.client.activity.user.AllUserView;
@@ -37,8 +41,28 @@ import com.laotek.churchguru.web.client.activity.user.UserProfilesView;
 import com.laotek.churchguru.web.client.activity.user.UserProfilesViewImpl;
 import com.laotek.churchguru.web.client.activity.website.WebsiteView;
 import com.laotek.churchguru.web.client.activity.website.WebsiteViewImpl;
-import com.laotek.churchguru.web.client.activity.website.listening.*;
+import com.laotek.churchguru.web.client.activity.website.gal.ListeningGalleryNewView;
+import com.laotek.churchguru.web.client.activity.website.gal.ListeningGalleryNewViewImpl;
+import com.laotek.churchguru.web.client.activity.website.gal.ListeningGalleryView;
+import com.laotek.churchguru.web.client.activity.website.gal.ListeningGalleryViewImpl;
+import com.laotek.churchguru.web.client.activity.website.listening.ListeningMessageNewView;
+import com.laotek.churchguru.web.client.activity.website.listening.ListeningMessageNewViewImpl;
+import com.laotek.churchguru.web.client.activity.website.listening.ListeningMessagesView;
 import com.laotek.churchguru.web.client.activity.website.listening.ListeningMessagesViewImpl;
+import com.laotek.churchguru.web.client.activity.website.listening.cat.ListeningCategoriesView;
+import com.laotek.churchguru.web.client.activity.website.listening.cat.ListeningCategoriesViewImpl;
+import com.laotek.churchguru.web.client.activity.website.listening.cat.ListeningCategoryNewView;
+import com.laotek.churchguru.web.client.activity.website.listening.cat.ListeningCategoryNewViewImpl;
+import com.laotek.churchguru.web.client.activity.website.listening.cust.ListeningCustomerDetailsView;
+import com.laotek.churchguru.web.client.activity.website.listening.cust.ListeningCustomerDetailsViewImpl;
+import com.laotek.churchguru.web.client.activity.website.listening.cust.ListeningCustomersView;
+import com.laotek.churchguru.web.client.activity.website.listening.cust.ListeningCustomersViewImpl;
+import com.laotek.churchguru.web.client.activity.website.listening.notif.ListeningNotificationsView;
+import com.laotek.churchguru.web.client.activity.website.listening.notif.ListeningNotificationsViewImpl;
+import com.laotek.churchguru.web.client.activity.website.listening.speaker.ListeningSpeakerNewView;
+import com.laotek.churchguru.web.client.activity.website.listening.speaker.ListeningSpeakerNewViewImpl;
+import com.laotek.churchguru.web.client.activity.website.listening.speaker.ListeningSpeakersView;
+import com.laotek.churchguru.web.client.activity.website.listening.speaker.ListeningSpeakersViewImpl;
 
 public class ClientFactoryImpl implements ClientFactory {
     private EventBus eventBus = new SimpleEventBus();
@@ -91,6 +115,10 @@ public class ClientFactoryImpl implements ClientFactory {
     private PostNoticeOrEventChurchAppView postNoticeOrEventChurchAppView = new PostNoticeOrEventChurchAppViewImpl();
 
     private PreviewNoticeOrEventChurchAppView previewNoticeOrEventChurchAppView = new PreviewNoticeOrEventChurchAppViewImpl();
+
+    private WatchingMessageNewView watchingMessageNewView = new WatchingMessageNewViewImpl();
+
+    private WatchingMessagesView watchingMessagesView = new WatchingMessagesViewImpl();
 
     @Override
     public EventBus getEventBus() {
@@ -295,6 +323,16 @@ public class ClientFactoryImpl implements ClientFactory {
     @Override
     public PreviewNoticeOrEventChurchAppView getPreviewNoticeOrEventChurchAppView() {
 	return previewNoticeOrEventChurchAppView;
+    }
+
+    @Override
+    public WatchingMessageNewView getWatchingMessageNewView() {
+	return watchingMessageNewView;
+    }
+
+    @Override
+    public WatchingMessagesView getWatchingMessagesView() {
+	return watchingMessagesView;
     }
 
 }

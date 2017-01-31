@@ -2,18 +2,18 @@ package com.laotek.churchguru.web.server.handler.website.estore;
 
 import java.util.List;
 
-import com.laotek.churchguru.web.client.activity.website.listening.GetListeningCategoriesAction;
-import net.customware.gwt.dispatch.server.ActionHandler;
-import net.customware.gwt.dispatch.server.ExecutionContext;
-import net.customware.gwt.dispatch.shared.DispatchException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.laotek.churchguru.daos.org.OrganisationDao;
-import com.laotek.churchguru.web.client.activity.website.listening.GetListeningCategoriesResult;
+import com.laotek.churchguru.web.client.activity.website.listening.cat.GetListeningCategoriesAction;
+import com.laotek.churchguru.web.client.activity.website.listening.cat.GetListeningCategoriesResult;
 import com.laotek.churchguru.web.server.handler.AbstractCommandHandler;
 import com.laotek.churchguru.web.shared.listening.ListeningCategoryDto;
+
+import net.customware.gwt.dispatch.server.ActionHandler;
+import net.customware.gwt.dispatch.server.ExecutionContext;
+import net.customware.gwt.dispatch.shared.DispatchException;
 
 @Component
 public class GetListeningCategoriesHandler extends AbstractCommandHandler
@@ -35,8 +35,8 @@ public class GetListeningCategoriesHandler extends AbstractCommandHandler
     }
 
     @Override
-    public void rollback(GetListeningCategoriesAction action, GetListeningCategoriesResult result, ExecutionContext context)
-	    throws DispatchException {
+    public void rollback(GetListeningCategoriesAction action, GetListeningCategoriesResult result,
+	    ExecutionContext context) throws DispatchException {
     }
 
 }
