@@ -33,7 +33,7 @@ import com.laotek.churchguru.web.shared.listening.AudioMessageCategoryDto;
 import com.laotek.churchguru.web.shared.listening.AudioMessageDto;
 import com.laotek.churchguru.web.shared.listening.AudioMessagePictureDto;
 import com.laotek.churchguru.web.shared.listening.AudioMessageSpeakerDto;
-import com.laotek.churchguru.web.shared.watching.WatchingMessageDto;
+import com.laotek.churchguru.web.shared.watching.VideoMessageDto;
 
 public abstract class AbstractCommandHandler {
 
@@ -164,9 +164,8 @@ public abstract class AbstractCommandHandler {
 	return dto;
     }
 
-    protected WatchingMessageDto mapWatchingMessages(VideoMessage message) {
-	WatchingMessageDto dto = new WatchingMessageDto();
-	dto.setDescription(message.getDescription());
+    protected VideoMessageDto mapWatchingMessages(VideoMessage message) {
+	VideoMessageDto dto = new VideoMessageDto();
 	dto.setTitle(message.getTitle());
 	dto.setIdentifier(message.getIdentifier());
 	dto.setLocation(message.getLocation());

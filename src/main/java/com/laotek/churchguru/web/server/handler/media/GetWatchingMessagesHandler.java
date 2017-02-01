@@ -11,7 +11,7 @@ import com.laotek.churchguru.model.VideoMessage;
 import com.laotek.churchguru.web.client.activity.media.watching.GetWatchingMessagesAction;
 import com.laotek.churchguru.web.client.activity.media.watching.GetWatchingMessagesResult;
 import com.laotek.churchguru.web.server.handler.AbstractCommandHandler;
-import com.laotek.churchguru.web.shared.watching.WatchingMessageDto;
+import com.laotek.churchguru.web.shared.watching.VideoMessageDto;
 
 import net.customware.gwt.dispatch.server.ActionHandler;
 import net.customware.gwt.dispatch.server.ExecutionContext;
@@ -29,7 +29,7 @@ public class GetWatchingMessagesHandler extends AbstractCommandHandler
 	    throws DispatchException {
 
 	List<VideoMessage> messages = eStoreDao.getMessages();
-	List<WatchingMessageDto> dtos = new ArrayList<WatchingMessageDto>();
+	List<VideoMessageDto> dtos = new ArrayList<VideoMessageDto>();
 	messages.stream().forEach(message -> dtos.add(mapWatchingMessages(message)));
 	return new GetWatchingMessagesResult(dtos);
     }

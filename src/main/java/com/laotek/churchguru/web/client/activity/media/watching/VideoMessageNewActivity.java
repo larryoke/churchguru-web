@@ -6,9 +6,10 @@ import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
+import com.laotek.churchguru.web.client.ApplicationContext;
 import com.laotek.churchguru.web.client.ClientFactory;
 import com.laotek.churchguru.web.client.UserContext;
-import com.laotek.churchguru.web.shared.watching.WatchingMessageDto;
+import com.laotek.churchguru.web.shared.watching.VideoMessageDto;
 
 public class VideoMessageNewActivity extends AbstractActivity implements VideoMessageNewView.Presenter {
 
@@ -63,8 +64,7 @@ public class VideoMessageNewActivity extends AbstractActivity implements VideoMe
 
 	    @Override
 	    public void onSuccess(GetWatchingMessageResult result) {
-		WatchingMessageDto dto = result.getMessage();
-
+		VideoMessageDto dto = result.getMessage();
 		view.initNewMessage(dto);
 	    }
 	});
@@ -72,16 +72,16 @@ public class VideoMessageNewActivity extends AbstractActivity implements VideoMe
     }
 
     @Override
-    public void submit(SubmitWatchingMessageAction action) {
+    public void submit(SubmitVideoMessageAction action) {
 	UserContext.getInstance().decorateClientSessionId(action);
-	UserContext.getInstance().getDispatchClient().execute(action, new AsyncCallback<SubmitWatchingMessageResult>() {
+	UserContext.getInstance().getDispatchClient().execute(action, new AsyncCallback<SubmitVideoMessageResult>() {
 	    @Override
 	    public void onFailure(Throwable throwable) {
 	    }
 
 	    @Override
-	    public void onSuccess(SubmitWatchingMessageResult result) {
-		// view.uploadPhotosByWorker();
+	    public void onSuccess(SubmitVideoMessageResult result) {
+		ApplicationContext.getInstance().getPlaceController().goTo(new VideoMessagesPlace("videos"));
 	    }
 	});
 

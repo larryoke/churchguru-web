@@ -4,18 +4,19 @@ import com.laotek.churchguru.web.shared.watching.VideoMessageDto;
 
 import net.customware.gwt.dispatch.shared.Result;
 
-public class GetWatchingMessageResult implements Result {
+public class SubmitVideoMessageResult implements Result {
 
     private VideoMessageDto message;
 
-    public GetWatchingMessageResult() {
+    public SubmitVideoMessageResult() {
     }
 
-    public GetWatchingMessageResult(VideoMessageDto message) {
+    public SubmitVideoMessageResult(VideoMessageDto message) {
 	this.message = message;
     }
 
     public VideoMessageDto getMessage() {
 	return message;
     }
+
 }

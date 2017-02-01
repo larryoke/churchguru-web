@@ -5,7 +5,7 @@ import java.util.Date;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
 
-public class WatchingMessageDto implements Serializable, IsSerializable {
+public class VideoMessageDto implements Serializable, IsSerializable {
 
     private static final long serialVersionUID = 1L;
     private String identifier;

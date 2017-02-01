@@ -4,9 +4,9 @@ import java.util.List;
 
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.IsWidget;
-import com.laotek.churchguru.web.shared.watching.WatchingMessageDto;
+import com.laotek.churchguru.web.shared.watching.VideoMessageDto;
 
-public interface WatchingMessagesView extends IsWidget {
+public interface VideoMessagesView extends IsWidget {
     void setPresenter(Presenter presenter);
 
     void init();
@@ -15,7 +15,7 @@ public interface WatchingMessagesView extends IsWidget {
 
     void initWidgets();
 
-    void init(List<WatchingMessageDto> dto);
+    void init(List<VideoMessageDto> dto);
 
     public interface Presenter {
 

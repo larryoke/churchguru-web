@@ -13,7 +13,7 @@ import com.laotek.churchguru.web.client.activity.dashboard.WeeklyAttendanceChart
 import com.laotek.churchguru.web.client.activity.donation.DonationSearchView;
 import com.laotek.churchguru.web.client.activity.home.HomeView;
 import com.laotek.churchguru.web.client.activity.media.watching.VideoMessageNewView;
-import com.laotek.churchguru.web.client.activity.media.watching.WatchingMessagesView;
+import com.laotek.churchguru.web.client.activity.media.watching.VideoMessagesView;
 import com.laotek.churchguru.web.client.activity.password.PasswordResetView;
 import com.laotek.churchguru.web.client.activity.user.AllUserView;
 import com.laotek.churchguru.web.client.activity.user.LoginView;
@@ -90,7 +90,7 @@ public interface ClientFactory {
 
     VideoMessageNewView getWatchingMessageNewView();
 
-    WatchingMessagesView getWatchingMessagesView();
+    VideoMessagesView getWatchingMessagesView();
 
     WebsiteView getWebsiteView();
 

@@ -18,9 +18,9 @@ import com.laotek.churchguru.web.client.ApplicationContext;
 import com.laotek.churchguru.web.client.MainMenuContext;
 import com.laotek.churchguru.web.client.activity.website.audio.BaseViewImpl;
 import com.laotek.churchguru.web.client.widget.RoundedCornerPanel;
-import com.laotek.churchguru.web.shared.watching.WatchingMessageDto;
+import com.laotek.churchguru.web.shared.watching.VideoMessageDto;
 
-public class VideoMessagesViewImpl extends BaseViewImpl implements WatchingMessagesView {
+public class VideoMessagesViewImpl extends BaseViewImpl implements VideoMessagesView {
 
     private Presenter presenter;
 
@@ -75,7 +75,7 @@ public class VideoMessagesViewImpl extends BaseViewImpl implements WatchingMessa
     }
 
     @Override
-    public void init(List<WatchingMessageDto> dtos) {
+    public void init(List<VideoMessageDto> dtos) {
 	panelRows.clear();
 
 	HorizontalPanel hPanel = new HorizontalPanel();
@@ -86,7 +86,7 @@ public class VideoMessagesViewImpl extends BaseViewImpl implements WatchingMessa
 	cell(hPanel, "<b>Location</b>", 100);
 	panelRows.add(hPanel);
 
-	for (final WatchingMessageDto dto : dtos) {
+	for (final VideoMessageDto dto : dtos) {
 	    hPanel = new HorizontalPanel();
 	    if (dtos.indexOf(dto) % 2 == 0) {
 		hPanel.setStylePrimaryName("estoreGreybg");

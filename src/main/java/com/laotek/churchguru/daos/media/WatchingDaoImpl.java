@@ -2,7 +2,6 @@ package com.laotek.churchguru.daos.media;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
@@ -19,9 +18,8 @@ public class WatchingDaoImpl extends BaseSessionFactory implements WatchingDao {
     @Override
     public void createNewMessage(String messageId, String title) {
 	VideoMessage eStoreMessage = new VideoMessage();
-	eStoreMessage.setTitle(title);
-	eStoreMessage.setDescription("desc...");
 	eStoreMessage.setIdentifier(messageId);
+	eStoreMessage.setTitle(title);
 	eStoreMessage.setCreatedDate(new Date());
 	eStoreMessage.setLastUpdatedDate(new Date());
 	getCurrentSession().persist(eStoreMessage);
@@ -36,7 +34,7 @@ public class WatchingDaoImpl extends BaseSessionFactory implements WatchingDao {
     }
 
     @Override
-    public void updateMessage(VideoMessage eStoreMessage, Map<String, String> otherDetails) {
+    public void updateMessage(VideoMessage eStoreMessage) {
 	eStoreMessage = (VideoMessage) getCurrentSession().merge(eStoreMessage);
 
 	getCurrentSession().update(eStoreMessage);

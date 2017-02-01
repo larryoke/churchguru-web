@@ -10,13 +10,13 @@ import com.laotek.churchguru.web.client.ApplicationContext;
 import com.laotek.churchguru.web.client.ClientFactory;
 import com.laotek.churchguru.web.client.UserContext;
 
-public class WatchingMessagesActivity extends AbstractActivity implements WatchingMessagesView.Presenter {
+public class VideoMessagesActivity extends AbstractActivity implements VideoMessagesView.Presenter {
 
     private ClientFactory clientFactory;
     private String name;
-    private WatchingMessagesView view;
+    private VideoMessagesView view;
 
-    public WatchingMessagesActivity(WatchingMessagesPlace place, ClientFactory clientFactory) {
+    public VideoMessagesActivity(VideoMessagesPlace place, ClientFactory clientFactory) {
 	this.name = place.getName();
 	this.clientFactory = clientFactory;
     }

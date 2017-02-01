@@ -24,8 +24,8 @@ import com.laotek.churchguru.web.client.activity.donation.DonationSearchViewImpl
 import com.laotek.churchguru.web.client.activity.home.HomeView;
 import com.laotek.churchguru.web.client.activity.home.HomeViewImpl;
 import com.laotek.churchguru.web.client.activity.media.watching.VideoMessageNewView;
-import com.laotek.churchguru.web.client.activity.media.watching.WatchingMessageNewViewImpl;
-import com.laotek.churchguru.web.client.activity.media.watching.WatchingMessagesView;
+import com.laotek.churchguru.web.client.activity.media.watching.VideoMessageNewViewImpl;
+import com.laotek.churchguru.web.client.activity.media.watching.VideoMessagesView;
 import com.laotek.churchguru.web.client.activity.media.watching.VideoMessagesViewImpl;
 import com.laotek.churchguru.web.client.activity.password.PasswordResetView;
 import com.laotek.churchguru.web.client.activity.password.PasswordResetViewImpl;
@@ -116,9 +116,9 @@ public class ClientFactoryImpl implements ClientFactory {
 
     private PreviewNoticeOrEventChurchAppView previewNoticeOrEventChurchAppView = new PreviewNoticeOrEventChurchAppViewImpl();
 
-    private VideoMessageNewView watchingMessageNewView = new WatchingMessageNewViewImpl();
+    private VideoMessageNewView watchingMessageNewView = new VideoMessageNewViewImpl();
 
-    private WatchingMessagesView watchingMessagesView = new VideoMessagesViewImpl();
+    private VideoMessagesView watchingMessagesView = new VideoMessagesViewImpl();
 
     @Override
     public EventBus getEventBus() {
@@ -331,7 +331,7 @@ public class ClientFactoryImpl implements ClientFactory {
     }
 
     @Override
-    public WatchingMessagesView getWatchingMessagesView() {
+    public VideoMessagesView getWatchingMessagesView() {
 	return watchingMessagesView;
     }
 

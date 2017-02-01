@@ -33,9 +33,6 @@ public class VideoMessage {
     @Column(nullable = true, unique = false)
     private String youtubeUrl;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
-    private String description;
-
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false, unique = false)
     private Date messageDate = new Date();
@@ -62,22 +59,6 @@ public class VideoMessage {
 
     public void setIdentifier(String identifier) {
 	this.identifier = identifier;
-    }
-
-    public String getTitle() {
-	return title;
-    }
-
-    public void setTitle(String title) {
-	this.title = title;
-    }
-
-    public String getDescription() {
-	return description;
-    }
-
-    public void setDescription(String description) {
-	this.description = description;
     }
 
     public Date getCreatedDate() {
@@ -126,6 +107,14 @@ public class VideoMessage {
 
     public void setYoutubeUrl(String youtubeUrl) {
 	this.youtubeUrl = youtubeUrl;
+    }
+
+    public String getTitle() {
+	return title;
+    }
+
+    public void setTitle(String title) {
+	this.title = title;
     }
 
 }
