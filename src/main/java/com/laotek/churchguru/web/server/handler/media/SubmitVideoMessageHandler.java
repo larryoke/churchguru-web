@@ -35,6 +35,10 @@ public class SubmitVideoMessageHandler extends AbstractCommandHandler
 	message.setMessageDate(action.getMessageDate());
 	message.setYoutubeUrl(action.getYoutubeUrl());
 
+	if (action.getYoutubeUrl() != null && !action.getYoutubeUrl().trim().equals("")) {
+
+	}
+
 	message.setLastUpdatedDate(new Date());
 
 	eStoreDao.updateMessage(message);

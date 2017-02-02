@@ -17,6 +17,7 @@ import com.laotek.churchguru.web.client.MainMenuContext;
 import com.laotek.churchguru.web.client.activity.website.audio.BaseViewImpl;
 import com.laotek.churchguru.web.client.widget.RoundedCornerPanel;
 import com.laotek.churchguru.web.client.widget.TextItem;
+import com.laotek.churchguru.web.client.widget.TextLongItem;
 import com.laotek.churchguru.web.shared.watching.VideoMessageDto;
 
 public class VideoMessageNewViewImpl extends BaseViewImpl implements VideoMessageNewView {
@@ -29,7 +30,7 @@ public class VideoMessageNewViewImpl extends BaseViewImpl implements VideoMessag
 
     private TextItem location = new TextItem("Location", false);
 
-    private TextItem youtubeUrl = new TextItem("YouTube URL", false);
+    private TextLongItem youtubeUrl = new TextLongItem("YouTube URL", false);
 
     private DatePicker messageDatePicker = new DatePicker();
 
@@ -111,7 +112,7 @@ public class VideoMessageNewViewImpl extends BaseViewImpl implements VideoMessag
     public void initNewMessage(VideoMessageDto dto) {
 	messageIdentifier = dto.getIdentifier();
 	messageTitle.setHTML("<h2>" + dto.getTitle().toUpperCase() + "</h2><br/>");
-
+	youtubeUrl.setValue(dto.getYoutubeUrl());
 	location.setValue(dto.getLocation());
 	messageDatePicker.setValue(dto.getMessageDate());
 

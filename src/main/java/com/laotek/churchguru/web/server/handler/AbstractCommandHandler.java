@@ -171,6 +171,7 @@ public abstract class AbstractCommandHandler {
 	dto.setLocation(message.getLocation());
 	dto.setMessageDate(message.getMessageDate());
 	dto.setSpeakers(message.getSpeakers());
+	dto.setYoutubeUrl(message.getYoutubeUrl());
 	dto.setMessageDateAsString(new SimpleDateFormat("dd-MM-yyyy").format(message.getMessageDate()));
 	return dto;
     }

@@ -14,6 +14,7 @@ public class VideoMessageDto implements Serializable, IsSerializable {
     private String location;
     private String speakers;
 
+    private String youtubeUrl;
     private Date messageDate;
     private String messageDateAsString;
     private String lastUpdatedDate;
@@ -84,6 +85,14 @@ public class VideoMessageDto implements Serializable, IsSerializable {
 
     public void setMessageDateAsString(String messageDateAsString) {
 	this.messageDateAsString = messageDateAsString;
+    }
+
+    public String getYoutubeUrl() {
+	return youtubeUrl;
+    }
+
+    public void setYoutubeUrl(String youtubeUrl) {
+	this.youtubeUrl = youtubeUrl;
     }
 
 }
