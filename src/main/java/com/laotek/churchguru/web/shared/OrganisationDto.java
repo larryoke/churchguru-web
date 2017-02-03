@@ -29,7 +29,7 @@ public class OrganisationDto implements IsSerializable {
     private String twitterChurchAppTopic;
     private String facebookChurchAppTopic;
     private String listenChurchAppTopic;
-    private String watchChurchAppTopic;
+    private String youtubeChurchAppTopic;
     private String aboutUsChurchAppTopic;
     private String aboutUsMessage;
     private String aboutPastorMessage;
@@ -41,7 +41,7 @@ public class OrganisationDto implements IsSerializable {
     private boolean twitterChurchAppTopicFlag;
     private boolean facebookChurchAppTopicFlag;
     private boolean listenChurchAppTopicFlag;
-    private boolean watchChurchAppTopicFlag;
+    private boolean youtubeChurchAppTopicFlag;
     private boolean aboutUsChurchAppTopicFlag;
 
     public String getOrgIdentifier() {
@@ -180,12 +180,12 @@ public class OrganisationDto implements IsSerializable {
 	this.listenChurchAppTopic = listenChurchAppTopic;
     }
 
-    public String getWatchChurchAppTopic() {
-	return watchChurchAppTopic;
+    public String getYoutubeChurchAppTopic() {
+	return youtubeChurchAppTopic;
     }
 
-    public void setWatchChurchAppTopic(String watchChurchAppTopic) {
-	this.watchChurchAppTopic = watchChurchAppTopic;
+    public void setYoutubeChurchAppTopic(String youtubeChurchAppTopic) {
+	this.youtubeChurchAppTopic = youtubeChurchAppTopic;
     }
 
     public String getAboutUsChurchAppTopic() {
@@ -260,12 +260,12 @@ public class OrganisationDto implements IsSerializable {
 	this.pastorDeskChurchAppTopicFlag = pastorDeskChurchAppTopicFlag;
     }
 
-    public boolean isWatchChurchAppTopicFlag() {
-	return watchChurchAppTopicFlag;
+    public boolean isYoutubeChurchAppTopicFlag() {
+	return youtubeChurchAppTopicFlag;
     }
 
-    public void setWatchChurchAppTopicFlag(boolean watchChurchAppTopicFlag) {
-	this.watchChurchAppTopicFlag = watchChurchAppTopicFlag;
+    public void setYoutubeChurchAppTopicFlag(boolean youtubeChurchAppTopicFlag) {
+	this.youtubeChurchAppTopicFlag = youtubeChurchAppTopicFlag;
     }
 
     public String getWebsiteUrl() {

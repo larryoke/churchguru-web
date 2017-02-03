@@ -50,7 +50,7 @@ public class AudioMessagesViewImpl extends BaseViewImpl implements AudioMessages
 		}
 	    }
 	});
-	return getMainLayout("images/app/shop_cart.png", "Manage Audio Messages",
+	return getMainLayout("images/app/download.png", "Manage Message Downloads",
 		new RoundedCornerPanel(mainPanel, newMessageButton));
     }
 

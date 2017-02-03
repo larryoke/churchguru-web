@@ -25,8 +25,7 @@ import com.laotek.churchguru.model.shared.enums.sharedmob.ChurchAppTopicEnum;
 
 @Repository
 @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-public class OrganisationDaoImpl extends BaseSessionFactory implements
-	OrganisationDao {
+public class OrganisationDaoImpl extends BaseSessionFactory implements OrganisationDao {
 
     // @Override
     // public void addNewOrganisation(Organisation organisation) {
@@ -133,11 +132,11 @@ public class OrganisationDaoImpl extends BaseSessionFactory implements
 		logoItem.setContentType("image/png");
 		logoItem.setFilename("twitter.png");
 
-	    } else if (LogoItemType.WATCH.equals(item)) {
-		base64Data = getData("/mobileapp/images/watch.png");
+	    } else if (LogoItemType.YOUTUBE.equals(item)) {
+		base64Data = getData("/mobileapp/images/youtube.png");
 		logoItem.setBase64Data(base64Data);
 		logoItem.setContentType("image/png");
-		logoItem.setFilename("watch.png");
+		logoItem.setFilename("youtube.png");
 	    }
 
 	    logoItem.setLogoItemType(item);
@@ -156,8 +155,7 @@ public class OrganisationDaoImpl extends BaseSessionFactory implements
     protected String getData(String path) {
 	String base64Data = null;
 	try {
-	    InputStream is = OrganisationDaoImpl.class
-		    .getResourceAsStream(path);
+	    InputStream is = OrganisationDaoImpl.class.getResourceAsStream(path);
 	    BufferedInputStream bis = new BufferedInputStream(is);
 	    ByteArrayOutputStream output = new ByteArrayOutputStream();
 	    byte[] buffer = new byte[65536];
@@ -175,9 +173,8 @@ public class OrganisationDaoImpl extends BaseSessionFactory implements
     }
 
     @Override
-    public void load(String orgName, String hostname, String subdomain,
-	    String addressLine1, String addressLine2, String country,
-	    String postcode, String orgIdentifier) {
+    public void load(String orgName, String hostname, String subdomain, String addressLine1, String addressLine2,
+	    String country, String postcode, String orgIdentifier) {
 
 	if (getCurrentSession().get(Organisation.class, 1L) == null) {
 	    Organisation org = new Organisation();
@@ -200,8 +197,7 @@ public class OrganisationDaoImpl extends BaseSessionFactory implements
 
     @Override
     public Organisation getOrganisation(long orgId) {
-	return (Organisation) getCurrentSession()
-		.get(Organisation.class, orgId);
+	return (Organisation) getCurrentSession().get(Organisation.class, orgId);
     }
 
     @SuppressWarnings("unchecked")
@@ -211,11 +207,9 @@ public class OrganisationDaoImpl extends BaseSessionFactory implements
     }
 
     @Override
-    public Organisation getOrganisationFromClientSessionId(
-	    String clientSessionId) {
+    public Organisation getOrganisationFromClientSessionId(String clientSessionId) {
 	Query query = getCurrentSession()
-		.createQuery(
-			"select o.organisation from User o where o.clientSessionId = :clientSessionId");
+		.createQuery("select o.organisation from User o where o.clientSessionId = :clientSessionId");
 	query.setParameter("clientSessionId", clientSessionId);
 	Organisation org = (Organisation) query.uniqueResult();
 	org.getLogoItems().size();
@@ -224,15 +218,12 @@ public class OrganisationDaoImpl extends BaseSessionFactory implements
 
     @Override
     public long getOrganisationIdFromClientSessionId(String clientSessionId) {
-	return ((Organisation) getOrganisationFromClientSessionId(clientSessionId))
-		.getId();
+	return ((Organisation) getOrganisationFromClientSessionId(clientSessionId)).getId();
     }
 
     @Override
     public Organisation enableOrgAccount(String orgIdentifier) {
-	Query query = getCurrentSession()
-		.createQuery(
-			"from Organisation org where org.orgIdentifier = :orgIdentifier");
+	Query query = getCurrentSession().createQuery("from Organisation org where org.orgIdentifier = :orgIdentifier");
 	query.setParameter("orgIdentifier", orgIdentifier);
 	Organisation org = (Organisation) query.uniqueResult();
 	if (org == null) {
@@ -244,9 +235,7 @@ public class OrganisationDaoImpl extends BaseSessionFactory implements
 
     @Override
     public void setAppLunchDate(String orgIdentifier) {
-	Query query = getCurrentSession()
-		.createQuery(
-			"from Organisation org where org.orgIdentifier = :orgIdentifier");
+	Query query = getCurrentSession().createQuery("from Organisation org where org.orgIdentifier = :orgIdentifier");
 	query.setParameter("orgIdentifier", orgIdentifier);
 	Organisation org = (Organisation) query.uniqueResult();
 	if (org == null) {
@@ -257,9 +246,7 @@ public class OrganisationDaoImpl extends BaseSessionFactory implements
 
     @Override
     public Organisation getOrganisationFromOrgIdentifier(String orgIdentifier) {
-	Query query = getCurrentSession()
-		.createQuery(
-			"from Organisation org where org.orgIdentifier = :orgIdentifier");
+	Query query = getCurrentSession().createQuery("from Organisation org where org.orgIdentifier = :orgIdentifier");
 	query.setParameter("orgIdentifier", orgIdentifier);
 	return (Organisation) query.uniqueResult();
     }
@@ -271,8 +258,7 @@ public class OrganisationDaoImpl extends BaseSessionFactory implements
     }
 
     @Override
-    public void updateChurchAppLabel(String clientSessionId,
-	    ChurchAppTopicEnum churchAppTopicEnum, String value) {
+    public void updateChurchAppLabel(String clientSessionId, ChurchAppTopicEnum churchAppTopicEnum, String value) {
 	Organisation org = getOrganisationFromClientSessionId(clientSessionId);
 
 	if (ChurchAppTopicEnum.ABOUT_US.equals(churchAppTopicEnum)) {
@@ -292,8 +278,7 @@ public class OrganisationDaoImpl extends BaseSessionFactory implements
 	} else if (ChurchAppTopicEnum.LISTEN.equals(churchAppTopicEnum)) {
 	    org.setListenChurchAppTopic(value);
 
-	} else if (ChurchAppTopicEnum.NOTICES_AND_EVENTS
-		.equals(churchAppTopicEnum)) {
+	} else if (ChurchAppTopicEnum.NOTICES_AND_EVENTS.equals(churchAppTopicEnum)) {
 	    org.setNoticesAndEventsChurchAppTopic(value);
 
 	} else if (ChurchAppTopicEnum.PASTORS_DESK.equals(churchAppTopicEnum)) {
@@ -302,15 +287,14 @@ public class OrganisationDaoImpl extends BaseSessionFactory implements
 	} else if (ChurchAppTopicEnum.TWITTER.equals(churchAppTopicEnum)) {
 	    org.setTwitterChurchAppTopic(value);
 
-	} else if (ChurchAppTopicEnum.WATCH.equals(churchAppTopicEnum)) {
-	    org.setWatchChurchAppTopic(value);
+	} else if (ChurchAppTopicEnum.YOUTUBE.equals(churchAppTopicEnum)) {
+	    org.setYoutubeChurchAppTopic(value);
 
 	}
     }
 
     @Override
-    public String getNewsTypeChurchAppLabel(
-	    ChurchAppTopicEnum churchAppTopicEnum) {
+    public String getNewsTypeChurchAppLabel(ChurchAppTopicEnum churchAppTopicEnum) {
 	Organisation org = getOrganisation(1L);
 
 	if (ChurchAppTopicEnum.NOTICES_AND_EVENTS.equals(churchAppTopicEnum)) {
@@ -321,8 +305,8 @@ public class OrganisationDaoImpl extends BaseSessionFactory implements
     }
 
     @Override
-    public void updateChurchAppLabelFlagShow(String clientSessionId,
-	    ChurchAppTopicEnum churchAppTopicEnum, boolean value) {
+    public void updateChurchAppLabelFlagShow(String clientSessionId, ChurchAppTopicEnum churchAppTopicEnum,
+	    boolean value) {
 	Organisation org = getOrganisationFromClientSessionId(clientSessionId);
 
 	if (ChurchAppTopicEnum.ABOUT_US.equals(churchAppTopicEnum)) {
@@ -342,8 +326,7 @@ public class OrganisationDaoImpl extends BaseSessionFactory implements
 	} else if (ChurchAppTopicEnum.LISTEN.equals(churchAppTopicEnum)) {
 	    org.setListenChurchAppTopicFlag(value);
 
-	} else if (ChurchAppTopicEnum.NOTICES_AND_EVENTS
-		.equals(churchAppTopicEnum)) {
+	} else if (ChurchAppTopicEnum.NOTICES_AND_EVENTS.equals(churchAppTopicEnum)) {
 	    org.setMessagesChurchAppTopicFlag(value);
 
 	} else if (ChurchAppTopicEnum.PASTORS_DESK.equals(churchAppTopicEnum)) {
@@ -352,8 +335,8 @@ public class OrganisationDaoImpl extends BaseSessionFactory implements
 	} else if (ChurchAppTopicEnum.TWITTER.equals(churchAppTopicEnum)) {
 	    org.setTwitterChurchAppTopicFlag(value);
 
-	} else if (ChurchAppTopicEnum.WATCH.equals(churchAppTopicEnum)) {
-	    org.setWatchChurchAppTopicFlag(value);
+	} else if (ChurchAppTopicEnum.YOUTUBE.equals(churchAppTopicEnum)) {
+	    org.setYoutubeChurchAppTopicFlag(value);
 
 	} else if (ChurchAppTopicEnum.PRAYER_REQUEST.equals(churchAppTopicEnum)) {
 	    org.setPrayerRequestChurchAppTopicFlag(value);
@@ -363,11 +346,9 @@ public class OrganisationDaoImpl extends BaseSessionFactory implements
     }
 
     @Override
-    public void updateAboutUseDetails(String clientSessionId, String orgName,
-	    String adminEmailAddress, String prayerRequestEmailAddress,
-	    String aboutUsMessage, String aboutPastorMessage,
-	    String serviceTimes, String adressLine1, String adressLine2,
-	    String postcode, Country country, String websiteUrl) {
+    public void updateAboutUseDetails(String clientSessionId, String orgName, String adminEmailAddress,
+	    String prayerRequestEmailAddress, String aboutUsMessage, String aboutPastorMessage, String serviceTimes,
+	    String adressLine1, String adressLine2, String postcode, Country country, String websiteUrl) {
 	Organisation org = getOrganisationFromClientSessionId(clientSessionId);
 	org.setAdminEmail(adminEmailAddress);
 	org.setPrayerRequestEmail(prayerRequestEmailAddress);

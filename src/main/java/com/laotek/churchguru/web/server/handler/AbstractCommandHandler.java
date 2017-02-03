@@ -19,7 +19,7 @@ import com.laotek.churchguru.model.LogoItem;
 import com.laotek.churchguru.model.NoticeAndEvent;
 import com.laotek.churchguru.model.Organisation;
 import com.laotek.churchguru.model.User;
-import com.laotek.churchguru.model.VideoMessage;
+import com.laotek.churchguru.model.YoutubeVideo;
 import com.laotek.churchguru.model.shared.enums.LogoItemType;
 import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.NoticeOrEventDto;
 import com.laotek.churchguru.web.client.activity.donation.DonationDto;
@@ -33,7 +33,7 @@ import com.laotek.churchguru.web.shared.listening.AudioMessageCategoryDto;
 import com.laotek.churchguru.web.shared.listening.AudioMessageDto;
 import com.laotek.churchguru.web.shared.listening.AudioMessagePictureDto;
 import com.laotek.churchguru.web.shared.listening.AudioMessageSpeakerDto;
-import com.laotek.churchguru.web.shared.watching.VideoMessageDto;
+import com.laotek.churchguru.web.shared.youtube.YoutubeVideoDto;
 
 public abstract class AbstractCommandHandler {
 
@@ -164,8 +164,8 @@ public abstract class AbstractCommandHandler {
 	return dto;
     }
 
-    protected VideoMessageDto mapWatchingMessages(VideoMessage message) {
-	VideoMessageDto dto = new VideoMessageDto();
+    protected YoutubeVideoDto mapYoutubeVideos(YoutubeVideo message) {
+	YoutubeVideoDto dto = new YoutubeVideoDto();
 	dto.setTitle(message.getTitle());
 	dto.setIdentifier(message.getIdentifier());
 	dto.setLocation(message.getLocation());
@@ -221,7 +221,7 @@ public abstract class AbstractCommandHandler {
 	dto.setNoticesAndEventsChurchAppTopic(org.getNoticesAndEventsChurchAppTopic());
 	dto.setPastorDeskChurchAppTopic(org.getPastorDeskChurchAppTopic());
 	dto.setTwitterChurchAppTopic(org.getTwitterChurchAppTopic());
-	dto.setWatchChurchAppTopic(org.getWatchChurchAppTopic());
+	dto.setYoutubeChurchAppTopic(org.getYoutubeChurchAppTopic());
 	dto.setAboutUsChurchAppTopic(org.getAboutUsChurchAppTopic());
 	dto.setPrayerRequestChurchAppTopic(org.getPrayerRequestChurchAppTopic());
 
@@ -231,7 +231,7 @@ public abstract class AbstractCommandHandler {
 	dto.setMessagesChurchAppTopicFlag(org.isMessagesChurchAppTopicFlag());
 	dto.setPastorDeskChurchAppTopicFlag(org.isPastorDeskChurchAppTopicFlag());
 	dto.setTwitterChurchAppTopicFlag(org.isTwitterChurchAppTopicFlag());
-	dto.setWatchChurchAppTopicFlag(org.isWatchChurchAppTopicFlag());
+	dto.setYoutubeChurchAppTopicFlag(org.isYoutubeChurchAppTopicFlag());
 	dto.setAboutUsChurchAppTopicFlag(org.isAboutUsChurchAppTopicFlag());
 	dto.setPrayerRequestChurchAppTopicFlag(org.isPrayerRequestChurchAppTopicFlag());
 

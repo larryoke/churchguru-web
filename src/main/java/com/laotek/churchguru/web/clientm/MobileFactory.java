@@ -12,8 +12,8 @@ import com.laotek.churchguru.web.clientm.activity.pastorsdesk.PastorDeskView;
 import com.laotek.churchguru.web.clientm.activity.prayerrequest.PrayerRequestView;
 import com.laotek.churchguru.web.clientm.activity.twitter.TwitterView;
 import com.laotek.churchguru.web.clientm.activity.underconstruction.UnderConstructionView;
-import com.laotek.churchguru.web.clientm.activity.watch.WatchView;
 import com.laotek.churchguru.web.clientm.activity.website.WebsiteUrlView;
+import com.laotek.churchguru.web.clientm.activity.youtube.YoutubeView;
 
 public interface MobileFactory {
     EventBus getEventBus();
@@ -42,6 +42,6 @@ public interface MobileFactory {
 
     FacebookView getFacebookView();
 
-    WatchView getWatchView();
+    YoutubeView getYoutubeView();
 
 }

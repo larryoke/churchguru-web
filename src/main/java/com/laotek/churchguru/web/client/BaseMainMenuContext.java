@@ -22,9 +22,9 @@ import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.EnumNo
 import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.NoticeAndEventAction;
 import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.NoticeAndEventActionResult;
 import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.PostNoticeOrEventChurchAppPlace;
-import com.laotek.churchguru.web.client.activity.media.watching.CreateNewWatchingMessageAction;
-import com.laotek.churchguru.web.client.activity.media.watching.CreateNewWatchingMessageResult;
-import com.laotek.churchguru.web.client.activity.media.watching.VideoMessageNewPlace;
+import com.laotek.churchguru.web.client.activity.media.youtube.CreateNewYoutubeVideoAction;
+import com.laotek.churchguru.web.client.activity.media.youtube.CreateNewYoutubeVideoResult;
+import com.laotek.churchguru.web.client.activity.media.youtube.YoutubeVideoNewPlace;
 import com.laotek.churchguru.web.client.activity.website.audio.AudioMessageNewPlace;
 
 public abstract class BaseMainMenuContext {
@@ -187,12 +187,12 @@ public abstract class BaseMainMenuContext {
 	});
     }
 
-    protected void createNewWatchingMessageLink(Image image, FlexTable panel, UserRoleName minimumUserRoleName,
+    protected void createNewYoutubeEmbedLink(Image image, FlexTable panel, UserRoleName minimumUserRoleName,
 	    UserRoleName currentUserRoleName) {
 	int row = panel.getRowCount();
 	image.setWidth("30px");
 	panel.setWidget(row, 0, image);
-	Anchor link = new Anchor("Post new video message");
+	Anchor link = new Anchor("Post new YouTube video");
 	panel.setWidget(row, 1, link);
 	panel.getCellFormatter().setHeight(row, 0, "30px");
 	panel.getCellFormatter().setWidth(row, 0, "30px");
@@ -202,21 +202,21 @@ public abstract class BaseMainMenuContext {
 	link.addClickHandler(new ClickHandler() {
 	    @Override
 	    public void onClick(ClickEvent event) {
-		String subject = Window.prompt("Please provide the title of the new video message to be uploaded", "");
+		String subject = Window.prompt("Please provide the title of the new youtube video to be embedded", "");
 		if (subject != null && !subject.trim().equals("")) {
-		    CreateNewWatchingMessageAction action = new CreateNewWatchingMessageAction(subject);
+		    CreateNewYoutubeVideoAction action = new CreateNewYoutubeVideoAction(subject);
 		    UserContext.getInstance().decorateClientSessionId(action);
 		    UserContext.getInstance().getDispatchClient().execute(action,
-			    new AsyncCallback<CreateNewWatchingMessageResult>() {
+			    new AsyncCallback<CreateNewYoutubeVideoResult>() {
 				@Override
 				public void onFailure(Throwable throwable) {
 				    Window.alert("A server error occured when attempting to create a new message.");
 				}
 
 				@Override
-				public void onSuccess(CreateNewWatchingMessageResult result) {
+				public void onSuccess(CreateNewYoutubeVideoResult result) {
 				    ApplicationContext.getInstance().getPlaceController()
-					    .goTo(new VideoMessageNewPlace(result.getNewMessageID()));
+					    .goTo(new YoutubeVideoNewPlace(result.getNewMessageID()));
 				}
 			    });
 		}

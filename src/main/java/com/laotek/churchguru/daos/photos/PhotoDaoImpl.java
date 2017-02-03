@@ -20,8 +20,7 @@ import com.laotek.churchguru.model.shared.enums.LogoItemType;
 public class PhotoDaoImpl extends BaseSessionFactory implements PhotoDao {
 
     @Override
-    public long saveMemberPhoto(String base64Data, String filename,
-	    String contentType) {
+    public long saveMemberPhoto(String base64Data, String filename, String contentType) {
 	MemberPhoto memberPhoto = new MemberPhoto();
 	memberPhoto.setContentType(contentType);
 	memberPhoto.setBase64Data(base64Data);
@@ -33,14 +32,12 @@ public class PhotoDaoImpl extends BaseSessionFactory implements PhotoDao {
 
     @Override
     public MemberPhoto getMemberPhoto(long id) {
-	MemberPhoto memberPhoto = (MemberPhoto) getCurrentSession().get(
-		MemberPhoto.class, id);
+	MemberPhoto memberPhoto = (MemberPhoto) getCurrentSession().get(MemberPhoto.class, id);
 	return memberPhoto;
     }
 
     @Override
-    public long saveGalleryItem(String base64Data, String filename,
-	    String contentType) {
+    public long saveGalleryItem(String base64Data, String filename, String contentType) {
 	GalleryItem item = new GalleryItem();
 	item.setContentType(contentType);
 	item.setBase64Data(base64Data);
@@ -52,17 +49,14 @@ public class PhotoDaoImpl extends BaseSessionFactory implements PhotoDao {
 
     @Override
     public GalleryItem getGalleryItem(long id) {
-	GalleryItem galleryItem = (GalleryItem) getCurrentSession().get(
-		GalleryItem.class, id);
+	GalleryItem galleryItem = (GalleryItem) getCurrentSession().get(GalleryItem.class, id);
 	return galleryItem;
     }
 
     @Override
-    public void saveOrganisationLogo(String clientSessionId, String base64Data,
-	    String filename, String contentType) {
+    public void saveOrganisationLogo(String clientSessionId, String base64Data, String filename, String contentType) {
 	LogoItemType logoItemType = LogoItemType.CHURCH_LOGO;
-	saveImage(clientSessionId, base64Data, filename, contentType,
-		logoItemType);
+	saveImage(clientSessionId, base64Data, filename, contentType, logoItemType);
     }
 
     // @Override
@@ -122,7 +116,7 @@ public class PhotoDaoImpl extends BaseSessionFactory implements PhotoDao {
     // }
     //
     // @Override
-    // public void saveOrganisationWatchPhoto(String clientSessionId,
+    // public void saveOrganisation_atchPhoto(String clientSessionId,
     // String base64Data, String filename, String contentType) {
     // LogoItemType logoItemType = LogoItemType.WATCH;
     // saveImage(clientSessionId, base64Data, filename, contentType,
@@ -153,11 +147,10 @@ public class PhotoDaoImpl extends BaseSessionFactory implements PhotoDao {
     // logoItemType);
     // }
 
-    private void saveImage(String clientSessionId, String base64Data,
-	    String filename, String contentType, LogoItemType logoItemType) {
+    private void saveImage(String clientSessionId, String base64Data, String filename, String contentType,
+	    LogoItemType logoItemType) {
 	Query query = getCurrentSession()
-		.createQuery(
-			"select o.organisation from User o where o.clientSessionId = :clientSessionId");
+		.createQuery("select o.organisation from User o where o.clientSessionId = :clientSessionId");
 	query.setParameter("clientSessionId", clientSessionId);
 	Organisation org = (Organisation) query.uniqueResult();
 
@@ -188,8 +181,7 @@ public class PhotoDaoImpl extends BaseSessionFactory implements PhotoDao {
     @Override
     public LogoItem getLogoItem(String clientSessionId) {
 	Query query = getCurrentSession()
-		.createQuery(
-			"select o.organisation from User o where o.clientSessionId = :clientSessionId");
+		.createQuery("select o.organisation from User o where o.clientSessionId = :clientSessionId");
 	query.setParameter("clientSessionId", clientSessionId);
 	Organisation org = (Organisation) query.uniqueResult();
 	for (LogoItem li : org.getLogoItems()) {
@@ -202,8 +194,7 @@ public class PhotoDaoImpl extends BaseSessionFactory implements PhotoDao {
 
     @Override
     public LogoItem getPhoto(LogoItemType type) {
-	Organisation org = (Organisation) getCurrentSession().get(
-		Organisation.class, 1L);
+	Organisation org = (Organisation) getCurrentSession().get(Organisation.class, 1L);
 	for (LogoItem li : org.getLogoItems()) {
 	    if (type.equals(li.getLogoItemType())) {
 		return li;
@@ -213,9 +204,8 @@ public class PhotoDaoImpl extends BaseSessionFactory implements PhotoDao {
     }
 
     @Override
-    public void savePhoto(LogoItemType logoItemType, String clientSessionId,
-	    String base64Data, String filename, String contentType) {
-	saveImage(clientSessionId, base64Data, filename, contentType,
-		logoItemType);
+    public void savePhoto(LogoItemType logoItemType, String clientSessionId, String base64Data, String filename,
+	    String contentType) {
+	saveImage(clientSessionId, base64Data, filename, contentType, logoItemType);
     }
 }

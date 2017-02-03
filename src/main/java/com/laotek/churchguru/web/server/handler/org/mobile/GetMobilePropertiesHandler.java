@@ -3,10 +3,6 @@ package com.laotek.churchguru.web.server.handler.org.mobile;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.customware.gwt.dispatch.server.ActionHandler;
-import net.customware.gwt.dispatch.server.ExecutionContext;
-import net.customware.gwt.dispatch.shared.DispatchException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,17 +15,20 @@ import com.laotek.churchguru.web.clientm.activity.home.MobileProperties;
 import com.laotek.churchguru.web.clientm.activity.home.Topic;
 import com.laotek.churchguru.web.server.handler.AbstractCommandHandler;
 
+import net.customware.gwt.dispatch.server.ActionHandler;
+import net.customware.gwt.dispatch.server.ExecutionContext;
+import net.customware.gwt.dispatch.shared.DispatchException;
+
 @Component
 public class GetMobilePropertiesHandler extends AbstractCommandHandler
-	implements
-	ActionHandler<GetMobilePropertiesAction, GetMobilePropertiesResult> {
+	implements ActionHandler<GetMobilePropertiesAction, GetMobilePropertiesResult> {
 
     @Autowired
     private OrganisationDao organisationDao;
 
     @Override
-    public GetMobilePropertiesResult execute(GetMobilePropertiesAction action,
-	    ExecutionContext context) throws DispatchException {
+    public GetMobilePropertiesResult execute(GetMobilePropertiesAction action, ExecutionContext context)
+	    throws DispatchException {
 
 	Organisation org = organisationDao.getOrganisation(1L);
 	MobileProperties mobileProperties = new MobileProperties();
@@ -40,40 +39,32 @@ public class GetMobilePropertiesHandler extends AbstractCommandHandler
 	int index = -1;
 
 	if (org.isPastorDeskChurchAppTopicFlag())
-	    topics.add(new Topic(org.getPastorDeskChurchAppTopic(), ++index,
-		    ChurchAppTopicEnum.PASTORS_DESK));
+	    topics.add(new Topic(org.getPastorDeskChurchAppTopic(), ++index, ChurchAppTopicEnum.PASTORS_DESK));
 
 	if (org.isPrayerRequestChurchAppTopicFlag())
-	    topics.add(new Topic(org.getPrayerRequestChurchAppTopic(), ++index,
-		    ChurchAppTopicEnum.PRAYER_REQUEST));
+	    topics.add(new Topic(org.getPrayerRequestChurchAppTopic(), ++index, ChurchAppTopicEnum.PRAYER_REQUEST));
 
 	if (org.isDonationChurchAppTopicFlag())
-	    topics.add(new Topic(org.getDonationChurchAppTopic(), ++index,
-		    ChurchAppTopicEnum.DONATION));
+	    topics.add(new Topic(org.getDonationChurchAppTopic(), ++index, ChurchAppTopicEnum.DONATION));
 
 	if (org.isMessagesChurchAppTopicFlag())
-	    topics.add(new Topic(org.getNoticesAndEventsChurchAppTopic(),
-		    ++index, ChurchAppTopicEnum.NOTICES_AND_EVENTS));
+	    topics.add(
+		    new Topic(org.getNoticesAndEventsChurchAppTopic(), ++index, ChurchAppTopicEnum.NOTICES_AND_EVENTS));
 
 	if (org.isFacebookChurchAppTopicFlag())
-	    topics.add(new Topic(org.getFacebookChurchAppTopic(), ++index,
-		    ChurchAppTopicEnum.FACEBOOK));
+	    topics.add(new Topic(org.getFacebookChurchAppTopic(), ++index, ChurchAppTopicEnum.FACEBOOK));
 
 	if (org.isTwitterChurchAppTopicFlag())
-	    topics.add(new Topic(org.getTwitterChurchAppTopic(), ++index,
-		    ChurchAppTopicEnum.TWITTER));
+	    topics.add(new Topic(org.getTwitterChurchAppTopic(), ++index, ChurchAppTopicEnum.TWITTER));
 
-	if (org.isWatchChurchAppTopicFlag())
-	    topics.add(new Topic(org.getWatchChurchAppTopic(), ++index,
-		    ChurchAppTopicEnum.WATCH));
+	if (org.isYoutubeChurchAppTopicFlag())
+	    topics.add(new Topic(org.getYoutubeChurchAppTopic(), ++index, ChurchAppTopicEnum.YOUTUBE));
 
 	if (org.isListenChurchAppTopicFlag())
-	    topics.add(new Topic(org.getListenChurchAppTopic(), ++index,
-		    ChurchAppTopicEnum.LISTEN));
+	    topics.add(new Topic(org.getListenChurchAppTopic(), ++index, ChurchAppTopicEnum.LISTEN));
 
 	if (org.isAboutUsChurchAppTopicFlag())
-	    topics.add(new Topic(org.getAboutUsChurchAppTopic(), ++index,
-		    ChurchAppTopicEnum.ABOUT_US));
+	    topics.add(new Topic(org.getAboutUsChurchAppTopic(), ++index, ChurchAppTopicEnum.ABOUT_US));
 
 	mobileProperties.setTopics(topics);
 
@@ -88,8 +79,7 @@ public class GetMobilePropertiesHandler extends AbstractCommandHandler
     }
 
     @Override
-    public void rollback(GetMobilePropertiesAction action,
-	    GetMobilePropertiesResult result, ExecutionContext context)
+    public void rollback(GetMobilePropertiesAction action, GetMobilePropertiesResult result, ExecutionContext context)
 	    throws DispatchException {
     }
 

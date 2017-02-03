@@ -19,7 +19,7 @@ import com.laotek.churchguru.model.shared.enums.UserRoleName;
 import com.laotek.churchguru.web.client.activity.churchapp.general.GeneralChurchAppPlace;
 import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.GetCurrentNoticesAndEventsHistoryPlace;
 import com.laotek.churchguru.web.client.activity.home.HomePlace;
-import com.laotek.churchguru.web.client.activity.media.watching.VideoMessagesPlace;
+import com.laotek.churchguru.web.client.activity.media.youtube.YoutubeVideosPlace;
 import com.laotek.churchguru.web.client.activity.user.AllUserPlace;
 import com.laotek.churchguru.web.client.activity.user.NewUserDialog;
 import com.laotek.churchguru.web.client.activity.user.NewUserProfileDialog;
@@ -116,18 +116,16 @@ public class MainMenuContext extends BaseMainMenuContext {
 		new AudioMessagesPlace("messages"), UserRoleName.ORGANISATION_DATA_VIEW_ONLY,
 		dto.getOrganisationRole());
 
-	createLink(new Image("images/app/audio.png"), "Manage Audio Message", false, messageMediaPanel,
-		new AudioMessagesPlace("audio"), UserRoleName.ORGANISATION_DATA_VIEW_ONLY,
-		dto.getOrganisationRole());
+	createLink(new Image("images/app/download.png"), "Manage Audio Message", false, messageMediaPanel,
+		new AudioMessagesPlace("audio"), UserRoleName.ORGANISATION_DATA_VIEW_ONLY, dto.getOrganisationRole());
 
-	createNewListeningMessageLink(new Image("images/app/audio.png"), messageMediaPanel,
+	createNewListeningMessageLink(new Image("images/app/download.png"), messageMediaPanel,
 		UserRoleName.ORGANISATION_DATA_VIEW_ONLY, dto.getOrganisationRole());
 
-	createLink(new Image("images/app/watch_live.png"), "Manage Video Messages", false, messageMediaPanel,
-		new VideoMessagesPlace("video"), UserRoleName.ORGANISATION_DATA_VIEW_ONLY,
-		dto.getOrganisationRole());
+	createLink(new Image("images/app/youtube.png"), "Manage YouTube Videos", false, messageMediaPanel,
+		new YoutubeVideosPlace("video"), UserRoleName.ORGANISATION_DATA_VIEW_ONLY, dto.getOrganisationRole());
 
-	createNewWatchingMessageLink(new Image("images/app/watch_live.png"), messageMediaPanel,
+	createNewYoutubeEmbedLink(new Image("images/app/youtube.png"), messageMediaPanel,
 		UserRoleName.ORGANISATION_DATA_VIEW_ONLY, dto.getOrganisationRole());
     }
 

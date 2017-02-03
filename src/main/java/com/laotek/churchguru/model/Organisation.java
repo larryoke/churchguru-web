@@ -86,10 +86,10 @@ public class Organisation {
     private boolean listenChurchAppTopicFlag = true;
 
     @Column(nullable = false, unique = false)
-    private String watchChurchAppTopic = "Watch";
+    private String youtubeChurchAppTopic = "YouTube";
 
     @Column(nullable = false, unique = false)
-    private boolean watchChurchAppTopicFlag = true;
+    private boolean youtubeChurchAppTopicFlag = true;
 
     @Column(nullable = false, unique = false)
     private boolean prayerRequestChurchAppTopicFlag = true;
@@ -271,8 +271,7 @@ public class Organisation {
 	return organisationAccountStatus;
     }
 
-    public void setOrganisationAccountStatus(
-	    OrganisationAccountStatus organisationAccountStatus) {
+    public void setOrganisationAccountStatus(OrganisationAccountStatus organisationAccountStatus) {
 	this.organisationAccountStatus = organisationAccountStatus;
     }
 
@@ -381,12 +380,12 @@ public class Organisation {
 	this.listenChurchAppTopic = listenChurchAppTopic;
     }
 
-    public String getWatchChurchAppTopic() {
-	return watchChurchAppTopic;
+    public String getYoutubeChurchAppTopic() {
+	return youtubeChurchAppTopic;
     }
 
-    public void setWatchChurchAppTopic(String watchChurchAppTopic) {
-	this.watchChurchAppTopic = watchChurchAppTopic;
+    public void setYoutubeChurchAppTopic(String youtubeChurchAppTopic) {
+	this.youtubeChurchAppTopic = youtubeChurchAppTopic;
     }
 
     public String getAboutUsChurchAppTopic() {
@@ -401,8 +400,7 @@ public class Organisation {
 	return pastorDeskMessageLastUpdatedDate;
     }
 
-    public void setPastorDeskMessageLastUpdatedDate(
-	    Date pastorDeskMessageLastUpdatedDate) {
+    public void setPastorDeskMessageLastUpdatedDate(Date pastorDeskMessageLastUpdatedDate) {
 	this.pastorDeskMessageLastUpdatedDate = pastorDeskMessageLastUpdatedDate;
     }
 
@@ -410,8 +408,7 @@ public class Organisation {
 	return pastorDeskChurchAppTopicFlag;
     }
 
-    public void setPastorDeskChurchAppTopicFlag(
-	    boolean pastorDeskChurchAppTopicFlag) {
+    public void setPastorDeskChurchAppTopicFlag(boolean pastorDeskChurchAppTopicFlag) {
 	this.pastorDeskChurchAppTopicFlag = pastorDeskChurchAppTopicFlag;
     }
 
@@ -455,12 +452,12 @@ public class Organisation {
 	this.listenChurchAppTopicFlag = listenChurchAppTopicFlag;
     }
 
-    public boolean isWatchChurchAppTopicFlag() {
-	return watchChurchAppTopicFlag;
+    public boolean isYoutubeChurchAppTopicFlag() {
+	return youtubeChurchAppTopicFlag;
     }
 
-    public void setWatchChurchAppTopicFlag(boolean watchChurchAppTopicFlag) {
-	this.watchChurchAppTopicFlag = watchChurchAppTopicFlag;
+    public void setYoutubeChurchAppTopicFlag(boolean youtubeChurchAppTopicFlag) {
+	this.youtubeChurchAppTopicFlag = youtubeChurchAppTopicFlag;
     }
 
     public boolean isAboutUsChurchAppTopicFlag() {
@@ -475,8 +472,7 @@ public class Organisation {
 	return prayerRequestChurchAppTopicFlag;
     }
 
-    public void setPrayerRequestChurchAppTopicFlag(
-	    boolean prayerRequestChurchAppTopicFlag) {
+    public void setPrayerRequestChurchAppTopicFlag(boolean prayerRequestChurchAppTopicFlag) {
 	this.prayerRequestChurchAppTopicFlag = prayerRequestChurchAppTopicFlag;
     }
 
@@ -484,8 +480,7 @@ public class Organisation {
 	return prayerRequestChurchAppTopic;
     }
 
-    public void setPrayerRequestChurchAppTopic(
-	    String prayerRequestChurchAppTopic) {
+    public void setPrayerRequestChurchAppTopic(String prayerRequestChurchAppTopic) {
 	this.prayerRequestChurchAppTopic = prayerRequestChurchAppTopic;
     }
 

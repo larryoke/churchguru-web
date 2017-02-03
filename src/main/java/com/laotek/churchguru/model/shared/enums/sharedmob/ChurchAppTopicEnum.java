@@ -17,7 +17,7 @@ public enum ChurchAppTopicEnum implements Serializable, IsSerializable {
 
     FACEBOOK("facebook"), LISTEN("listen"),
 
-    WATCH("watch"), ABOUT_US("aboutUs");
+    YOUTUBE("youtube"), ABOUT_US("aboutUs");
 
     private String desc;
 

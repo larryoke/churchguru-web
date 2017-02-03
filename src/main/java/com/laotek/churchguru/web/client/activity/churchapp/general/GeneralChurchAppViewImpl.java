@@ -108,9 +108,9 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
 	    "/uploadedphotos/photos/org/listen", "servlet.uploadOrganisationChurchAppListenPic",
 	    ChurchAppTopicEnum.LISTEN);
 
-    private GeneralChurchAppTopic churchAppWatch = new GeneralChurchAppTopic("Church Mobile App Watch",
-	    "/uploadedphotos/photos/org/watch", "servlet.uploadOrganisationChurchAppWatchPic",
-	    ChurchAppTopicEnum.WATCH);
+    private GeneralChurchAppTopic churchAppYoutube = new GeneralChurchAppTopic("Church Mobile App Youtube",
+	    "/uploadedphotos/photos/org/youtube", "servlet.uploadOrganisationChurchAppYoutubePic",
+	    ChurchAppTopicEnum.YOUTUBE);
 
     private GeneralChurchAppTopic churchAppAboutUs = new GeneralChurchAppTopic("Church Mobile App About Us",
 	    "/uploadedphotos/photos/org/aboutus", "servlet.uploadOrganisationAboutUsPic", ChurchAppTopicEnum.ABOUT_US);
@@ -213,8 +213,9 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
 	tabPanel.add(initListenTopic(churchAppListen, dto.getListenChurchAppTopic(), dto.isListenChurchAppTopicFlag()),
 		"Listen");
 
-	tabPanel.add(initWatchTopic(churchAppWatch, dto.getWatchChurchAppTopic(), dto.isWatchChurchAppTopicFlag()),
-		"Watch");
+	tabPanel.add(
+		initYoutubeTopic(churchAppYoutube, dto.getYoutubeChurchAppTopic(), dto.isYoutubeChurchAppTopicFlag()),
+		"Youtube");
 
 	tabPanel.add(initAboutUsTopic(churchAppAboutUs, dto.getAboutUsChurchAppTopic(),
 		dto.isAboutUsChurchAppTopicFlag(), dto.getOrgName(), dto.getAdminEmail(), dto.getPrayerRequestEmail(),
@@ -392,7 +393,7 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
 	return new RoundedCornerPanel(topic.getWebsiteLabel(), panel);
     }
 
-    private RoundedCornerPanel initWatchTopic(final GeneralChurchAppTopic topic, final String churchAppLabel,
+    private RoundedCornerPanel initYoutubeTopic(final GeneralChurchAppTopic topic, final String churchAppLabel,
 	    boolean isShowLabel) {
 	FlexTable panel = new FlexTable();
 	panel.setWidth("100%");

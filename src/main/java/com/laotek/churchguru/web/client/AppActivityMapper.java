@@ -24,10 +24,10 @@ import com.laotek.churchguru.web.client.activity.donation.DonationSearchActivity
 import com.laotek.churchguru.web.client.activity.donation.DonationSearchPlace;
 import com.laotek.churchguru.web.client.activity.home.HomeActivity;
 import com.laotek.churchguru.web.client.activity.home.HomePlace;
-import com.laotek.churchguru.web.client.activity.media.watching.VideoMessageNewActivity;
-import com.laotek.churchguru.web.client.activity.media.watching.VideoMessageNewPlace;
-import com.laotek.churchguru.web.client.activity.media.watching.VideoMessagesActivity;
-import com.laotek.churchguru.web.client.activity.media.watching.VideoMessagesPlace;
+import com.laotek.churchguru.web.client.activity.media.youtube.YoutubeVideoNewActivity;
+import com.laotek.churchguru.web.client.activity.media.youtube.YoutubeVideoNewPlace;
+import com.laotek.churchguru.web.client.activity.media.youtube.YoutubeVideosActivity;
+import com.laotek.churchguru.web.client.activity.media.youtube.YoutubeVideosPlace;
 import com.laotek.churchguru.web.client.activity.password.PasswordResetActivity;
 import com.laotek.churchguru.web.client.activity.password.PasswordResetPlace;
 import com.laotek.churchguru.web.client.activity.user.AllUserActivity;
@@ -140,11 +140,11 @@ public class AppActivityMapper implements ActivityMapper {
 	else if (place instanceof AudioMessageGalleryNewItemPlace)
 	    return new AudioMessageGalleryNewItemActivity((AudioMessageGalleryNewItemPlace) place, clientFactory);
 
-	else if (place instanceof VideoMessageNewPlace)
-	    return new VideoMessageNewActivity((VideoMessageNewPlace) place, clientFactory);
+	else if (place instanceof YoutubeVideoNewPlace)
+	    return new YoutubeVideoNewActivity((YoutubeVideoNewPlace) place, clientFactory);
 
-	else if (place instanceof VideoMessagesPlace)
-	    return new VideoMessagesActivity((VideoMessagesPlace) place, clientFactory);
+	else if (place instanceof YoutubeVideosPlace)
+	    return new YoutubeVideosActivity((YoutubeVideosPlace) place, clientFactory);
 
 	else if (place instanceof WebsitePlace)
 	    return new WebsiteActivity((WebsitePlace) place, clientFactory);

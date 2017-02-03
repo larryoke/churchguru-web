@@ -23,10 +23,10 @@ import com.laotek.churchguru.web.clientm.activity.twitter.TwitterActivity;
 import com.laotek.churchguru.web.clientm.activity.twitter.TwitterPlace;
 import com.laotek.churchguru.web.clientm.activity.underconstruction.UnderConstructionActivity;
 import com.laotek.churchguru.web.clientm.activity.underconstruction.UnderConstructionPlace;
-import com.laotek.churchguru.web.clientm.activity.watch.WatchActivity;
-import com.laotek.churchguru.web.clientm.activity.watch.WatchPlace;
 import com.laotek.churchguru.web.clientm.activity.website.WebsiteUrlActivity;
 import com.laotek.churchguru.web.clientm.activity.website.WebsiteUrlPlace;
+import com.laotek.churchguru.web.clientm.activity.youtube.YoutubeActivity;
+import com.laotek.churchguru.web.clientm.activity.youtube.YoutubePlace;
 
 public class MobileActivityMapper implements ActivityMapper {
     private MobileFactory clientFactory;
@@ -81,8 +81,8 @@ public class MobileActivityMapper implements ActivityMapper {
 			return new PrayerRequestActivity(clientFactory);
 		}
 
-		if (place instanceof WatchPlace) {
-			return new WatchActivity(clientFactory);
+		if (place instanceof YoutubePlace) {
+			return new YoutubeActivity(clientFactory);
 		}
 
 		if (place instanceof UnderConstructionPlace) {

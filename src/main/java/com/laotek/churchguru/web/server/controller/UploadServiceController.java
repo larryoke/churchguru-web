@@ -367,12 +367,12 @@ public class UploadServiceController {
 	getImage(response, galleryItem, width);
     }
 
-    @RequestMapping(value = "/org/watch", method = RequestMethod.GET)
-    public void getWatchPhoto(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    @RequestMapping(value = "/org/youtube", method = RequestMethod.GET)
+    public void getYoutubePhoto(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 	int width = getValue(400, request, "width");
 
-	LogoItem galleryItem = photoDao.getPhoto(LogoItemType.WATCH);
+	LogoItem galleryItem = photoDao.getPhoto(LogoItemType.YOUTUBE);
 
 	getImage(response, galleryItem, width);
     }

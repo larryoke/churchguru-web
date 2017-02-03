@@ -14,11 +14,10 @@ public interface PhotoDao {
 
     GalleryItem getGalleryItem(long id);
 
-    void saveOrganisationLogo(String clientSessionId, String base64Data,
-	    String filename, String contentType);
+    void saveOrganisationLogo(String clientSessionId, String base64Data, String filename, String contentType);
 
-    void savePhoto(LogoItemType logoItemType, String clientSessionId,
-	    String base64Data, String filename, String contentType);
+    void savePhoto(LogoItemType logoItemType, String clientSessionId, String base64Data, String filename,
+	    String contentType);
 
     //
     // void saveChurchAppProfilePicture(String clientSessionId, String
@@ -44,7 +43,7 @@ public interface PhotoDao {
     // base64Data,
     // String filename, String contentType);
     //
-    // void saveOrganisationWatchPhoto(String clientSessionId, String
+    // void saveOrganisation_atchPhoto(String clientSessionId, String
     // base64Data,
     // String filename, String contentType);
 

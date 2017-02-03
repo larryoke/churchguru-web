@@ -12,13 +12,13 @@ import com.laotek.churchguru.web.clientm.activity.pastorsdesk.PastorDeskPlace;
 import com.laotek.churchguru.web.clientm.activity.prayerrequest.PrayerRequestPlace;
 import com.laotek.churchguru.web.clientm.activity.twitter.TwitterPlace;
 import com.laotek.churchguru.web.clientm.activity.underconstruction.UnderConstructionPlace;
-import com.laotek.churchguru.web.clientm.activity.watch.WatchPlace;
 import com.laotek.churchguru.web.clientm.activity.website.WebsiteUrlPlace;
+import com.laotek.churchguru.web.clientm.activity.youtube.YoutubePlace;
 
 @WithTokenizers({ AboutUsPlace.Tokenizer.class,
 	MobileHomePlace.Tokenizer.class, GivePlace.Tokenizer.class,
 	FacebookPlace.Tokenizer.class, TwitterPlace.Tokenizer.class,
-	WatchPlace.Tokenizer.class, PastorDeskPlace.Tokenizer.class,
+	YoutubePlace.Tokenizer.class, PastorDeskPlace.Tokenizer.class,
 	SingleNoticeAndEventPlace.Tokenizer.class,
 	WebsiteUrlPlace.Tokenizer.class,
 	UnderConstructionPlace.Tokenizer.class,

@@ -9,8 +9,8 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.laotek.churchguru.web.client.ApplicationContext;
 import com.laotek.churchguru.web.client.ClientFactory;
 import com.laotek.churchguru.web.client.UserContext;
-import com.laotek.churchguru.web.client.activity.media.watching.CreateNewWatchingMessageAction;
-import com.laotek.churchguru.web.client.activity.media.watching.CreateNewWatchingMessageResult;
+import com.laotek.churchguru.web.client.activity.media.youtube.CreateNewYoutubeVideoAction;
+import com.laotek.churchguru.web.client.activity.media.youtube.CreateNewYoutubeVideoResult;
 import com.laotek.churchguru.web.client.activity.website.audio.AudioMessageNewPlace;
 
 public class WebsiteActivity extends AbstractActivity implements WebsiteView.Presenter {
@@ -55,17 +55,17 @@ public class WebsiteActivity extends AbstractActivity implements WebsiteView.Pre
     @Override
     public void createMessage(String title) {
 	// This call is also used in ListeningMessagesActivity
-	CreateNewWatchingMessageAction action = new CreateNewWatchingMessageAction(title);
+	CreateNewYoutubeVideoAction action = new CreateNewYoutubeVideoAction(title);
 	UserContext.getInstance().decorateClientSessionId(action);
 	UserContext.getInstance().getDispatchClient().execute(action,
-		new AsyncCallback<CreateNewWatchingMessageResult>() {
+		new AsyncCallback<CreateNewYoutubeVideoResult>() {
 		    @Override
 		    public void onFailure(Throwable throwable) {
 			Window.alert("A server error occured when attempting to create a new message.");
 		    }
 
 		    @Override
-		    public void onSuccess(CreateNewWatchingMessageResult result) {
+		    public void onSuccess(CreateNewYoutubeVideoResult result) {
 			ApplicationContext.getInstance().getPlaceController()
 				.goTo(new AudioMessageNewPlace(result.getNewMessageID()));
 		    }

@@ -21,7 +21,7 @@ public enum LogoItemType implements Serializable, IsSerializable {
 
     LISTEN("Listen"),
 
-    WATCH("Watch"),
+    YOUTUBE("YouTube"),
 
     PASTORS_DESK_PHOTO("Pastor's desk photo"),
 

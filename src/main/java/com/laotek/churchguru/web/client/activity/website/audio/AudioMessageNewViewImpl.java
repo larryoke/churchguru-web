@@ -8,12 +8,14 @@ import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FileUpload;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -143,13 +145,20 @@ public class AudioMessageNewViewImpl extends BaseViewImpl implements AudioMessag
 	mainPanel.setWidget(5, 0, addMediaUploadPanel());
 	mainPanel.getFlexCellFormatter().setHorizontalAlignment(5, 0, HasHorizontalAlignment.ALIGN_CENTER);
 
-	mainPanel.setWidget(6, 0, addUploadButton());
-	mainPanel.getFlexCellFormatter().setHorizontalAlignment(6, 0, HasHorizontalAlignment.ALIGN_CENTER);
+	{
+	    HorizontalPanel butPanel = new HorizontalPanel();
+	    butPanel.add(createBackButton());
+	    butPanel.add(new HTML("&nbsp;"));
+	    butPanel.add(new HTML("&nbsp;"));
+	    butPanel.add(addUploadButton());
+	    mainPanel.setWidget(6, 0, butPanel);
+	    mainPanel.getFlexCellFormatter().setHorizontalAlignment(6, 0, HasHorizontalAlignment.ALIGN_CENTER);
+	}
 
 	errorMessageAndMainPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 	errorMessageAndMainPanel.add(mainPanel);
 
-	return getMainLayout("images/app/audio.png", "Manage Audio Messages", errorMessageAndMainPanel);
+	return getMainLayout("images/app/download.png", "Manage Message Downloads", errorMessageAndMainPanel);
     }
 
     @Override
@@ -356,6 +365,17 @@ public class AudioMessageNewViewImpl extends BaseViewImpl implements AudioMessag
 
 	mediaPanel.add(mediaUpload);
 	return new RoundedCornerPanel("Media Upload", mediaPanel);
+    }
+
+    private Button createBackButton() {
+	Button backButton = new Button("Back");
+	backButton.addClickHandler(new ClickHandler() {
+	    @Override
+	    public void onClick(ClickEvent event) {
+		History.back();
+	    }
+	});
+	return backButton;
     }
 
     private Button addUploadButton() {

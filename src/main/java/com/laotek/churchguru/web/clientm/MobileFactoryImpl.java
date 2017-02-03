@@ -23,10 +23,10 @@ import com.laotek.churchguru.web.clientm.activity.twitter.TwitterView;
 import com.laotek.churchguru.web.clientm.activity.twitter.TwitterViewImpl;
 import com.laotek.churchguru.web.clientm.activity.underconstruction.UnderConstructionView;
 import com.laotek.churchguru.web.clientm.activity.underconstruction.UnderConstructionViewImpl;
-import com.laotek.churchguru.web.clientm.activity.watch.WatchView;
-import com.laotek.churchguru.web.clientm.activity.watch.WatchViewImpl;
 import com.laotek.churchguru.web.clientm.activity.website.WebsiteUrlView;
 import com.laotek.churchguru.web.clientm.activity.website.WebsiteUrlViewImpl;
+import com.laotek.churchguru.web.clientm.activity.youtube.YoutubeView;
+import com.laotek.churchguru.web.clientm.activity.youtube.YoutubeViewImpl;
 
 public class MobileFactoryImpl implements MobileFactory {
     private final EventBus eventBus = new SimpleEventBus();
@@ -42,7 +42,7 @@ public class MobileFactoryImpl implements MobileFactory {
     private SingleNoticeAndEventView singleMessageView = null;
     private WebsiteUrlView websiteUrlView = null;
     private PrayerRequestView prayerRequestView = null;
-    private WatchView watchView = null;
+    private YoutubeView youtubeView = null;
     private UnderConstructionView underConstructionView = null;
 
     @Override
@@ -140,10 +140,10 @@ public class MobileFactoryImpl implements MobileFactory {
     }
 
     @Override
-    public WatchView getWatchView() {
-        if (watchView == null) {
-            watchView = new WatchViewImpl();
+    public YoutubeView getYoutubeView() {
+        if (youtubeView == null) {
+            youtubeView = new YoutubeViewImpl();
         }
-        return watchView;
+        return youtubeView;
     }
 }

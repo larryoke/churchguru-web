@@ -29,7 +29,7 @@ import com.laotek.churchguru.web.clientm.activity.pastorsdesk.PastorDeskPlace;
 import com.laotek.churchguru.web.clientm.activity.prayerrequest.PrayerRequestPlace;
 import com.laotek.churchguru.web.clientm.activity.twitter.TwitterPlace;
 import com.laotek.churchguru.web.clientm.activity.underconstruction.UnderConstructionPlace;
-import com.laotek.churchguru.web.clientm.activity.watch.WatchPlace;
+import com.laotek.churchguru.web.clientm.activity.youtube.YoutubePlace;
 
 public class MobileHomeViewImpl implements MobileHomeView {
 
@@ -141,8 +141,8 @@ public class MobileHomeViewImpl implements MobileHomeView {
 
 			return;
 		    }
-		    if (ChurchAppTopicEnum.WATCH.equals(current)) {
-			clientFactory.getPlaceController().goTo(new WatchPlace(current.getDesc()));
+		    if (ChurchAppTopicEnum.YOUTUBE.equals(current)) {
+			clientFactory.getPlaceController().goTo(new YoutubePlace(current.getDesc()));
 
 			return;
 		    }
@@ -178,10 +178,10 @@ public class MobileHomeViewImpl implements MobileHomeView {
 			return new Image("/images/app/twitter.png");
 		    }
 		    if (ChurchAppTopicEnum.LISTEN.equals(current)) {
-			return new Image("/images/app/audio.png");
+			return new Image("/images/app/download.png");
 		    }
-		    if (ChurchAppTopicEnum.WATCH.equals(current)) {
-			return new Image("/images/app/watch_live.png");
+		    if (ChurchAppTopicEnum.YOUTUBE.equals(current)) {
+			return new Image("/images/app/youtube.png");
 		    }
 		    if (ChurchAppTopicEnum.ABOUT_US.equals(current)) {
 			return new Image("/images/app/aboutUs.png");
