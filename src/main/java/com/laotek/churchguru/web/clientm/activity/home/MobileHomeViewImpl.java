@@ -171,14 +171,14 @@ public class MobileHomeViewImpl implements MobileHomeView {
 		    if (ChurchAppTopicEnum.NOTICES_AND_EVENTS.equals(current)) {
 			return new Image("/images/app/calendar.png");
 		    }
+		    if (ChurchAppTopicEnum.LISTEN.equals(current)) {
+			return new Image("/images/app/download.png");
+		    }
 		    if (ChurchAppTopicEnum.FACEBOOK.equals(current)) {
 			return new Image("/images/app/facebook.png");
 		    }
 		    if (ChurchAppTopicEnum.TWITTER.equals(current)) {
 			return new Image("/images/app/twitter.png");
-		    }
-		    if (ChurchAppTopicEnum.LISTEN.equals(current)) {
-			return new Image("/images/app/download.png");
 		    }
 		    if (ChurchAppTopicEnum.YOUTUBE.equals(current)) {
 			return new Image("/images/app/youtube.png");

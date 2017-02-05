@@ -119,11 +119,11 @@ public class MainMenuContext extends BaseMainMenuContext {
 	createLink(new Image("images/app/download.png"), "Manage Audio Message", false, messageMediaPanel,
 		new AudioMessagesPlace("audio"), UserRoleName.ORGANISATION_DATA_VIEW_ONLY, dto.getOrganisationRole());
 
-	createNewListeningMessageLink(new Image("images/app/download.png"), messageMediaPanel,
-		UserRoleName.ORGANISATION_DATA_VIEW_ONLY, dto.getOrganisationRole());
-
 	createLink(new Image("images/app/youtube.png"), "Manage YouTube Videos", false, messageMediaPanel,
 		new YoutubeVideosPlace("video"), UserRoleName.ORGANISATION_DATA_VIEW_ONLY, dto.getOrganisationRole());
+
+	createNewListeningMessageLink(new Image("images/app/download.png"), messageMediaPanel,
+		UserRoleName.ORGANISATION_DATA_VIEW_ONLY, dto.getOrganisationRole());
 
 	createNewYoutubeEmbedLink(new Image("images/app/youtube.png"), messageMediaPanel,
 		UserRoleName.ORGANISATION_DATA_VIEW_ONLY, dto.getOrganisationRole());

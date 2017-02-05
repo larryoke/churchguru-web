@@ -9,6 +9,7 @@ import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Window;
@@ -28,11 +29,15 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.laotek.churchguru.model.shared.enums.sharedmob.ChurchAppTopicEnum;
+import com.laotek.churchguru.web.client.ApplicationContext;
 import com.laotek.churchguru.web.client.MainMenuContext;
+import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.GetCurrentNoticesAndEventsHistoryPlace;
+import com.laotek.churchguru.web.client.activity.media.youtube.YoutubeVideoNewPlace;
 import com.laotek.churchguru.web.client.widget.CheckBoxItem;
 import com.laotek.churchguru.web.client.widget.CheckBoxItemHandler;
 import com.laotek.churchguru.web.client.widget.RichTextToolbar;
 import com.laotek.churchguru.web.client.widget.RoundedCornerPanel;
+import com.laotek.churchguru.web.client.widget.TextItem;
 import com.laotek.churchguru.web.shared.OrganisationDto;
 
 import gwtupload.client.IFileInput.FileInputType;
@@ -108,7 +113,7 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
 	    "/uploadedphotos/photos/org/listen", "servlet.uploadOrganisationChurchAppListenPic",
 	    ChurchAppTopicEnum.LISTEN);
 
-    private GeneralChurchAppTopic churchAppYoutube = new GeneralChurchAppTopic("Church Mobile App Youtube",
+    private GeneralChurchAppTopic churchAppYoutube = new GeneralChurchAppTopic("Church Mobile App YouTube",
 	    "/uploadedphotos/photos/org/youtube", "servlet.uploadOrganisationChurchAppYoutubePic",
 	    ChurchAppTopicEnum.YOUTUBE);
 
@@ -210,12 +215,12 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
 	tabPanel.add(initFacebookTopic(churchAppFacebook, dto.getFacebookChurchAppTopic(),
 		dto.isFacebookChurchAppTopicFlag()), "Facebook");
 
-	tabPanel.add(initListenTopic(churchAppListen, dto.getListenChurchAppTopic(), dto.isListenChurchAppTopicFlag()),
-		"Listen");
+	tabPanel.add(initMessageDownloadTopic(churchAppListen, dto.getListenChurchAppTopic(),
+		dto.isListenChurchAppTopicFlag()), "Listen");
 
 	tabPanel.add(
 		initYoutubeTopic(churchAppYoutube, dto.getYoutubeChurchAppTopic(), dto.isYoutubeChurchAppTopicFlag()),
-		"Youtube");
+		"YouTube");
 
 	tabPanel.add(initAboutUsTopic(churchAppAboutUs, dto.getAboutUsChurchAppTopic(),
 		dto.isAboutUsChurchAppTopicFlag(), dto.getOrgName(), dto.getAdminEmail(), dto.getPrayerRequestEmail(),
@@ -331,6 +336,9 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
 	initAvailability(topic, isShowLabel, panel);
 	initScreenPicture(topic, panel);
 
+	GetCurrentNoticesAndEventsHistoryPlace place = new GetCurrentNoticesAndEventsHistoryPlace("POSTED");
+	gotoManagement(place, panel);
+
 	return new RoundedCornerPanel(topic.getWebsiteLabel(), panel);
     }
 
@@ -401,10 +409,14 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
 	initScreenTopicLabel(topic, churchAppLabel, panel);
 	initAvailability(topic, isShowLabel, panel);
 	initScreenPicture(topic, panel);
+
+	YoutubeVideoNewPlace place = new YoutubeVideoNewPlace("youtube");
+	gotoManagement(place, panel);
+
 	return new RoundedCornerPanel(topic.getWebsiteLabel(), panel);
     }
 
-    private RoundedCornerPanel initListenTopic(final GeneralChurchAppTopic topic, final String churchAppLabel,
+    private RoundedCornerPanel initMessageDownloadTopic(final GeneralChurchAppTopic topic, final String churchAppLabel,
 	    boolean isShowLabel) {
 	FlexTable panel = new FlexTable();
 	panel.setWidth("100%");
@@ -645,6 +657,20 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
 	buttonPanel(++row, panel, submitButton);
     }
 
+    private void gotoManagement(Place place, FlexTable panel) {
+	Anchor anchor = new Anchor("Go to management");
+	anchor.addClickHandler(new ClickHandler() {
+	    @Override
+	    public void onClick(ClickEvent event) {
+		ApplicationContext.getInstance().getPlaceController().goTo(place);
+	    }
+	});
+	int row = panel.getRowCount();
+	panel.setWidget(row, 1, anchor);
+	panel.getFlexCellFormatter().setVerticalAlignment(row, 1, HasVerticalAlignment.ALIGN_MIDDLE);
+	panel.getFlexCellFormatter().setHorizontalAlignment(row, 1, HasHorizontalAlignment.ALIGN_LEFT);
+    }
+
     private RichTextArea postMessageLabelPanel(int row, FlexTable panel, String html) {
 	panel.setWidget(row, 0, new HTML("Post About Us Message: "));
 	panel.getFlexCellFormatter().setVerticalAlignment(row, 0, HasVerticalAlignment.ALIGN_TOP);
@@ -715,8 +741,10 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
     }
 
     private void initScreenTopicLabel(final GeneralChurchAppTopic topic, final String churchAppLabel, FlexTable panel) {
-	Anchor anchor = new Anchor(churchAppLabel);
-	anchor.addClickHandler(new ClickHandler() {
+	TextItem label = new TextItem();
+	label.getTextbox().setReadOnly(true);
+	label.setValue(churchAppLabel);
+	label.addClickHandler(new ClickHandler() {
 	    @Override
 	    public void onClick(ClickEvent event) {
 		String value = Window.prompt("New Mobile App label:", churchAppLabel);
@@ -730,7 +758,7 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
 	panel.getFlexCellFormatter().setHorizontalAlignment(0, 0, HasHorizontalAlignment.ALIGN_RIGHT);
 	panel.getFlexCellFormatter().setVerticalAlignment(0, 0, HasVerticalAlignment.ALIGN_MIDDLE);
 
-	panel.setWidget(0, 1, anchor);
+	panel.setWidget(0, 1, label);
 	panel.getFlexCellFormatter().setHorizontalAlignment(0, 1, HasHorizontalAlignment.ALIGN_LEFT);
 	panel.getFlexCellFormatter().setVerticalAlignment(0, 1, HasVerticalAlignment.ALIGN_MIDDLE);
     }
