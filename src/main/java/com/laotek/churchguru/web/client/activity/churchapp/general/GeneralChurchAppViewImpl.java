@@ -9,7 +9,6 @@ import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
-import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Window;
@@ -336,8 +335,15 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
 	initAvailability(topic, isShowLabel, panel);
 	initScreenPicture(topic, panel);
 
-	GetCurrentNoticesAndEventsHistoryPlace place = new GetCurrentNoticesAndEventsHistoryPlace("POSTED");
-	gotoManagement(place, panel);
+	Anchor anchor = new Anchor("Go to management");
+	anchor.addClickHandler(new ClickHandler() {
+	    @Override
+	    public void onClick(ClickEvent event) {
+		ApplicationContext.getInstance().getPlaceController()
+			.goTo(new GetCurrentNoticesAndEventsHistoryPlace("POSTED"));
+	    }
+	});
+	gotoManagement(anchor, panel);
 
 	return new RoundedCornerPanel(topic.getWebsiteLabel(), panel);
     }
@@ -410,8 +416,14 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
 	initAvailability(topic, isShowLabel, panel);
 	initScreenPicture(topic, panel);
 
-	YoutubeVideoNewPlace place = new YoutubeVideoNewPlace("youtube");
-	gotoManagement(place, panel);
+	Anchor anchor = new Anchor("Go to management");
+	anchor.addClickHandler(new ClickHandler() {
+	    @Override
+	    public void onClick(ClickEvent event) {
+		ApplicationContext.getInstance().getPlaceController().goTo(new YoutubeVideoNewPlace("youtube"));
+	    }
+	});
+	gotoManagement(anchor, panel);
 
 	return new RoundedCornerPanel(topic.getWebsiteLabel(), panel);
     }
@@ -657,14 +669,7 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
 	buttonPanel(++row, panel, submitButton);
     }
 
-    private void gotoManagement(Place place, FlexTable panel) {
-	Anchor anchor = new Anchor("Go to management");
-	anchor.addClickHandler(new ClickHandler() {
-	    @Override
-	    public void onClick(ClickEvent event) {
-		ApplicationContext.getInstance().getPlaceController().goTo(place);
-	    }
-	});
+    private void gotoManagement(Anchor anchor, FlexTable panel) {
 	int row = panel.getRowCount();
 	panel.setWidget(row, 1, anchor);
 	panel.getFlexCellFormatter().setVerticalAlignment(row, 1, HasVerticalAlignment.ALIGN_MIDDLE);
