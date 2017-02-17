@@ -39,7 +39,7 @@ public class IconWidget extends Composite {
 
 	bg.add(titleHtml);
 	bg.getElement().setAttribute("style",
-		"font-family: 'Tangerine', serif;font-size: 25px;text-shadow: 4px 4px 4px #aaa;");
+		"font-family: 'Tangerine', serif;font-size: 20px;text-shadow: 4px 4px 4px #aaa;");
 
 	// VerticalPanel panel = new VerticalPanel();
 	// panel.setWidth(WIDTH + "px");
