@@ -3,6 +3,7 @@ package com.laotek.churchguru.daos.org;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -348,7 +349,8 @@ public class OrganisationDaoImpl extends BaseSessionFactory implements Organisat
     @Override
     public void updateAboutUseDetails(String clientSessionId, String orgName, String adminEmailAddress,
 	    String prayerRequestEmailAddress, String aboutUsMessage, String aboutPastorMessage, String serviceTimes,
-	    String adressLine1, String adressLine2, String postcode, Country country, String websiteUrl) {
+	    String adressLine1, String adressLine2, String postcode, Country country, String websiteUrl,
+	    String googleApiKey, BigDecimal latitude, BigDecimal longitute) {
 	Organisation org = getOrganisationFromClientSessionId(clientSessionId);
 	org.setAdminEmail(adminEmailAddress);
 	org.setPrayerRequestEmail(prayerRequestEmailAddress);
@@ -361,11 +363,14 @@ public class OrganisationDaoImpl extends BaseSessionFactory implements Organisat
 	org.setCountry(country);
 	org.setOrgName(orgName);
 	org.setWebsiteUrl(websiteUrl);
+	org.setGoogleApiKey(googleApiKey);
+	org.setLatitude(latitude);
+	org.setLongitude(longitute);
     }
 
     @Override
-    public void updateAboutUseGoogleMapLocationUrlDetails(String googleApiUrl) {
+    public void updateAboutUseGoogleMapLocationUrlDetails(String googleApiKey) {
 	Organisation org = getOrganisation(1L);
-	org.setGoogleApiUrl(googleApiUrl);
+	org.setGoogleApiKey(googleApiKey);
     }
 }

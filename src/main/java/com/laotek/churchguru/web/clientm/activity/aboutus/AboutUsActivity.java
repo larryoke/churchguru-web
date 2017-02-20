@@ -7,8 +7,7 @@ import com.laotek.churchguru.web.clientm.MobileFactory;
 import com.laotek.churchguru.web.clientm.activity.DetailActivity;
 import com.laotek.churchguru.web.clientm.dispatch.MobileContext;
 
-public class AboutUsActivity extends DetailActivity implements
-	AboutUsView.Presenter {
+public class AboutUsActivity extends DetailActivity implements AboutUsView.Presenter {
 
     private final MobileFactory mobileFactory;
 
@@ -33,22 +32,18 @@ public class AboutUsActivity extends DetailActivity implements
 
     private void getAboutUsDetails(final AboutUsView view) {
 	AboutUsDetailsAction action = new AboutUsDetailsAction();
-	MobileContext.getInstance().getDispatchClient()
-		.execute(action, new AsyncCallback<AboutUseDetailsResult>() {
-		    @Override
-		    public void onFailure(Throwable throwable) {
-		    }
+	MobileContext.getInstance().getDispatchClient().execute(action, new AsyncCallback<AboutUseDetailsResult>() {
+	    @Override
+	    public void onFailure(Throwable throwable) {
+	    }
 
-		    @Override
-		    public void onSuccess(AboutUseDetailsResult result) {
-			view.showForm(result.getOrgName(),
-				result.getAboutUsMessage(),
-				result.getAboutPastorMessage(),
-				result.getFullAddress(),
-				result.getServiceTimes(),
-				result.getWebsiteUrl(), null);
-		    }
-		});
+	    @Override
+	    public void onSuccess(AboutUseDetailsResult result) {
+		view.showForm(result.getOrgName(), result.getAboutUsMessage(), result.getAboutPastorMessage(),
+			result.getFullAddress(), result.getServiceTimes(), result.getWebsiteUrl(),
+			result.getGoogleApiUrl(), result.getLatitude(), result.getLongitude());
+	    }
+	});
 
     }
 

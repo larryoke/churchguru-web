@@ -1,5 +1,7 @@
 package com.laotek.churchguru.web.clientm.activity.aboutus;
 
+import java.math.BigDecimal;
+
 import net.customware.gwt.dispatch.shared.Result;
 
 public class AboutUseDetailsResult implements Result {
@@ -11,13 +13,15 @@ public class AboutUseDetailsResult implements Result {
     private String orgName;
     private String websiteUrl;
     private String googleApiUrl;
+    private BigDecimal latitude;
+    private BigDecimal longitude;
 
     public AboutUseDetailsResult() {
     }
 
-    public AboutUseDetailsResult(String aboutUsMessage,
-	    String aboutPastorMessage, String serviceTimes, String fullAddress,
-	    String orgName, String websiteUrl, String googleApiUrl) {
+    public AboutUseDetailsResult(String aboutUsMessage, String aboutPastorMessage, String serviceTimes,
+	    String fullAddress, String orgName, String websiteUrl, String googleApiUrl, BigDecimal latitude,
+	    BigDecimal longitude) {
 	super();
 	this.aboutUsMessage = aboutUsMessage;
 	this.aboutPastorMessage = aboutPastorMessage;
@@ -26,6 +30,8 @@ public class AboutUseDetailsResult implements Result {
 	this.orgName = orgName;
 	this.websiteUrl = websiteUrl;
 	this.googleApiUrl = googleApiUrl;
+	this.latitude = latitude;
+	this.longitude = longitude;
     }
 
     public String getAboutUsMessage() {
@@ -70,5 +76,13 @@ public class AboutUseDetailsResult implements Result {
 
     public String getGoogleApiUrl() {
 	return googleApiUrl;
+    }
+
+    public BigDecimal getLatitude() {
+	return latitude;
+    }
+
+    public BigDecimal getLongitude() {
+	return longitude;
     }
 }

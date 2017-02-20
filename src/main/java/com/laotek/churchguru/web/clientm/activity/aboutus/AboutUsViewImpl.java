@@ -1,5 +1,7 @@
 package com.laotek.churchguru.web.clientm.activity.aboutus;
 
+import java.math.BigDecimal;
+
 import com.google.gwt.core.client.Callback;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.Scheduler;
@@ -38,6 +40,8 @@ public class AboutUsViewImpl extends DetailViewGwtImpl implements AboutUsView {
 		    + "One with a message that is relevant to the needs of its people.");
     private Anchor websiteAnchor = new Anchor();
 
+    private HeaderLabel headerLabel = new HeaderLabel("About Us");
+
     public AboutUsViewImpl() {
 
 	scrollPanel.setScrollingEnabledX(false);
@@ -75,10 +79,10 @@ public class AboutUsViewImpl extends DetailViewGwtImpl implements AboutUsView {
     }
 
     @Override
-    public void showForm(String orgName, String aboutUs, String aboutPastor,
-	    String fullAddress, String serviceTimes, String websiteUrl,
-	    String googleApiUrl) {
+    public void showForm(String orgName, String aboutUs, String aboutPastor, String fullAddress, String serviceTimes,
+	    String websiteUrl, String googleApiUrl, BigDecimal lati, BigDecimal longi) {
 
+	headerLabel.setText("About " + orgName);
 	aboutUsDetailsHtml.setHTML(aboutUs);
 	aboutPastorMessage.setHTML(aboutPastor);
 	serviceTimesHtml.setHTML(serviceTimes);
@@ -87,33 +91,28 @@ public class AboutUsViewImpl extends DetailViewGwtImpl implements AboutUsView {
 
 	scrollPanel.setWidget(formContainer);
 
-	ScriptInjector
-		.fromUrl(
-			"https://maps.googleapis.com/maps/api/js?key=AIzaSyArDntTYo5S9dwwnpVPI9gU8-t41AxZREI")
-		.setWindow(ScriptInjector.TOP_WINDOW)
-		.setCallback(new Callback<Void, Exception>() {
+	ScriptInjector.fromUrl("https://maps.googleapis.com/maps/api/js?key=AIzaSyArDntTYo5S9dwwnpVPI9gU8-t41AxZREI")
+		.setWindow(ScriptInjector.TOP_WINDOW).setCallback(new Callback<Void, Exception>() {
 
 		    @Override
 		    public void onSuccess(Void result) {
-			Scheduler.get().scheduleDeferred(
-				new ScheduledCommand() {
+			Scheduler.get().scheduleDeferred(new ScheduledCommand() {
 
-				    @Override
-				    public void execute() {
-					log("inside onSuccess");
-					body.setWidth("300px");
-					body.setHeight("300px");
-					initMap(body.getElement());
-					scrollPanel.refresh();
-					scrollPanel.scrollTo(0, 0);
-				    }
-				});
+			    @Override
+			    public void execute() {
+				log("inside onSuccess");
+				body.setWidth("300px");
+				body.setHeight("300px");
+				initMap(body.getElement(), 51.526241, 0.079905);
+				scrollPanel.refresh();
+				scrollPanel.scrollTo(0, 0);
+			    }
+			});
 		    }
 
 		    @Override
 		    public void onFailure(Exception reason) {
-			log("exception loading the twitter widget javascript: "
-				+ reason);
+			log("exception loading the twitter widget javascript: " + reason);
 		    }
 		}).inject();
 
@@ -128,8 +127,7 @@ public class AboutUsViewImpl extends DetailViewGwtImpl implements AboutUsView {
     }
 
     private void addChurchPicture(FlowPanel container) {
-	Image givePic = new Image("/uploadedphotos/photos/org/aboutus?width="
-		+ Window.getClientWidth());
+	Image givePic = new Image("/uploadedphotos/photos/org/aboutus?width=" + Window.getClientWidth());
 	givePic.setWidth("100%");
 	// givePic.setHeight("100px");
 	container.add(givePic);
@@ -138,15 +136,14 @@ public class AboutUsViewImpl extends DetailViewGwtImpl implements AboutUsView {
 
     private void addAboutUs(FlowPanel container) {
 	WidgetList widget = new WidgetList();
-	widget.setHeader(new HeaderLabel("About Trinity Chapel"));
+	widget.setHeader(headerLabel);
 	aboutUsDetailsHtml.setStylePrimaryName("normalLabel");
 	widget.add(aboutUsDetailsHtml);
 	container.add(widget);
     }
 
     private void addAboutPastorPicture(FlowPanel container) {
-	Image pic = new Image("/uploadedphotos/photos/org/aboutpastor?width="
-		+ Window.getClientWidth());
+	Image pic = new Image("/uploadedphotos/photos/org/aboutpastor?width=" + Window.getClientWidth());
 	pic.setWidth("100%");
 	container.add(pic);
 	container.add(new HTML("&nbsp;"));
@@ -190,30 +187,34 @@ public class AboutUsViewImpl extends DetailViewGwtImpl implements AboutUsView {
     }
 
     private native void handleOnLoad(JavaScriptObject jso) /*-{
-
+							   
 							   var instance=this;
-
+							   
 							   var func = function() {
-
+							   
 							   instance.@com.laotek.churchguru.web.clientm.activity.aboutus.AboutUsViewImpl::refreshPull()();
-
+							   
 							   };
-
+							   
 							   jso.addEventListener("load", func, true);
-
+							   
 							   }-*/;
 
     private static native void log(final String message)/*-{
 							console.log(message);
 							}-*/;
 
-    public static native void initMap(Element data) /*-{						     
-						      var map = new $wnd.google.maps.Map(data, {
-						    center: {lat: 51.526241, lng: 0.079905},
-						    scrollwheel: false,
-						    zoom: 12
-						    });
-						    
-						           }-*/;
+    // var uluru = {lat: 51.526241, lng: 0.079905}
+    public static native void initMap(Element data, double lati, double longi) /*-{	
+									       var uluru = {lat: lati, lng: longi}					     
+									       var map = new $wnd.google.maps.Map(data, {
+									       center: uluru,
+									       zoom: 12
+									       });
+									       var marker = new $wnd.google.maps.Marker({
+									       position: uluru,
+									       map: map
+									       });						    
+									       }-*/;
 
 }

@@ -1,5 +1,6 @@
 package com.laotek.churchguru.daos.org;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.laotek.churchguru.model.Organisation;
@@ -18,27 +19,23 @@ public interface OrganisationDao {
 
     void updatePastorDeskMessage(String clientSessionId, String message);
 
-    void updateAboutUseDetails(String clientSessionId, String orgName,
-	    String adminEmailAddress, String prayerRequestEmailAddress,
-	    String aboutUsMessage, String aboutPastorMessage,
-	    String serviceTimes, String adressLine1, String adressLine2,
-	    String postcode, Country country, String websiteUrl);
+    void updateAboutUseDetails(String clientSessionId, String orgName, String adminEmailAddress,
+	    String prayerRequestEmailAddress, String aboutUsMessage, String aboutPastorMessage, String serviceTimes,
+	    String adressLine1, String adressLine2, String postcode, Country country, String websiteUrl,
+	    String googleApiKey, BigDecimal latitude, BigDecimal longitute);
 
     void updateAboutUseGoogleMapLocationUrlDetails(String googleApiUrl);
 
-    void updateChurchAppLabel(String clientSessionId,
-	    ChurchAppTopicEnum churchAppTopicEnum, String value);
+    void updateChurchAppLabel(String clientSessionId, ChurchAppTopicEnum churchAppTopicEnum, String value);
 
-    void updateChurchAppLabelFlagShow(String clientSessionId,
-	    ChurchAppTopicEnum churchAppTopicEnum, boolean value);
+    void updateChurchAppLabelFlagShow(String clientSessionId, ChurchAppTopicEnum churchAppTopicEnum, boolean value);
 
     long getOrganisationIdFromClientSessionId(String clientSessionId);
 
     List<Organisation> getOrganisations();
 
-    void load(String orgName, String hostname, String subdomain,
-	    String addressLine1, String addressLine2, String country,
-	    String postcode, String orgIdentifier);
+    void load(String orgName, String hostname, String subdomain, String addressLine1, String addressLine2,
+	    String country, String postcode, String orgIdentifier);
 
     Organisation enableOrgAccount(String orgIdentifier);
 

@@ -1,14 +1,13 @@
 package com.laotek.churchguru.web.client.activity.churchapp.general;
 
-import net.customware.gwt.dispatch.shared.Action;
-
 import com.laotek.churchguru.model.shared.enums.Country;
 import com.laotek.churchguru.web.client.activity.AbstractDispatchAction;
 import com.laotek.churchguru.web.shared.role.org.HasOrganisationCrudRole;
 
+import net.customware.gwt.dispatch.shared.Action;
+
 public class SubmitAboutUsOrgDetailsAction extends AbstractDispatchAction
-	implements Action<SubmitAboutUsOrgDetailsResult>,
-	HasOrganisationCrudRole {
+	implements Action<SubmitAboutUsOrgDetailsResult>, HasOrganisationCrudRole {
     private String aboutUsMessage;
     private String aboutPastorMessage;
     private String serviceTimes;
@@ -20,6 +19,10 @@ public class SubmitAboutUsOrgDetailsAction extends AbstractDispatchAction
     private String adminEmailAddress;
     private String prayerRequestEmailAddress;
     private String websiteUrl;
+
+    private String googleApiKey;
+    private String latitude;
+    private String longitude;
 
     public String getAboutUsMessage() {
 	return aboutUsMessage;
@@ -107,5 +110,29 @@ public class SubmitAboutUsOrgDetailsAction extends AbstractDispatchAction
 
     public void setPrayerRequestEmailAddress(String prayerRequestEmailAddress) {
 	this.prayerRequestEmailAddress = prayerRequestEmailAddress;
+    }
+
+    public String getGoogleApiKey() {
+	return googleApiKey;
+    }
+
+    public void setGoogleApiKey(String googleApiKey) {
+	this.googleApiKey = googleApiKey;
+    }
+
+    public String getLatitude() {
+	return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+	this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+	return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+	this.longitude = longitude;
     }
 }

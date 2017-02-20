@@ -81,6 +81,10 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
     private TextBox postcode = new TextBox();
     private TextBox addressLine2 = new TextBox();
 
+    private TextBox googleApiKey = new TextBox();
+    private TextBox latitude = new TextBox();
+    private TextBox longitude = new TextBox();
+
     private GeneralChurchAppTopic churchAppHome = new GeneralChurchAppTopic("Church Mobile App Home",
 	    "/uploadedphotos/photos/org/home", "servlet.uploadOrganisationChurchAppProfilePicture",
 	    ChurchAppTopicEnum.HOME);
@@ -215,7 +219,7 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
 		dto.isFacebookChurchAppTopicFlag()), "Facebook");
 
 	tabPanel.add(initMessageDownloadTopic(churchAppListen, dto.getListenChurchAppTopic(),
-		dto.isListenChurchAppTopicFlag()), "Listen");
+		dto.isListenChurchAppTopicFlag()), "Download");
 
 	tabPanel.add(
 		initYoutubeTopic(churchAppYoutube, dto.getYoutubeChurchAppTopic(), dto.isYoutubeChurchAppTopicFlag()),
@@ -646,6 +650,44 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
 
 	final RichTextArea aboutPastorMessage = postPastorMessageLabelPanel(++row, panel, aboutPastorMessageStr);
 
+	line = new HTML("<hr width=100%>");
+	panel.setWidget(++row, 0, line);
+	line = new HTML("<hr width=100%>");
+	panel.setWidget(row, 1, line);
+
+	header = new HTML("<h3>Google API</h3>");
+	panel.setWidget(++row, 0, header);
+
+	panel.setWidget(++row, 0, new HTML("API Key: "));
+	panel.getFlexCellFormatter().setVerticalAlignment(row, 0, HasVerticalAlignment.ALIGN_TOP);
+	panel.getFlexCellFormatter().setHorizontalAlignment(row, 0, HasHorizontalAlignment.ALIGN_RIGHT);
+
+	googleApiKey.setWidth("50%");
+	panel.setWidget(row, 1, googleApiKey);
+	panel.getFlexCellFormatter().setVerticalAlignment(row, 1, HasVerticalAlignment.ALIGN_MIDDLE);
+	panel.getFlexCellFormatter().setHorizontalAlignment(row, 1, HasHorizontalAlignment.ALIGN_LEFT);
+
+	panel.setWidget(++row, 0, new HTML("Map Latitutde: "));
+	panel.getFlexCellFormatter().setVerticalAlignment(row, 0, HasVerticalAlignment.ALIGN_TOP);
+	panel.getFlexCellFormatter().setHorizontalAlignment(row, 0, HasHorizontalAlignment.ALIGN_RIGHT);
+
+	panel.setWidget(row, 1, latitude);
+	panel.getFlexCellFormatter().setVerticalAlignment(row, 1, HasVerticalAlignment.ALIGN_MIDDLE);
+	panel.getFlexCellFormatter().setHorizontalAlignment(row, 1, HasHorizontalAlignment.ALIGN_LEFT);
+
+	panel.setWidget(++row, 0, new HTML("Map Longitude: "));
+	panel.getFlexCellFormatter().setVerticalAlignment(row, 0, HasVerticalAlignment.ALIGN_TOP);
+	panel.getFlexCellFormatter().setHorizontalAlignment(row, 0, HasHorizontalAlignment.ALIGN_RIGHT);
+
+	panel.setWidget(row, 1, longitude);
+	panel.getFlexCellFormatter().setVerticalAlignment(row, 1, HasVerticalAlignment.ALIGN_MIDDLE);
+	panel.getFlexCellFormatter().setHorizontalAlignment(row, 1, HasHorizontalAlignment.ALIGN_LEFT);
+
+	line = new HTML("<hr width=100%>");
+	panel.setWidget(++row, 0, line);
+	line = new HTML("<hr width=100%>");
+	panel.setWidget(row, 1, line);
+
 	Button submitButton = new Button("Update church details");
 	submitButton.addClickHandler(new ClickHandler() {
 	    @Override
@@ -661,6 +703,9 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
 		action.setPrayerRequestEmailAddress(prayerRequestEmailAddressAddress.getText());
 		action.setWebsiteUrl(websiteUrl.getText());
 		action.setServiceTimes(serviceTimes.getText());
+		action.setGoogleApiKey(googleApiKey.getText());
+		action.setLatitude(latitude.getText());
+		action.setLongitude(longitude.getText());
 		if (Window.confirm("Are you ready to submit and update the shown details?")) {
 		    presenter.submitAboutUsOrgDetails(action);
 		}

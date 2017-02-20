@@ -1,5 +1,6 @@
 package com.laotek.churchguru.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -56,10 +57,16 @@ public class Organisation {
     private boolean donationChurchAppTopicFlag = true;
 
     @Column(nullable = true, unique = false)
-    private String websiteUrl = "trinitychapel.org.uk";
+    private String websiteUrl = "org.uk";
 
     @Column(nullable = true, unique = false)
-    private String googleApiUrl;
+    private String googleApiKey;
+
+    @Column(nullable = true, unique = false, precision = 19, scale = 6)
+    private BigDecimal latitude;
+
+    @Column(nullable = true, unique = false, precision = 19, scale = 6)
+    private BigDecimal longitude;
 
     @Column(nullable = false, unique = false)
     private String noticesAndEventsChurchAppTopic = "Notices and Events";
@@ -508,12 +515,12 @@ public class Organisation {
 	return serviceTimes;
     }
 
-    public String getGoogleApiUrl() {
-	return googleApiUrl;
+    public String getGoogleApiKey() {
+	return googleApiKey;
     }
 
-    public void setGoogleApiUrl(String googleApiUrl) {
-	this.googleApiUrl = googleApiUrl;
+    public void setGoogleApiKey(String googleApiKey) {
+	this.googleApiKey = googleApiKey;
     }
 
     public void setServiceTimes(String serviceTimes) {
@@ -522,6 +529,22 @@ public class Organisation {
 
     public void setAboutUsChurchAppTopicFlag(boolean aboutUsChurchAppTopicFlag) {
 	this.aboutUsChurchAppTopicFlag = aboutUsChurchAppTopicFlag;
+    }
+
+    public BigDecimal getLatitude() {
+	return latitude;
+    }
+
+    public void setLatitude(BigDecimal latitude) {
+	this.latitude = latitude;
+    }
+
+    public void setLongitude(BigDecimal longitude) {
+	this.longitude = longitude;
+    }
+
+    public BigDecimal getLongitude() {
+	return longitude;
     }
 
     @Override
