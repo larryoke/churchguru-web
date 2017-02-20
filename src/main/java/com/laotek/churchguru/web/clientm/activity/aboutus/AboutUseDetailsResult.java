@@ -12,7 +12,7 @@ public class AboutUseDetailsResult implements Result {
     private String fullAddress;
     private String orgName;
     private String websiteUrl;
-    private String googleApiUrl;
+    private String googleApiKey;
     private BigDecimal latitude;
     private BigDecimal longitude;
 
@@ -20,7 +20,7 @@ public class AboutUseDetailsResult implements Result {
     }
 
     public AboutUseDetailsResult(String aboutUsMessage, String aboutPastorMessage, String serviceTimes,
-	    String fullAddress, String orgName, String websiteUrl, String googleApiUrl, BigDecimal latitude,
+	    String fullAddress, String orgName, String websiteUrl, String googleApiKey, BigDecimal latitude,
 	    BigDecimal longitude) {
 	super();
 	this.aboutUsMessage = aboutUsMessage;
@@ -29,7 +29,7 @@ public class AboutUseDetailsResult implements Result {
 	this.fullAddress = fullAddress;
 	this.orgName = orgName;
 	this.websiteUrl = websiteUrl;
-	this.googleApiUrl = googleApiUrl;
+	this.googleApiKey = googleApiKey;
 	this.latitude = latitude;
 	this.longitude = longitude;
     }
@@ -74,8 +74,8 @@ public class AboutUseDetailsResult implements Result {
 	return websiteUrl;
     }
 
-    public String getGoogleApiUrl() {
-	return googleApiUrl;
+    public String getGoogleApiKey() {
+	return googleApiKey;
     }
 
     public BigDecimal getLatitude() {

@@ -80,7 +80,7 @@ public class AboutUsViewImpl extends DetailViewGwtImpl implements AboutUsView {
 
     @Override
     public void showForm(String orgName, String aboutUs, String aboutPastor, String fullAddress, String serviceTimes,
-	    String websiteUrl, String googleApiUrl, BigDecimal lati, BigDecimal longi) {
+	    String websiteUrl, String googleApiKey, final BigDecimal lati, final BigDecimal longi) {
 
 	headerLabel.setText("About " + orgName);
 	aboutUsDetailsHtml.setHTML(aboutUs);
@@ -91,7 +91,7 @@ public class AboutUsViewImpl extends DetailViewGwtImpl implements AboutUsView {
 
 	scrollPanel.setWidget(formContainer);
 
-	ScriptInjector.fromUrl("https://maps.googleapis.com/maps/api/js?key=AIzaSyArDntTYo5S9dwwnpVPI9gU8-t41AxZREI")
+	ScriptInjector.fromUrl("https://maps.googleapis.com/maps/api/js?key=" + googleApiKey)
 		.setWindow(ScriptInjector.TOP_WINDOW).setCallback(new Callback<Void, Exception>() {
 
 		    @Override
@@ -103,7 +103,9 @@ public class AboutUsViewImpl extends DetailViewGwtImpl implements AboutUsView {
 				log("inside onSuccess");
 				body.setWidth("300px");
 				body.setHeight("300px");
-				initMap(body.getElement(), 51.526241, 0.079905);
+				if (lati != null && longi != null) {
+				    initMap(body.getElement(), lati.doubleValue(), longi.doubleValue());
+				}
 				scrollPanel.refresh();
 				scrollPanel.scrollTo(0, 0);
 			    }

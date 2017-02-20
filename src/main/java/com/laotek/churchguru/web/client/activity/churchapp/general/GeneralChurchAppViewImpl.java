@@ -655,7 +655,7 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
 	line = new HTML("<hr width=100%>");
 	panel.setWidget(row, 1, line);
 
-	header = new HTML("<h3>Google API</h3>");
+	header = new HTML("<h3>Google Map URL API</h3>");
 	panel.setWidget(++row, 0, header);
 
 	panel.setWidget(++row, 0, new HTML("API Key: "));
