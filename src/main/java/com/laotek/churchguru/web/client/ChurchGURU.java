@@ -103,7 +103,7 @@ public class ChurchGURU implements EntryPoint {
     }
 
     private void load(OrganisationDto orgDto, UserDto userDto) {
-
+	log("->load");
 	UserContext.getInstance().setUserDto(userDto);
 	MainLayout mainLayout = new MainLayout(bodyPanel, clientFactory);
 	EventBus eventBus = clientFactory.getEventBus();
@@ -128,6 +128,7 @@ public class ChurchGURU implements EntryPoint {
 	RootLayoutPanel.get().add(mainLayout);
 	// Goes to the place represented on URL else default place
 	historyHandler.handleCurrentHistory();
+	log("load->");
     }
 
     private void load(Place place) {
@@ -164,12 +165,15 @@ public class ChurchGURU implements EntryPoint {
 
 	    @Override
 	    public void onFailure(Throwable caught) {
+		log("onFailure(Throwable caught)");
 		Cookies.removeCookie(ApplicationConstants.instance.sessionIdName());
 		Window.Location.reload();
 	    }
 
 	    @Override
 	    public void onSuccess(final UserReloadResult result) {
+
+		log("onSuccess(final UserReloadResult result)");
 		load(result.getOrganisationDto(), result.getUserDto());
 		Scheduler.get().scheduleDeferred(new ScheduledCommand() {
 		    @Override
@@ -203,4 +207,8 @@ public class ChurchGURU implements EntryPoint {
 	    MainMenuContext.getInstance().showMenu();
 	}
     }
+
+    private static native void log(final String message)/*-{
+							console.log(message);
+							}-*/;
 }

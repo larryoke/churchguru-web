@@ -1,5 +1,7 @@
 package com.laotek.churchguru.web.client.activity.churchapp.general;
 
+import java.math.BigDecimal;
+
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.dom.client.Element;
@@ -228,7 +230,8 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
 	tabPanel.add(initAboutUsTopic(churchAppAboutUs, dto.getAboutUsChurchAppTopic(),
 		dto.isAboutUsChurchAppTopicFlag(), dto.getOrgName(), dto.getAdminEmail(), dto.getPrayerRequestEmail(),
 		dto.getAboutUsMessage(), dto.getAboutPastorMessage(), dto.getServiceTimes(), dto.getAddressLine1(),
-		dto.getAddressLine2(), dto.getPostcode(), dto.getWebsiteUrl()), "About Us");
+		dto.getAddressLine2(), dto.getPostcode(), dto.getWebsiteUrl(), dto.getGoogleApiKey(), dto.getLatitude(),
+		dto.getLongitude()), "About Us");
 
 	tabPanel.selectTab(currentlySelectedTab);
 
@@ -379,7 +382,8 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
     private RoundedCornerPanel initAboutUsTopic(final GeneralChurchAppTopic topic, final String churchAppLabel,
 	    boolean isShowLabel, String orgNameStr, String adminEmailAddressStr, String prayerRequestEmailAddressStr,
 	    String aboutUsMessageStr, String aboutPastorMessageStr, String serviceTimesStr, String adressLine1Str,
-	    String adressLine2Str, String postcodeStr, String websiteUrlStr) {
+	    String adressLine2Str, String postcodeStr, String websiteUrlStr, String googleApiKeyStr,
+	    BigDecimal latitudeVal, BigDecimal longituteVal) {
 	FlexTable panel = new FlexTable();
 	panel.setWidth("100%");
 	panel.setBorderWidth(0);
@@ -395,6 +399,14 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
 	addressLine1.setText(adressLine1Str);
 	postcode.setText(postcodeStr);
 	addressLine2.setText(adressLine2Str);
+
+	googleApiKey.setText(googleApiKeyStr);
+	if (latitudeVal != null) {
+	    latitude.setText(latitudeVal.toPlainString());
+	}
+	if (longituteVal != null) {
+	    longitude.setText(longituteVal.toPlainString());
+	}
 
 	initAboutUsPostMessage(topic, panel, aboutUsMessageStr, aboutPastorMessageStr);
 	return new RoundedCornerPanel(topic.getWebsiteLabel(), panel);

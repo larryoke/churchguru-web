@@ -250,6 +250,10 @@ public abstract class AbstractCommandHandler {
 	dto.setServiceTimes(org.getServiceTimes());
 	dto.setWebsiteUrl(org.getWebsiteUrl());
 
+	dto.setGoogleApiKey(org.getGoogleApiKey());
+	dto.setLatitude(org.getLatitude());
+	dto.setLongitude(org.getLongitude());
+
 	LogoItem logoItem = getChurchLogo(org);
 	dto.setHasLogo(logoItem != null && !StringUtils.isEmpty(logoItem.getBase64Data()));
 	return dto;

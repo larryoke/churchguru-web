@@ -1,5 +1,7 @@
 package com.laotek.churchguru.web.shared;
 
+import java.math.BigDecimal;
+
 import com.google.gwt.user.client.rpc.IsSerializable;
 
 public class OrganisationDto implements IsSerializable {
@@ -43,6 +45,10 @@ public class OrganisationDto implements IsSerializable {
     private boolean listenChurchAppTopicFlag;
     private boolean youtubeChurchAppTopicFlag;
     private boolean aboutUsChurchAppTopicFlag;
+
+    private String googleApiKey;
+    private BigDecimal latitude;
+    private BigDecimal longitude;
 
     public String getOrgIdentifier() {
 	return orgIdentifier;
@@ -314,6 +320,30 @@ public class OrganisationDto implements IsSerializable {
 
     public void setWebsiteUrl(String websiteUrl) {
 	this.websiteUrl = websiteUrl;
+    }
+
+    public String getGoogleApiKey() {
+	return googleApiKey;
+    }
+
+    public void setGoogleApiKey(String googleApiKey) {
+	this.googleApiKey = googleApiKey;
+    }
+
+    public BigDecimal getLatitude() {
+	return latitude;
+    }
+
+    public void setLatitude(BigDecimal latitude) {
+	this.latitude = latitude;
+    }
+
+    public BigDecimal getLongitude() {
+	return longitude;
+    }
+
+    public void setLongitude(BigDecimal longitude) {
+	this.longitude = longitude;
     }
 
 }
