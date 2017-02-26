@@ -34,6 +34,47 @@ div.mgwt-Form-Entry-invalid{
 	color:red
 }
 
+div.mgwt-HeaderPanel-title{
+	white-space: nowrap;
+	overflow:hidden;
+		overflow-x:hidden;
+		overflow-y:hidden;
+	text-overflow:ellipsis;
+	text-align:center;
+	font-size:16pt;
+	font-weight:bold;
+	color:black;
+}
+
+div.mgwt-WidgetList-headerContainer {
+    background-color: #ebebf2;
+    text-transform: uppercase;
+    color: #66666b;
+    font-size: 12px;
+    font: Helvetica Neue UltraLight;
+}
+
+
+div.mgwt-WidgetList-headerContainer {
+    font-size: 18px;
+    font-weight: bold;
+    color: #454545;
+    background-color: #d2d6d6;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 4px 10px;
+}
+
+div.mgwt-WidgetList {
+    position: relative; 
+    list-style: none; 
+    border-collapse: collapse; 
+    border-top: 1px solid #9daca9; 
+    background-color: #e5e9e8; 
+    color: #454545; 
+}
+
 textarea.gwt-TextArea{
 	color:black;
 }

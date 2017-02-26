@@ -1064,3 +1064,4 @@
 [23/Feb/2017:13:05:45 +0000] 127.0.0.1 "GET /images/app/favicon.ico HTTP/1.1" 200 (15 ms)
 [23/Feb/2017:13:05:45 +0000] 127.0.0.1 "GET /images/app/favicon.ico HTTP/1.1" 200 (3 ms)
 [23/Feb/2017:13:05:47 +0000] 127.0.0.1 "GET /images/app/icons.gif HTTP/1.1" 200 (6 ms)
+[23/Feb/2017:13:12:56 +0000] 127.0.0.1 "POST /comm/cgservice HTTP/1.1" 200 (357 ms)
