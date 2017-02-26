@@ -11,7 +11,6 @@ import com.laotek.churchguru.web.client.activity.dashboard.NewsLettersChartView;
 import com.laotek.churchguru.web.client.activity.dashboard.PeopleChartView;
 import com.laotek.churchguru.web.client.activity.dashboard.WeeklyAttendanceChartView;
 import com.laotek.churchguru.web.client.activity.donation.DonationSearchView;
-import com.laotek.churchguru.web.client.activity.home.HomeView;
 import com.laotek.churchguru.web.client.activity.media.youtube.YoutubeVideoNewView;
 import com.laotek.churchguru.web.client.activity.media.youtube.YoutubeVideosView;
 import com.laotek.churchguru.web.client.activity.password.PasswordResetView;
@@ -51,8 +50,6 @@ public interface ClientFactory {
     UserProfilesView getUserProfilesView();
 
     LoginView getLoginView();
-
-    HomeView getHomeView();
 
     GeneralChurchAppView getGeneralChurchAppView();
 

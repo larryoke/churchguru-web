@@ -18,7 +18,6 @@ import com.laotek.churchguru.model.shared.enums.BrowseMessagesType;
 import com.laotek.churchguru.model.shared.enums.UserRoleName;
 import com.laotek.churchguru.web.client.activity.churchapp.general.GeneralChurchAppPlace;
 import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.GetCurrentNoticesAndEventsHistoryPlace;
-import com.laotek.churchguru.web.client.activity.home.HomePlace;
 import com.laotek.churchguru.web.client.activity.media.youtube.YoutubeVideosPlace;
 import com.laotek.churchguru.web.client.activity.user.AllUserPlace;
 import com.laotek.churchguru.web.client.activity.user.NewUserDialog;
@@ -84,12 +83,10 @@ public class MainMenuContext extends BaseMainMenuContext {
     private void createDashboardPanel(StackLayoutPanel stackMenu) {
 	dashboardPanel.setHeight("100%");
 	UserDto dto = UserContext.getInstance().getUserDto();
-	initStackLayoutPanel(dashboardPanel, "images/app/dashboard.png", "Dashboard", stackMenu, new HomePlace("home"),
-		UserRoleName.ORGANISATION_DATA_VIEW_ONLY, dto.getOrganisationRole());
-	createLink(new Image("images/app/home.png"), "Home", false, dashboardPanel, new HomePlace("home"),
-		UserRoleName.ORGANISATION_DATA_VIEW_ONLY, dto.getOrganisationRole());
-
-	createLink(new Image("images/app/system_update.png"), "Mobile App Options", false, dashboardPanel,
+	initStackLayoutPanel(dashboardPanel, "images/app/dashboard.png", "Dashboard", stackMenu,
+		new GeneralChurchAppPlace("churchApp"), UserRoleName.ORGANISATION_DATA_VIEW_ONLY,
+		dto.getOrganisationRole());
+	createLink(new Image("images/app/home.png"), "Home", false, dashboardPanel,
 		new GeneralChurchAppPlace("churchApp"), UserRoleName.ORGANISATION_DATA_VIEW_ONLY,
 		dto.getOrganisationRole());
 

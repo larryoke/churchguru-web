@@ -9,7 +9,7 @@ import com.laotek.churchguru.web.client.ClientFactory;
 import com.laotek.churchguru.web.client.UserContext;
 import com.laotek.churchguru.web.client.activity.GetOrgDetailAction;
 import com.laotek.churchguru.web.client.activity.GetOrgDetailResult;
-import com.laotek.churchguru.web.client.activity.home.HomeView;
+import com.laotek.churchguru.web.client.activity.churchapp.general.GeneralChurchAppView;
 
 public class AudioMessageSpeakerNewActivity extends AbstractActivity implements AudioMessageSpeakerNewView.Presenter {
 
@@ -50,7 +50,8 @@ public class AudioMessageSpeakerNewActivity extends AbstractActivity implements 
 	clientFactory.getPlaceController().goTo(place);
     }
 
-    private void getOrganisation(final HomeView homeView) {
+    @SuppressWarnings("unused")
+    private void getOrganisation(final GeneralChurchAppView homeView) {
 	GetOrgDetailAction action = new GetOrgDetailAction();
 	UserContext.getInstance().decorateClientSessionId(action);
 	UserContext.getInstance().getDispatchClient().execute(action, new AsyncCallback<GetOrgDetailResult>() {

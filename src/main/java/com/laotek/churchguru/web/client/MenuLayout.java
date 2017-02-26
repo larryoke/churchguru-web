@@ -9,7 +9,7 @@ import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
-import com.laotek.churchguru.web.client.activity.home.HomePlace;
+import com.laotek.churchguru.web.client.activity.churchapp.general.GeneralChurchAppPlace;
 import com.laotek.churchguru.web.client.activity.user.AllUserPlace;
 
 public class MenuLayout extends Composite {
@@ -55,7 +55,7 @@ public class MenuLayout extends Composite {
 
     @UiHandler("myAccountAnchor")
     void onWelcomeAnchorClick(ClickEvent event) {
-	clientFactory.getPlaceController().goTo(new HomePlace("home"));
+	clientFactory.getPlaceController().goTo(new GeneralChurchAppPlace("churchApp"));
     }
 
     @UiHandler("allAdminAnchor")

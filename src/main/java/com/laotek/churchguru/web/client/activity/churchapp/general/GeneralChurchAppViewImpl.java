@@ -221,7 +221,7 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
 		dto.isFacebookChurchAppTopicFlag()), "Facebook");
 
 	tabPanel.add(initMessageDownloadTopic(churchAppListen, dto.getListenChurchAppTopic(),
-		dto.isListenChurchAppTopicFlag()), "Download");
+		dto.isListenChurchAppTopicFlag()), "Downloads");
 
 	tabPanel.add(
 		initYoutubeTopic(churchAppYoutube, dto.getYoutubeChurchAppTopic(), dto.isYoutubeChurchAppTopicFlag()),

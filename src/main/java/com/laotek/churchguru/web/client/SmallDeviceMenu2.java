@@ -23,7 +23,6 @@ import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.laotek.churchguru.web.client.activity.churchapp.general.GeneralChurchAppPlace;
-import com.laotek.churchguru.web.client.activity.home.HomePlace;
 import com.laotek.churchguru.web.client.activity.user.AllUserPlace;
 
 public class SmallDeviceMenu2 extends Composite
@@ -39,7 +38,7 @@ public class SmallDeviceMenu2 extends Composite
 	layout.setCellSpacing(0);
 	popupPanel.setWidth("160px");
 	int row = 0;
-	addRow(row, 0, "Home", new HomePlace("home"));
+	addRow(row, 0, "Home", new GeneralChurchAppPlace("churchApp"));
 	addRow(++row, 0, "Manage Mobile Application", new GeneralChurchAppPlace("churchApp"));
 	addRow(++row, 0, "Manage Users", new AllUserPlace("guest"));
 	popupPanel.setWidget(layout);

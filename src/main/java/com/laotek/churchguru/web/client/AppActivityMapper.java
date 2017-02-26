@@ -22,8 +22,6 @@ import com.laotek.churchguru.web.client.activity.dashboard.WeeklyAttendanceChart
 import com.laotek.churchguru.web.client.activity.dashboard.WeeklyAttendanceChartPlace;
 import com.laotek.churchguru.web.client.activity.donation.DonationSearchActivity;
 import com.laotek.churchguru.web.client.activity.donation.DonationSearchPlace;
-import com.laotek.churchguru.web.client.activity.home.HomeActivity;
-import com.laotek.churchguru.web.client.activity.home.HomePlace;
 import com.laotek.churchguru.web.client.activity.media.youtube.YoutubeVideoNewActivity;
 import com.laotek.churchguru.web.client.activity.media.youtube.YoutubeVideoNewPlace;
 import com.laotek.churchguru.web.client.activity.media.youtube.YoutubeVideosActivity;
@@ -74,10 +72,7 @@ public class AppActivityMapper implements ActivityMapper {
 
     @Override
     public Activity getActivity(Place place) {
-	if (place instanceof HomePlace)
-	    return new HomeActivity((HomePlace) place, clientFactory);
-
-	else if (place instanceof PeopleChartPlace)
+	if (place instanceof PeopleChartPlace)
 	    return new PeopleChartActivity((PeopleChartPlace) place, clientFactory);
 
 	else if (place instanceof NewslettersChartPlace)

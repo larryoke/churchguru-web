@@ -10,7 +10,7 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Widget;
 import com.laotek.churchguru.web.client.ApplicationContext;
 import com.laotek.churchguru.web.client.activity.SystemSettingsPlace;
-import com.laotek.churchguru.web.client.activity.home.HomePlace;
+import com.laotek.churchguru.web.client.activity.churchapp.general.GeneralChurchAppPlace;
 import com.laotek.churchguru.web.client.activity.user.AllUserPlace;
 
 public class MainTabBar extends FlexTable {
@@ -29,8 +29,7 @@ public class MainTabBar extends FlexTable {
 	    @Override
 	    public void onClick(ClickEvent event) {
 
-		ApplicationContext.getInstance().getPlaceController()
-			.goTo(new HomePlace("home"));
+		ApplicationContext.getInstance().getPlaceController().goTo(new GeneralChurchAppPlace("churchApp"));
 	    }
 	});
 	setWidget(0, column++, anchor);
@@ -41,8 +40,7 @@ public class MainTabBar extends FlexTable {
 	    @Override
 	    public void onClick(ClickEvent event) {
 
-		ApplicationContext.getInstance().getPlaceController()
-			.goTo(new AllUserPlace("allUser"));
+		ApplicationContext.getInstance().getPlaceController().goTo(new AllUserPlace("allUser"));
 	    }
 	});
 	setWidget(0, column++, anchor);
@@ -52,8 +50,7 @@ public class MainTabBar extends FlexTable {
 	anchor.addClickHandler(new ClickHandler() {
 	    @Override
 	    public void onClick(ClickEvent event) {
-		ApplicationContext.getInstance().getPlaceController()
-			.goTo(new SystemSettingsPlace("systemSettings"));
+		ApplicationContext.getInstance().getPlaceController().goTo(new SystemSettingsPlace("systemSettings"));
 
 	    }
 	});
@@ -70,11 +67,9 @@ public class MainTabBar extends FlexTable {
 		    Widget current = getWidget(0, i);
 		    if (current instanceof Anchor) {
 			if (((Anchor) current).getText().equals(selected)) {
-			    ((Anchor) current)
-				    .addStyleName("boldMainTabBarAnchor");
+			    ((Anchor) current).addStyleName("boldMainTabBarAnchor");
 			} else {
-			    ((Anchor) current)
-				    .removeStyleName("boldMainTabBarAnchor");
+			    ((Anchor) current).removeStyleName("boldMainTabBarAnchor");
 			}
 		    }
 		}

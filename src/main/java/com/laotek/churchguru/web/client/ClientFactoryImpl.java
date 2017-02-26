@@ -21,8 +21,6 @@ import com.laotek.churchguru.web.client.activity.dashboard.WeeklyAttendanceChart
 import com.laotek.churchguru.web.client.activity.dashboard.WeeklyAttendanceChartViewImpl;
 import com.laotek.churchguru.web.client.activity.donation.DonationSearchView;
 import com.laotek.churchguru.web.client.activity.donation.DonationSearchViewImpl;
-import com.laotek.churchguru.web.client.activity.home.HomeView;
-import com.laotek.churchguru.web.client.activity.home.HomeViewImpl;
 import com.laotek.churchguru.web.client.activity.media.youtube.YoutubeVideoNewView;
 import com.laotek.churchguru.web.client.activity.media.youtube.YoutubeVideoNewViewImpl;
 import com.laotek.churchguru.web.client.activity.media.youtube.YoutubeVideosView;
@@ -68,7 +66,6 @@ public class ClientFactoryImpl implements ClientFactory {
     private EventBus eventBus = new SimpleEventBus();
     private PlaceController placeController = new PlaceController(eventBus);
 
-    private HomeView homeView = null;
     private PeopleChartView peopleChartView = null;
     private NewsLettersChartView newsLettersChartView = null;
     private WeeklyAttendanceChartView weeklyAttendanceChartView = null;
@@ -157,14 +154,6 @@ public class ClientFactoryImpl implements ClientFactory {
     @Override
     public LoginView getLoginView() {
 	return loginView;
-    }
-
-    @Override
-    public HomeView getHomeView() {
-	if (homeView == null) {
-	    homeView = new HomeViewImpl(placeController);
-	}
-	return homeView;
     }
 
     @Override

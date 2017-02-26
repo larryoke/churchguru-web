@@ -12,7 +12,6 @@ import com.laotek.churchguru.web.client.activity.dashboard.NewslettersChartPlace
 import com.laotek.churchguru.web.client.activity.dashboard.PeopleChartPlace;
 import com.laotek.churchguru.web.client.activity.dashboard.WeeklyAttendanceChartPlace;
 import com.laotek.churchguru.web.client.activity.donation.DonationSearchPlace;
-import com.laotek.churchguru.web.client.activity.home.HomePlace;
 import com.laotek.churchguru.web.client.activity.media.youtube.YoutubeVideoNewPlace;
 import com.laotek.churchguru.web.client.activity.media.youtube.YoutubeVideosPlace;
 import com.laotek.churchguru.web.client.activity.password.PasswordResetPlace;
@@ -34,7 +33,7 @@ import com.laotek.churchguru.web.client.activity.website.audio.speaker.AudioMess
 import com.laotek.churchguru.web.client.activity.website.gal.AudioMessageGalleryNewItemPlace;
 import com.laotek.churchguru.web.client.activity.website.gal.AudioMessageGalleryPlace;
 
-@WithTokenizers({ HomePlace.Tokenizer.class, AccountQuotaPlace.Tokenizer.class, NewslettersChartPlace.Tokenizer.class,
+@WithTokenizers({ AccountQuotaPlace.Tokenizer.class, NewslettersChartPlace.Tokenizer.class,
 	WeeklyAttendanceChartPlace.Tokenizer.class, PeopleChartPlace.Tokenizer.class, AllUserPlace.Tokenizer.class,
 	SystemSettingsPlace.Tokenizer.class, SingleUserPlace.Tokenizer.class, LoginPlace.Tokenizer.class,
 	PasswordResetPlace.Tokenizer.class, NewUserSetupPlace.Tokenizer.class, UserProfilesPlace.Tokenizer.class,

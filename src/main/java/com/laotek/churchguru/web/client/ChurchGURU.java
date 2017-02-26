@@ -26,7 +26,7 @@ import com.google.gwt.user.client.ui.SimplePanel;
 import com.laotek.churchguru.web.client.activity.DispatchClient;
 import com.laotek.churchguru.web.client.activity.DispatchService;
 import com.laotek.churchguru.web.client.activity.DispatchServiceAsync;
-import com.laotek.churchguru.web.client.activity.home.HomePlace;
+import com.laotek.churchguru.web.client.activity.churchapp.general.GeneralChurchAppPlace;
 import com.laotek.churchguru.web.client.activity.password.PasswordResetPlace;
 import com.laotek.churchguru.web.client.activity.user.UserReloadAction;
 import com.laotek.churchguru.web.client.activity.user.UserReloadResult;
@@ -38,7 +38,7 @@ import net.customware.gwt.dispatch.client.DefaultExceptionHandler;
 public class ChurchGURU implements EntryPoint {
 
     private ClientFactory clientFactory = GWT.create(ClientFactory.class);
-    private Place defaultPlace = new HomePlace("home");
+    private Place defaultPlace = new GeneralChurchAppPlace("churchApp");
     private SimplePanel bodyPanel = new SimplePanel();
     private DispatchServiceAsync dispatchService = GWT.create(DispatchService.class);
 
