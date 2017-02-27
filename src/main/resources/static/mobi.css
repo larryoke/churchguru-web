@@ -43,6 +43,13 @@ div.mgwt-Form {
     width: 100%;
 }
 
+div.mgwt-Form-Entry-label {
+    background-color: #f3f3f3;
+}
+div.mgwt-Form-Entry-container {
+    background-color: white;
+}
+
 div.mgwt-Form-Entry {
     display: -webkit-box;
     display: -webkit-flex;
