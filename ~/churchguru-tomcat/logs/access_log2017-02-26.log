@@ -1376,3 +1376,7 @@
 [26/Feb/2017:23:54:28 +0000] 127.0.0.1 "GET /uploadedphotos/photos/org/prayerrequest?width=328 HTTP/1.1" 200 (240 ms)
 [26/Feb/2017:23:54:33 +0000] 127.0.0.1 "POST /mobi/mobileservice HTTP/1.1" 200 (12 ms)
 [26/Feb/2017:23:54:34 +0000] 127.0.0.1 "GET /uploadedphotos/photos/org/prayerrequest?width=340 HTTP/1.1" 200 (273 ms)
+[26/Feb/2017:23:58:56 +0000] 127.0.0.1 "GET /favicon.ico HTTP/1.1" 200 (36 ms)
+[26/Feb/2017:23:58:56 +0000] 127.0.0.1 "POST /mobi/mobileservice HTTP/1.1" 200 (13 ms)
+[26/Feb/2017:23:58:59 +0000] 127.0.0.1 "POST /mobi/mobileservice HTTP/1.1" 200 (8 ms)
+[26/Feb/2017:23:58:59 +0000] 127.0.0.1 "GET /favicon.ico HTTP/1.1" 200 (3 ms)
