@@ -138,6 +138,13 @@ public class Organisation {
     @Column(nullable = true, columnDefinition = "TEXT")
     private String aboutPastorMessage = "No message found";
 
+    @Column
+    private String facebookTimelineUrl;
+    @Column
+    private String twitterTimelineCode;
+    @Column
+    private String youtubePlaylistUrl;
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date pastorDeskMessageLastUpdatedDate = new Date();
 
@@ -545,6 +552,30 @@ public class Organisation {
 
     public BigDecimal getLongitude() {
 	return longitude;
+    }
+
+    public String getFacebookTimelineUrl() {
+	return facebookTimelineUrl;
+    }
+
+    public void setFacebookTimelineUrl(String facebookTimelineUrl) {
+	this.facebookTimelineUrl = facebookTimelineUrl;
+    }
+
+    public String getTwitterTimelineCode() {
+	return twitterTimelineCode;
+    }
+
+    public void setTwitterTimelineCode(String twitterTimelineCode) {
+	this.twitterTimelineCode = twitterTimelineCode;
+    }
+
+    public String getYoutubePlaylistUrl() {
+	return youtubePlaylistUrl;
+    }
+
+    public void setYoutubePlaylistUrl(String youtubePlaylistUrl) {
+	this.youtubePlaylistUrl = youtubePlaylistUrl;
     }
 
     @Override

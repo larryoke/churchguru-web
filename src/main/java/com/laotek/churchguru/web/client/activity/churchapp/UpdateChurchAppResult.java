@@ -2,6 +2,6 @@ package com.laotek.churchguru.web.client.activity.churchapp;
 
 import net.customware.gwt.dispatch.shared.Result;
 
-public class UpdateChurchAppLabelFlagResult implements Result{
+public class UpdateChurchAppResult implements Result{
 
 }

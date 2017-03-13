@@ -13,10 +13,9 @@ import com.laotek.churchguru.web.client.UserContext;
 import com.laotek.churchguru.web.client.activity.GetOrgDetailAction;
 import com.laotek.churchguru.web.client.activity.GetOrgDetailResult;
 import com.laotek.churchguru.web.client.activity.MessageDialog;
-import com.laotek.churchguru.web.client.activity.churchapp.UpdateChurchAppLabelAction;
-import com.laotek.churchguru.web.client.activity.churchapp.UpdateChurchAppLabelFlagAction;
-import com.laotek.churchguru.web.client.activity.churchapp.UpdateChurchAppLabelFlagResult;
-import com.laotek.churchguru.web.client.activity.churchapp.UpdateChurchAppLabelResult;
+import com.laotek.churchguru.web.client.activity.churchapp.UpdateChurchAppAction;
+import com.laotek.churchguru.web.client.activity.churchapp.UpdateChurchAppResult;
+import com.laotek.churchguru.web.client.activity.churchapp.UpdateType;
 
 public class GeneralChurchAppActivity extends AbstractActivity implements GeneralChurchAppView.Presenter {
 
@@ -74,39 +73,23 @@ public class GeneralChurchAppActivity extends AbstractActivity implements Genera
     }
 
     @Override
-    public void updateChurchAppLabel(ChurchAppTopicEnum churchAppTopic, String value) {
-	UpdateChurchAppLabelAction action = new UpdateChurchAppLabelAction(value, churchAppTopic);
+    public void updateChurchApp(ChurchAppTopicEnum churchAppTopic, String value, final UpdateType updateType) {
+	UpdateChurchAppAction action = new UpdateChurchAppAction(churchAppTopic, value, updateType);
 	UserContext.getInstance().decorateClientSessionId(action);
-	UserContext.getInstance().getDispatchClient().execute(action, new AsyncCallback<UpdateChurchAppLabelResult>() {
+	UserContext.getInstance().getDispatchClient().execute(action, new AsyncCallback<UpdateChurchAppResult>() {
 	    @Override
 	    public void onFailure(Throwable throwable) {
 		Window.alert("An error occured:  " + throwable.getMessage());
 	    }
 
 	    @Override
-	    public void onSuccess(UpdateChurchAppLabelResult result) {
-		ApplicationContext.getInstance().getPlaceController().goTo(new GeneralChurchAppPlace(place.getName()));
+	    public void onSuccess(UpdateChurchAppResult result) {
+		if (!UpdateType.SHOW.equals(updateType)) {
+		    ApplicationContext.getInstance().getPlaceController()
+			    .goTo(new GeneralChurchAppPlace(place.getName()));
+		}
 	    }
 	});
-    }
-
-    @Override
-    public void updateChurchAppLabelShowFlag(ChurchAppTopicEnum churchAppTopic, boolean value) {
-	UpdateChurchAppLabelFlagAction action = new UpdateChurchAppLabelFlagAction(value, churchAppTopic);
-	UserContext.getInstance().decorateClientSessionId(action);
-	UserContext.getInstance().getDispatchClient().execute(action,
-		new AsyncCallback<UpdateChurchAppLabelFlagResult>() {
-		    @Override
-		    public void onFailure(Throwable throwable) {
-			Window.alert("An error occured:  " + throwable.getMessage());
-		    }
-
-		    @Override
-		    public void onSuccess(UpdateChurchAppLabelFlagResult result) {
-			// Window.alert("Selected Church Mobile Menu visibility
-			// is updated");
-		    }
-		});
     }
 
     @Override

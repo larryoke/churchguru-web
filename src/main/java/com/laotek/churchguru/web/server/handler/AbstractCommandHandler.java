@@ -254,6 +254,10 @@ public abstract class AbstractCommandHandler {
 	dto.setLatitude(org.getLatitude());
 	dto.setLongitude(org.getLongitude());
 
+	dto.setFacebookUrl(org.getFacebookTimelineUrl());
+	dto.setTwitterTimelineCode(org.getTwitterTimelineCode());
+	dto.setYoutubePlaylistUrl(org.getYoutubePlaylistUrl());
+
 	LogoItem logoItem = getChurchLogo(org);
 	dto.setHasLogo(logoItem != null && !StringUtils.isEmpty(logoItem.getBase64Data()));
 	return dto;

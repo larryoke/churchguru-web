@@ -259,6 +259,23 @@ public class OrganisationDaoImpl extends BaseSessionFactory implements Organisat
     }
 
     @Override
+    public void updateChurchAppSocialMediaUrl(String clientSessionId, ChurchAppTopicEnum churchAppTopicEnum,
+	    String value) {
+	Organisation org = getOrganisationFromClientSessionId(clientSessionId);
+
+	if (ChurchAppTopicEnum.FACEBOOK.equals(churchAppTopicEnum)) {
+	    org.setFacebookTimelineUrl(value);
+
+	} else if (ChurchAppTopicEnum.TWITTER.equals(churchAppTopicEnum)) {
+	    org.setTwitterTimelineCode(value);
+
+	} else if (ChurchAppTopicEnum.YOUTUBE.equals(churchAppTopicEnum)) {
+	    org.setYoutubePlaylistUrl(value);
+
+	}
+    }
+
+    @Override
     public void updateChurchAppLabel(String clientSessionId, ChurchAppTopicEnum churchAppTopicEnum, String value) {
 	Organisation org = getOrganisationFromClientSessionId(clientSessionId);
 

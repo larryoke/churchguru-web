@@ -50,6 +50,10 @@ public class OrganisationDto implements IsSerializable {
     private BigDecimal latitude;
     private BigDecimal longitude;
 
+    private String facebookUrl;
+    private String twitterTimelineCode;
+    private String youtubePlaylistUrl;
+
     public String getOrgIdentifier() {
 	return orgIdentifier;
     }
@@ -344,6 +348,30 @@ public class OrganisationDto implements IsSerializable {
 
     public void setLongitude(BigDecimal longitude) {
 	this.longitude = longitude;
+    }
+
+    public String getFacebookUrl() {
+	return facebookUrl;
+    }
+
+    public void setFacebookUrl(String facebookUrl) {
+	this.facebookUrl = facebookUrl;
+    }
+
+    public String getTwitterTimelineCode() {
+	return twitterTimelineCode;
+    }
+
+    public void setTwitterTimelineCode(String twitterTimelineCode) {
+	this.twitterTimelineCode = twitterTimelineCode;
+    }
+
+    public String getYoutubePlaylistUrl() {
+	return youtubePlaylistUrl;
+    }
+
+    public void setYoutubePlaylistUrl(String youtubePlaylistUrl) {
+	this.youtubePlaylistUrl = youtubePlaylistUrl;
     }
 
 }

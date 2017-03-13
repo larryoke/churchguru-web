@@ -3,6 +3,7 @@ package com.laotek.churchguru.web.client.activity.churchapp.general;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.laotek.churchguru.model.shared.enums.sharedmob.ChurchAppTopicEnum;
+import com.laotek.churchguru.web.client.activity.churchapp.UpdateType;
 import com.laotek.churchguru.web.shared.OrganisationDto;
 
 public interface GeneralChurchAppView extends IsWidget {
@@ -26,11 +27,7 @@ public interface GeneralChurchAppView extends IsWidget {
 
 	void submitAboutUsOrgDetails(SubmitAboutUsOrgDetailsAction action);
 
-	void updateChurchAppLabel(ChurchAppTopicEnum churchAppTopic,
-		String value);
-
-	void updateChurchAppLabelShowFlag(ChurchAppTopicEnum churchAppTopic,
-		boolean value);
+	void updateChurchApp(ChurchAppTopicEnum churchAppTopic, String value, UpdateType updateType);
 
 	void goTo(Place place);
     }

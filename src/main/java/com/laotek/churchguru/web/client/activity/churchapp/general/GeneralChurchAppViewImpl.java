@@ -32,6 +32,7 @@ import com.google.gwt.user.client.ui.Widget;
 import com.laotek.churchguru.model.shared.enums.sharedmob.ChurchAppTopicEnum;
 import com.laotek.churchguru.web.client.ApplicationContext;
 import com.laotek.churchguru.web.client.MainMenuContext;
+import com.laotek.churchguru.web.client.activity.churchapp.UpdateType;
 import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.GetCurrentNoticesAndEventsHistoryPlace;
 import com.laotek.churchguru.web.client.activity.media.youtube.YoutubeVideoNewPlace;
 import com.laotek.churchguru.web.client.widget.CheckBoxItem;
@@ -39,6 +40,7 @@ import com.laotek.churchguru.web.client.widget.CheckBoxItemHandler;
 import com.laotek.churchguru.web.client.widget.RichTextToolbar;
 import com.laotek.churchguru.web.client.widget.RoundedCornerPanel;
 import com.laotek.churchguru.web.client.widget.TextItem;
+import com.laotek.churchguru.web.client.widget.TextLongItem;
 import com.laotek.churchguru.web.shared.OrganisationDto;
 
 import gwtupload.client.IFileInput.FileInputType;
@@ -204,6 +206,9 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
 	tabPanel.add(initPastorDeskTopic(churchAppPastorDesk, dto.getPastorDeskChurchAppTopic(),
 		dto.isPastorDeskChurchAppTopicFlag(), dto.getPastorDeskMessage()), "Pastor's Desk");
 
+	tabPanel.add(initMessageDownloadTopic(churchAppListen, dto.getListenChurchAppTopic(),
+		dto.isListenChurchAppTopicFlag()), "Downloads");
+
 	tabPanel.add(initPrayerRequestTopic(churchAppPrayerRequest, dto.getPrayerRequestChurchAppTopic(),
 		dto.isPrayerRequestChurchAppTopicFlag()), "Prayer Request");
 
@@ -213,19 +218,22 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
 	tabPanel.add(initDonationTopic(churchAppDonation, dto.getDonationChurchAppTopic(),
 		dto.isDonationChurchAppTopicFlag()), "Give");
 
-	tabPanel.add(
-		initTwitterTopic(churchAppTwitter, dto.getTwitterChurchAppTopic(), dto.isTwitterChurchAppTopicFlag()),
-		"Twitter");
+	RoundedCornerPanel tpanel = initTwitterTopic(churchAppTwitter, dto.getTwitterChurchAppTopic(),
+		dto.isTwitterChurchAppTopicFlag(), dto.getTwitterTimelineCode());
 
-	tabPanel.add(initFacebookTopic(churchAppFacebook, dto.getFacebookChurchAppTopic(),
-		dto.isFacebookChurchAppTopicFlag()), "Facebook");
+	RoundedCornerPanel fbpanel = initFacebookTopic(churchAppFacebook, dto.getFacebookChurchAppTopic(),
+		dto.isFacebookChurchAppTopicFlag(), dto.getFacebookUrl());
 
-	tabPanel.add(initMessageDownloadTopic(churchAppListen, dto.getListenChurchAppTopic(),
-		dto.isListenChurchAppTopicFlag()), "Downloads");
+	RoundedCornerPanel ytbpanel = initYoutubeTopic(churchAppYoutube, dto.getYoutubeChurchAppTopic(),
+		dto.isYoutubeChurchAppTopicFlag(), dto.getYoutubePlaylistUrl());
 
-	tabPanel.add(
-		initYoutubeTopic(churchAppYoutube, dto.getYoutubeChurchAppTopic(), dto.isYoutubeChurchAppTopicFlag()),
-		"YouTube");
+	VerticalPanel socialMediaPanel = new VerticalPanel();
+	socialMediaPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+	socialMediaPanel.add(tpanel);
+	socialMediaPanel.add(fbpanel);
+	socialMediaPanel.add(ytbpanel);
+
+	tabPanel.add(socialMediaPanel, "Social Media");
 
 	tabPanel.add(initAboutUsTopic(churchAppAboutUs, dto.getAboutUsChurchAppTopic(),
 		dto.isAboutUsChurchAppTopicFlag(), dto.getOrgName(), dto.getAdminEmail(), dto.getPrayerRequestEmail(),
@@ -424,13 +432,14 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
     }
 
     private RoundedCornerPanel initYoutubeTopic(final GeneralChurchAppTopic topic, final String churchAppLabel,
-	    boolean isShowLabel) {
+	    boolean isShowLabel, String youtubeUrl) {
 	FlexTable panel = new FlexTable();
 	panel.setWidth("100%");
 	panel.setBorderWidth(0);
 	initScreenTopicLabel(topic, churchAppLabel, panel);
-	initAvailability(topic, isShowLabel, panel);
+	initSocialMediaURL(topic, "Youtube Playlist URL: ", youtubeUrl, panel);
 	initScreenPicture(topic, panel);
+	initAvailability(topic, isShowLabel, panel);
 
 	Anchor anchor = new Anchor("Go to management");
 	anchor.addClickHandler(new ClickHandler() {
@@ -475,37 +484,39 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
 	    @Override
 	    public void addChangeHandler(boolean value) {
 		if (Window.confirm("Are you sure you want to change the visibity now?")) {
-		    presenter.updateChurchAppLabelShowFlag(topic.getChurchAppTopicEnum(), value);
+		    presenter.updateChurchApp(topic.getChurchAppTopicEnum(), Boolean.toString(value), UpdateType.SHOW);
 		}
 	    }
 	});
 
-	panel.setWidget(1, 0, new HTML("Screen Availability: "));
-	panel.getFlexCellFormatter().setVerticalAlignment(1, 0, HasVerticalAlignment.ALIGN_TOP);
-	panel.getFlexCellFormatter().setHorizontalAlignment(1, 0, HasHorizontalAlignment.ALIGN_RIGHT);
+	panel.setWidget(4, 0, new HTML("Screen Availability: "));
+	panel.getFlexCellFormatter().setVerticalAlignment(4, 0, HasVerticalAlignment.ALIGN_TOP);
+	panel.getFlexCellFormatter().setHorizontalAlignment(4, 0, HasHorizontalAlignment.ALIGN_RIGHT);
 
-	panel.setWidget(1, 1, cb);
-	panel.getFlexCellFormatter().setVerticalAlignment(1, 1, HasVerticalAlignment.ALIGN_MIDDLE);
-	panel.getFlexCellFormatter().setHorizontalAlignment(1, 1, HasHorizontalAlignment.ALIGN_LEFT);
+	panel.setWidget(4, 1, cb);
+	panel.getFlexCellFormatter().setVerticalAlignment(4, 1, HasVerticalAlignment.ALIGN_MIDDLE);
+	panel.getFlexCellFormatter().setHorizontalAlignment(4, 1, HasHorizontalAlignment.ALIGN_LEFT);
     }
 
     private RoundedCornerPanel initTwitterTopic(final GeneralChurchAppTopic topic, final String churchAppLabel,
-	    boolean isShowLabel) {
+	    boolean isShowLabel, String timelineCode) {
 	FlexTable panel = new FlexTable();
 	panel.setWidth("100%");
 	panel.setBorderWidth(0);
 	initScreenTopicLabel(topic, churchAppLabel, panel);
 	initAvailability(topic, isShowLabel, panel);
+	initSocialMediaURL(topic, "Twitter Timelime URL: ", timelineCode, panel);
 	return new RoundedCornerPanel(topic.getWebsiteLabel(), panel);
     }
 
     private RoundedCornerPanel initFacebookTopic(final GeneralChurchAppTopic topic, final String churchAppLabel,
-	    boolean isShowLabel) {
+	    boolean isShowLabel, String facebookUrl) {
 	FlexTable panel = new FlexTable();
 	panel.setWidth("100%");
 	panel.setBorderWidth(0);
 	initScreenTopicLabel(topic, churchAppLabel, panel);
 	initAvailability(topic, isShowLabel, panel);
+	initSocialMediaURL(topic, "Facebook Timelime URL: ", facebookUrl, panel);
 	return new RoundedCornerPanel(topic.getWebsiteLabel(), panel);
     }
 
@@ -811,7 +822,7 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
 	    public void onClick(ClickEvent event) {
 		String value = Window.prompt("New Mobile App label:", churchAppLabel);
 		if (value != null && !value.equals("") && !value.equals(churchAppLabel)) {
-		    presenter.updateChurchAppLabel(topic.getChurchAppTopicEnum(), value);
+		    presenter.updateChurchApp(topic.getChurchAppTopicEnum(), value, UpdateType.LABEL);
 		}
 	    }
 	});
@@ -823,6 +834,30 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
 	panel.setWidget(0, 1, label);
 	panel.getFlexCellFormatter().setHorizontalAlignment(0, 1, HasHorizontalAlignment.ALIGN_LEFT);
 	panel.getFlexCellFormatter().setVerticalAlignment(0, 1, HasVerticalAlignment.ALIGN_MIDDLE);
+    }
+
+    private void initSocialMediaURL(final GeneralChurchAppTopic topic, final String label, final String url,
+	    FlexTable panel) {
+	TextLongItem urlItem = new TextLongItem();
+	urlItem.getTextbox().setReadOnly(true);
+	urlItem.setValue(url);
+	urlItem.addClickHandler(new ClickHandler() {
+	    @Override
+	    public void onClick(ClickEvent event) {
+		String value = Window.prompt(label, url);
+		if (value != null && !value.equals("") && !value.equals(url)) {
+		    presenter.updateChurchApp(topic.getChurchAppTopicEnum(), value, UpdateType.SOCIAL_MEDIA);
+		}
+	    }
+	});
+
+	panel.setWidget(1, 0, new HTML(label));
+	panel.getFlexCellFormatter().setHorizontalAlignment(1, 0, HasHorizontalAlignment.ALIGN_RIGHT);
+	panel.getFlexCellFormatter().setVerticalAlignment(1, 0, HasVerticalAlignment.ALIGN_MIDDLE);
+
+	panel.setWidget(1, 1, urlItem);
+	panel.getFlexCellFormatter().setHorizontalAlignment(1, 1, HasHorizontalAlignment.ALIGN_LEFT);
+	panel.getFlexCellFormatter().setVerticalAlignment(1, 1, HasVerticalAlignment.ALIGN_MIDDLE);
     }
 
     class InsertPhotoAnchor extends Composite implements HasClickHandlers {

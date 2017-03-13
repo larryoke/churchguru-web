@@ -1,24 +1,25 @@
 package com.laotek.churchguru.web.client.activity.churchapp;
 
-import net.customware.gwt.dispatch.shared.Action;
-
 import com.laotek.churchguru.model.shared.enums.sharedmob.ChurchAppTopicEnum;
 import com.laotek.churchguru.web.client.activity.AbstractDispatchAction;
 import com.laotek.churchguru.web.shared.role.org.HasOrganisationCrudRole;
 
-public class UpdateChurchAppLabelAction extends AbstractDispatchAction
-	implements Action<UpdateChurchAppLabelResult>, HasOrganisationCrudRole {
+import net.customware.gwt.dispatch.shared.Action;
+
+public class UpdateChurchAppAction extends AbstractDispatchAction
+	implements Action<UpdateChurchAppResult>, HasOrganisationCrudRole {
 
     private String value;
     private ChurchAppTopicEnum churchAppTopicEnum;
+    private UpdateType updateType;
 
-    public UpdateChurchAppLabelAction() {
+    public UpdateChurchAppAction() {
     }
 
-    public UpdateChurchAppLabelAction(String value,
-	    ChurchAppTopicEnum churchAppTopicEnum) {
+    public UpdateChurchAppAction(ChurchAppTopicEnum churchAppTopicEnum, String value, UpdateType updateType) {
 	this.value = value;
 	this.churchAppTopicEnum = churchAppTopicEnum;
+	this.updateType = updateType;
     }
 
     public String getValue() {
@@ -27,6 +28,10 @@ public class UpdateChurchAppLabelAction extends AbstractDispatchAction
 
     public ChurchAppTopicEnum getChurchAppTopicEnum() {
 	return churchAppTopicEnum;
+    }
+
+    public UpdateType getUpdateType() {
+	return updateType;
     }
 
 }

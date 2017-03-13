@@ -30,6 +30,8 @@ public interface OrganisationDao {
 
     void updateChurchAppLabelFlagShow(String clientSessionId, ChurchAppTopicEnum churchAppTopicEnum, boolean value);
 
+    void updateChurchAppSocialMediaUrl(String clientSessionId, ChurchAppTopicEnum churchAppTopicEnum, String value);
+
     long getOrganisationIdFromClientSessionId(String clientSessionId);
 
     List<Organisation> getOrganisations();
