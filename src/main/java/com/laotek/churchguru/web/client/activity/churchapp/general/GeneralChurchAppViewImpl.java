@@ -174,7 +174,7 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
 
     @Override
     public Widget asWidget() {
-
+	log("start");
 	HorizontalPanel topPanel = new HorizontalPanel();
 	topPanel.add(new Image("images/app/website.png"));
 	topPanel.add(new HTML("&nbsp;"));
@@ -192,6 +192,7 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
 	layout.getCellFormatter().setHorizontalAlignment(0, 0, HasHorizontalAlignment.ALIGN_CENTER);
 	layout.setWidget(1, 0, new HTML("&nbsp;"));
 
+	log("end");
 	return layout;
     }
 
@@ -925,5 +926,9 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
 	    return addDomHandler(handler, ClickEvent.getType());
 	}
     }
+
+    private static native void log(final String message)/*-{
+							console.log('*********GeneralChurchAppViewImpl: ' + message + '**********');
+							}-*/;
 
 }

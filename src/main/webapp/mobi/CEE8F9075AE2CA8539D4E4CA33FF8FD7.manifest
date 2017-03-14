@@ -1,0 +1,16 @@
+CACHE MANIFEST
+# Unique id #1489073586615.0.3091916219339874
+
+CACHE:
+# Static app files
+
+# GWT compiled files
+mobi/CEE8F9075AE2CA8539D4E4CA33FF8FD7.cache.html
+mobi/clear.cache.gif
+mobi/hosted.html
+mobi/mobi.nocache.js
+
+
+# All other resources require the client to be online.
+NETWORK:
+*

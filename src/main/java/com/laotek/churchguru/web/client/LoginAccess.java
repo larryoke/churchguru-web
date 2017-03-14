@@ -234,6 +234,7 @@ public class LoginAccess {
 	    UserContext.getInstance().getDispatchClient().execute(action, new AsyncCallback<LoginResult>() {
 		@Override
 		public void onFailure(Throwable throwable) {
+		    log("Failed");
 		    String message = null;
 		    if (throwable instanceof LoginException) {
 			message = ((LoginException) throwable).getMessage();
@@ -252,10 +253,15 @@ public class LoginAccess {
 
 		@Override
 		public void onSuccess(LoginResult result) {
+		    log("Success");
 		    Cookies.setCookie(ApplicationConstants.instance.sessionIdName(), result.getSessionId());
 		    Window.Location.reload();
 		}
 	    });
 	}
     }
+
+    private static native void log(final String message)/*-{
+							console.log('*********LoginAccess: ' + message + '**********');
+							}-*/;
 }
