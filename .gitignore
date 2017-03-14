@@ -33,7 +33,10 @@ src/main/webapp/WEB-INF/
 **/target/
 *.idea/
 **/my-tomcat
-**churchguru-web.iml
+**.churchguru-web.iml
+**.perm.xml
+**.cache.html
+**.manifest
 /.settings/
 /.classpath
 /.project
