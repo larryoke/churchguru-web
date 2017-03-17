@@ -305,7 +305,7 @@
 					<skip>false</skip>
 					<runTarget>resources/ChurchGURU.html</runTarget>
 					<warSourceDirectory>war</warSourceDirectory>
-					<webappDirectory>src/main/resources/static</webappDirectory>
+					<webappDirectory>src/main/webapp</webappDirectory>
 				</configuration>
 			</plugin>
 

@@ -11,9 +11,11 @@ import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -29,12 +31,23 @@ import com.google.gwt.user.client.ui.TabPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
+import com.laotek.churchguru.model.shared.enums.BrowseMessagesType;
+import com.laotek.churchguru.model.shared.enums.UserRoleName;
 import com.laotek.churchguru.model.shared.enums.sharedmob.ChurchAppTopicEnum;
 import com.laotek.churchguru.web.client.ApplicationContext;
 import com.laotek.churchguru.web.client.MainMenuContext;
+import com.laotek.churchguru.web.client.UserContext;
+import com.laotek.churchguru.web.client.activity.audio.CreateNewAudioMessageAction;
+import com.laotek.churchguru.web.client.activity.audio.CreateNewAudioMessageResult;
 import com.laotek.churchguru.web.client.activity.churchapp.UpdateType;
+import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.EnumNoticeOrEventAction;
 import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.GetCurrentNoticesAndEventsHistoryPlace;
+import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.NoticeAndEventAction;
+import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.NoticeAndEventActionResult;
+import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.PostNoticeOrEventChurchAppPlace;
 import com.laotek.churchguru.web.client.activity.media.youtube.YoutubeVideoNewPlace;
+import com.laotek.churchguru.web.client.activity.website.audio.AudioMessageNewPlace;
+import com.laotek.churchguru.web.client.activity.website.audio.AudioMessagesPlace;
 import com.laotek.churchguru.web.client.widget.CheckBoxItem;
 import com.laotek.churchguru.web.client.widget.CheckBoxItemHandler;
 import com.laotek.churchguru.web.client.widget.RichTextToolbar;
@@ -42,6 +55,7 @@ import com.laotek.churchguru.web.client.widget.RoundedCornerPanel;
 import com.laotek.churchguru.web.client.widget.TextItem;
 import com.laotek.churchguru.web.client.widget.TextLongItem;
 import com.laotek.churchguru.web.shared.OrganisationDto;
+import com.laotek.churchguru.web.shared.UserDto;
 
 import gwtupload.client.IFileInput.FileInputType;
 import gwtupload.client.IUploadStatus.Status;
@@ -351,17 +365,109 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
 	initAvailability(topic, isShowLabel, panel);
 	initScreenPicture(topic, panel);
 
-	Anchor anchor = new Anchor("Go to management");
-	anchor.addClickHandler(new ClickHandler() {
-	    @Override
-	    public void onClick(ClickEvent event) {
-		ApplicationContext.getInstance().getPlaceController()
-			.goTo(new GetCurrentNoticesAndEventsHistoryPlace("POSTED"));
-	    }
-	});
-	gotoManagement(anchor, panel);
+	UserDto dto = UserContext.getInstance().getUserDto();
+
+	createLink(new Image("images/app/searchResult.png"), "Posted Notices and Events", panel,
+		new GetCurrentNoticesAndEventsHistoryPlace(BrowseMessagesType.POSTED.name()),
+		UserRoleName.ORGANISATION_DATA_VIEW_ONLY, dto.getOrganisationRole());
+
+	createLink(new Image("images/app/searchResult.png"), "Draft Notices and Events", panel,
+		new GetCurrentNoticesAndEventsHistoryPlace(BrowseMessagesType.DRAFT.name()),
+		UserRoleName.ORGANISATION_DATA_VIEW_ONLY, dto.getOrganisationRole());
+
+	createPostNoticeOrEventLink(new Image("images/app/sendMail.png"), panel,
+		UserRoleName.ORGANISATION_DATA_VIEW_ONLY, dto.getOrganisationRole());
 
 	return new RoundedCornerPanel(topic.getWebsiteLabel(), panel);
+    }
+
+    protected void createLink(Image image, String label, FlexTable panel, final Place place,
+	    UserRoleName minimumUserRoleName, UserRoleName currentUserRoleName) {
+	Anchor link = new Anchor(label);
+	createLink(image, link, panel, place, minimumUserRoleName, currentUserRoleName);
+    }
+
+    private void createLink(Image image, Anchor link, FlexTable panel, final Place place,
+	    UserRoleName minimumUserRoleName, UserRoleName currentUserRoleName) {
+	int row = panel.getRowCount();
+	image.setWidth("30px");
+	panel.getCellFormatter().setHorizontalAlignment(row, 0, HasHorizontalAlignment.ALIGN_RIGHT);
+	panel.setWidget(row, 0, image);
+	panel.setWidget(row, 1, link);
+	link.addClickHandler(new ClickHandler() {
+	    @Override
+	    public void onClick(ClickEvent event) {
+		ApplicationContext.getInstance().getPlaceController().goTo(place);
+	    }
+	});
+    }
+
+    protected void createPostNoticeOrEventLink(Image image, FlexTable panel, UserRoleName minimumUserRoleName,
+	    UserRoleName currentUserRoleName) {
+	int row = panel.getRowCount();
+	image.setWidth("30px");
+	panel.getCellFormatter().setHorizontalAlignment(row, 0, HasHorizontalAlignment.ALIGN_RIGHT);
+	panel.setWidget(row, 0, image);
+	Anchor link = new Anchor("Post new notice or event");
+	panel.setWidget(row, 1, link);
+	link.addClickHandler(new ClickHandler() {
+	    @Override
+	    public void onClick(ClickEvent event) {
+		String subject = Window.prompt("Please start here by submitting the subject of new notice or event",
+			"");
+		if (subject != null && !subject.trim().equals("")) {
+		    NoticeAndEventAction action = new NoticeAndEventAction(subject, EnumNoticeOrEventAction.CREATE);
+		    UserContext.getInstance().decorateClientSessionId(action);
+		    UserContext.getInstance().getDispatchClient().execute(action,
+			    new AsyncCallback<NoticeAndEventActionResult>() {
+				@Override
+				public void onFailure(Throwable throwable) {
+				    Window.alert("An error occured:  " + throwable.getMessage());
+				}
+
+				@Override
+				public void onSuccess(NoticeAndEventActionResult result) {
+
+				    ApplicationContext.getInstance().getPlaceController()
+					    .goTo(new PostNoticeOrEventChurchAppPlace(result.getId(),
+						    result.getIdentifier()));
+
+				}
+			    });
+		}
+	    }
+	});
+    }
+
+    protected void createNewListeningMessageLink(FlexTable panel, UserRoleName minimumUserRoleName,
+	    UserRoleName currentUserRoleName) {
+	int row = panel.getRowCount();
+	Anchor link = new Anchor("Post new audio message");
+	panel.setWidget(row, 1, link);
+	link.addClickHandler(new ClickHandler() {
+	    @Override
+	    public void onClick(ClickEvent event) {
+		String subject = Window.prompt("Please provide the title of the new audio message to be uploaded", "");
+		if (subject != null && !subject.trim().equals("")) {
+
+		    CreateNewAudioMessageAction action = new CreateNewAudioMessageAction(subject);
+		    UserContext.getInstance().decorateClientSessionId(action);
+		    UserContext.getInstance().getDispatchClient().execute(action,
+			    new AsyncCallback<CreateNewAudioMessageResult>() {
+				@Override
+				public void onFailure(Throwable throwable) {
+				    Window.alert("A server error occured when attempting to create a new message.");
+				}
+
+				@Override
+				public void onSuccess(CreateNewAudioMessageResult result) {
+				    ApplicationContext.getInstance().getPlaceController()
+					    .goTo(new AudioMessageNewPlace(result.getNewMessageID()));
+				}
+			    });
+		}
+	    }
+	});
     }
 
     private RoundedCornerPanel initPrayerRequestTopic(final GeneralChurchAppTopic topic, final String churchAppLabel,
@@ -462,6 +568,14 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
 	initScreenTopicLabel(topic, churchAppLabel, panel);
 	initAvailability(topic, isShowLabel, panel);
 	initScreenPicture(topic, panel);
+
+	UserDto dto = UserContext.getInstance().getUserDto();
+
+	createLink(new Image("images/app/download.png"), "Manage Audio Message", panel, new AudioMessagesPlace("audio"),
+		UserRoleName.ORGANISATION_DATA_VIEW_ONLY, dto.getOrganisationRole());
+
+	createNewListeningMessageLink(panel, UserRoleName.ORGANISATION_DATA_VIEW_ONLY, dto.getOrganisationRole());
+
 	return new RoundedCornerPanel(topic.getWebsiteLabel(), panel);
     }
 

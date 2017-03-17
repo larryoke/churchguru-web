@@ -17,6 +17,7 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
+import com.laotek.churchguru.web.client.activity.churchapp.general.GeneralChurchAppPlace;
 import com.laotek.churchguru.web.client.activity.user.GiveFeedbackDialog;
 
 public class HeaderLayout extends Composite {
@@ -62,59 +63,53 @@ public class HeaderLayout extends Composite {
 	layout.setWidget(0, ++row, getCell("images/app/add.png", new AddMenu()));
 	layout.getFlexCellFormatter().setWidth(0, row, "15%");
 
-	layout.setWidget(0, ++row,
-		getCell("images/app/homeMenu.png", new ClickHandler() {
-		    @Override
-		    public void onClick(ClickEvent event) {
+	layout.setWidget(0, ++row, getCell("images/app/homeMenu.png", new ClickHandler() {
+	    @Override
+	    public void onClick(ClickEvent event) {
+		ApplicationContext.getInstance().getPlaceController().goTo(new GeneralChurchAppPlace("churchApp"));
+		// String protocol = Window.Location.getProtocol();
+		// String host = Window.Location.getHost();
+		// UrlBuilder builder =
+		// Window.Location.createUrlBuilder().setProtocol(protocol).setHost(host).setPath("/")
+		// .setHash(null);
+		// String url = builder.buildString();
+		// Window.open(url, "_blank", "");
 
-			String protocol = Window.Location.getProtocol();
-			String host = Window.Location.getHost();
-			UrlBuilder builder = Window.Location.createUrlBuilder()
-				.setProtocol(protocol).setHost(host)
-				.setPath("/").setHash(null);
-			String url = builder.buildString();
-			Window.open(url, "_blank", "");
-
-		    }
-		}));
+	    }
+	}));
 	layout.getFlexCellFormatter().setWidth(0, row, "15%");
 
-	layout.setWidget(0, ++row,
-		getCell("images/app/help.png", new ClickHandler() {
-		    @Override
-		    public void onClick(ClickEvent event) {
+	layout.setWidget(0, ++row, getCell("images/app/help.png", new ClickHandler() {
+	    @Override
+	    public void onClick(ClickEvent event) {
 
-			String protocol = Window.Location.getProtocol();
-			String host = Window.Location.getHost();
-			UrlBuilder builder = Window.Location.createUrlBuilder()
-				.setProtocol(protocol).setHost(host)
-				.setPath("/help").setHash(null);
-			String url = builder.buildString();
-			Window.open(url, "_blank", "");
+		String protocol = Window.Location.getProtocol();
+		String host = Window.Location.getHost();
+		UrlBuilder builder = Window.Location.createUrlBuilder().setProtocol(protocol).setHost(host)
+			.setPath("/help").setHash(null);
+		String url = builder.buildString();
+		Window.open(url, "_blank", "");
 
-		    }
-		}));
+	    }
+	}));
 	layout.getFlexCellFormatter().setWidth(0, row, "7%");
 
-	layout.setWidget(0, ++row,
-		getCell("images/app/feedback.png", new ClickHandler() {
-		    @Override
-		    public void onClick(ClickEvent event) {
-			GiveFeedbackDialog dialog = new GiveFeedbackDialog();
-			dialog.center();
-		    }
-		}));
+	layout.setWidget(0, ++row, getCell("images/app/feedback.png", new ClickHandler() {
+	    @Override
+	    public void onClick(ClickEvent event) {
+		GiveFeedbackDialog dialog = new GiveFeedbackDialog();
+		dialog.center();
+	    }
+	}));
 	layout.getFlexCellFormatter().setWidth(0, row, "15%");
 
-	layout.setWidget(0, ++row,
-		getCell("images/app/logout.png", new ClickHandler() {
-		    @Override
-		    public void onClick(ClickEvent event) {
-			Cookies.removeCookie(ApplicationConstants.instance
-				.sessionIdName());
-			Window.Location.reload();
-		    }
-		}));
+	layout.setWidget(0, ++row, getCell("images/app/logout.png", new ClickHandler() {
+	    @Override
+	    public void onClick(ClickEvent event) {
+		Cookies.removeCookie(ApplicationConstants.instance.sessionIdName());
+		Window.Location.reload();
+	    }
+	}));
 	layout.getFlexCellFormatter().setWidth(0, row, "8%");
 
 	layout.setWidget(0, ++row, new HTML("&nbsp;"));
@@ -175,59 +170,52 @@ public class HeaderLayout extends Composite {
 	layout.setWidget(0, ++row, getCell("images/app/add.png", new AddMenu()));
 	layout.getFlexCellFormatter().setWidth(0, row, "15%");
 
-	layout.setWidget(0, ++row,
-		getCell("images/app/homeMenu.png", new ClickHandler() {
-		    @Override
-		    public void onClick(ClickEvent event) {
+	layout.setWidget(0, ++row, getCell("images/app/homeMenu.png", new ClickHandler() {
+	    @Override
+	    public void onClick(ClickEvent event) {
 
-			String protocol = Window.Location.getProtocol();
-			String host = Window.Location.getHost();
-			UrlBuilder builder = Window.Location.createUrlBuilder()
-				.setProtocol(protocol).setHost(host)
-				.setPath("/").setHash(null);
-			String url = builder.buildString();
-			Window.open(url, "_blank", "");
+		String protocol = Window.Location.getProtocol();
+		String host = Window.Location.getHost();
+		UrlBuilder builder = Window.Location.createUrlBuilder().setProtocol(protocol).setHost(host).setPath("/")
+			.setHash(null);
+		String url = builder.buildString();
+		Window.open(url, "_blank", "");
 
-		    }
-		}));
+	    }
+	}));
 	layout.getFlexCellFormatter().setWidth(0, row, "15%");
 
-	layout.setWidget(0, ++row,
-		getCell("images/app/help.png", new ClickHandler() {
-		    @Override
-		    public void onClick(ClickEvent event) {
+	layout.setWidget(0, ++row, getCell("images/app/help.png", new ClickHandler() {
+	    @Override
+	    public void onClick(ClickEvent event) {
 
-			String protocol = Window.Location.getProtocol();
-			String host = Window.Location.getHost();
-			UrlBuilder builder = Window.Location.createUrlBuilder()
-				.setProtocol(protocol).setHost(host)
-				.setPath("/help").setHash(null);
-			String url = builder.buildString();
-			Window.open(url, "_blank", "");
+		String protocol = Window.Location.getProtocol();
+		String host = Window.Location.getHost();
+		UrlBuilder builder = Window.Location.createUrlBuilder().setProtocol(protocol).setHost(host)
+			.setPath("/help").setHash(null);
+		String url = builder.buildString();
+		Window.open(url, "_blank", "");
 
-		    }
-		}));
+	    }
+	}));
 	layout.getFlexCellFormatter().setWidth(0, row, "7%");
 
-	layout.setWidget(0, ++row,
-		getCell("images/app/feedback.png", new ClickHandler() {
-		    @Override
-		    public void onClick(ClickEvent event) {
-			GiveFeedbackDialog dialog = new GiveFeedbackDialog();
-			dialog.center();
-		    }
-		}));
+	layout.setWidget(0, ++row, getCell("images/app/feedback.png", new ClickHandler() {
+	    @Override
+	    public void onClick(ClickEvent event) {
+		GiveFeedbackDialog dialog = new GiveFeedbackDialog();
+		dialog.center();
+	    }
+	}));
 	layout.getFlexCellFormatter().setWidth(0, row, "15%");
 
-	layout.setWidget(0, ++row,
-		getCell("images/app/logout.png", new ClickHandler() {
-		    @Override
-		    public void onClick(ClickEvent event) {
-			Cookies.removeCookie(ApplicationConstants.instance
-				.sessionIdName());
-			Window.Location.reload();
-		    }
-		}));
+	layout.setWidget(0, ++row, getCell("images/app/logout.png", new ClickHandler() {
+	    @Override
+	    public void onClick(ClickEvent event) {
+		Cookies.removeCookie(ApplicationConstants.instance.sessionIdName());
+		Window.Location.reload();
+	    }
+	}));
 	layout.getFlexCellFormatter().setWidth(0, row, "8%");
 
 	layout.setWidget(0, ++row, new HTML("&nbsp;"));
@@ -263,87 +251,66 @@ public class HeaderLayout extends Composite {
 	layout.getFlexCellFormatter().setWidth(0, row, "15%");
 
 	Anchor siteAnchor = new Anchor("Site Home");
-	layout.setWidget(
-		0,
-		++row,
-		getCell("images/app/homeMenu.png", siteAnchor,
-			new ClickHandler() {
-			    @Override
-			    public void onClick(ClickEvent event) {
+	layout.setWidget(0, ++row, getCell("images/app/homeMenu.png", siteAnchor, new ClickHandler() {
+	    @Override
+	    public void onClick(ClickEvent event) {
 
-				String protocol = Window.Location.getProtocol();
-				String host = Window.Location.getHost();
-				UrlBuilder builder = Window.Location
-					.createUrlBuilder()
-					.setProtocol(protocol).setHost(host)
-					.setPath("/").setHash(null);
-				String url = builder.buildString();
-				Window.open(url, "_blank", "");
+		String protocol = Window.Location.getProtocol();
+		String host = Window.Location.getHost();
+		UrlBuilder builder = Window.Location.createUrlBuilder().setProtocol(protocol).setHost(host).setPath("/")
+			.setHash(null);
+		String url = builder.buildString();
+		Window.open(url, "_blank", "");
 
-			    }
-			}));
+	    }
+	}));
 	layout.getFlexCellFormatter().setWidth(0, row, "15%");
 
 	Anchor helpAnchor = new Anchor("Help");
-	layout.setWidget(0, ++row,
-		getCell("images/app/help.png", helpAnchor, new ClickHandler() {
-		    @Override
-		    public void onClick(ClickEvent event) {
+	layout.setWidget(0, ++row, getCell("images/app/help.png", helpAnchor, new ClickHandler() {
+	    @Override
+	    public void onClick(ClickEvent event) {
 
-			String protocol = Window.Location.getProtocol();
-			String host = Window.Location.getHost();
-			UrlBuilder builder = Window.Location.createUrlBuilder()
-				.setProtocol(protocol).setHost(host)
-				.setPath("/help").setHash(null);
-			String url = builder.buildString();
-			Window.open(url, "_blank", "");
+		String protocol = Window.Location.getProtocol();
+		String host = Window.Location.getHost();
+		UrlBuilder builder = Window.Location.createUrlBuilder().setProtocol(protocol).setHost(host)
+			.setPath("/help").setHash(null);
+		String url = builder.buildString();
+		Window.open(url, "_blank", "");
 
-		    }
-		}));
+	    }
+	}));
 	layout.getFlexCellFormatter().setWidth(0, row, "7%");
 
 	Anchor feedbackAnchor = new Anchor("Give Feedback");
-	layout.setWidget(
-		0,
-		++row,
-		getCell("images/app/feedback.png", feedbackAnchor,
-			new ClickHandler() {
-			    @Override
-			    public void onClick(ClickEvent event) {
-				GiveFeedbackDialog dialog = new GiveFeedbackDialog();
-				dialog.center();
-			    }
-			}));
+	layout.setWidget(0, ++row, getCell("images/app/feedback.png", feedbackAnchor, new ClickHandler() {
+	    @Override
+	    public void onClick(ClickEvent event) {
+		GiveFeedbackDialog dialog = new GiveFeedbackDialog();
+		dialog.center();
+	    }
+	}));
 	layout.getFlexCellFormatter().setWidth(0, row, "15%");
 
-	layout.setWidget(
-		0,
-		++row,
-		getCell("images/app/operator.png", new HTML(UserContext
-			.getInstance().getUserDto().getFullname())));
+	layout.setWidget(0, ++row,
+		getCell("images/app/operator.png", new HTML(UserContext.getInstance().getUserDto().getFullname())));
 	layout.getFlexCellFormatter().setWidth(0, row, "30%");
 
 	Anchor logoutAnchor = new Anchor("Logout");
-	layout.setWidget(
-		0,
-		++row,
-		getCell("images/app/logout.png", logoutAnchor,
-			new ClickHandler() {
-			    @Override
-			    public void onClick(ClickEvent event) {
-				Cookies.removeCookie(ApplicationConstants.instance
-					.sessionIdName());
-				Window.Location.reload();
-			    }
-			}));
+	layout.setWidget(0, ++row, getCell("images/app/logout.png", logoutAnchor, new ClickHandler() {
+	    @Override
+	    public void onClick(ClickEvent event) {
+		Cookies.removeCookie(ApplicationConstants.instance.sessionIdName());
+		Window.Location.reload();
+	    }
+	}));
 	layout.getFlexCellFormatter().setWidth(0, row, "8%");
 
 	layout.setWidget(0, ++row, new HTML("&nbsp;"));
 
     }
 
-    private FlexTable getCell(String imagePath, Anchor anchor,
-	    ClickHandler clickHandler) {
+    private FlexTable getCell(String imagePath, Anchor anchor, ClickHandler clickHandler) {
 	anchor.addClickHandler(clickHandler);
 	Image image = new Image(imagePath);
 	image.addClickHandler(clickHandler);
