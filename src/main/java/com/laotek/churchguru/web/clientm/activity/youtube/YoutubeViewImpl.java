@@ -36,9 +36,9 @@ public class YoutubeViewImpl extends DetailViewGwtImpl implements YoutubeView {
 	youtubePic.setWidth("100%");
 	formContainer.add(youtubePic);
 	formContainer.add(new HTML("&nbsp;"));
-	Frame frame = new Frame("https://www.youtube.com/embed/E_VofkUqL4M");
-	frame.setWidth("100");
-	frame.setHeight("100");
+	Frame frame = new Frame("https://www.youtube.com/embed/videoseries?list=PLgmRz0Ecn4AJ7z9uR7kXapP1WwdyKuXPM");
+	frame.setWidth("100%");
+	frame.setHeight("100%");
 	formContainer.add(frame);
 	scrollPanel.setWidget(formContainer);
 	handleOnLoad(formContainer.getElement());
