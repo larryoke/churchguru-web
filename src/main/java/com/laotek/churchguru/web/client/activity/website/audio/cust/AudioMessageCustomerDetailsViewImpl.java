@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
-import com.laotek.churchguru.web.client.MainMenuContext;
 import com.laotek.churchguru.web.shared.listening.CustomerDto;
 
 public class AudioMessageCustomerDetailsViewImpl implements AudioMessageCustomerDetailsView {
@@ -29,7 +28,7 @@ public class AudioMessageCustomerDetailsViewImpl implements AudioMessageCustomer
 
     @Override
     public void initTab() {
-	MainMenuContext.getInstance().showMessageMediaPanel("eStore");
+	// MainMenuContext.getInstance().showMessageMediaPanel("eStore");
     }
 
     @Override

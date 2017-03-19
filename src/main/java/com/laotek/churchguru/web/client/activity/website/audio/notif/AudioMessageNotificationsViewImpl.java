@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
-import com.laotek.churchguru.web.client.MainMenuContext;
 import com.laotek.churchguru.web.shared.NotificationDto;
 
 public class AudioMessageNotificationsViewImpl implements AudioMessageNotificationsView {
@@ -28,7 +27,7 @@ public class AudioMessageNotificationsViewImpl implements AudioMessageNotificati
 
     @Override
     public void initTab() {
-	MainMenuContext.getInstance().showWebsitePanel("notif");
+	// MainMenuContext.getInstance().showWebsitePanel("notif");
     }
 
     @Override

@@ -3,7 +3,6 @@ package com.laotek.churchguru.web.client.activity.website.gal;
 import java.util.List;
 
 import com.google.gwt.user.client.ui.Widget;
-import com.laotek.churchguru.web.client.MainMenuContext;
 import com.laotek.churchguru.web.shared.listening.GalleryDto;
 
 public class AudioMessageGalleryViewImpl implements AudioMessageGalleryView {
@@ -29,7 +28,7 @@ public class AudioMessageGalleryViewImpl implements AudioMessageGalleryView {
 
     @Override
     public void initTab() {
-	MainMenuContext.getInstance().showMessageMediaPanel("gallery");
+	// MainMenuContext.getInstance().showMessageMediaPanel("gallery");
     }
 
     @Override

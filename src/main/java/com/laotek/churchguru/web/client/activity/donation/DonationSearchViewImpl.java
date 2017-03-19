@@ -26,7 +26,6 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.datepicker.client.DateBox;
 import com.laotek.churchguru.model.shared.enums.DonationTransactionStatus;
 import com.laotek.churchguru.model.shared.enums.sharedmob.DonationType;
-import com.laotek.churchguru.web.client.MainMenuContext;
 import com.laotek.churchguru.web.client.widget.CheckBoxItem;
 import com.laotek.churchguru.web.client.widget.RoundedCornerPanel;
 import com.laotek.churchguru.web.client.widget.SelectItem;
@@ -53,14 +52,10 @@ public class DonationSearchViewImpl implements DonationSearchView {
 
     private CheckBoxItem offeringItem = new CheckBoxItem("Offering", false);
     private CheckBoxItem titheItem = new CheckBoxItem("Tithe", false);
-    private CheckBoxItem buildingOfferingItem = new CheckBoxItem("Building",
-	    false);
-    private CheckBoxItem thanksGivingOfferingItem = new CheckBoxItem(
-	    "Thanksgiving", false);
-    private CheckBoxItem specialOfferingItem = new CheckBoxItem(
-	    "Special Offering", false);
-    private CheckBoxItem otherOfferingItem = new CheckBoxItem("Other Offering",
-	    false);
+    private CheckBoxItem buildingOfferingItem = new CheckBoxItem("Building", false);
+    private CheckBoxItem thanksGivingOfferingItem = new CheckBoxItem("Thanksgiving", false);
+    private CheckBoxItem specialOfferingItem = new CheckBoxItem("Special Offering", false);
+    private CheckBoxItem otherOfferingItem = new CheckBoxItem("Other Offering", false);
 
     private CheckBoxItem cancelleditem = new CheckBoxItem("Cancelled", false);
     private CheckBoxItem createdItem = new CheckBoxItem("Created", false);
@@ -92,19 +87,16 @@ public class DonationSearchViewImpl implements DonationSearchView {
 	FlexTable headerPanel = new FlexTable();
 	headerPanel.setWidth(TABLES_WIDTH);
 	headerPanel.setWidget(1, 0, topPanel);
-	headerPanel.getCellFormatter().setHorizontalAlignment(1, 0,
-		HasHorizontalAlignment.ALIGN_CENTER);
+	headerPanel.getCellFormatter().setHorizontalAlignment(1, 0, HasHorizontalAlignment.ALIGN_CENTER);
 
 	layout.setWidth("100%");
 	layout.setBorderWidth(0);
 	layout.setWidget(0, 0, new RoundedCornerPanel(headerPanel));
-	layout.getCellFormatter().setHorizontalAlignment(0, 0,
-		HasHorizontalAlignment.ALIGN_CENTER);
+	layout.getCellFormatter().setHorizontalAlignment(0, 0, HasHorizontalAlignment.ALIGN_CENTER);
 	layout.setWidget(1, 0, new HTML("&nbsp;"));
 
 	layout.setWidget(2, 0, new RoundedCornerPanel(searchPanel));
-	layout.getCellFormatter().setHorizontalAlignment(2, 0,
-		HasHorizontalAlignment.ALIGN_LEFT);
+	layout.getCellFormatter().setHorizontalAlignment(2, 0, HasHorizontalAlignment.ALIGN_LEFT);
 
 	return layout;
     }
@@ -132,7 +124,7 @@ public class DonationSearchViewImpl implements DonationSearchView {
 
     @Override
     public void initTab() {
-	MainMenuContext.getInstance().showDonationPanel("Manage Donations");
+	// MainMenuContext.getInstance().showDonationPanel("Manage Donations");
     }
 
     @Override
@@ -184,13 +176,11 @@ public class DonationSearchViewImpl implements DonationSearchView {
 	donationStatusesBody.add(createdItem);
 	donationStatusesBody.add(approvedItem);
 	donationStatusesBody.add(completedItem);
-	ScrollPanel donationStatusScrollPanel = new ScrollPanel(
-		donationStatusesBody);
+	ScrollPanel donationStatusScrollPanel = new ScrollPanel(donationStatusesBody);
 	donationStatusScrollPanel.setWidth("150px");
 	donationStatusScrollPanel.setHeight("100px");
 	VerticalPanel donationStatusesHederAndBody = new VerticalPanel();
-	donationStatusesHederAndBody
-		.add(new HTML("<h4>Donation Statuses</h4>"));
+	donationStatusesHederAndBody.add(new HTML("<h4>Donation Statuses</h4>"));
 	donationStatusesHederAndBody.add(donationStatusScrollPanel);
 	donationStatusesHederAndBody.add(new HTML("&nbsp;"));
 	searchPanel.setWidget(4, 1, donationStatusesHederAndBody);
@@ -226,8 +216,7 @@ public class DonationSearchViewImpl implements DonationSearchView {
     public void setDonationResult(List<DonationDto> dtos) {
 	searchResultPanel.removeAllRows();
 
-	final FlexCellFormatter formatter = searchResultPanel
-		.getFlexCellFormatter();
+	final FlexCellFormatter formatter = searchResultPanel.getFlexCellFormatter();
 
 	if (dtos.size() == 0) {
 	    if (layout.getWidget(4, 0) != null) {
@@ -236,8 +225,7 @@ public class DonationSearchViewImpl implements DonationSearchView {
 	    Window.alert("No result found. Please refine your search");
 	} else {
 	    layout.setWidget(4, 0, new RoundedCornerPanel(searchResultPanel));
-	    layout.getCellFormatter().setHorizontalAlignment(4, 0,
-		    HasHorizontalAlignment.ALIGN_LEFT);
+	    layout.getCellFormatter().setHorizontalAlignment(4, 0, HasHorizontalAlignment.ALIGN_LEFT);
 
 	    int col = 0;
 	    searchResultPanel.setHTML(0, col, "<b>Email Address</b>");
@@ -260,119 +248,98 @@ public class DonationSearchViewImpl implements DonationSearchView {
 	    searchResultPanel.setHTML(0, ++col, "<b>In Mailing List</b>");
 
 	    searchResultPanel.setHTML(0, ++col, "<b>Gift Aid Today</b>");
-	    searchResultPanel.setHTML(0, ++col,
-		    "<b>Gift Aid In Past 4 Years</b>");
-	    searchResultPanel
-		    .setHTML(0, ++col, "<b>Gift Aid In the Future</b>");
+	    searchResultPanel.setHTML(0, ++col, "<b>Gift Aid In Past 4 Years</b>");
+	    searchResultPanel.setHTML(0, ++col, "<b>Gift Aid In the Future</b>");
 	    for (DonationDto dto : dtos) {
 		col = 0;
 		int rowIndex = dtos.indexOf(dto);
 
-		searchResultPanel.setHTML(rowIndex + 1, col,
-			dto.getEmailAddress());
+		searchResultPanel.setHTML(rowIndex + 1, col, dto.getEmailAddress());
 		formatter.setStyleName(rowIndex + 1, col, "dottedBorder");
 
-		searchResultPanel.setHTML(rowIndex + 1, ++col, dto
-			.getFullnameDto().getFullname());
+		searchResultPanel.setHTML(rowIndex + 1, ++col, dto.getFullnameDto().getFullname());
 		formatter.setStyleName(rowIndex + 1, col, "dottedBorder");
 
-		searchResultPanel.getCellFormatter().setHorizontalAlignment(
-			rowIndex + 1, col, HasHorizontalAlignment.ALIGN_LEFT);
+		searchResultPanel.getCellFormatter().setHorizontalAlignment(rowIndex + 1, col,
+			HasHorizontalAlignment.ALIGN_LEFT);
 		formatter.setStyleName(rowIndex + 1, col, "dottedBorder");
 
-		searchResultPanel.setHTML(rowIndex + 1, ++col,
-			dto.getDonationDateAsString());
-		searchResultPanel.getCellFormatter().setHorizontalAlignment(
-			rowIndex + 1, col, HasHorizontalAlignment.ALIGN_LEFT);
+		searchResultPanel.setHTML(rowIndex + 1, ++col, dto.getDonationDateAsString());
+		searchResultPanel.getCellFormatter().setHorizontalAlignment(rowIndex + 1, col,
+			HasHorizontalAlignment.ALIGN_LEFT);
 		formatter.setStyleName(rowIndex + 1, col, "dottedBorder");
 
-		searchResultPanel.setHTML(rowIndex + 1, ++col, dto
-			.getDonationTransactionStatus().getLabel());
-		searchResultPanel.getCellFormatter().setHorizontalAlignment(
-			rowIndex + 1, col, HasHorizontalAlignment.ALIGN_LEFT);
+		searchResultPanel.setHTML(rowIndex + 1, ++col, dto.getDonationTransactionStatus().getLabel());
+		searchResultPanel.getCellFormatter().setHorizontalAlignment(rowIndex + 1, col,
+			HasHorizontalAlignment.ALIGN_LEFT);
 		formatter.setStyleName(rowIndex + 1, col, "dottedBorder");
 
-		searchResultPanel.setHTML(rowIndex + 1, ++col,
-			dto.getCurrency());
-		searchResultPanel.getCellFormatter().setHorizontalAlignment(
-			rowIndex + 1, col, HasHorizontalAlignment.ALIGN_LEFT);
+		searchResultPanel.setHTML(rowIndex + 1, ++col, dto.getCurrency());
+		searchResultPanel.getCellFormatter().setHorizontalAlignment(rowIndex + 1, col,
+			HasHorizontalAlignment.ALIGN_LEFT);
 		formatter.setStyleName(rowIndex + 1, col, "dottedBorder");
 
-		searchResultPanel.setHTML(rowIndex + 1, ++col, dto
-			.getOffering().toString());
-		searchResultPanel.getCellFormatter().setHorizontalAlignment(
-			rowIndex + 1, col, HasHorizontalAlignment.ALIGN_LEFT);
+		searchResultPanel.setHTML(rowIndex + 1, ++col, dto.getOffering().toString());
+		searchResultPanel.getCellFormatter().setHorizontalAlignment(rowIndex + 1, col,
+			HasHorizontalAlignment.ALIGN_LEFT);
 		formatter.setStyleName(rowIndex + 1, col, "dottedBorder");
 
-		searchResultPanel.setHTML(rowIndex + 1, ++col, dto.getTithe()
-			.toString());
-		searchResultPanel.getCellFormatter().setHorizontalAlignment(
-			rowIndex + 1, col, HasHorizontalAlignment.ALIGN_LEFT);
+		searchResultPanel.setHTML(rowIndex + 1, ++col, dto.getTithe().toString());
+		searchResultPanel.getCellFormatter().setHorizontalAlignment(rowIndex + 1, col,
+			HasHorizontalAlignment.ALIGN_LEFT);
 		formatter.setStyleName(rowIndex + 1, col, "dottedBorder");
 
-		searchResultPanel.setHTML(rowIndex + 1, ++col, dto
-			.getThanksGiving().toString());
+		searchResultPanel.setHTML(rowIndex + 1, ++col, dto.getThanksGiving().toString());
 		formatter.setStyleName(rowIndex + 1, col, "dottedBorder");
-		searchResultPanel.getCellFormatter().setHorizontalAlignment(
-			rowIndex + 1, col, HasHorizontalAlignment.ALIGN_LEFT);
-		formatter.setStyleName(rowIndex + 1, col, "dottedBorder");
-
-		searchResultPanel.setHTML(rowIndex + 1, ++col, dto
-			.getBuildingFund().toString());
-		searchResultPanel.getCellFormatter().setHorizontalAlignment(
-			rowIndex + 1, col, HasHorizontalAlignment.ALIGN_LEFT);
+		searchResultPanel.getCellFormatter().setHorizontalAlignment(rowIndex + 1, col,
+			HasHorizontalAlignment.ALIGN_LEFT);
 		formatter.setStyleName(rowIndex + 1, col, "dottedBorder");
 
-		searchResultPanel.setHTML(rowIndex + 1, ++col, dto
-			.getSpecialOffering().toString());
-		searchResultPanel.getCellFormatter().setHorizontalAlignment(
-			rowIndex + 1, col, HasHorizontalAlignment.ALIGN_LEFT);
+		searchResultPanel.setHTML(rowIndex + 1, ++col, dto.getBuildingFund().toString());
+		searchResultPanel.getCellFormatter().setHorizontalAlignment(rowIndex + 1, col,
+			HasHorizontalAlignment.ALIGN_LEFT);
 		formatter.setStyleName(rowIndex + 1, col, "dottedBorder");
 
-		searchResultPanel.setHTML(rowIndex + 1, ++col, dto
-			.getOtherOffering().toString());
-		searchResultPanel.getCellFormatter().setHorizontalAlignment(
-			rowIndex + 1, col, HasHorizontalAlignment.ALIGN_LEFT);
+		searchResultPanel.setHTML(rowIndex + 1, ++col, dto.getSpecialOffering().toString());
+		searchResultPanel.getCellFormatter().setHorizontalAlignment(rowIndex + 1, col,
+			HasHorizontalAlignment.ALIGN_LEFT);
 		formatter.setStyleName(rowIndex + 1, col, "dottedBorder");
 
-		searchResultPanel.setHTML(rowIndex + 1, ++col, dto
-			.getOtherOffering().toPlainString());
+		searchResultPanel.setHTML(rowIndex + 1, ++col, dto.getOtherOffering().toString());
+		searchResultPanel.getCellFormatter().setHorizontalAlignment(rowIndex + 1, col,
+			HasHorizontalAlignment.ALIGN_LEFT);
 		formatter.setStyleName(rowIndex + 1, col, "dottedBorder");
 
-		searchResultPanel.getCellFormatter().setHorizontalAlignment(
-			rowIndex + 1, col, HasHorizontalAlignment.ALIGN_LEFT);
+		searchResultPanel.setHTML(rowIndex + 1, ++col, dto.getOtherOffering().toPlainString());
 		formatter.setStyleName(rowIndex + 1, col, "dottedBorder");
 
-		searchResultPanel.setHTML(rowIndex + 1, ++col, dto
-			.getAmountTotal().toString());
+		searchResultPanel.getCellFormatter().setHorizontalAlignment(rowIndex + 1, col,
+			HasHorizontalAlignment.ALIGN_LEFT);
 		formatter.setStyleName(rowIndex + 1, col, "dottedBorder");
 
-		searchResultPanel.getCellFormatter().setHorizontalAlignment(
-			rowIndex + 1, col, HasHorizontalAlignment.ALIGN_LEFT);
+		searchResultPanel.setHTML(rowIndex + 1, ++col, dto.getAmountTotal().toString());
 		formatter.setStyleName(rowIndex + 1, col, "dottedBorder");
 
-		searchResultPanel.setHTML(rowIndex + 1, ++col,
-			dto.getFullAddress());
+		searchResultPanel.getCellFormatter().setHorizontalAlignment(rowIndex + 1, col,
+			HasHorizontalAlignment.ALIGN_LEFT);
 		formatter.setStyleName(rowIndex + 1, col, "dottedBorder");
 
-		searchResultPanel.setHTML(rowIndex + 1, ++col,
-			findYesOrNo(dto.isMember()));
+		searchResultPanel.setHTML(rowIndex + 1, ++col, dto.getFullAddress());
 		formatter.setStyleName(rowIndex + 1, col, "dottedBorder");
 
-		searchResultPanel.setHTML(rowIndex + 1, ++col,
-			findYesOrNo(dto.isInMailingList()));
+		searchResultPanel.setHTML(rowIndex + 1, ++col, findYesOrNo(dto.isMember()));
 		formatter.setStyleName(rowIndex + 1, col, "dottedBorder");
 
-		searchResultPanel.setHTML(rowIndex + 1, ++col,
-			findYesOrNo(dto.isGiftAidToday()));
+		searchResultPanel.setHTML(rowIndex + 1, ++col, findYesOrNo(dto.isInMailingList()));
 		formatter.setStyleName(rowIndex + 1, col, "dottedBorder");
 
-		searchResultPanel.setHTML(rowIndex + 1, ++col,
-			findYesOrNo(dto.isGiftAidPast4Years()));
+		searchResultPanel.setHTML(rowIndex + 1, ++col, findYesOrNo(dto.isGiftAidToday()));
 		formatter.setStyleName(rowIndex + 1, col, "dottedBorder");
 
-		searchResultPanel.setHTML(rowIndex + 1, ++col,
-			findYesOrNo(dto.isGiftAidFuture()));
+		searchResultPanel.setHTML(rowIndex + 1, ++col, findYesOrNo(dto.isGiftAidPast4Years()));
+		formatter.setStyleName(rowIndex + 1, col, "dottedBorder");
+
+		searchResultPanel.setHTML(rowIndex + 1, ++col, findYesOrNo(dto.isGiftAidFuture()));
 		formatter.setStyleName(rowIndex + 1, col, "dottedBorder");
 
 	    }
@@ -394,12 +361,10 @@ public class DonationSearchViewImpl implements DonationSearchView {
 	    donationTransactionStatuses.add(DonationTransactionStatus.APPROVED);
 	}
 	if (cancelleditem.isChecked()) {
-	    donationTransactionStatuses
-		    .add(DonationTransactionStatus.CANCELLED);
+	    donationTransactionStatuses.add(DonationTransactionStatus.CANCELLED);
 	}
 	if (completedItem.isChecked()) {
-	    donationTransactionStatuses
-		    .add(DonationTransactionStatus.COMPLETED);
+	    donationTransactionStatuses.add(DonationTransactionStatus.COMPLETED);
 	}
 	if (createdItem.isChecked()) {
 	    donationTransactionStatuses.add(DonationTransactionStatus.CREATED);

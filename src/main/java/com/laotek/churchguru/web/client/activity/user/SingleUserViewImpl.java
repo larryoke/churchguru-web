@@ -25,7 +25,6 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.laotek.churchguru.model.shared.enums.EmailRecipientType;
 import com.laotek.churchguru.web.client.ApplicationContext;
-import com.laotek.churchguru.web.client.MainMenuContext;
 import com.laotek.churchguru.web.client.activity.SendQuickEmailDialog;
 import com.laotek.churchguru.web.client.widget.RoundedCornerPanel;
 import com.laotek.churchguru.web.shared.PhoneDto;
@@ -99,8 +98,7 @@ public class SingleUserViewImpl extends Composite implements SingleUserView {
 	backAnchor.addClickHandler(new ClickHandler() {
 	    @Override
 	    public void onClick(ClickEvent event) {
-		ApplicationContext.getInstance().getPlaceController()
-			.goTo(new AllUserPlace("allUsers"));
+		ApplicationContext.getInstance().getPlaceController().goTo(new AllUserPlace("allUsers"));
 	    }
 	});
 
@@ -115,8 +113,7 @@ public class SingleUserViewImpl extends Composite implements SingleUserView {
 	pageLayout.add(linksPanel);
 	pageLayout.add(new HTML("&nbsp;"));
 
-	pageLayout
-		.add(new HTML("<h3>User Details, Roles and Permissions</h3>"));
+	pageLayout.add(new HTML("<h3>User Details, Roles and Permissions</h3>"));
 	userGrid.setBorderWidth(0);
 	userGrid.setCellPadding(0);
 	userGrid.setCellSpacing(0);
@@ -139,8 +136,7 @@ public class SingleUserViewImpl extends Composite implements SingleUserView {
 	VerticalPanel tabAndAnchor = new VerticalPanel();
 	tabAndAnchor.add(tabPanel);
 	tabAndAnchor.add(new HTML("&nbsp;"));
-	tabAndAnchor
-		.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+	tabAndAnchor.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 	tabAndAnchor.add(getUserDetailsEditAnchor());
 	tabAndAnchor.add(new HTML("&nbsp;"));
 
@@ -148,8 +144,7 @@ public class SingleUserViewImpl extends Composite implements SingleUserView {
 
 	pageLayout.add(new HTML("<h3>User Activity History</h3>"));
 	VerticalPanel auditInnerPanel = new VerticalPanel();
-	auditInnerPanel
-		.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+	auditInnerPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 	auditInnerPanel.add(startAuditTrail());
 	auditInnerPanel.add(auditGrid);
 	pageLayout.add(new RoundedCornerPanel(auditInnerPanel));
@@ -188,8 +183,7 @@ public class SingleUserViewImpl extends Composite implements SingleUserView {
 	emailAnchor.addClickHandler(new ClickHandler() {
 	    @Override
 	    public void onClick(ClickEvent event) {
-		SendQuickEmailDialog.getInstance().init(
-			EmailRecipientType.USER, dto.getIdentifier(),
+		SendQuickEmailDialog.getInstance().init(EmailRecipientType.USER, dto.getIdentifier(),
 			dto.getEmailAddress());
 	    }
 	});
@@ -198,8 +192,7 @@ public class SingleUserViewImpl extends Composite implements SingleUserView {
 
 	HorizontalPanel mobilePanel = new HorizontalPanel();
 	mobilePanel.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
-	mobilePanel.add(new Image(dto.getMobile().getCountryCode()
-		.getImageUrl()));
+	mobilePanel.add(new Image(dto.getMobile().getCountryCode().getImageUrl()));
 	mobilePanel.add(new HTML("&nbsp;"));
 	mobilePanel.add(new HTML(dto.getMobile().getNumber()));
 	userGrid.setWidget(4, 1, mobilePanel);
@@ -213,28 +206,21 @@ public class SingleUserViewImpl extends Composite implements SingleUserView {
 	permissionGrid.setHTML(1, 0, "<b>Profile Name</b>");
 	permissionGrid.setHTML(1, 1, String.valueOf(dto.getUserProfileName()));
 	permissionGrid.setHTML(2, 0, "<b>Email Permission</b>");
-	permissionGrid.setHTML(2, 1,
-		String.valueOf(dto.getQuickEmailRole().getDesc()));
+	permissionGrid.setHTML(2, 1, String.valueOf(dto.getQuickEmailRole().getDesc()));
 	permissionGrid.setHTML(3, 0, "<b>SMS Permission</b>");
-	permissionGrid
-		.setHTML(3, 1, String.valueOf(dto.getSmsRole().getDesc()));
+	permissionGrid.setHTML(3, 1, String.valueOf(dto.getSmsRole().getDesc()));
 	permissionGrid.setHTML(4, 0, "<b>Member Adding Permission</b>");
-	permissionGrid.setHTML(4, 1,
-		String.valueOf(dto.getMemberRole().getDesc()));
+	permissionGrid.setHTML(4, 1, String.valueOf(dto.getMemberRole().getDesc()));
 	permissionGrid.setHTML(5, 0, "<b>Department</b>");
-	permissionGrid.setHTML(5, 1,
-		String.valueOf(dto.getDepartmentRole().getDesc()));
+	permissionGrid.setHTML(5, 1, String.valueOf(dto.getDepartmentRole().getDesc()));
 	permissionGrid.setHTML(6, 0, "<b>Users</b>");
-	permissionGrid.setHTML(6, 1,
-		String.valueOf(dto.getAppUserRole().getDesc()));
+	permissionGrid.setHTML(6, 1, String.valueOf(dto.getAppUserRole().getDesc()));
 
 	permissionGrid.setHTML(7, 0, "<b>Organisation</b>");
-	permissionGrid.setHTML(7, 1,
-		String.valueOf(dto.getOrganisationRole().getDesc()));
+	permissionGrid.setHTML(7, 1, String.valueOf(dto.getOrganisationRole().getDesc()));
 
 	permissionGrid.setHTML(8, 0, "<b>Notifications</b>");
-	permissionGrid.setHTML(8, 1,
-		String.valueOf(dto.getNotificationRole().getDesc()));
+	permissionGrid.setHTML(8, 1, String.valueOf(dto.getNotificationRole().getDesc()));
 
 	permissionGrid.setHTML(9, 0, "&nbsp;");
 	permissionGrid.setHTML(9, 1, "&nbsp;");
@@ -260,8 +246,7 @@ public class SingleUserViewImpl extends Composite implements SingleUserView {
 
 	    @Override
 	    public void onClick(ClickEvent event) {
-		EditUserDialog.getInstance().init("Edit user details",
-			currentUserDto);
+		EditUserDialog.getInstance().init("Edit user details", currentUserDto);
 	    }
 	});
 	return userDetailsEditAnchor;
@@ -272,8 +257,7 @@ public class SingleUserViewImpl extends Composite implements SingleUserView {
 	backToTopAnchor.addClickHandler(new ClickHandler() {
 	    @Override
 	    public void onClick(ClickEvent arg0) {
-		ApplicationContext.getInstance().getMainScrollPanel()
-			.scrollToTop();
+		ApplicationContext.getInstance().getMainScrollPanel().scrollToTop();
 	    }
 	});
 	return backToTopAnchor;
@@ -281,7 +265,7 @@ public class SingleUserViewImpl extends Composite implements SingleUserView {
 
     @Override
     public void initTab() {
-	MainMenuContext.getInstance().showUserPanel("");
+	// MainMenuContext.getInstance().showUserPanel("");
     }
 
     @Override
@@ -299,29 +283,22 @@ public class SingleUserViewImpl extends Composite implements SingleUserView {
 	    for (int i = 0; i < dtos.size(); i++) {
 		if (rowIndexOfMoreAuditTrailAnchor == auditRowIndex) {
 		    moreAuditTrailAnchor.removeFromParent();
-		    auditGrid.setHTML(rowIndexOfMoreAuditTrailAnchor, 0,
-			    "more...");
+		    auditGrid.setHTML(rowIndexOfMoreAuditTrailAnchor, 0, "more...");
 		    auditRowIndex = auditRowIndex + 1;
 		}
-		auditGrid.setHTML(auditRowIndex, 0, dtos.get(i)
-			.getUserAuditTypeName().getDesc());
+		auditGrid.setHTML(auditRowIndex, 0, dtos.get(i).getUserAuditTypeName().getDesc());
 		auditGrid.setHTML(auditRowIndex, 1, dtos.get(i).getDetails());
-		auditGrid.setHTML(auditRowIndex, 2, dtos.get(i)
-			.getDateAndTime());
-		formatter.setStylePrimaryName(auditRowIndex, 0,
-			"dottedBottomBorder");
-		formatter.setStylePrimaryName(auditRowIndex, 1,
-			"dottedBottomBorder");
-		formatter.setStylePrimaryName(auditRowIndex, 2,
-			"dottedBottomBorder");
+		auditGrid.setHTML(auditRowIndex, 2, dtos.get(i).getDateAndTime());
+		formatter.setStylePrimaryName(auditRowIndex, 0, "dottedBottomBorder");
+		formatter.setStylePrimaryName(auditRowIndex, 1, "dottedBottomBorder");
+		formatter.setStylePrimaryName(auditRowIndex, 2, "dottedBottomBorder");
 		auditRowIndex = auditRowIndex + 1;
 	    }
 
 	    if (hasMore) {
 		formatter = auditGrid.getFlexCellFormatter();
 		formatter.setColSpan(auditRowIndex, 0, 3);
-		formatter.setHorizontalAlignment(auditRowIndex, 0,
-			HasHorizontalAlignment.ALIGN_CENTER);
+		formatter.setHorizontalAlignment(auditRowIndex, 0, HasHorizontalAlignment.ALIGN_CENTER);
 		auditGrid.setWidget(auditRowIndex, 0, moreAuditTrailAnchor);
 		rowIndexOfMoreAuditTrailAnchor = auditRowIndex;
 	    }

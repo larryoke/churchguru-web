@@ -27,7 +27,6 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.datepicker.client.DateBox;
 import com.laotek.churchguru.model.shared.enums.BrowseMessagesType;
 import com.laotek.churchguru.model.shared.enums.EventTime;
-import com.laotek.churchguru.web.client.MainMenuContext;
 import com.laotek.churchguru.web.client.widget.MyRichTextToolbar;
 import com.laotek.churchguru.web.client.widget.RoundedCornerPanel;
 import com.laotek.churchguru.web.client.widget.SelectItem;
@@ -228,7 +227,7 @@ public class PostNoticeOrEventChurchAppViewImpl implements PostNoticeOrEventChur
 
     @Override
     public void initTab() {
-	MainMenuContext.getInstance().showInstantMessagePanel("instantMessage");
+	// MainMenuContext.getInstance().showInstantMessagePanel("instantMessage");
     }
 
     @Override

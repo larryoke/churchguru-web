@@ -24,7 +24,6 @@ import com.google.gwt.visualization.client.VisualizationUtils;
 import com.google.gwt.visualization.client.visualizations.BarChart;
 import com.google.gwt.visualization.client.visualizations.Gauge;
 import com.google.gwt.visualization.client.visualizations.PieChart;
-import com.laotek.churchguru.web.client.MainMenuContext;
 
 public class NewsLettersChartViewImpl implements NewsLettersChartView, Runnable {
     SimplePanel viewPanel = new SimplePanel();
@@ -32,8 +31,8 @@ public class NewsLettersChartViewImpl implements NewsLettersChartView, Runnable 
 
     private static final String TABLES_WIDTH = "700px";
 
-    private DashWidget newsletterChartWidget = new DashWidget(
-	    "Newsletter Recipients", "More details", new ClickHandler() {
+    private DashWidget newsletterChartWidget = new DashWidget("Newsletter Recipients", "More details",
+	    new ClickHandler() {
 		@Override
 		public void onClick(ClickEvent event) {
 
@@ -60,8 +59,7 @@ public class NewsLettersChartViewImpl implements NewsLettersChartView, Runnable 
 	FlexTable headerPanel = new FlexTable();
 	headerPanel.setWidth(TABLES_WIDTH);
 	headerPanel.setWidget(1, 0, topPanel);
-	headerPanel.getCellFormatter().setHorizontalAlignment(1, 0,
-		HasHorizontalAlignment.ALIGN_CENTER);
+	headerPanel.getCellFormatter().setHorizontalAlignment(1, 0, HasHorizontalAlignment.ALIGN_CENTER);
 
 	DecoratorPanel decPanel = new DecoratorPanel();
 	decPanel.setWidget(headerPanel);
@@ -72,13 +70,11 @@ public class NewsLettersChartViewImpl implements NewsLettersChartView, Runnable 
 	layout.setWidth("100%");
 	layout.setBorderWidth(0);
 	layout.setWidget(0, 0, decPanel);
-	layout.getCellFormatter().setHorizontalAlignment(0, 0,
-		HasHorizontalAlignment.ALIGN_CENTER);
+	layout.getCellFormatter().setHorizontalAlignment(0, 0, HasHorizontalAlignment.ALIGN_CENTER);
 	layout.setWidget(1, 0, new HTML("&nbsp;"));
 
 	layout.setWidget(3, 0, makeupFlowPanel);
-	layout.getCellFormatter().setHorizontalAlignment(3, 0,
-		HasHorizontalAlignment.ALIGN_CENTER);
+	layout.getCellFormatter().setHorizontalAlignment(3, 0, HasHorizontalAlignment.ALIGN_CENTER);
 	return layout;
     }
 
@@ -89,7 +85,8 @@ public class NewsLettersChartViewImpl implements NewsLettersChartView, Runnable 
 
     @Override
     public void initTab() {
-	MainMenuContext.getInstance().showDashboardPanel("Newsletters Chart");
+	// MainMenuContext.getInstance().showDashboardPanel("Newsletters
+	// Chart");
     }
 
     @Override
@@ -99,8 +96,7 @@ public class NewsLettersChartViewImpl implements NewsLettersChartView, Runnable 
 
     @Override
     public void initWidgets() {
-	VisualizationUtils.loadVisualizationApi(this, PieChart.PACKAGE,
-		Gauge.PACKAGE, BarChart.PACKAGE);
+	VisualizationUtils.loadVisualizationApi(this, PieChart.PACKAGE, Gauge.PACKAGE, BarChart.PACKAGE);
 
     }
 
@@ -169,8 +165,7 @@ public class NewsLettersChartViewImpl implements NewsLettersChartView, Runnable 
 	Scheduler.get().scheduleDeferred(new ScheduledCommand() {
 	    @Override
 	    public void execute() {
-		newsletterBarChart.draw(createNewsletterTrackingChart(),
-			createNewsletterChartOptions());
+		newsletterBarChart.draw(createNewsletterTrackingChart(), createNewsletterChartOptions());
 	    }
 	});
     }

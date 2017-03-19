@@ -35,7 +35,6 @@ import com.laotek.churchguru.model.shared.enums.BrowseMessagesType;
 import com.laotek.churchguru.model.shared.enums.UserRoleName;
 import com.laotek.churchguru.model.shared.enums.sharedmob.ChurchAppTopicEnum;
 import com.laotek.churchguru.web.client.ApplicationContext;
-import com.laotek.churchguru.web.client.MainMenuContext;
 import com.laotek.churchguru.web.client.UserContext;
 import com.laotek.churchguru.web.client.activity.audio.CreateNewAudioMessageAction;
 import com.laotek.churchguru.web.client.activity.audio.CreateNewAudioMessageResult;
@@ -269,7 +268,7 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
 
     @Override
     public void initTab() {
-	MainMenuContext.getInstance().showDashboardPanel("mobileAppOptions");
+	// MainMenuContext.getInstance().showDashboardPanel("mobileAppOptions");
     }
 
     @Override

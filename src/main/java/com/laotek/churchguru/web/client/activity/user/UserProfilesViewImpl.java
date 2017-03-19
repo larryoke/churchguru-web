@@ -21,7 +21,6 @@ import com.google.gwt.user.client.ui.TabPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.laotek.churchguru.model.shared.enums.UserRoleName;
-import com.laotek.churchguru.web.client.MainMenuContext;
 import com.laotek.churchguru.web.client.UserContext;
 import com.laotek.churchguru.web.client.widget.RoundedCornerPanel;
 import com.laotek.churchguru.web.shared.UserDto;
@@ -54,8 +53,7 @@ public class UserProfilesViewImpl extends Composite implements UserProfilesView 
 
 	heading.setBorderWidth(0);
 	heading.setWidget(0, 0, topPanel);
-	heading.getFlexCellFormatter().setHorizontalAlignment(0, 0,
-		HasHorizontalAlignment.ALIGN_CENTER);
+	heading.getFlexCellFormatter().setHorizontalAlignment(0, 0, HasHorizontalAlignment.ALIGN_CENTER);
 
 	Anchor newAdminAnchor = new Anchor("Create a new user");
 	newAdminAnchor.addClickHandler(new ClickHandler() {
@@ -97,26 +95,22 @@ public class UserProfilesViewImpl extends Composite implements UserProfilesView 
 
 	    if (dto.getQuickEmailRole() != null) {
 		permissionGrid.setHTML(++row, 0, "<b>Email Permission</b>");
-		permissionGrid.setHTML(row, 1,
-			String.valueOf(dto.getQuickEmailRole().getDesc()));
+		permissionGrid.setHTML(row, 1, String.valueOf(dto.getQuickEmailRole().getDesc()));
 	    }
 
 	    if (dto.getSmsRole() != null) {
 		permissionGrid.setHTML(++row, 0, "<b>SMS Permission</b>");
-		permissionGrid.setHTML(row, 1,
-			String.valueOf(dto.getSmsRole().getDesc()));
+		permissionGrid.setHTML(row, 1, String.valueOf(dto.getSmsRole().getDesc()));
 	    }
 
 	    if (dto.getAppUserRole() != null) {
 		permissionGrid.setHTML(++row, 0, "<b>Users</b>");
-		permissionGrid.setHTML(row, 1,
-			String.valueOf(dto.getAppUserRole().getDesc()));
+		permissionGrid.setHTML(row, 1, String.valueOf(dto.getAppUserRole().getDesc()));
 	    }
 
 	    if (dto.getOrganisationRole() != null) {
 		permissionGrid.setHTML(++row, 0, "<b>Organisation</b>");
-		permissionGrid.setHTML(row, 1,
-			String.valueOf(dto.getOrganisationRole().getDesc()));
+		permissionGrid.setHTML(row, 1, String.valueOf(dto.getOrganisationRole().getDesc()));
 	    }
 	    // if (dto.getMemberRole() != null) {
 	    // permissionGrid.setHTML(++row, 0,
@@ -138,21 +132,17 @@ public class UserProfilesViewImpl extends Composite implements UserProfilesView 
 
 	    if (dto.getDonationRole() != null) {
 		permissionGrid.setHTML(++row, 0, "<b>Donations</b>");
-		permissionGrid.setHTML(row, 1,
-			String.valueOf(dto.getDonationRole().getDesc()));
+		permissionGrid.setHTML(row, 1, String.valueOf(dto.getDonationRole().getDesc()));
 	    }
 
 	    FlexTable usersInRole = new FlexTable();
 	    usersInRole.setWidth("500px");
-	    usersInRole.setWidget(usersInRole.getRowCount(), 0, new HTML(
-		    "&nbsp;"));
+	    usersInRole.setWidget(usersInRole.getRowCount(), 0, new HTML("&nbsp;"));
 
 	    for (UserDto userDto : dto.getUserDtos()) {
-		usersInRole.setHTML(usersInRole.getRowCount(), 0,
-			userDto.getFullname());
+		usersInRole.setHTML(usersInRole.getRowCount(), 0, userDto.getFullname());
 	    }
-	    usersInRole.setWidget(usersInRole.getRowCount(), 0, new HTML(
-		    "&nbsp;"));
+	    usersInRole.setWidget(usersInRole.getRowCount(), 0, new HTML("&nbsp;"));
 
 	    FlexTable dates = new FlexTable();
 	    dates.setWidth("500px");
@@ -173,8 +163,7 @@ public class UserProfilesViewImpl extends Composite implements UserProfilesView 
 	    VerticalPanel tabAndAnchor = new VerticalPanel();
 	    tabAndAnchor.add(tabPanel);
 	    tabAndAnchor.add(new HTML("&nbsp;"));
-	    tabAndAnchor
-		    .setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+	    tabAndAnchor.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 	    tabAndAnchor.add(getUserPermissionEditAnchor(dto));
 	    tabAndAnchor.add(new HTML("&nbsp;"));
 
@@ -182,31 +171,26 @@ public class UserProfilesViewImpl extends Composite implements UserProfilesView 
 	    newUserProfileAnchor.addClickHandler(new ClickHandler() {
 		@Override
 		public void onClick(ClickEvent event) {
-		    NewUserProfileDialog.getInstance().init(
-			    "Add New User Profile");
+		    NewUserProfileDialog.getInstance().init("Add New User Profile");
 		}
 	    });
 	    pageLayout.add(newUserProfileAnchor);
 	    pageLayout.add(new HTML("&nbsp;"));
 	    pageLayout.add(new HTML("&nbsp;"));
-	    pageLayout.add(new RoundedCornerPanel(dto.getUserProfileName()
-		    + " profile", tabAndAnchor));
+	    pageLayout.add(new RoundedCornerPanel(dto.getUserProfileName() + " profile", tabAndAnchor));
 	}
 
     }
 
-    private Anchor getUserPermissionEditAnchor(
-	    final UserProfileDto userProfileDto) {
+    private Anchor getUserPermissionEditAnchor(final UserProfileDto userProfileDto) {
 
 	Anchor userPermissionEditAnchor = new Anchor("Edit");
 	userPermissionEditAnchor.addClickHandler(new ClickHandler() {
 	    @Override
 	    public void onClick(ClickEvent event) {
-		UserRoleName userRole = UserContext.getInstance().getUserDto()
-			.getAppUserRole();
+		UserRoleName userRole = UserContext.getInstance().getUserDto().getAppUserRole();
 		if (UserRoleName.USER_CRUD.equals(userRole)) {
-		    EditUserProfileDialog.getInstance().init(
-			    "Edit user details", userProfileDto);
+		    EditUserProfileDialog.getInstance().init("Edit user details", userProfileDto);
 		}
 	    }
 	});
@@ -215,7 +199,7 @@ public class UserProfilesViewImpl extends Composite implements UserProfilesView 
 
     @Override
     public void initTab() {
-	MainMenuContext.getInstance().showUserPanel("");
+	// MainMenuContext.getInstance().showUserPanel("");
     }
 
 }

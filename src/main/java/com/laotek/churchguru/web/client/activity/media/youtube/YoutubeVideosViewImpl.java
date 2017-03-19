@@ -16,7 +16,6 @@ import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.laotek.churchguru.web.client.ApplicationContext;
-import com.laotek.churchguru.web.client.MainMenuContext;
 import com.laotek.churchguru.web.client.activity.website.audio.BaseViewImpl;
 import com.laotek.churchguru.web.client.widget.RoundedCornerPanel;
 import com.laotek.churchguru.web.shared.youtube.YoutubeVideoDto;
@@ -67,7 +66,7 @@ public class YoutubeVideosViewImpl extends BaseViewImpl implements YoutubeVideos
 
     @Override
     public void initTab() {
-	MainMenuContext.getInstance().showMessageMediaPanel("youtube");
+	// MainMenuContext.getInstance().showMessageMediaPanel("youtube");
     }
 
     @Override

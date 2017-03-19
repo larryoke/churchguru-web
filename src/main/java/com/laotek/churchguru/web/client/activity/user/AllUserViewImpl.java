@@ -23,7 +23,6 @@ import com.google.gwt.user.client.ui.Widget;
 import com.laotek.churchguru.model.shared.enums.EmailRecipientType;
 import com.laotek.churchguru.model.shared.enums.UserAccountStatus;
 import com.laotek.churchguru.web.client.ApplicationContext;
-import com.laotek.churchguru.web.client.MainMenuContext;
 import com.laotek.churchguru.web.client.UserRowSelectionContext;
 import com.laotek.churchguru.web.client.activity.SendQuickEmailDialog;
 import com.laotek.churchguru.web.client.widget.IdCheckBox;
@@ -62,8 +61,7 @@ public class AllUserViewImpl extends Composite implements AllUserView {
 	FlexTable flexTable = new FlexTable();
 	flexTable.setBorderWidth(0);
 	flexTable.setWidget(0, 0, topPanel);
-	flexTable.getFlexCellFormatter().setHorizontalAlignment(0, 0,
-		HasHorizontalAlignment.ALIGN_CENTER);
+	flexTable.getFlexCellFormatter().setHorizontalAlignment(0, 0, HasHorizontalAlignment.ALIGN_CENTER);
 	// flexTable.setWidth("700px");
 
 	pageLayout.add(new RoundedCornerPanel(flexTable));
@@ -97,8 +95,7 @@ public class AllUserViewImpl extends Composite implements AllUserView {
 		NewUserProfileDialog.getInstance().init("Add New User Profile");
 	    }
 	});
-	pageLayout.add(new RoundedCornerPanel(outerPanel, userButton,
-		userProfileButton));
+	pageLayout.add(new RoundedCornerPanel(outerPanel, userButton, userProfileButton));
 
     }
 
@@ -135,16 +132,13 @@ public class AllUserViewImpl extends Composite implements AllUserView {
 
 	for (int row = 0; row < dtos.size(); row++) {
 
-	    userGrid.setWidget(row + 1, 0,
-		    initCheckBox(dtos.get(row), row + 1, row + 1, menu));
+	    userGrid.setWidget(row + 1, 0, initCheckBox(dtos.get(row), row + 1, row + 1, menu));
 
 	    // process user account status
-	    UserAccountStatus userAccountStatus = dtos.get(row)
-		    .getUserAccountStatus();
+	    UserAccountStatus userAccountStatus = dtos.get(row).getUserAccountStatus();
 	    String status = userAccountStatus.getDesc();
 
-	    final String fullname = dtos.get(row).getForenames() + " "
-		    + dtos.get(row).getSurname();
+	    final String fullname = dtos.get(row).getForenames() + " " + dtos.get(row).getSurname();
 
 	    String email = dtos.get(row).getEmailAddress();
 	    PhoneDto mobileDto = dtos.get(row).getMobile();
@@ -163,8 +157,7 @@ public class AllUserViewImpl extends Composite implements AllUserView {
 
 	    // show username
 	    userGrid.setWidget(row + 1, 1, new HTML(username));
-	    userGrid.getCellFormatter().setHorizontalAlignment(row + 1, 1,
-		    HasHorizontalAlignment.ALIGN_CENTER);
+	    userGrid.getCellFormatter().setHorizontalAlignment(row + 1, 1, HasHorizontalAlignment.ALIGN_CENTER);
 
 	    Anchor anchor = new Anchor(fullname);
 	    userGrid.setWidget(row + 1, 2, anchor);
@@ -172,8 +165,7 @@ public class AllUserViewImpl extends Composite implements AllUserView {
 	    anchor.addClickHandler(new ClickHandler() {
 		@Override
 		public void onClick(ClickEvent event) {
-		    ApplicationContext.getInstance().getPlaceController()
-			    .goTo(new SingleUserPlace(identifier));
+		    ApplicationContext.getInstance().getPlaceController().goTo(new SingleUserPlace(identifier));
 		}
 	    });
 
@@ -184,8 +176,7 @@ public class AllUserViewImpl extends Composite implements AllUserView {
 
 		@Override
 		public void onClick(ClickEvent event) {
-		    SendQuickEmailDialog.getInstance().init(
-			    EmailRecipientType.USER, identifier, currentEmail);
+		    SendQuickEmailDialog.getInstance().init(EmailRecipientType.USER, identifier, currentEmail);
 
 		}
 	    });
@@ -200,23 +191,20 @@ public class AllUserViewImpl extends Composite implements AllUserView {
 	userGrid.validateMainCheckBox(mainCheckBox);
     }
 
-    private FlexTable initCheckBox(final UserDto dto, final int userNum,
-	    final int currentRowIndex, final UserSelectionMenu menu) {
+    private FlexTable initCheckBox(final UserDto dto, final int userNum, final int currentRowIndex,
+	    final UserSelectionMenu menu) {
 	final IdCheckBox checkbox = new IdCheckBox(dto.getIdentifier(),
-		UserRowSelectionContext.getInstance().isSelected(
-			dto.getIdentifier()));
+		UserRowSelectionContext.getInstance().isSelected(dto.getIdentifier()));
 
 	checkbox.addClickHandler(new ClickHandler() {
 	    @Override
 	    public void onClick(ClickEvent event) {
 		if (checkbox.getValue()) {
 		    userGrid.styleRowSelection(currentRowIndex);
-		    UserRowSelectionContext.getInstance().selectId(
-			    dto.getIdentifier(), true);
+		    UserRowSelectionContext.getInstance().selectId(dto.getIdentifier(), true);
 		} else {
 		    userGrid.removeStyleRowSelection(currentRowIndex);
-		    UserRowSelectionContext.getInstance().selectId(
-			    dto.getIdentifier(), false);
+		    UserRowSelectionContext.getInstance().selectId(dto.getIdentifier(), false);
 		}
 		userGrid.validateMainCheckBox(mainCheckBox);
 
@@ -233,8 +221,7 @@ public class AllUserViewImpl extends Composite implements AllUserView {
 	return firstColAsTab;
     }
 
-    private void styleRow(UserListTable userListTable, String id,
-	    int currentRowIndex) {
+    private void styleRow(UserListTable userListTable, String id, int currentRowIndex) {
 	if (UserRowSelectionContext.getInstance().isSelected(id)) {
 	    userListTable.styleRowSelection(currentRowIndex);
 	} else {
@@ -244,7 +231,7 @@ public class AllUserViewImpl extends Composite implements AllUserView {
 
     @Override
     public void initTab() {
-	MainMenuContext.getInstance().showUserPanel("Create a new user");
+	// MainMenuContext.getInstance().showUserPanel("Create a new user");
     }
 
     @Override

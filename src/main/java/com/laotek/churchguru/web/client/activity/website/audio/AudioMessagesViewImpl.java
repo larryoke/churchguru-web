@@ -15,7 +15,6 @@ import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.laotek.churchguru.web.client.ApplicationContext;
-import com.laotek.churchguru.web.client.MainMenuContext;
 import com.laotek.churchguru.web.client.widget.RoundedCornerPanel;
 import com.laotek.churchguru.web.shared.FullnameDto;
 import com.laotek.churchguru.web.shared.listening.AudioMessageDto;
@@ -66,7 +65,7 @@ public class AudioMessagesViewImpl extends BaseViewImpl implements AudioMessages
 
     @Override
     public void initTab() {
-	MainMenuContext.getInstance().showMessageMediaPanel("eStore");
+	// MainMenuContext.getInstance().showMessageMediaPanel("eStore");
     }
 
     @Override

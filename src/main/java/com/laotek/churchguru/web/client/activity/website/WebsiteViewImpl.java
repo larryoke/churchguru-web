@@ -9,7 +9,6 @@ import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.laotek.churchguru.web.client.ApplicationContext;
-import com.laotek.churchguru.web.client.MainMenuContext;
 import com.laotek.churchguru.web.client.activity.website.audio.AudioMessagesPlace;
 import com.laotek.churchguru.web.client.activity.website.audio.BaseViewImpl;
 import com.laotek.churchguru.web.client.activity.website.audio.cat.AudioMessageCategoriesPlace;
@@ -60,7 +59,7 @@ public class WebsiteViewImpl extends BaseViewImpl implements WebsiteView {
 
     @Override
     public void initTab() {
-	MainMenuContext.getInstance().showWebsitePanel("Website");
+	// MainMenuContext.getInstance().showWebsitePanel("Website");
     }
 
     @Override

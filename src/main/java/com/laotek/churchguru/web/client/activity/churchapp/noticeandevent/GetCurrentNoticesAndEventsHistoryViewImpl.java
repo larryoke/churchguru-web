@@ -21,13 +21,11 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.laotek.churchguru.model.shared.enums.BrowseMessagesType;
 import com.laotek.churchguru.web.client.ApplicationContext;
-import com.laotek.churchguru.web.client.MainMenuContext;
 import com.laotek.churchguru.web.client.UserContext;
 import com.laotek.churchguru.web.client.widget.RoundedCornerPanel;
 import com.laotek.churchguru.web.shared.instantmessage.MessageDto;
 
-public class GetCurrentNoticesAndEventsHistoryViewImpl implements
-	GetCurrentNoticesAndEventsHistoryView {
+public class GetCurrentNoticesAndEventsHistoryViewImpl implements GetCurrentNoticesAndEventsHistoryView {
 
     private static final int DELETE_WIDGET_ROW = 0;
     SimplePanel viewPanel = new SimplePanel();
@@ -47,8 +45,7 @@ public class GetCurrentNoticesAndEventsHistoryViewImpl implements
 
     private HTML pageTitle = new HTML();
 
-    public GetCurrentNoticesAndEventsHistoryViewImpl(
-	    PlaceController placeController) {
+    public GetCurrentNoticesAndEventsHistoryViewImpl(PlaceController placeController) {
 	resultTable.setWidth("400px");
 	resultTable.setBorderWidth(1);
 	getMoreButton.addClickHandler(new ClickHandler() {
@@ -72,24 +69,20 @@ public class GetCurrentNoticesAndEventsHistoryViewImpl implements
 	FlexTable headerPanel = new FlexTable();
 	headerPanel.setWidth(TABLES_WIDTH);
 	headerPanel.setWidget(1, 0, topPanel);
-	headerPanel.getCellFormatter().setHorizontalAlignment(1, 0,
-		HasHorizontalAlignment.ALIGN_CENTER);
+	headerPanel.getCellFormatter().setHorizontalAlignment(1, 0, HasHorizontalAlignment.ALIGN_CENTER);
 
 	layout.setWidth("100%");
 	layout.setBorderWidth(0);
 	layout.setWidget(0, 0, new RoundedCornerPanel(headerPanel));
-	layout.getCellFormatter().setHorizontalAlignment(0, 0,
-		HasHorizontalAlignment.ALIGN_CENTER);
+	layout.getCellFormatter().setHorizontalAlignment(0, 0, HasHorizontalAlignment.ALIGN_CENTER);
 
 	VerticalPanel resultAndButton = new VerticalPanel();
-	resultAndButton
-		.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+	resultAndButton.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 	resultAndButton.add(resultTable);
 	resultAndButton.add(new HTML("&nbsp;"));
 	resultAndButton.add(getMoreButton);
 	layout.setWidget(1, 0, new RoundedCornerPanel(resultAndButton));
-	layout.getFlexCellFormatter().setHorizontalAlignment(1, 0,
-		HasHorizontalAlignment.ALIGN_CENTER);
+	layout.getFlexCellFormatter().setHorizontalAlignment(1, 0, HasHorizontalAlignment.ALIGN_CENTER);
 	// layout
 	layout.setWidget(2, 0, new HTML("&nbsp;"));
 
@@ -103,7 +96,7 @@ public class GetCurrentNoticesAndEventsHistoryViewImpl implements
 
     @Override
     public void initTab() {
-	MainMenuContext.getInstance().showInstantMessagePanel("instantMessage");
+	// MainMenuContext.getInstance().showInstantMessagePanel("instantMessage");
     }
 
     @Override
@@ -118,8 +111,7 @@ public class GetCurrentNoticesAndEventsHistoryViewImpl implements
     }
 
     @Override
-    public void add(BrowseMessagesType browseMessagesType,
-	    List<MessageDto> messages) {
+    public void add(BrowseMessagesType browseMessagesType, List<MessageDto> messages) {
 	if (BrowseMessagesType.DRAFT.equals(browseMessagesType)) {
 	    pageTitle.setHTML("<h2>Draft Notices and Events History</h2>");
 
@@ -129,10 +121,8 @@ public class GetCurrentNoticesAndEventsHistoryViewImpl implements
 
 	if (messages.size() == 0) {
 	    if (resultTable.getRowCount() == 0) {
-		resultTable.setHTML(0, 0,
-			"There are no notices or events found");
-		resultTable.getFlexCellFormatter().setHorizontalAlignment(0, 0,
-			HasHorizontalAlignment.ALIGN_CENTER);
+		resultTable.setHTML(0, 0, "There are no notices or events found");
+		resultTable.getFlexCellFormatter().setHorizontalAlignment(0, 0, HasHorizontalAlignment.ALIGN_CENTER);
 	    } else {
 		Window.alert("There are no notices or events found");
 	    }
@@ -144,18 +134,14 @@ public class GetCurrentNoticesAndEventsHistoryViewImpl implements
 	for (final MessageDto dto : messages) {
 	    final FlexTable rowTab = new FlexTable();
 	    rowTab.setBorderWidth(0);
-	    Anchor anchor = new Anchor(dto.getMessageId() + " "
-		    + dto.getTitle());
+	    Anchor anchor = new Anchor(dto.getMessageId() + " " + dto.getTitle());
 	    anchor.setTitle("Edit message");
 	    anchor.addClickHandler(new ClickHandler() {
 
 		@Override
 		public void onClick(ClickEvent event) {
-		    ApplicationContext
-			    .getInstance()
-			    .getPlaceController()
-			    .goTo(new PostNoticeOrEventChurchAppPlace(dto
-				    .getMessageId(), dto.getIdentifier()));
+		    ApplicationContext.getInstance().getPlaceController()
+			    .goTo(new PostNoticeOrEventChurchAppPlace(dto.getMessageId(), dto.getIdentifier()));
 		}
 	    });
 	    rowTab.setWidget(0, 0, anchor);
@@ -168,37 +154,26 @@ public class GetCurrentNoticesAndEventsHistoryViewImpl implements
 		copyImg.addClickHandler(new ClickHandler() {
 		    @Override
 		    public void onClick(ClickEvent event) {
-			if (Window
-				.confirm("Are you sure you want to duplicate the posted message as a new draft copy?")) {
+			if (Window.confirm(
+				"Are you sure you want to duplicate the posted message as a new draft copy?")) {
 
-			    NoticeAndEventAction action = new NoticeAndEventAction(
-				    dto.getMessageId(), dto.getIdentifier(),
-				    EnumNoticeOrEventAction.DUPLICATE);
-			    UserContext.getInstance().decorateClientSessionId(
-				    action);
-			    UserContext
-				    .getInstance()
-				    .getDispatchClient()
-				    .execute(
-					    action,
-					    new AsyncCallback<NoticeAndEventActionResult>() {
-						@Override
-						public void onFailure(
-							Throwable throwable) {
-						    Window.alert("Unable to duplicate the message. Please try again later");
-						}
+			    NoticeAndEventAction action = new NoticeAndEventAction(dto.getMessageId(),
+				    dto.getIdentifier(), EnumNoticeOrEventAction.DUPLICATE);
+			    UserContext.getInstance().decorateClientSessionId(action);
+			    UserContext.getInstance().getDispatchClient().execute(action,
+				    new AsyncCallback<NoticeAndEventActionResult>() {
+					@Override
+					public void onFailure(Throwable throwable) {
+					    Window.alert("Unable to duplicate the message. Please try again later");
+					}
 
-						@Override
-						public void onSuccess(
-							NoticeAndEventActionResult result) {
-						    ApplicationContext
-							    .getInstance()
-							    .getPlaceController()
-							    .goTo(new PostNoticeOrEventChurchAppPlace(
-								    result.getId(),
-								    result.getIdentifier()));
-						}
-					    });
+					@Override
+					public void onSuccess(NoticeAndEventActionResult result) {
+					    ApplicationContext.getInstance().getPlaceController()
+						    .goTo(new PostNoticeOrEventChurchAppPlace(result.getId(),
+							    result.getIdentifier()));
+					}
+				    });
 
 			}
 		    }
@@ -215,11 +190,8 @@ public class GetCurrentNoticesAndEventsHistoryViewImpl implements
 	    editImg.addClickHandler(new ClickHandler() {
 		@Override
 		public void onClick(ClickEvent event) {
-		    ApplicationContext
-			    .getInstance()
-			    .getPlaceController()
-			    .goTo(new PostNoticeOrEventChurchAppPlace(dto
-				    .getMessageId(), dto.getIdentifier()));
+		    ApplicationContext.getInstance().getPlaceController()
+			    .goTo(new PostNoticeOrEventChurchAppPlace(dto.getMessageId(), dto.getIdentifier()));
 		}
 	    });
 	    rowTab.setWidget(DELETE_WIDGET_ROW, 2, editImg);
@@ -230,26 +202,23 @@ public class GetCurrentNoticesAndEventsHistoryViewImpl implements
 	    deleteImg.addClickHandler(new ClickHandler() {
 		@Override
 		public void onClick(ClickEvent event) {
-		    if (Window.confirm(dto.getTitle()
-			    + ". Are you sure you want to delete this message?")) {
-			presenter.deleteMessage(dto.getMessageId(),
-				dto.getIdentifier(), rowTab);
+		    if (Window.confirm(dto.getTitle() + ". Are you sure you want to delete this message?")) {
+			presenter.deleteMessage(dto.getMessageId(), dto.getIdentifier(), rowTab);
 		    }
 		}
 	    });
 	    rowTab.setWidget(DELETE_WIDGET_ROW, 3, deleteImg);
 
-	    rowTab.getFlexCellFormatter().setHorizontalAlignment(
-		    DELETE_WIDGET_ROW, 1, HasHorizontalAlignment.ALIGN_RIGHT);
+	    rowTab.getFlexCellFormatter().setHorizontalAlignment(DELETE_WIDGET_ROW, 1,
+		    HasHorizontalAlignment.ALIGN_RIGHT);
 
-	    rowTab.getFlexCellFormatter().setHorizontalAlignment(
-		    DELETE_WIDGET_ROW, 2, HasHorizontalAlignment.ALIGN_RIGHT);
+	    rowTab.getFlexCellFormatter().setHorizontalAlignment(DELETE_WIDGET_ROW, 2,
+		    HasHorizontalAlignment.ALIGN_RIGHT);
 
-	    rowTab.getFlexCellFormatter().setHorizontalAlignment(
-		    DELETE_WIDGET_ROW, 3, HasHorizontalAlignment.ALIGN_RIGHT);
+	    rowTab.getFlexCellFormatter().setHorizontalAlignment(DELETE_WIDGET_ROW, 3,
+		    HasHorizontalAlignment.ALIGN_RIGHT);
 
-	    if (!"".equals(dto.getEventDateAsStr())
-		    && dto.getEventDateAsStr() != null) {
+	    if (!"".equals(dto.getEventDateAsStr()) && dto.getEventDateAsStr() != null) {
 		rowTab.setHTML(1, 0, "Event Date: " + dto.getEventDateAsStr());
 	    }
 	    rowTab.getFlexCellFormatter().setColSpan(2, 0, 4);

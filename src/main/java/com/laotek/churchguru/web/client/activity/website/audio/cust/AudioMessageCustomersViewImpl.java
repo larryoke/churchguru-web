@@ -2,7 +2,6 @@ package com.laotek.churchguru.web.client.activity.website.audio.cust;
 
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
-import com.laotek.churchguru.web.client.MainMenuContext;
 import com.laotek.churchguru.web.shared.listening.CustomerDto;
 
 public class AudioMessageCustomersViewImpl implements AudioMessageCustomersView {
@@ -27,7 +26,7 @@ public class AudioMessageCustomersViewImpl implements AudioMessageCustomersView 
 
     @Override
     public void initTab() {
-	MainMenuContext.getInstance().showWebsitePanel("Customer");
+	// MainMenuContext.getInstance().showWebsitePanel("Customer");
     }
 
     @Override

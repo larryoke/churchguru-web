@@ -2,7 +2,6 @@ package com.laotek.churchguru.web.client.activity.website.audio.cat;
 
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
-import com.laotek.churchguru.web.client.MainMenuContext;
 import com.laotek.churchguru.web.shared.listening.AudioMessageCategoryDto;
 
 public class AudioMessageCategoryNewViewImpl implements AudioMessageCategoryNewView {
@@ -26,7 +25,7 @@ public class AudioMessageCategoryNewViewImpl implements AudioMessageCategoryNewV
 
     @Override
     public void initTab() {
-	MainMenuContext.getInstance().showMessageMediaPanel("category");
+	// MainMenuContext.getInstance().showMessageMediaPanel("category");
     }
 
     @Override

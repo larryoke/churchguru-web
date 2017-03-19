@@ -326,7 +326,6 @@ java.util.HashMap, true, true, false, false, java.util.HashMap/1797211028, 17972
 java.util.HashSet, true, true, false, false, java.util.HashSet/3273092938, 3273092938
 java.util.IdentityHashMap, true, true, false, false, java.util.IdentityHashMap/1839153020, 1839153020
 java.util.LinkedHashMap, true, true, false, false, java.util.LinkedHashMap/3008245022, 3008245022
-[Ljava.util.LinkedHashMap;, true, true, false, false, [Ljava.util.LinkedHashMap;/3261192069, 3261192069
 java.util.LinkedHashSet, true, true, false, false, java.util.LinkedHashSet/1826081506, 1826081506
 java.util.LinkedList, true, true, true, true, java.util.LinkedList/3953877921, 3953877921
 java.util.NoSuchElementException, true, true, false, false, java.util.NoSuchElementException/1559248883, 1559248883

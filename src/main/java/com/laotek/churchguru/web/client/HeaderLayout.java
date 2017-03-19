@@ -17,7 +17,6 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
-import com.laotek.churchguru.web.client.activity.churchapp.general.GeneralChurchAppPlace;
 import com.laotek.churchguru.web.client.activity.user.GiveFeedbackDialog;
 
 public class HeaderLayout extends Composite {
@@ -47,38 +46,26 @@ public class HeaderLayout extends Composite {
 	fcf.setHorizontalAlignment(0, 2, HasHorizontalAlignment.ALIGN_RIGHT);
 	fcf.setHorizontalAlignment(0, 3, HasHorizontalAlignment.ALIGN_RIGHT);
 	fcf.setHorizontalAlignment(0, 4, HasHorizontalAlignment.ALIGN_RIGHT);
-	fcf.setHorizontalAlignment(0, 5, HasHorizontalAlignment.ALIGN_RIGHT);
 
 	int row = 0;
 
 	Image imageMenu = createSmallDeviceMenu();
 
+	// 0
 	layout.setWidget(0, row, imageMenu);
 
 	Image logo = new Image("/uploadedphotos/photos/org/logo");
 	logo.setHeight("40px");
+
+	// 1
 	layout.setWidget(0, ++row, logo);
 	layout.getFlexCellFormatter().setWidth(0, row, "1%");
 
-	layout.setWidget(0, ++row, getCell("images/app/add.png", new AddMenu()));
-	layout.getFlexCellFormatter().setWidth(0, row, "15%");
+	// 2
+	layout.setWidget(0, ++row, new AddMenu());
+	layout.getFlexCellFormatter().setWidth(0, row, "20%");
 
-	layout.setWidget(0, ++row, getCell("images/app/homeMenu.png", new ClickHandler() {
-	    @Override
-	    public void onClick(ClickEvent event) {
-		ApplicationContext.getInstance().getPlaceController().goTo(new GeneralChurchAppPlace("churchApp"));
-		// String protocol = Window.Location.getProtocol();
-		// String host = Window.Location.getHost();
-		// UrlBuilder builder =
-		// Window.Location.createUrlBuilder().setProtocol(protocol).setHost(host).setPath("/")
-		// .setHash(null);
-		// String url = builder.buildString();
-		// Window.open(url, "_blank", "");
-
-	    }
-	}));
-	layout.getFlexCellFormatter().setWidth(0, row, "15%");
-
+	// 3
 	layout.setWidget(0, ++row, getCell("images/app/help.png", new ClickHandler() {
 	    @Override
 	    public void onClick(ClickEvent event) {
@@ -94,6 +81,7 @@ public class HeaderLayout extends Composite {
 	}));
 	layout.getFlexCellFormatter().setWidth(0, row, "7%");
 
+	// 4
 	layout.setWidget(0, ++row, getCell("images/app/feedback.png", new ClickHandler() {
 	    @Override
 	    public void onClick(ClickEvent event) {
@@ -103,6 +91,7 @@ public class HeaderLayout extends Composite {
 	}));
 	layout.getFlexCellFormatter().setWidth(0, row, "15%");
 
+	// 5
 	layout.setWidget(0, ++row, getCell("images/app/logout.png", new ClickHandler() {
 	    @Override
 	    public void onClick(ClickEvent event) {
@@ -151,7 +140,6 @@ public class HeaderLayout extends Composite {
 	FlexCellFormatter fcf = layout.getFlexCellFormatter();
 	fcf.setHorizontalAlignment(0, 0, HasHorizontalAlignment.ALIGN_LEFT);
 	fcf.setHorizontalAlignment(0, 1, HasHorizontalAlignment.ALIGN_LEFT);
-	fcf.setHorizontalAlignment(0, 2, HasHorizontalAlignment.ALIGN_RIGHT);
 	fcf.setHorizontalAlignment(0, 3, HasHorizontalAlignment.ALIGN_RIGHT);
 	fcf.setHorizontalAlignment(0, 4, HasHorizontalAlignment.ALIGN_RIGHT);
 	fcf.setHorizontalAlignment(0, 5, HasHorizontalAlignment.ALIGN_RIGHT);
@@ -167,23 +155,8 @@ public class HeaderLayout extends Composite {
 	layout.setWidget(0, ++row, logo);
 	layout.getFlexCellFormatter().setWidth(0, row, "1%");
 
-	layout.setWidget(0, ++row, getCell("images/app/add.png", new AddMenu()));
-	layout.getFlexCellFormatter().setWidth(0, row, "15%");
-
-	layout.setWidget(0, ++row, getCell("images/app/homeMenu.png", new ClickHandler() {
-	    @Override
-	    public void onClick(ClickEvent event) {
-
-		String protocol = Window.Location.getProtocol();
-		String host = Window.Location.getHost();
-		UrlBuilder builder = Window.Location.createUrlBuilder().setProtocol(protocol).setHost(host).setPath("/")
-			.setHash(null);
-		String url = builder.buildString();
-		Window.open(url, "_blank", "");
-
-	    }
-	}));
-	layout.getFlexCellFormatter().setWidth(0, row, "15%");
+	layout.setWidget(0, ++row, new AddMenu());
+	layout.getFlexCellFormatter().setWidth(0, row, "20%");
 
 	layout.setWidget(0, ++row, getCell("images/app/help.png", new ClickHandler() {
 	    @Override
@@ -247,24 +220,8 @@ public class HeaderLayout extends Composite {
 	layout.setWidget(0, ++row, name);
 	layout.getFlexCellFormatter().setWidth(0, row, "30%");
 
-	layout.setWidget(0, ++row, getCell("images/app/add.png", new AddMenu()));
-	layout.getFlexCellFormatter().setWidth(0, row, "15%");
-
-	Anchor siteAnchor = new Anchor("Site Home");
-	layout.setWidget(0, ++row, getCell("images/app/homeMenu.png", siteAnchor, new ClickHandler() {
-	    @Override
-	    public void onClick(ClickEvent event) {
-
-		String protocol = Window.Location.getProtocol();
-		String host = Window.Location.getHost();
-		UrlBuilder builder = Window.Location.createUrlBuilder().setProtocol(protocol).setHost(host).setPath("/")
-			.setHash(null);
-		String url = builder.buildString();
-		Window.open(url, "_blank", "");
-
-	    }
-	}));
-	layout.getFlexCellFormatter().setWidth(0, row, "15%");
+	layout.setWidget(0, ++row, new AddMenu());
+	layout.getFlexCellFormatter().setWidth(0, row, "20%");
 
 	Anchor helpAnchor = new Anchor("Help");
 	layout.setWidget(0, ++row, getCell("images/app/help.png", helpAnchor, new ClickHandler() {

@@ -196,15 +196,15 @@ public class ChurchGURU implements EntryPoint {
     private void manageResizingOfWindow() {
 	if (Window.getClientWidth() < 600) {
 	    HeaderLayout.getInstance().buildMinimal();
-	    MainMenuContext.getInstance().hideMenu();
+	    // MainMenuContext.getInstance().hideMenu();
 
 	} else if (Window.getClientWidth() < 800) {
 	    HeaderLayout.getInstance().buildNearFull();
-	    MainMenuContext.getInstance().hideMenu();
+	    // MainMenuContext.getInstance().hideMenu();
 
 	} else {
 	    HeaderLayout.getInstance().buildFull();
-	    MainMenuContext.getInstance().showMenu();
+	    // MainMenuContext.getInstance().showMenu();
 	}
     }
 

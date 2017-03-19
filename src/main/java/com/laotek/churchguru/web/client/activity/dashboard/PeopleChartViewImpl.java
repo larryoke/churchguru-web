@@ -23,20 +23,18 @@ import com.google.gwt.visualization.client.VisualizationUtils;
 import com.google.gwt.visualization.client.visualizations.BarChart;
 import com.google.gwt.visualization.client.visualizations.Gauge;
 import com.google.gwt.visualization.client.visualizations.PieChart;
-import com.laotek.churchguru.web.client.MainMenuContext;
 
 public class PeopleChartViewImpl implements PeopleChartView, Runnable {
     SimplePanel viewPanel = new SimplePanel();
     Element nameSpan = DOM.createSpan();
 
     private static final String TABLES_WIDTH = "700px";
-    private DashWidget peopleChartWidget = new DashWidget("People Makeup",
-	    "More details", new ClickHandler() {
-		@Override
-		public void onClick(ClickEvent event) {
+    private DashWidget peopleChartWidget = new DashWidget("People Makeup", "More details", new ClickHandler() {
+	@Override
+	public void onClick(ClickEvent event) {
 
-		}
-	    });
+	}
+    });
 
     private Presenter presenter;
     private PlaceController placeController;
@@ -58,8 +56,7 @@ public class PeopleChartViewImpl implements PeopleChartView, Runnable {
 	FlexTable headerPanel = new FlexTable();
 	headerPanel.setWidth(TABLES_WIDTH);
 	headerPanel.setWidget(1, 0, topPanel);
-	headerPanel.getCellFormatter().setHorizontalAlignment(1, 0,
-		HasHorizontalAlignment.ALIGN_CENTER);
+	headerPanel.getCellFormatter().setHorizontalAlignment(1, 0, HasHorizontalAlignment.ALIGN_CENTER);
 
 	DecoratorPanel decPanel = new DecoratorPanel();
 	decPanel.setWidget(headerPanel);
@@ -70,13 +67,11 @@ public class PeopleChartViewImpl implements PeopleChartView, Runnable {
 	layout.setWidth("100%");
 	layout.setBorderWidth(0);
 	layout.setWidget(0, 0, decPanel);
-	layout.getCellFormatter().setHorizontalAlignment(0, 0,
-		HasHorizontalAlignment.ALIGN_CENTER);
+	layout.getCellFormatter().setHorizontalAlignment(0, 0, HasHorizontalAlignment.ALIGN_CENTER);
 	layout.setWidget(1, 0, new HTML("&nbsp;"));
 
 	layout.setWidget(3, 0, makeupFlowPanel);
-	layout.getCellFormatter().setHorizontalAlignment(3, 0,
-		HasHorizontalAlignment.ALIGN_CENTER);
+	layout.getCellFormatter().setHorizontalAlignment(3, 0, HasHorizontalAlignment.ALIGN_CENTER);
 	return layout;
     }
 
@@ -87,7 +82,7 @@ public class PeopleChartViewImpl implements PeopleChartView, Runnable {
 
     @Override
     public void initTab() {
-	MainMenuContext.getInstance().showDashboardPanel("People Chart");
+	// MainMenuContext.getInstance().showDashboardPanel("People Chart");
     }
 
     @Override
@@ -97,8 +92,7 @@ public class PeopleChartViewImpl implements PeopleChartView, Runnable {
 
     @Override
     public void initWidgets() {
-	VisualizationUtils.loadVisualizationApi(this, PieChart.PACKAGE,
-		Gauge.PACKAGE, BarChart.PACKAGE);
+	VisualizationUtils.loadVisualizationApi(this, PieChart.PACKAGE, Gauge.PACKAGE, BarChart.PACKAGE);
 
     }
 
@@ -134,8 +128,7 @@ public class PeopleChartViewImpl implements PeopleChartView, Runnable {
 	Scheduler.get().scheduleDeferred(new ScheduledCommand() {
 	    @Override
 	    public void execute() {
-		peoplePieChart.draw(createPeoplePieChartTable(),
-			createPeoplePieChartOptions());
+		peoplePieChart.draw(createPeoplePieChartTable(), createPeoplePieChartOptions());
 	    }
 	});
     }

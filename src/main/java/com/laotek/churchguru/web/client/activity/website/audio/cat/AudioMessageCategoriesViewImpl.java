@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
-import com.laotek.churchguru.web.client.MainMenuContext;
 import com.laotek.churchguru.web.shared.listening.AudioMessageCategoryDto;
 
 public class AudioMessageCategoriesViewImpl implements AudioMessageCategoriesView {
@@ -29,7 +28,7 @@ public class AudioMessageCategoriesViewImpl implements AudioMessageCategoriesVie
 
     @Override
     public void initTab() {
-	MainMenuContext.getInstance().showMessageMediaPanel("listening");
+	// MainMenuContext.getInstance().showMessageMediaPanel("listening");
     }
 
     @Override

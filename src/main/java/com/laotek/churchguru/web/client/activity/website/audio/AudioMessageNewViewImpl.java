@@ -21,7 +21,6 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.datepicker.client.DatePicker;
 import com.laotek.churchguru.web.client.ApplicationContext;
-import com.laotek.churchguru.web.client.MainMenuContext;
 import com.laotek.churchguru.web.client.activity.audio.SubmitAudioMessageAction;
 import com.laotek.churchguru.web.client.widget.CheckBoxItem;
 import com.laotek.churchguru.web.client.widget.FullnameItem;
@@ -173,7 +172,8 @@ public class AudioMessageNewViewImpl extends BaseViewImpl implements AudioMessag
 
     @Override
     public void initTab() {
-	MainMenuContext.getInstance().showMessageMediaPanel("Listen to Messages");
+	// MainMenuContext.getInstance().showMessageMediaPanel("Listen to
+	// Messages");
     }
 
     @Override
