@@ -9,7 +9,7 @@ import com.laotek.churchguru.daos.org.OrganisationDao;
 import com.laotek.churchguru.web.client.activity.website.audio.cat.GetMediaMessageCategoriesAction;
 import com.laotek.churchguru.web.client.activity.website.audio.cat.GetMessageCategoriesResult;
 import com.laotek.churchguru.web.server.handler.AbstractCommandHandler;
-import com.laotek.churchguru.web.shared.listening.AudioMessageCategoryDto;
+import com.laotek.churchguru.web.shared.listening.MediaMessageCategoryDto;
 
 import net.customware.gwt.dispatch.server.ActionHandler;
 import net.customware.gwt.dispatch.server.ExecutionContext;
@@ -25,7 +25,7 @@ public class GetListeningCategoriesHandler extends AbstractCommandHandler
     @Override
     public GetMessageCategoriesResult execute(GetMediaMessageCategoriesAction action, ExecutionContext context)
 	    throws DispatchException {
-	List<AudioMessageCategoryDto> categoryDtos = null;// mapCategoryDto(categories);
+	List<MediaMessageCategoryDto> categoryDtos = null;// mapCategoryDto(categories);
 	return new GetMessageCategoriesResult(categoryDtos);
     }
 

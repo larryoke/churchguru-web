@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import com.laotek.churchguru.web.shared.FullnameDto;
 
-public class AudioMessageSpeakerDto implements Serializable {
+public class MediaMessageSpeakerDto implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private FullnameDto fullnameDto;

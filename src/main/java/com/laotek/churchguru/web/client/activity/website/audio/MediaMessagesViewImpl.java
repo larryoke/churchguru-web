@@ -17,7 +17,7 @@ import com.google.gwt.user.client.ui.Widget;
 import com.laotek.churchguru.web.client.ApplicationContext;
 import com.laotek.churchguru.web.client.widget.RoundedCornerPanel;
 import com.laotek.churchguru.web.shared.FullnameDto;
-import com.laotek.churchguru.web.shared.listening.AudioMessageDto;
+import com.laotek.churchguru.web.shared.listening.MediaMessageDto;
 
 public class MediaMessagesViewImpl extends BaseViewImpl implements MediaMessagesView {
 
@@ -74,7 +74,7 @@ public class MediaMessagesViewImpl extends BaseViewImpl implements MediaMessages
     }
 
     @Override
-    public void init(List<AudioMessageDto> dtos) {
+    public void init(List<MediaMessageDto> dtos) {
 	panelRows.clear();
 
 	HorizontalPanel hPanel = new HorizontalPanel();
@@ -86,7 +86,7 @@ public class MediaMessagesViewImpl extends BaseViewImpl implements MediaMessages
 	cell(hPanel, "<b>Location</b>", 100);
 	panelRows.add(hPanel);
 
-	for (final AudioMessageDto dto : dtos) {
+	for (final MediaMessageDto dto : dtos) {
 	    hPanel = new HorizontalPanel();
 	    if (dtos.indexOf(dto) % 2 == 0) {
 		hPanel.setStylePrimaryName("estoreGreybg");

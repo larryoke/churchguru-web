@@ -27,10 +27,10 @@ import com.laotek.churchguru.web.client.widget.FullnameItem;
 import com.laotek.churchguru.web.client.widget.RoundedCornerPanel;
 import com.laotek.churchguru.web.client.widget.SelectItem;
 import com.laotek.churchguru.web.client.widget.TextItem;
-import com.laotek.churchguru.web.shared.listening.AudioMessageCategoryDto;
-import com.laotek.churchguru.web.shared.listening.AudioMessageDto;
-import com.laotek.churchguru.web.shared.listening.AudioMessagePictureDto;
-import com.laotek.churchguru.web.shared.listening.AudioMessageSpeakerDto;
+import com.laotek.churchguru.web.shared.listening.MediaMessageCategoryDto;
+import com.laotek.churchguru.web.shared.listening.MediaMessageDto;
+import com.laotek.churchguru.web.shared.listening.MediaMessagePictureDto;
+import com.laotek.churchguru.web.shared.listening.MediaMessageSpeakerDto;
 
 import elemental.events.EventListener;
 import elemental.events.MessageEvent;
@@ -182,8 +182,8 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
     }
 
     @Override
-    public void initNewMessage(AudioMessageDto dto, List<AudioMessageSpeakerDto> speakers,
-	    List<AudioMessageCategoryDto> categories, List<AudioMessagePictureDto> pictures,
+    public void initNewMessage(MediaMessageDto dto, List<MediaMessageSpeakerDto> speakers,
+	    List<MediaMessageCategoryDto> categories, List<MediaMessagePictureDto> pictures,
 	    Map<String, Boolean> workersSelectedForFreeMessages) {
 	messageIdentifier = dto.getIdentifier();
 	messageTitle.setHTML("<h2>" + dto.getTitle().toUpperCase() + "</h2><br/>");
@@ -194,8 +194,8 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 
 	speakerSelect.clear();
 	speakerSelect.addItem("");
-	AudioMessageSpeakerDto sdto = dto.getSpeakerDto();
-	for (AudioMessageSpeakerDto speaker : speakers) {
+	MediaMessageSpeakerDto sdto = dto.getSpeakerDto();
+	for (MediaMessageSpeakerDto speaker : speakers) {
 
 	    if (sdto != null) {
 		speakerSelect.addItem(speaker.getFullnameDto().getFullname(), speaker.getIdentifier(),
@@ -208,8 +208,8 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 
 	categorySelect.clear();
 	categorySelect.addItem("");
-	AudioMessageCategoryDto cdto = dto.getCategoryDto();
-	for (AudioMessageCategoryDto category : categories) {
+	MediaMessageCategoryDto cdto = dto.getCategoryDto();
+	for (MediaMessageCategoryDto category : categories) {
 	    if (cdto != null) {
 		categorySelect.addItem(category.getName(), category.getIdentifier(),
 			category.getIdentifier().equals(cdto.getIdentifier()));
@@ -219,8 +219,8 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 	}
 	categorySelect.addItem(ADD_NEW_CATEGORY);
 
-	AudioMessagePictureDto pictureDto = dto.getPictureDto();
-	for (AudioMessagePictureDto picture : pictures) {
+	MediaMessagePictureDto pictureDto = dto.getPictureDto();
+	for (MediaMessagePictureDto picture : pictures) {
 	    if (pictureDto != null) {
 		descPhotoSelect.addItem(picture.getName(), picture.getIdentifier(),
 			picture.getIdentifier().equals(pictureDto.getIdentifier()));

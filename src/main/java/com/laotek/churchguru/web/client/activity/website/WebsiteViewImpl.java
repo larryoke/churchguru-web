@@ -12,7 +12,7 @@ import com.laotek.churchguru.web.client.ApplicationContext;
 import com.laotek.churchguru.web.client.activity.website.audio.MediaMessagesPlace;
 import com.laotek.churchguru.web.client.activity.website.audio.BaseViewImpl;
 import com.laotek.churchguru.web.client.activity.website.audio.cat.MediaMessageCategoriesPlace;
-import com.laotek.churchguru.web.client.activity.website.audio.speaker.AudioMessageSpeakersPlace;
+import com.laotek.churchguru.web.client.activity.website.audio.speaker.MediaMessageSpeakersPlace;
 import com.laotek.churchguru.web.client.widget.RoundedCornerPanel;
 
 public class WebsiteViewImpl extends BaseViewImpl implements WebsiteView {
@@ -32,7 +32,7 @@ public class WebsiteViewImpl extends BaseViewImpl implements WebsiteView {
 	widget.setStylePrimaryName("flowPanel");
 	flowPanel.add(widget);
 
-	widget = getBorderedButton("Speakers", new AudioMessageSpeakersPlace("Speakers"));
+	widget = getBorderedButton("Speakers", new MediaMessageSpeakersPlace("Speakers"));
 	widget.setStylePrimaryName("flowPanel");
 	flowPanel.add(widget);
 

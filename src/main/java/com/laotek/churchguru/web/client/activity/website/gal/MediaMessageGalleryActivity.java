@@ -10,13 +10,13 @@ import com.laotek.churchguru.web.client.UserContext;
 import com.laotek.churchguru.web.client.activity.GetOrgDetailAction;
 import com.laotek.churchguru.web.client.activity.GetOrgDetailResult;
 
-public class AudioMessageGalleryNewItemActivity extends AbstractActivity implements AudioMessageGalleryNewView.Presenter {
+public class MediaMessageGalleryActivity extends AbstractActivity implements MediaMessageGalleryView.Presenter {
 
     private ClientFactory clientFactory;
     private String name;
-    private AudioMessageGalleryNewView view;
+    private MediaMessageGalleryView view;
 
-    public AudioMessageGalleryNewItemActivity(AudioMessageGalleryNewItemPlace place, ClientFactory clientFactory) {
+    public MediaMessageGalleryActivity(MediaMessageGalleryPlace place, ClientFactory clientFactory) {
 	this.name = place.getName();
 	this.clientFactory = clientFactory;
     }
@@ -26,13 +26,13 @@ public class AudioMessageGalleryNewItemActivity extends AbstractActivity impleme
      */
     @Override
     public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
-	view = clientFactory.getEStoreGalleryNewView();
+	view = clientFactory.getEStoreGalleryView();
 	view.setPresenter(this);
 	view.initTab();
 	containerWidget.setWidget(view.asWidget());
 	view.init();
 	view.initWidgets();
-	getEStoreGalleryNewView();
+	getGallery();
     }
 
     /**
@@ -50,7 +50,7 @@ public class AudioMessageGalleryNewItemActivity extends AbstractActivity impleme
 	clientFactory.getPlaceController().goTo(place);
     }
 
-    private void getEStoreGalleryNewView() {
+    private void getGallery() {
 	GetOrgDetailAction action = new GetOrgDetailAction();
 	UserContext.getInstance().decorateClientSessionId(action);
 	UserContext.getInstance().getDispatchClient().execute(action, new AsyncCallback<GetOrgDetailResult>() {

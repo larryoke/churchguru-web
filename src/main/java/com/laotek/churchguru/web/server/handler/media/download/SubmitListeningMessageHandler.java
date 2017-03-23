@@ -9,12 +9,12 @@ import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.laotek.churchguru.daos.media.AudioMessageDao;
-import com.laotek.churchguru.model.AudioMessage;
+import com.laotek.churchguru.daos.media.MediaMessageDao;
+import com.laotek.churchguru.model.MediaMessage;
 import com.laotek.churchguru.web.client.activity.audio.SubmitAudioMessageResult;
 import com.laotek.churchguru.web.client.activity.audio.SubmitAudioMessageAction;
 import com.laotek.churchguru.web.server.handler.AbstractCommandHandler;
-import com.laotek.churchguru.web.shared.listening.AudioMessageDto;
+import com.laotek.churchguru.web.shared.listening.MediaMessageDto;
 
 import net.customware.gwt.dispatch.server.ActionHandler;
 import net.customware.gwt.dispatch.server.ExecutionContext;
@@ -25,7 +25,7 @@ public class SubmitListeningMessageHandler extends AbstractCommandHandler
 	implements ActionHandler<SubmitAudioMessageAction, SubmitAudioMessageResult> {
 
     @Autowired
-    private AudioMessageDao eStoreDao;
+    private MediaMessageDao eStoreDao;
 
     @Override
     public SubmitAudioMessageResult execute(SubmitAudioMessageAction action, ExecutionContext context)
@@ -33,7 +33,7 @@ public class SubmitListeningMessageHandler extends AbstractCommandHandler
 
 	String identifier = action.getIdentifier();
 
-	AudioMessage message = eStoreDao.getMessageByIdentifier(identifier);
+	MediaMessage message = eStoreDao.getMessageByIdentifier(identifier);
 	message.setSalePointPerMessage(action.getSalesChargePerMessage());
 	message.setDescription(action.getBriefDescription());
 	message.setLocation(action.getLocation());
@@ -63,8 +63,8 @@ public class SubmitListeningMessageHandler extends AbstractCommandHandler
 	return new SubmitAudioMessageResult(map(message));
     }
 
-    private AudioMessageDto map(AudioMessage message) {
-	AudioMessageDto dto = new AudioMessageDto();
+    private MediaMessageDto map(MediaMessage message) {
+	MediaMessageDto dto = new MediaMessageDto();
 	dto.setDescription(message.getDescription());
 	dto.setTitle(message.getTitle());
 	dto.setIdentifier(message.getIdentifier());

@@ -4,7 +4,7 @@ import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.laotek.churchguru.daos.media.AudioMessageDao;
+import com.laotek.churchguru.daos.media.MediaMessageDao;
 import com.laotek.churchguru.web.client.activity.audio.CreateNewAudioMessageAction;
 import com.laotek.churchguru.web.client.activity.audio.CreateNewAudioMessageResult;
 import com.laotek.churchguru.web.server.handler.AbstractCommandHandler;
@@ -18,7 +18,7 @@ public class CreateNewListeningMessageHandler extends AbstractCommandHandler
 	implements ActionHandler<CreateNewAudioMessageAction, CreateNewAudioMessageResult> {
 
     @Autowired
-    private AudioMessageDao eStoreDao;
+    private MediaMessageDao eStoreDao;
 
     @Override
     public CreateNewAudioMessageResult execute(CreateNewAudioMessageAction action, ExecutionContext context)

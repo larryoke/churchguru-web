@@ -2,20 +2,20 @@ package com.laotek.churchguru.web.client.activity.audio;
 
 import net.customware.gwt.dispatch.shared.Result;
 
-import com.laotek.churchguru.web.shared.listening.AudioMessageDto;
+import com.laotek.churchguru.web.shared.listening.MediaMessageDto;
 
 public class SubmitAudioMessageResult implements Result {
 
-    private AudioMessageDto message;
+    private MediaMessageDto message;
 
     public SubmitAudioMessageResult() {
     }
 
-    public SubmitAudioMessageResult(AudioMessageDto message) {
+    public SubmitAudioMessageResult(MediaMessageDto message) {
 	this.message = message;
     }
 
-    public AudioMessageDto getMessage() {
+    public MediaMessageDto getMessage() {
 	return message;
     }
 

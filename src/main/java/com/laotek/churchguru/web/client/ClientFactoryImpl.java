@@ -53,11 +53,11 @@ import com.laotek.churchguru.web.client.activity.website.audio.cust.MediaMessage
 import com.laotek.churchguru.web.client.activity.website.audio.cust.MediaMessageCustomersViewImpl;
 import com.laotek.churchguru.web.client.activity.website.audio.notif.MediaMessageNotificationsView;
 import com.laotek.churchguru.web.client.activity.website.audio.notif.MediaMessageNotificationsViewImpl;
-import com.laotek.churchguru.web.client.activity.website.audio.speaker.AudioMessageSpeakerNewView;
-import com.laotek.churchguru.web.client.activity.website.audio.speaker.AudioMessageSpeakerNewViewImpl;
-import com.laotek.churchguru.web.client.activity.website.audio.speaker.AudioMessageSpeakersView;
-import com.laotek.churchguru.web.client.activity.website.audio.speaker.AudioMessageSpeakersViewImpl;
-import com.laotek.churchguru.web.client.activity.website.gal.AudioMessageGalleryNewView;
+import com.laotek.churchguru.web.client.activity.website.audio.speaker.MediaMessageSpeakerNewView;
+import com.laotek.churchguru.web.client.activity.website.audio.speaker.MediaMessageSpeakerNewViewImpl;
+import com.laotek.churchguru.web.client.activity.website.audio.speaker.MediaMessageSpeakersView;
+import com.laotek.churchguru.web.client.activity.website.audio.speaker.MediaMessageSpeakersViewImpl;
+import com.laotek.churchguru.web.client.activity.website.gal.MediaMessageGalleryNewView;
 import com.laotek.churchguru.web.client.activity.website.gal.MediaMessageGalleryNewViewImpl;
 import com.laotek.churchguru.web.client.activity.website.gal.MediaMessageGalleryView;
 import com.laotek.churchguru.web.client.activity.website.gal.MediaMessageGalleryViewImpl;
@@ -86,7 +86,7 @@ public class ClientFactoryImpl implements ClientFactory {
 
     private MediaMessageCustomersView eStoreCustomersView = new MediaMessageCustomersViewImpl();
 
-    private AudioMessageGalleryNewView eStoreGalleryNewView = new MediaMessageGalleryNewViewImpl();
+    private MediaMessageGalleryNewView eStoreGalleryNewView = new MediaMessageGalleryNewViewImpl();
 
     private MediaMessageGalleryView eStoreGalleryView = new MediaMessageGalleryViewImpl();
 
@@ -96,9 +96,9 @@ public class ClientFactoryImpl implements ClientFactory {
 
     private MediaMessageNotificationsView eStoreNotificationsView = new MediaMessageNotificationsViewImpl();
 
-    private AudioMessageSpeakerNewView eStoreSpeakerNewView = new AudioMessageSpeakerNewViewImpl();
+    private MediaMessageSpeakerNewView eStoreSpeakerNewView = new MediaMessageSpeakerNewViewImpl();
 
-    private AudioMessageSpeakersView eStoreSpeakersView = new AudioMessageSpeakersViewImpl();
+    private MediaMessageSpeakersView eStoreSpeakersView = new MediaMessageSpeakersViewImpl();
 
     private WebsiteView websiteView = new WebsiteViewImpl();
 
@@ -230,7 +230,7 @@ public class ClientFactoryImpl implements ClientFactory {
     }
 
     @Override
-    public AudioMessageGalleryNewView getEStoreGalleryNewView() {
+    public MediaMessageGalleryNewView getEStoreGalleryNewView() {
 	if (eStoreGalleryNewView == null) {
 	}
 	return eStoreGalleryNewView;
@@ -265,14 +265,14 @@ public class ClientFactoryImpl implements ClientFactory {
     }
 
     @Override
-    public AudioMessageSpeakerNewView getEStoreSpeakerNewView() {
+    public MediaMessageSpeakerNewView getEStoreSpeakerNewView() {
 	if (eStoreSpeakerNewView == null) {
 	}
 	return eStoreSpeakerNewView;
     }
 
     @Override
-    public AudioMessageSpeakersView getEStoreSpeakersView() {
+    public MediaMessageSpeakersView getEStoreSpeakersView() {
 	if (eStoreSpeakersView == null) {
 	}
 	return eStoreSpeakersView;

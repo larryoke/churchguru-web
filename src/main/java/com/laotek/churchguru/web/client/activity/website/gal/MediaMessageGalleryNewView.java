@@ -4,7 +4,7 @@ import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.laotek.churchguru.web.shared.listening.GalleryDto;
 
-public interface AudioMessageGalleryNewView extends IsWidget {
+public interface MediaMessageGalleryNewView extends IsWidget {
     void setPresenter(Presenter presenter);
 
     void init();

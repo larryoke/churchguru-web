@@ -11,13 +11,13 @@ import com.laotek.churchguru.web.client.activity.GetOrgDetailAction;
 import com.laotek.churchguru.web.client.activity.GetOrgDetailResult;
 import com.laotek.churchguru.web.client.activity.churchapp.general.GeneralChurchAppView;
 
-public class MediaMessageSpeakerNewActivity extends AbstractActivity implements AudioMessageSpeakerNewView.Presenter {
+public class MediaMessageSpeakerNewActivity extends AbstractActivity implements MediaMessageSpeakerNewView.Presenter {
 
     private ClientFactory clientFactory;
     private String name;
-    private AudioMessageSpeakerNewView view;
+    private MediaMessageSpeakerNewView view;
 
-    public MediaMessageSpeakerNewActivity(AudioMessageSpeakerNewPlace place, ClientFactory clientFactory) {
+    public MediaMessageSpeakerNewActivity(MediaMessageSpeakerNewPlace place, ClientFactory clientFactory) {
 	this.name = place.getName();
 	this.clientFactory = clientFactory;
     }

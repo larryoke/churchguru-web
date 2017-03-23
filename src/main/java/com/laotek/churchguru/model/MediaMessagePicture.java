@@ -14,7 +14,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class AudioMessageCategory {
+public class MediaMessagePicture {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +25,7 @@ public class AudioMessageCategory {
     private String identifier;
 
     @Column(nullable = false, unique = true)
-    private String categoryName;
+    private String pictureName;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
@@ -33,8 +33,8 @@ public class AudioMessageCategory {
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdatedDate;
 
-    @OneToMany(mappedBy = "eStoreCategory")
-    private Set<AudioMessage> messages = new HashSet<AudioMessage>();
+    @OneToMany(mappedBy = "eStoreMessagePicture")
+    private Set<MediaMessage> messages = new HashSet<MediaMessage>();
 
     public Long getId() {
 	return id;
@@ -68,12 +68,20 @@ public class AudioMessageCategory {
 	this.identifier = identifier;
     }
 
-    public String getCategoryName() {
-	return categoryName;
+    public String getPictureName() {
+	return pictureName;
     }
 
-    public void setCategoryName(String categoryName) {
-	this.categoryName = categoryName;
+    public void setPictureName(String pictureName) {
+	this.pictureName = pictureName;
+    }
+
+    public Set<MediaMessage> getMessages() {
+	return messages;
+    }
+
+    public void setMessages(Set<MediaMessage> messages) {
+	this.messages = messages;
     }
 
 }

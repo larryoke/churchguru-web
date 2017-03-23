@@ -2,9 +2,9 @@ package com.laotek.churchguru.web.client.activity.website.audio.speaker;
 
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
-import com.laotek.churchguru.web.shared.listening.AudioMessageSpeakerDto;
+import com.laotek.churchguru.web.shared.listening.MediaMessageSpeakerDto;
 
-public class AudioMessageSpeakerNewViewImpl implements AudioMessageSpeakerNewView {
+public class MediaMessageSpeakerNewViewImpl implements MediaMessageSpeakerNewView {
 
     private Presenter presenter;
 
@@ -35,7 +35,7 @@ public class AudioMessageSpeakerNewViewImpl implements AudioMessageSpeakerNewVie
     }
 
     @Override
-    public AudioMessageSpeakerDto add() {
+    public MediaMessageSpeakerDto add() {
 	// TODO Auto-generated method stub
 	return null;
     }

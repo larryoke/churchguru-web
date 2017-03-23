@@ -2,9 +2,9 @@ package com.laotek.churchguru.web.client.activity.website.audio.speaker;
 
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.IsWidget;
-import com.laotek.churchguru.web.shared.listening.AudioMessageSpeakerDto;
+import com.laotek.churchguru.web.shared.listening.MediaMessageSpeakerDto;
 
-public interface AudioMessageSpeakersView extends IsWidget {
+public interface MediaMessageSpeakersView extends IsWidget {
     void setPresenter(Presenter presenter);
 
     void init();
@@ -13,7 +13,7 @@ public interface AudioMessageSpeakersView extends IsWidget {
 
     void initWidgets();
 
-    void init(AudioMessageSpeakerDto dto);
+    void init(MediaMessageSpeakerDto dto);
 
     public interface Presenter {
 	void goTo(Place place);

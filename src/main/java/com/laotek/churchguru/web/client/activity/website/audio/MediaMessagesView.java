@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.IsWidget;
-import com.laotek.churchguru.web.shared.listening.AudioMessageDto;
+import com.laotek.churchguru.web.shared.listening.MediaMessageDto;
 
 public interface MediaMessagesView extends IsWidget {
     void setPresenter(Presenter presenter);
@@ -15,7 +15,7 @@ public interface MediaMessagesView extends IsWidget {
 
     void initWidgets();
 
-    void init(List<AudioMessageDto> dto);
+    void init(List<MediaMessageDto> dto);
 
     public interface Presenter {
 

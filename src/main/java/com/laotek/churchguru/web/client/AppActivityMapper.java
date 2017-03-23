@@ -54,12 +54,12 @@ import com.laotek.churchguru.web.client.activity.website.audio.cust.MediaMessage
 import com.laotek.churchguru.web.client.activity.website.audio.notif.MediaMessageNotificationsActivity;
 import com.laotek.churchguru.web.client.activity.website.audio.notif.MediaMessageNotificationsPlace;
 import com.laotek.churchguru.web.client.activity.website.audio.speaker.MediaMessageSpeakerNewActivity;
-import com.laotek.churchguru.web.client.activity.website.audio.speaker.AudioMessageSpeakerNewPlace;
-import com.laotek.churchguru.web.client.activity.website.audio.speaker.AudioMessageSpeakersActivity;
-import com.laotek.churchguru.web.client.activity.website.audio.speaker.AudioMessageSpeakersPlace;
-import com.laotek.churchguru.web.client.activity.website.gal.AudioMessageGalleryActivity;
-import com.laotek.churchguru.web.client.activity.website.gal.AudioMessageGalleryNewItemActivity;
-import com.laotek.churchguru.web.client.activity.website.gal.AudioMessageGalleryNewItemPlace;
+import com.laotek.churchguru.web.client.activity.website.audio.speaker.MediaMessageSpeakerNewPlace;
+import com.laotek.churchguru.web.client.activity.website.audio.speaker.MediaMessageSpeakersActivity;
+import com.laotek.churchguru.web.client.activity.website.audio.speaker.MediaMessageSpeakersPlace;
+import com.laotek.churchguru.web.client.activity.website.gal.MediaMessageGalleryActivity;
+import com.laotek.churchguru.web.client.activity.website.gal.MediaMessageGalleryNewItemActivity;
+import com.laotek.churchguru.web.client.activity.website.gal.MediaMessageGalleryNewItemPlace;
 import com.laotek.churchguru.web.client.activity.website.gal.MediaMessageGalleryPlace;
 
 public class AppActivityMapper implements ActivityMapper {
@@ -102,8 +102,8 @@ public class AppActivityMapper implements ActivityMapper {
 	else if (place instanceof UserProfilesPlace)
 	    return new UserProfilesActivity((UserProfilesPlace) place, clientFactory);
 
-	else if (place instanceof AudioMessageSpeakerNewPlace)
-	    return new MediaMessageSpeakerNewActivity((AudioMessageSpeakerNewPlace) place, clientFactory);
+	else if (place instanceof MediaMessageSpeakerNewPlace)
+	    return new MediaMessageSpeakerNewActivity((MediaMessageSpeakerNewPlace) place, clientFactory);
 
 	else if (place instanceof MediaMessageCustomersPlace)
 	    return new MediaMessageCustomersActivity((MediaMessageCustomersPlace) place, clientFactory);
@@ -111,8 +111,8 @@ public class AppActivityMapper implements ActivityMapper {
 	else if (place instanceof MediaMessageCustomerDetailsPlace)
 	    return new MediaMessageCustomerDetailsActivity((MediaMessageCustomerDetailsPlace) place, clientFactory);
 
-	else if (place instanceof AudioMessageSpeakersPlace)
-	    return new AudioMessageSpeakersActivity((AudioMessageSpeakersPlace) place, clientFactory);
+	else if (place instanceof MediaMessageSpeakersPlace)
+	    return new MediaMessageSpeakersActivity((MediaMessageSpeakersPlace) place, clientFactory);
 
 	else if (place instanceof MediaMessageCategoryNewPlace)
 	    return new MediaMessageCategoryNewActivity((MediaMessageCategoryNewPlace) place, clientFactory);
@@ -130,10 +130,10 @@ public class AppActivityMapper implements ActivityMapper {
 	    return new MediaMessageNewActivity((MediaMessageNewPlace) place, clientFactory);
 
 	else if (place instanceof MediaMessageGalleryPlace)
-	    return new AudioMessageGalleryActivity((MediaMessageGalleryPlace) place, clientFactory);
+	    return new MediaMessageGalleryActivity((MediaMessageGalleryPlace) place, clientFactory);
 
-	else if (place instanceof AudioMessageGalleryNewItemPlace)
-	    return new AudioMessageGalleryNewItemActivity((AudioMessageGalleryNewItemPlace) place, clientFactory);
+	else if (place instanceof MediaMessageGalleryNewItemPlace)
+	    return new MediaMessageGalleryNewItemActivity((MediaMessageGalleryNewItemPlace) place, clientFactory);
 
 	else if (place instanceof YoutubeVideoNewPlace)
 	    return new YoutubeVideoNewActivity((YoutubeVideoNewPlace) place, clientFactory);

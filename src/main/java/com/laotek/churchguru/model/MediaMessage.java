@@ -17,10 +17,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.laotek.churchguru.model.shared.enums.AudioMessageStatus;
+import com.laotek.churchguru.model.shared.enums.MediaMessageStatus;
 
 @Entity
-public class AudioMessage {
+public class MediaMessage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,22 +41,22 @@ public class AudioMessage {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, unique = false)
-    private AudioMessageStatus eStoreMessageStatus = AudioMessageStatus.NEW;
+    private MediaMessageStatus eStoreMessageStatus = MediaMessageStatus.NEW;
 
     @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
 
     @ManyToOne
     @JoinColumn
-    private AudioMessageSpeaker eStoreSpeaker;
+    private MediaMessageSpeaker eStoreSpeaker;
 
     @ManyToOne
     @JoinColumn
-    private AudioMessageCategory eStoreCategory;
+    private MediaMessageCategory eStoreCategory;
 
     @ManyToOne
     @JoinColumn
-    private AudioMessagePicture eStoreMessagePicture;
+    private MediaMessagePicture eStoreMessagePicture;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false, unique = false)
@@ -71,7 +71,7 @@ public class AudioMessage {
     private Date lastUpdatedDate = new Date();
 
     @OneToMany(mappedBy = "eStoreMessage")
-    private List<AudioMemberMessage> eStoreMemberMessages = new ArrayList<AudioMemberMessage>();
+    private List<MediaMemberMessage> eStoreMemberMessages = new ArrayList<MediaMemberMessage>();
 
     public Long getId() {
 	return id;
@@ -121,11 +121,11 @@ public class AudioMessage {
 	this.lastUpdatedDate = lastUpdatedDate;
     }
 
-    public List<AudioMemberMessage> getEStoreMemberMessages() {
+    public List<MediaMemberMessage> getEStoreMemberMessages() {
 	return eStoreMemberMessages;
     }
 
-    public void setEStoreMemberMessages(List<AudioMemberMessage> eStoreMessageCategories) {
+    public void setEStoreMemberMessages(List<MediaMemberMessage> eStoreMessageCategories) {
 	this.eStoreMemberMessages = eStoreMessageCategories;
     }
 
@@ -145,43 +145,43 @@ public class AudioMessage {
 	this.location = location;
     }
 
-    public AudioMessageSpeaker getEStoreSpeaker() {
+    public MediaMessageSpeaker getEStoreSpeaker() {
 	return eStoreSpeaker;
     }
 
-    public void setEStoreSpeaker(AudioMessageSpeaker eStoreSpeaker) {
+    public void setEStoreSpeaker(MediaMessageSpeaker eStoreSpeaker) {
 	this.eStoreSpeaker = eStoreSpeaker;
     }
 
-    public AudioMessageSpeaker geteStoreSpeaker() {
+    public MediaMessageSpeaker geteStoreSpeaker() {
 	return eStoreSpeaker;
     }
 
-    public void seteStoreSpeaker(AudioMessageSpeaker eStoreSpeaker) {
+    public void seteStoreSpeaker(MediaMessageSpeaker eStoreSpeaker) {
 	this.eStoreSpeaker = eStoreSpeaker;
     }
 
-    public AudioMessageCategory geteStoreCategory() {
+    public MediaMessageCategory geteStoreCategory() {
 	return eStoreCategory;
     }
 
-    public void seteStoreCategory(AudioMessageCategory eStoreCategory) {
+    public void seteStoreCategory(MediaMessageCategory eStoreCategory) {
 	this.eStoreCategory = eStoreCategory;
     }
 
-    public AudioMessagePicture geteStoreMessagePicture() {
+    public MediaMessagePicture geteStoreMessagePicture() {
 	return eStoreMessagePicture;
     }
 
-    public void seteStoreMessagePicture(AudioMessagePicture eStoreMessagePicture) {
+    public void seteStoreMessagePicture(MediaMessagePicture eStoreMessagePicture) {
 	this.eStoreMessagePicture = eStoreMessagePicture;
     }
 
-    public List<AudioMemberMessage> geteStoreMemberMessages() {
+    public List<MediaMemberMessage> geteStoreMemberMessages() {
 	return eStoreMemberMessages;
     }
 
-    public void seteStoreMemberMessages(List<AudioMemberMessage> eStoreMemberMessages) {
+    public void seteStoreMemberMessages(List<MediaMemberMessage> eStoreMemberMessages) {
 	this.eStoreMemberMessages = eStoreMemberMessages;
     }
 

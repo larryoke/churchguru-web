@@ -13,7 +13,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class AudioMemberMessage implements Comparable<AudioMemberMessage> {
+public class MediaMemberMessage implements Comparable<MediaMemberMessage> {
 
     @Embeddable
     public static class Id implements Serializable {
@@ -53,20 +53,20 @@ public class AudioMemberMessage implements Comparable<AudioMemberMessage> {
 
     @ManyToOne
     @JoinColumn(name = "ID", insertable = false, updatable = false)
-    private AudioMessage eStoreMessage;
+    private MediaMessage eStoreMessage;
 
     @ManyToOne
     @JoinColumn(name = "ID", insertable = false, updatable = false)
-    private AudioMember eStoreMember;
+    private MediaMember eStoreMember;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate = new Date();
 
-    public AudioMemberMessage() {
+    public MediaMemberMessage() {
     }
 
-    public AudioMemberMessage(AudioMessage eStoreMessage,
-								  AudioMember eStoreMember) {
+    public MediaMemberMessage(MediaMessage eStoreMessage,
+								  MediaMember eStoreMember) {
 	this.eStoreMessage = eStoreMessage;
 	this.eStoreMember = eStoreMember;
 
@@ -85,24 +85,24 @@ public class AudioMemberMessage implements Comparable<AudioMemberMessage> {
 	return createdDate;
     }
 
-    public AudioMessage getEStoreMessage() {
+    public MediaMessage getEStoreMessage() {
 	return eStoreMessage;
     }
 
-    public void setEStoreMessage(AudioMessage eStoreMessage) {
+    public void setEStoreMessage(MediaMessage eStoreMessage) {
 	this.eStoreMessage = eStoreMessage;
     }
 
-    public AudioMember getEStoreMember() {
+    public MediaMember getEStoreMember() {
 	return eStoreMember;
     }
 
-    public void setEStoreMember(AudioMember eStoreMember) {
+    public void setEStoreMember(MediaMember eStoreMember) {
 	this.eStoreMember = eStoreMember;
     }
 
     @Override
-    public int compareTo(AudioMemberMessage another) {
+    public int compareTo(MediaMemberMessage another) {
 	if (eStoreMember.getIdentifier().compareTo(
 		another.getEStoreMember().getIdentifier()) < 0) {
 	    return -1;

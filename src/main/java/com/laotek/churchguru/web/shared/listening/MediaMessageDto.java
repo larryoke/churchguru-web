@@ -5,7 +5,7 @@ import java.util.Date;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
 
-public class AudioMessageDto implements Serializable, IsSerializable {
+public class MediaMessageDto implements Serializable, IsSerializable {
 
     private static final long serialVersionUID = 1L;
     private String identifier;
@@ -17,9 +17,9 @@ public class AudioMessageDto implements Serializable, IsSerializable {
     private Date messageDate;
     private String messageDateAsString;
     private String lastUpdatedDate;
-    private AudioMessageSpeakerDto speakerDto;
-    private AudioMessageCategoryDto categoryDto;
-    private AudioMessagePictureDto pictureDto;
+    private MediaMessageSpeakerDto speakerDto;
+    private MediaMessageCategoryDto categoryDto;
+    private MediaMessagePictureDto pictureDto;
 
     public String getIdentifier() {
 	return identifier;
@@ -73,27 +73,27 @@ public class AudioMessageDto implements Serializable, IsSerializable {
 	this.salePoints = salePoints;
     }
 
-    public AudioMessageSpeakerDto getSpeakerDto() {
+    public MediaMessageSpeakerDto getSpeakerDto() {
 	return speakerDto;
     }
 
-    public void setSpeakerDto(AudioMessageSpeakerDto speakerDto) {
+    public void setSpeakerDto(MediaMessageSpeakerDto speakerDto) {
 	this.speakerDto = speakerDto;
     }
 
-    public AudioMessageCategoryDto getCategoryDto() {
+    public MediaMessageCategoryDto getCategoryDto() {
 	return categoryDto;
     }
 
-    public void setCategoryDto(AudioMessageCategoryDto categoryDto) {
+    public void setCategoryDto(MediaMessageCategoryDto categoryDto) {
 	this.categoryDto = categoryDto;
     }
 
-    public AudioMessagePictureDto getPictureDto() {
+    public MediaMessagePictureDto getPictureDto() {
 	return pictureDto;
     }
 
-    public void setPictureDto(AudioMessagePictureDto pictureDto) {
+    public void setPictureDto(MediaMessagePictureDto pictureDto) {
 	this.pictureDto = pictureDto;
     }
 

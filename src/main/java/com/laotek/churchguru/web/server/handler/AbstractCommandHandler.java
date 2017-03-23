@@ -9,11 +9,11 @@ import java.util.List;
 import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.util.StringUtils;
 
-import com.laotek.churchguru.model.AudioMember;
-import com.laotek.churchguru.model.AudioMessage;
-import com.laotek.churchguru.model.AudioMessageCategory;
-import com.laotek.churchguru.model.AudioMessagePicture;
-import com.laotek.churchguru.model.AudioMessageSpeaker;
+import com.laotek.churchguru.model.MediaMember;
+import com.laotek.churchguru.model.MediaMessage;
+import com.laotek.churchguru.model.MediaMessageCategory;
+import com.laotek.churchguru.model.MediaMessagePicture;
+import com.laotek.churchguru.model.MediaMessageSpeaker;
 import com.laotek.churchguru.model.Donation;
 import com.laotek.churchguru.model.LogoItem;
 import com.laotek.churchguru.model.NoticeAndEvent;
@@ -29,10 +29,10 @@ import com.laotek.churchguru.web.shared.FullnameDto;
 import com.laotek.churchguru.web.shared.OrganisationDto;
 import com.laotek.churchguru.web.shared.PhoneDto;
 import com.laotek.churchguru.web.shared.UserDto;
-import com.laotek.churchguru.web.shared.listening.AudioMessageCategoryDto;
-import com.laotek.churchguru.web.shared.listening.AudioMessageDto;
-import com.laotek.churchguru.web.shared.listening.AudioMessagePictureDto;
-import com.laotek.churchguru.web.shared.listening.AudioMessageSpeakerDto;
+import com.laotek.churchguru.web.shared.listening.MediaMessageCategoryDto;
+import com.laotek.churchguru.web.shared.listening.MediaMessageDto;
+import com.laotek.churchguru.web.shared.listening.MediaMessagePictureDto;
+import com.laotek.churchguru.web.shared.listening.MediaMessageSpeakerDto;
 import com.laotek.churchguru.web.shared.youtube.YoutubeVideoDto;
 
 public abstract class AbstractCommandHandler {
@@ -83,10 +83,10 @@ public abstract class AbstractCommandHandler {
 	return dtos;
     }
 
-    protected List<AudioMessageSpeakerDto> mapSpeakers(List<AudioMessageSpeaker> speakers) {
-	List<AudioMessageSpeakerDto> dtos = new ArrayList<AudioMessageSpeakerDto>();
-	for (AudioMessageSpeaker speaker : speakers) {
-	    AudioMessageSpeakerDto dto = new AudioMessageSpeakerDto();
+    protected List<MediaMessageSpeakerDto> mapSpeakers(List<MediaMessageSpeaker> speakers) {
+	List<MediaMessageSpeakerDto> dtos = new ArrayList<MediaMessageSpeakerDto>();
+	for (MediaMessageSpeaker speaker : speakers) {
+	    MediaMessageSpeakerDto dto = new MediaMessageSpeakerDto();
 	    dto.setIdentifier(speaker.getIdentifier());
 	    dto.setDescription(speaker.getDescription());
 
@@ -100,10 +100,10 @@ public abstract class AbstractCommandHandler {
 	return dtos;
     }
 
-    protected List<AudioMessagePictureDto> mapMessagePictures(List<AudioMessagePicture> eStoreMessagePictures) {
-	List<AudioMessagePictureDto> dtos = new ArrayList<AudioMessagePictureDto>();
-	for (AudioMessagePicture picture : eStoreMessagePictures) {
-	    AudioMessagePictureDto dto = new AudioMessagePictureDto();
+    protected List<MediaMessagePictureDto> mapMessagePictures(List<MediaMessagePicture> eStoreMessagePictures) {
+	List<MediaMessagePictureDto> dtos = new ArrayList<MediaMessagePictureDto>();
+	for (MediaMessagePicture picture : eStoreMessagePictures) {
+	    MediaMessagePictureDto dto = new MediaMessagePictureDto();
 	    dto.setName(picture.getPictureName());
 	    dtos.add(dto);
 	}
@@ -111,10 +111,10 @@ public abstract class AbstractCommandHandler {
 
     }
 
-    protected List<AudioMessageCategoryDto> mapCategories(List<AudioMessageCategory> categories) {
-	List<AudioMessageCategoryDto> dtos = new ArrayList<AudioMessageCategoryDto>();
-	for (AudioMessageCategory category : categories) {
-	    AudioMessageCategoryDto dto = new AudioMessageCategoryDto();
+    protected List<MediaMessageCategoryDto> mapCategories(List<MediaMessageCategory> categories) {
+	List<MediaMessageCategoryDto> dtos = new ArrayList<MediaMessageCategoryDto>();
+	for (MediaMessageCategory category : categories) {
+	    MediaMessageCategoryDto dto = new MediaMessageCategoryDto();
 	    dto.setName(category.getCategoryName());
 	    dto.setIdentifier(category.getIdentifier());
 	    dtos.add(dto);
@@ -122,8 +122,8 @@ public abstract class AbstractCommandHandler {
 	return dtos;
     }
 
-    protected AudioMessageDto mapMessages(AudioMessage message) {
-	AudioMessageDto dto = new AudioMessageDto();
+    protected MediaMessageDto mapMessages(MediaMessage message) {
+	MediaMessageDto dto = new MediaMessageDto();
 	dto.setDescription(message.getDescription());
 	dto.setTitle(message.getTitle());
 	dto.setIdentifier(message.getIdentifier());
@@ -132,9 +132,9 @@ public abstract class AbstractCommandHandler {
 	dto.setMessageDate(message.getMessageDate());
 	dto.setMessageDateAsString(new SimpleDateFormat("dd-MM-yyyy").format(message.getMessageDate()));
 
-	AudioMessageSpeaker speaker = message.getEStoreSpeaker();
+	MediaMessageSpeaker speaker = message.getEStoreSpeaker();
 	if (speaker != null) {
-	    AudioMessageSpeakerDto speakerDto = new AudioMessageSpeakerDto();
+	    MediaMessageSpeakerDto speakerDto = new MediaMessageSpeakerDto();
 	    speakerDto.setDescription(speaker.getDescription());
 
 	    FullnameDto fullnameDto = new FullnameDto();
@@ -147,17 +147,17 @@ public abstract class AbstractCommandHandler {
 	    dto.setSpeakerDto(speakerDto);
 	}
 
-	AudioMessageCategory category = message.geteStoreCategory();
+	MediaMessageCategory category = message.geteStoreCategory();
 	if (category != null) {
-	    AudioMessageCategoryDto categoryDto = new AudioMessageCategoryDto();
+	    MediaMessageCategoryDto categoryDto = new MediaMessageCategoryDto();
 	    categoryDto.setIdentifier(category.getIdentifier());
 	    categoryDto.setName(category.getCategoryName());
 	    dto.setCategoryDto(categoryDto);
 	}
 
-	AudioMessagePicture picture = message.geteStoreMessagePicture();
+	MediaMessagePicture picture = message.geteStoreMessagePicture();
 	if (picture != null) {
-	    AudioMessagePictureDto pictureDto = new AudioMessagePictureDto();
+	    MediaMessagePictureDto pictureDto = new MediaMessagePictureDto();
 	    pictureDto.setName(picture.getPictureName());
 	    pictureDto.setIdentifier(picture.getIdentifier());
 	}
@@ -263,8 +263,8 @@ public abstract class AbstractCommandHandler {
 	return dto;
     }
 
-    protected List<AudioMessageCategoryDto> mapCategoryDto(List<AudioMember> categories) {
-	List<AudioMessageCategoryDto> categoryDtos = new ArrayList<AudioMessageCategoryDto>();
+    protected List<MediaMessageCategoryDto> mapCategoryDto(List<MediaMember> categories) {
+	List<MediaMessageCategoryDto> categoryDtos = new ArrayList<MediaMessageCategoryDto>();
 	return categoryDtos;
     }
 

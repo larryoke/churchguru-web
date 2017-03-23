@@ -5,11 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.laotek.churchguru.daos.media.AudioMessageDao;
-import com.laotek.churchguru.model.AudioMessage;
-import com.laotek.churchguru.model.AudioMessageCategory;
-import com.laotek.churchguru.model.AudioMessagePicture;
-import com.laotek.churchguru.model.AudioMessageSpeaker;
+import com.laotek.churchguru.daos.media.MediaMessageDao;
+import com.laotek.churchguru.model.MediaMessage;
+import com.laotek.churchguru.model.MediaMessageCategory;
+import com.laotek.churchguru.model.MediaMessagePicture;
+import com.laotek.churchguru.model.MediaMessageSpeaker;
 import com.laotek.churchguru.web.client.activity.audio.GetAudioMessageAction;
 import com.laotek.churchguru.web.client.activity.audio.GetAudioMessageResult;
 import com.laotek.churchguru.web.server.handler.AbstractCommandHandler;
@@ -23,7 +23,7 @@ public class GetListeningMessageHandler extends AbstractCommandHandler
 	implements ActionHandler<GetAudioMessageAction, GetAudioMessageResult> {
 
     @Autowired
-    private AudioMessageDao eStoreDao;
+    private MediaMessageDao eStoreDao;
 
     @Override
     public GetAudioMessageResult execute(GetAudioMessageAction action, ExecutionContext context)
@@ -31,13 +31,13 @@ public class GetListeningMessageHandler extends AbstractCommandHandler
 
 	String identifier = action.getIdentifier();
 
-	AudioMessage message = eStoreDao.getMessageByIdentifier(identifier);
+	MediaMessage message = eStoreDao.getMessageByIdentifier(identifier);
 
-	List<AudioMessageCategory> categories = eStoreDao.getCategories();
+	List<MediaMessageCategory> categories = eStoreDao.getCategories();
 
-	List<AudioMessagePicture> pictures = eStoreDao.getEStoreMessagePicture();
+	List<MediaMessagePicture> pictures = eStoreDao.getEStoreMessagePicture();
 
-	List<AudioMessageSpeaker> speakers = eStoreDao.getSpeakers();
+	List<MediaMessageSpeaker> speakers = eStoreDao.getSpeakers();
 
 	return new GetAudioMessageResult(mapMessages(message), mapSpeakers(speakers), mapCategories(categories),
 		mapMessagePictures(pictures));

@@ -1,4 +1,4 @@
-package com.laotek.churchguru.web.client.activity.website.audio.speaker;
+package com.laotek.churchguru.web.client.activity.website.gal;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
@@ -10,13 +10,13 @@ import com.laotek.churchguru.web.client.UserContext;
 import com.laotek.churchguru.web.client.activity.GetOrgDetailAction;
 import com.laotek.churchguru.web.client.activity.GetOrgDetailResult;
 
-public class AudioMessageSpeakersActivity extends AbstractActivity implements AudioMessageSpeakersView.Presenter {
+public class MediaMessageGalleryNewItemActivity extends AbstractActivity implements MediaMessageGalleryNewView.Presenter {
 
     private ClientFactory clientFactory;
     private String name;
-    private AudioMessageSpeakersView view;
+    private MediaMessageGalleryNewView view;
 
-    public AudioMessageSpeakersActivity(AudioMessageSpeakersPlace place, ClientFactory clientFactory) {
+    public MediaMessageGalleryNewItemActivity(MediaMessageGalleryNewItemPlace place, ClientFactory clientFactory) {
 	this.name = place.getName();
 	this.clientFactory = clientFactory;
     }
@@ -26,13 +26,13 @@ public class AudioMessageSpeakersActivity extends AbstractActivity implements Au
      */
     @Override
     public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
-	view = clientFactory.getEStoreSpeakersView();
+	view = clientFactory.getEStoreGalleryNewView();
 	view.setPresenter(this);
 	view.initTab();
 	containerWidget.setWidget(view.asWidget());
 	view.init();
 	view.initWidgets();
-	getSpeakers(view);
+	getEStoreGalleryNewView();
     }
 
     /**
@@ -50,7 +50,7 @@ public class AudioMessageSpeakersActivity extends AbstractActivity implements Au
 	clientFactory.getPlaceController().goTo(place);
     }
 
-    private void getSpeakers(final AudioMessageSpeakersView eStoreSpeakersView) {
+    private void getEStoreGalleryNewView() {
 	GetOrgDetailAction action = new GetOrgDetailAction();
 	UserContext.getInstance().decorateClientSessionId(action);
 	UserContext.getInstance().getDispatchClient().execute(action, new AsyncCallback<GetOrgDetailResult>() {

@@ -2,7 +2,7 @@ package com.laotek.churchguru.web.shared.listening;
 
 import java.io.Serializable;
 
-public class AudioMessagePictureDto implements Serializable {
+public class MediaMessagePictureDto implements Serializable {
     /**
      * 
      */

@@ -3,26 +3,26 @@ package com.laotek.churchguru.web.client.activity.audio;
 import java.util.List;
 import java.util.Map;
 
-import com.laotek.churchguru.web.shared.listening.AudioMessageCategoryDto;
-import com.laotek.churchguru.web.shared.listening.AudioMessageDto;
-import com.laotek.churchguru.web.shared.listening.AudioMessagePictureDto;
-import com.laotek.churchguru.web.shared.listening.AudioMessageSpeakerDto;
+import com.laotek.churchguru.web.shared.listening.MediaMessageCategoryDto;
+import com.laotek.churchguru.web.shared.listening.MediaMessageDto;
+import com.laotek.churchguru.web.shared.listening.MediaMessagePictureDto;
+import com.laotek.churchguru.web.shared.listening.MediaMessageSpeakerDto;
 
 import net.customware.gwt.dispatch.shared.Result;
 
 public class GetAudioMessageResult implements Result {
 
-    private AudioMessageDto message;
-    private List<AudioMessageSpeakerDto> speakers;
-    private List<AudioMessageCategoryDto> categories;
-    private List<AudioMessagePictureDto> pictures;
+    private MediaMessageDto message;
+    private List<MediaMessageSpeakerDto> speakers;
+    private List<MediaMessageCategoryDto> categories;
+    private List<MediaMessagePictureDto> pictures;
     private Map<String, Boolean> workersSelectedForFreeMessages;
 
     public GetAudioMessageResult() {
     }
 
-    public GetAudioMessageResult(AudioMessageDto message, List<AudioMessageSpeakerDto> speakers,
-	    List<AudioMessageCategoryDto> categories, List<AudioMessagePictureDto> pictures) {
+    public GetAudioMessageResult(MediaMessageDto message, List<MediaMessageSpeakerDto> speakers,
+	    List<MediaMessageCategoryDto> categories, List<MediaMessagePictureDto> pictures) {
 	this.message = message;
 	this.speakers = speakers;
 	this.categories = categories;
@@ -30,23 +30,23 @@ public class GetAudioMessageResult implements Result {
 	this.setWorkersSelectedForFreeMessages(workersSelectedForFreeMessages);
     }
 
-    public AudioMessageDto getMessage() {
+    public MediaMessageDto getMessage() {
 	return message;
     }
 
-    public List<AudioMessageSpeakerDto> getSpeakers() {
+    public List<MediaMessageSpeakerDto> getSpeakers() {
 	return speakers;
     }
 
-    public List<AudioMessageCategoryDto> getCategories() {
+    public List<MediaMessageCategoryDto> getCategories() {
 	return categories;
     }
 
-    public void setCategories(List<AudioMessageCategoryDto> categories) {
+    public void setCategories(List<MediaMessageCategoryDto> categories) {
 	this.categories = categories;
     }
 
-    public List<AudioMessagePictureDto> getPictures() {
+    public List<MediaMessagePictureDto> getPictures() {
 	return pictures;
     }
 

@@ -4,20 +4,20 @@ import java.util.List;
 
 import net.customware.gwt.dispatch.shared.Result;
 
-import com.laotek.churchguru.web.shared.listening.AudioMessageDto;
+import com.laotek.churchguru.web.shared.listening.MediaMessageDto;
 
 public class GetAudioMessagesResult implements Result {
 
-    private List<AudioMessageDto> messages;
+    private List<MediaMessageDto> messages;
 
     public GetAudioMessagesResult() {
     }
 
-    public GetAudioMessagesResult(List<AudioMessageDto> messages) {
+    public GetAudioMessagesResult(List<MediaMessageDto> messages) {
 	this.messages = messages;
     }
 
-    public List<AudioMessageDto> getMessages() {
+    public List<MediaMessageDto> getMessages() {
 	return messages;
     }
 

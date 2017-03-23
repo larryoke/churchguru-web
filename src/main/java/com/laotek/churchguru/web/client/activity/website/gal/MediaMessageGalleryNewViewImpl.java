@@ -4,7 +4,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 import com.laotek.churchguru.web.shared.listening.GalleryDto;
 
-public class MediaMessageGalleryNewViewImpl implements AudioMessageGalleryNewView {
+public class MediaMessageGalleryNewViewImpl implements MediaMessageGalleryNewView {
 
     private Presenter presenter;
 

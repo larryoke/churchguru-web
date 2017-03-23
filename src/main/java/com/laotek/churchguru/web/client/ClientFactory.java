@@ -27,9 +27,9 @@ import com.laotek.churchguru.web.client.activity.website.audio.cat.MediaMessageC
 import com.laotek.churchguru.web.client.activity.website.audio.cust.MediaMessageCustomerDetailsView;
 import com.laotek.churchguru.web.client.activity.website.audio.cust.MediaMessageCustomersView;
 import com.laotek.churchguru.web.client.activity.website.audio.notif.MediaMessageNotificationsView;
-import com.laotek.churchguru.web.client.activity.website.audio.speaker.AudioMessageSpeakerNewView;
-import com.laotek.churchguru.web.client.activity.website.audio.speaker.AudioMessageSpeakersView;
-import com.laotek.churchguru.web.client.activity.website.gal.AudioMessageGalleryNewView;
+import com.laotek.churchguru.web.client.activity.website.audio.speaker.MediaMessageSpeakerNewView;
+import com.laotek.churchguru.web.client.activity.website.audio.speaker.MediaMessageSpeakersView;
+import com.laotek.churchguru.web.client.activity.website.gal.MediaMessageGalleryNewView;
 import com.laotek.churchguru.web.client.activity.website.gal.MediaMessageGalleryView;
 
 public interface ClientFactory {
@@ -71,7 +71,7 @@ public interface ClientFactory {
 
     MediaMessageCustomersView getEStoreCustomersView();
 
-    AudioMessageGalleryNewView getEStoreGalleryNewView();
+    MediaMessageGalleryNewView getEStoreGalleryNewView();
 
     MediaMessageGalleryView getEStoreGalleryView();
 
@@ -81,9 +81,9 @@ public interface ClientFactory {
 
     MediaMessageNotificationsView getEStoreNotificationsView();
 
-    AudioMessageSpeakerNewView getEStoreSpeakerNewView();
+    MediaMessageSpeakerNewView getEStoreSpeakerNewView();
 
-    AudioMessageSpeakersView getEStoreSpeakersView();
+    MediaMessageSpeakersView getEStoreSpeakersView();
 
     YoutubeVideoNewView getYoutubeNewView();
 

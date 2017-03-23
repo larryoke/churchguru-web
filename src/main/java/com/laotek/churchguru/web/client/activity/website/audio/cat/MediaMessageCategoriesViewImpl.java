@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
-import com.laotek.churchguru.web.shared.listening.AudioMessageCategoryDto;
+import com.laotek.churchguru.web.shared.listening.MediaMessageCategoryDto;
 
 public class MediaMessageCategoriesViewImpl implements MediaMessageCategoriesView {
 
@@ -38,7 +38,7 @@ public class MediaMessageCategoriesViewImpl implements MediaMessageCategoriesVie
     }
 
     @Override
-    public void initCategories(List<AudioMessageCategoryDto> dtos) {
+    public void initCategories(List<MediaMessageCategoryDto> dtos) {
 	// TODO Auto-generated method stub
 
     }

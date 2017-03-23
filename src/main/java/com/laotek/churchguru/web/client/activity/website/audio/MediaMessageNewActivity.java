@@ -15,10 +15,10 @@ import com.laotek.churchguru.web.client.activity.audio.GetAudioMessageAction;
 import com.laotek.churchguru.web.client.activity.audio.GetAudioMessageResult;
 import com.laotek.churchguru.web.client.activity.audio.SubmitAudioMessageResult;
 import com.laotek.churchguru.web.client.activity.audio.SubmitAudioMessageAction;
-import com.laotek.churchguru.web.shared.listening.AudioMessageCategoryDto;
-import com.laotek.churchguru.web.shared.listening.AudioMessageDto;
-import com.laotek.churchguru.web.shared.listening.AudioMessagePictureDto;
-import com.laotek.churchguru.web.shared.listening.AudioMessageSpeakerDto;
+import com.laotek.churchguru.web.shared.listening.MediaMessageCategoryDto;
+import com.laotek.churchguru.web.shared.listening.MediaMessageDto;
+import com.laotek.churchguru.web.shared.listening.MediaMessagePictureDto;
+import com.laotek.churchguru.web.shared.listening.MediaMessageSpeakerDto;
 
 public class MediaMessageNewActivity extends AbstractActivity implements
 	MediaMessageNewView.Presenter {
@@ -75,11 +75,11 @@ public class MediaMessageNewActivity extends AbstractActivity implements
 
 		    @Override
 		    public void onSuccess(GetAudioMessageResult result) {
-			AudioMessageDto dto = result.getMessage();
-			List<AudioMessageSpeakerDto> speakers = result.getSpeakers();
-			List<AudioMessageCategoryDto> categories = result
+			MediaMessageDto dto = result.getMessage();
+			List<MediaMessageSpeakerDto> speakers = result.getSpeakers();
+			List<MediaMessageCategoryDto> categories = result
 				.getCategories();
-			List<AudioMessagePictureDto> pictures = result
+			List<MediaMessagePictureDto> pictures = result
 				.getPictures();
 			Map<String, Boolean> workersSelectedForFreeMessages = result
 				.getWorkersSelectedForFreeMessages();

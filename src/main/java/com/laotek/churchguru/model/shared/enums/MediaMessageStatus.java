@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
 
-public enum AudioMessageStatus implements Serializable, IsSerializable {
+public enum MediaMessageStatus implements Serializable, IsSerializable {
     NEW("Not loaded"),
 
     INCOMPLETE("Incomplete"),
@@ -17,7 +17,7 @@ public enum AudioMessageStatus implements Serializable, IsSerializable {
 
     private String desc;
 
-    private AudioMessageStatus(String desc) {
+    private MediaMessageStatus(String desc) {
 	this.desc = desc;
     }
 
@@ -25,8 +25,8 @@ public enum AudioMessageStatus implements Serializable, IsSerializable {
 	return desc;
     }
 
-    public static AudioMessageStatus find(String desc) {
-	for (AudioMessageStatus title : AudioMessageStatus.values()) {
+    public static MediaMessageStatus find(String desc) {
+	for (MediaMessageStatus title : MediaMessageStatus.values()) {
 	    if (title.getDesc().equals(desc)) {
 		return title;
 	    }
