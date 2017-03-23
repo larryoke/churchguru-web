@@ -12,6 +12,10 @@ public class AboutUseDetailsResult implements Result {
     private String fullAddress;
     private String orgName;
     private String websiteUrl;
+
+    private boolean isFacebook;
+    private boolean isTwitter;
+    private boolean isYoutube;
     private String googleApiKey;
     private BigDecimal latitude;
     private BigDecimal longitude;
@@ -20,8 +24,8 @@ public class AboutUseDetailsResult implements Result {
     }
 
     public AboutUseDetailsResult(String aboutUsMessage, String aboutPastorMessage, String serviceTimes,
-	    String fullAddress, String orgName, String websiteUrl, String googleApiKey, BigDecimal latitude,
-	    BigDecimal longitude) {
+	    String fullAddress, String orgName, String websiteUrl, boolean isFacebook, boolean isTwitter,
+	    boolean isYoutube, String googleApiKey, BigDecimal latitude, BigDecimal longitude) {
 	super();
 	this.aboutUsMessage = aboutUsMessage;
 	this.aboutPastorMessage = aboutPastorMessage;
@@ -29,6 +33,10 @@ public class AboutUseDetailsResult implements Result {
 	this.fullAddress = fullAddress;
 	this.orgName = orgName;
 	this.websiteUrl = websiteUrl;
+	this.isFacebook = isFacebook;
+	this.isTwitter = isTwitter;
+	this.isYoutube = isYoutube;
+
 	this.googleApiKey = googleApiKey;
 	this.latitude = latitude;
 	this.longitude = longitude;
@@ -72,6 +80,18 @@ public class AboutUseDetailsResult implements Result {
 
     public String getWebsiteUrl() {
 	return websiteUrl;
+    }
+
+    public boolean isFacebook() {
+	return isFacebook;
+    }
+
+    public boolean isTwitter() {
+	return isTwitter;
+    }
+
+    public boolean isYoutube() {
+	return isYoutube;
     }
 
     public String getGoogleApiKey() {

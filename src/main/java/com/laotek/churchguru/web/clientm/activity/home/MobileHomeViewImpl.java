@@ -136,13 +136,13 @@ public class MobileHomeViewImpl implements MobileHomeView {
 			clientFactory.getPlaceController().goTo(new TwitterPlace(current.getDesc()));
 			return;
 		    }
-		    if (ChurchAppTopicEnum.LISTEN.equals(current)) {
-			clientFactory.getPlaceController().goTo(new UnderConstructionPlace("uc"));
+		    if (ChurchAppTopicEnum.YOUTUBE.equals(current)) {
+			clientFactory.getPlaceController().goTo(new YoutubePlace(current.getDesc()));
 
 			return;
 		    }
-		    if (ChurchAppTopicEnum.YOUTUBE.equals(current)) {
-			clientFactory.getPlaceController().goTo(new YoutubePlace(current.getDesc()));
+		    if (ChurchAppTopicEnum.LISTEN.equals(current)) {
+			clientFactory.getPlaceController().goTo(new UnderConstructionPlace("uc"));
 
 			return;
 		    }

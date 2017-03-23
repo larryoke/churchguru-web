@@ -26,8 +26,9 @@ public class GetAboutUsDetailsHandler extends AbstractCommandHandler
 
 	Organisation org = organisationDao.getOrganisation(1L);
 	return new AboutUseDetailsResult(org.getAboutUsMessage(), org.getAboutPastorMessage(), org.getServiceTimes(),
-		org.getFullAddress(), org.getOrgName(), org.getWebsiteUrl(), org.getGoogleApiKey(), org.getLatitude(),
-		org.getLongitude());
+		org.getFullAddress(), org.getOrgName(), org.getWebsiteUrl(), org.isFacebookChurchAppTopicFlag(),
+		org.isTwitterChurchAppTopicFlag(), org.isYoutubeChurchAppTopicFlag(), org.getGoogleApiKey(),
+		org.getLatitude(), org.getLongitude());
     }
 
     @Override

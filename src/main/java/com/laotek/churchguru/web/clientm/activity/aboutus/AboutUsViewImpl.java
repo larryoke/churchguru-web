@@ -14,11 +14,16 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.googlecode.mgwt.ui.client.MGWT;
 import com.googlecode.mgwt.ui.client.widget.list.widgetlist.WidgetList;
+import com.laotek.churchguru.web.client.ApplicationContext;
 import com.laotek.churchguru.web.clientm.activity.DetailViewGwtImpl;
+import com.laotek.churchguru.web.clientm.activity.facebook.FacebookPlace;
+import com.laotek.churchguru.web.clientm.activity.twitter.TwitterPlace;
+import com.laotek.churchguru.web.clientm.activity.youtube.YoutubePlace;
 import com.laotek.churchguru.web.clientm.widget.HeaderLabel;
 
 public class AboutUsViewImpl extends DetailViewGwtImpl implements AboutUsView {
@@ -42,6 +47,12 @@ public class AboutUsViewImpl extends DetailViewGwtImpl implements AboutUsView {
 
     private HeaderLabel headerLabel = new HeaderLabel("About Us");
 
+    private Image facebookImg = new Image("/images/app/facebook.png");
+    private Image twitterImg = new Image("/images/app/twitter.png");
+    private Image youtubeImg = new Image("/images/app/youtube.png");
+
+    private HorizontalPanel socialMediaPanel = new HorizontalPanel();
+
     public AboutUsViewImpl() {
 
 	scrollPanel.setScrollingEnabledX(false);
@@ -58,6 +69,8 @@ public class AboutUsViewImpl extends DetailViewGwtImpl implements AboutUsView {
 	addAboutPastorMessage(formContainer);
 
 	addWebsite(formContainer);
+
+	addSocialMedia(formContainer);
 
 	addLocation(formContainer);
 
@@ -80,7 +93,8 @@ public class AboutUsViewImpl extends DetailViewGwtImpl implements AboutUsView {
 
     @Override
     public void showForm(String orgName, String aboutUs, String aboutPastor, String fullAddress, String serviceTimes,
-	    String websiteUrl, String googleApiKey, final BigDecimal lati, final BigDecimal longi) {
+	    String websiteUrl, boolean isFacebook, boolean isTwitter, boolean isYoutube, String googleApiKey,
+	    final BigDecimal lati, final BigDecimal longi) {
 
 	headerLabel.setText("About " + orgName);
 	aboutUsDetailsHtml.setHTML(aboutUs);
@@ -88,6 +102,17 @@ public class AboutUsViewImpl extends DetailViewGwtImpl implements AboutUsView {
 	serviceTimesHtml.setHTML(serviceTimes);
 	locationHtml.setHTML(fullAddress);
 	websiteAnchor.setText(websiteUrl);
+
+	socialMediaPanel.clear();
+	if (isFacebook) {
+	    socialMediaPanel.add(facebookImg);
+	}
+	if (isTwitter) {
+	    socialMediaPanel.add(twitterImg);
+	}
+	if (isYoutube) {
+	    socialMediaPanel.add(youtubeImg);
+	}
 
 	scrollPanel.setWidget(formContainer);
 
@@ -180,6 +205,34 @@ public class AboutUsViewImpl extends DetailViewGwtImpl implements AboutUsView {
 	WidgetList widget = new WidgetList();
 	widget.setHeader(new HeaderLabel("Website"));
 	widget.add(websiteAnchor);
+	container.add(widget);
+    }
+
+    private void addSocialMedia(FlowPanel container) {
+	WidgetList widget = new WidgetList();
+	widget.setHeader(new HeaderLabel("Social Media"));
+	widget.add(socialMediaPanel);
+
+	facebookImg.addClickHandler(new ClickHandler() {
+	    @Override
+	    public void onClick(ClickEvent event) {
+		ApplicationContext.getInstance().getPlaceController().goTo(new FacebookPlace("youtube"));
+	    }
+	});
+
+	twitterImg.addClickHandler(new ClickHandler() {
+	    @Override
+	    public void onClick(ClickEvent event) {
+		ApplicationContext.getInstance().getPlaceController().goTo(new TwitterPlace("twitter"));
+	    }
+	});
+
+	youtubeImg.addClickHandler(new ClickHandler() {
+	    @Override
+	    public void onClick(ClickEvent event) {
+		ApplicationContext.getInstance().getPlaceController().goTo(new YoutubePlace("youtube"));
+	    }
+	});
 	container.add(widget);
     }
 

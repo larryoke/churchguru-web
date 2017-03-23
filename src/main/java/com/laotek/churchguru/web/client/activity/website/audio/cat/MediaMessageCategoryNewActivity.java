@@ -1,4 +1,4 @@
-package com.laotek.churchguru.web.client.activity.website.gal;
+package com.laotek.churchguru.web.client.activity.website.audio.cat;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
@@ -9,14 +9,15 @@ import com.laotek.churchguru.web.client.ClientFactory;
 import com.laotek.churchguru.web.client.UserContext;
 import com.laotek.churchguru.web.client.activity.GetOrgDetailAction;
 import com.laotek.churchguru.web.client.activity.GetOrgDetailResult;
+import com.laotek.churchguru.web.client.activity.churchapp.general.GeneralChurchAppView;
 
-public class AudioMessageGalleryActivity extends AbstractActivity implements MediaMessageGalleryView.Presenter {
+public class MediaMessageCategoryNewActivity extends AbstractActivity implements MediaMessageCategoryNewView.Presenter {
 
     private ClientFactory clientFactory;
     private String name;
-    private MediaMessageGalleryView view;
+    private MediaMessageCategoryNewView view;
 
-    public AudioMessageGalleryActivity(MediaMessageGalleryPlace place, ClientFactory clientFactory) {
+    public MediaMessageCategoryNewActivity(MediaMessageCategoryNewPlace place, ClientFactory clientFactory) {
 	this.name = place.getName();
 	this.clientFactory = clientFactory;
     }
@@ -26,13 +27,12 @@ public class AudioMessageGalleryActivity extends AbstractActivity implements Med
      */
     @Override
     public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
-	view = clientFactory.getEStoreGalleryView();
+	view = clientFactory.getEStoreCategoryNewView();
 	view.setPresenter(this);
 	view.initTab();
 	containerWidget.setWidget(view.asWidget());
 	view.init();
 	view.initWidgets();
-	getGallery();
     }
 
     /**
@@ -50,7 +50,8 @@ public class AudioMessageGalleryActivity extends AbstractActivity implements Med
 	clientFactory.getPlaceController().goTo(place);
     }
 
-    private void getGallery() {
+    @SuppressWarnings("unused")
+    private void getOrganisation(final GeneralChurchAppView homeView) {
 	GetOrgDetailAction action = new GetOrgDetailAction();
 	UserContext.getInstance().decorateClientSessionId(action);
 	UserContext.getInstance().getDispatchClient().execute(action, new AsyncCallback<GetOrgDetailResult>() {
@@ -60,6 +61,7 @@ public class AudioMessageGalleryActivity extends AbstractActivity implements Med
 
 	    @Override
 	    public void onSuccess(GetOrgDetailResult result) {
+		homeView.initOrganisation(result.getDto());
 	    }
 	});
 

@@ -39,28 +39,28 @@ import com.laotek.churchguru.web.client.activity.user.UserProfilesView;
 import com.laotek.churchguru.web.client.activity.user.UserProfilesViewImpl;
 import com.laotek.churchguru.web.client.activity.website.WebsiteView;
 import com.laotek.churchguru.web.client.activity.website.WebsiteViewImpl;
-import com.laotek.churchguru.web.client.activity.website.audio.AudioMessageNewView;
-import com.laotek.churchguru.web.client.activity.website.audio.AudioMessageNewViewImpl;
-import com.laotek.churchguru.web.client.activity.website.audio.AudioMessagesView;
-import com.laotek.churchguru.web.client.activity.website.audio.AudioMessagesViewImpl;
-import com.laotek.churchguru.web.client.activity.website.audio.cat.AudioMessageCategoriesView;
-import com.laotek.churchguru.web.client.activity.website.audio.cat.AudioMessageCategoriesViewImpl;
-import com.laotek.churchguru.web.client.activity.website.audio.cat.AudioMessageCategoryNewView;
-import com.laotek.churchguru.web.client.activity.website.audio.cat.AudioMessageCategoryNewViewImpl;
-import com.laotek.churchguru.web.client.activity.website.audio.cust.AudioMessageCustomerDetailsView;
-import com.laotek.churchguru.web.client.activity.website.audio.cust.AudioMessageCustomerDetailsViewImpl;
-import com.laotek.churchguru.web.client.activity.website.audio.cust.AudioMessageCustomersView;
-import com.laotek.churchguru.web.client.activity.website.audio.cust.AudioMessageCustomersViewImpl;
-import com.laotek.churchguru.web.client.activity.website.audio.notif.AudioMessageNotificationsView;
-import com.laotek.churchguru.web.client.activity.website.audio.notif.AudioMessageNotificationsViewImpl;
+import com.laotek.churchguru.web.client.activity.website.audio.MediaMessageNewView;
+import com.laotek.churchguru.web.client.activity.website.audio.MediaMessageNewViewImpl;
+import com.laotek.churchguru.web.client.activity.website.audio.MediaMessagesView;
+import com.laotek.churchguru.web.client.activity.website.audio.MediaMessagesViewImpl;
+import com.laotek.churchguru.web.client.activity.website.audio.cat.MediaMessageCategoriesView;
+import com.laotek.churchguru.web.client.activity.website.audio.cat.MediaMessageCategoriesViewImpl;
+import com.laotek.churchguru.web.client.activity.website.audio.cat.MediaMessageCategoryNewView;
+import com.laotek.churchguru.web.client.activity.website.audio.cat.MediaMessageCategoryNewViewImpl;
+import com.laotek.churchguru.web.client.activity.website.audio.cust.MediaMessageCustomerDetailsView;
+import com.laotek.churchguru.web.client.activity.website.audio.cust.MediaMessageCustomerDetailsViewImpl;
+import com.laotek.churchguru.web.client.activity.website.audio.cust.MediaMessageCustomersView;
+import com.laotek.churchguru.web.client.activity.website.audio.cust.MediaMessageCustomersViewImpl;
+import com.laotek.churchguru.web.client.activity.website.audio.notif.MediaMessageNotificationsView;
+import com.laotek.churchguru.web.client.activity.website.audio.notif.MediaMessageNotificationsViewImpl;
 import com.laotek.churchguru.web.client.activity.website.audio.speaker.AudioMessageSpeakerNewView;
 import com.laotek.churchguru.web.client.activity.website.audio.speaker.AudioMessageSpeakerNewViewImpl;
 import com.laotek.churchguru.web.client.activity.website.audio.speaker.AudioMessageSpeakersView;
 import com.laotek.churchguru.web.client.activity.website.audio.speaker.AudioMessageSpeakersViewImpl;
 import com.laotek.churchguru.web.client.activity.website.gal.AudioMessageGalleryNewView;
-import com.laotek.churchguru.web.client.activity.website.gal.AudioMessageGalleryNewViewImpl;
-import com.laotek.churchguru.web.client.activity.website.gal.AudioMessageGalleryView;
-import com.laotek.churchguru.web.client.activity.website.gal.AudioMessageGalleryViewImpl;
+import com.laotek.churchguru.web.client.activity.website.gal.MediaMessageGalleryNewViewImpl;
+import com.laotek.churchguru.web.client.activity.website.gal.MediaMessageGalleryView;
+import com.laotek.churchguru.web.client.activity.website.gal.MediaMessageGalleryViewImpl;
 
 public class ClientFactoryImpl implements ClientFactory {
     private EventBus eventBus = new SimpleEventBus();
@@ -78,23 +78,23 @@ public class ClientFactoryImpl implements ClientFactory {
     private NewUserSetupView newUserSetupView = new NewUserSetupViewImpl(placeController);
     private UserProfilesView userProfilesView = new UserProfilesViewImpl();
 
-    private AudioMessageCategoriesView eStoreCategoriesView = new AudioMessageCategoriesViewImpl();
+    private MediaMessageCategoriesView eStoreCategoriesView = new MediaMessageCategoriesViewImpl();
 
-    private AudioMessageCategoryNewView eStoreCategoryNewView = new AudioMessageCategoryNewViewImpl();
+    private MediaMessageCategoryNewView eStoreCategoryNewView = new MediaMessageCategoryNewViewImpl();
 
-    private AudioMessageCustomerDetailsView eStoreCustomerDetailsView = new AudioMessageCustomerDetailsViewImpl();
+    private MediaMessageCustomerDetailsView eStoreCustomerDetailsView = new MediaMessageCustomerDetailsViewImpl();
 
-    private AudioMessageCustomersView eStoreCustomersView = new AudioMessageCustomersViewImpl();
+    private MediaMessageCustomersView eStoreCustomersView = new MediaMessageCustomersViewImpl();
 
-    private AudioMessageGalleryNewView eStoreGalleryNewView = new AudioMessageGalleryNewViewImpl();
+    private AudioMessageGalleryNewView eStoreGalleryNewView = new MediaMessageGalleryNewViewImpl();
 
-    private AudioMessageGalleryView eStoreGalleryView = new AudioMessageGalleryViewImpl();
+    private MediaMessageGalleryView eStoreGalleryView = new MediaMessageGalleryViewImpl();
 
-    private AudioMessageNewView eStoreMessageNewView = new AudioMessageNewViewImpl();
+    private MediaMessageNewView eStoreMessageNewView = new MediaMessageNewViewImpl();
 
-    private AudioMessagesView eStoreMessagesView = new AudioMessagesViewImpl();
+    private MediaMessagesView eStoreMessagesView = new MediaMessagesViewImpl();
 
-    private AudioMessageNotificationsView eStoreNotificationsView = new AudioMessageNotificationsViewImpl();
+    private MediaMessageNotificationsView eStoreNotificationsView = new MediaMessageNotificationsViewImpl();
 
     private AudioMessageSpeakerNewView eStoreSpeakerNewView = new AudioMessageSpeakerNewViewImpl();
 
@@ -202,28 +202,28 @@ public class ClientFactoryImpl implements ClientFactory {
     }
 
     @Override
-    public AudioMessageCategoriesView getEStoreCategoriesView() {
+    public MediaMessageCategoriesView getEStoreCategoriesView() {
 	if (eStoreCategoriesView == null) {
 	}
 	return eStoreCategoriesView;
     }
 
     @Override
-    public AudioMessageCategoryNewView getEStoreCategoryNewView() {
+    public MediaMessageCategoryNewView getEStoreCategoryNewView() {
 	if (eStoreCategoryNewView == null) {
 	}
 	return eStoreCategoryNewView;
     }
 
     @Override
-    public AudioMessageCustomerDetailsView getEStoreCustomerDetailsView() {
+    public MediaMessageCustomerDetailsView getEStoreCustomerDetailsView() {
 	if (eStoreCustomerDetailsView == null) {
 	}
 	return eStoreCustomerDetailsView;
     }
 
     @Override
-    public AudioMessageCustomersView getEStoreCustomersView() {
+    public MediaMessageCustomersView getEStoreCustomersView() {
 	if (eStoreCustomersView == null) {
 	}
 	return eStoreCustomersView;
@@ -237,28 +237,28 @@ public class ClientFactoryImpl implements ClientFactory {
     }
 
     @Override
-    public AudioMessageGalleryView getEStoreGalleryView() {
+    public MediaMessageGalleryView getEStoreGalleryView() {
 	if (eStoreGalleryView == null) {
 	}
 	return eStoreGalleryView;
     }
 
     @Override
-    public AudioMessageNewView getEStoreMessageNewView() {
+    public MediaMessageNewView getEStoreMessageNewView() {
 	if (eStoreMessageNewView == null) {
 	}
 	return eStoreMessageNewView;
     }
 
     @Override
-    public AudioMessagesView getEStoreMessagesView() {
+    public MediaMessagesView getEStoreMessagesView() {
 	if (eStoreMessagesView == null) {
 	}
 	return eStoreMessagesView;
     }
 
     @Override
-    public AudioMessageNotificationsView getEStoreNotificationsView() {
+    public MediaMessageNotificationsView getEStoreNotificationsView() {
 	if (eStoreNotificationsView == null) {
 	}
 	return eStoreNotificationsView;

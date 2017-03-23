@@ -23,7 +23,7 @@ import com.laotek.churchguru.web.client.activity.user.AllUserPlace;
 import com.laotek.churchguru.web.client.activity.user.NewUserDialog;
 import com.laotek.churchguru.web.client.activity.user.NewUserProfileDialog;
 import com.laotek.churchguru.web.client.activity.user.UserProfilesPlace;
-import com.laotek.churchguru.web.client.activity.website.audio.AudioMessagesPlace;
+import com.laotek.churchguru.web.client.activity.website.audio.MediaMessagesPlace;
 import com.laotek.churchguru.web.shared.UserDto;
 
 public class MainMenuContext extends BaseMainMenuContext {
@@ -110,11 +110,11 @@ public class MainMenuContext extends BaseMainMenuContext {
 	messageMediaPanel.setHeight("100%");
 	UserDto dto = UserContext.getInstance().getUserDto();
 	initStackLayoutPanel(messageMediaPanel, "images/app/media.png", "Manage Media Messages", stackMenu,
-		new AudioMessagesPlace("messages"), UserRoleName.ORGANISATION_DATA_VIEW_ONLY,
+		new MediaMessagesPlace("messages"), UserRoleName.ORGANISATION_DATA_VIEW_ONLY,
 		dto.getOrganisationRole());
 
 	createLink(new Image("images/app/download.png"), "Manage Audio Message", false, messageMediaPanel,
-		new AudioMessagesPlace("audio"), UserRoleName.ORGANISATION_DATA_VIEW_ONLY, dto.getOrganisationRole());
+		new MediaMessagesPlace("audio"), UserRoleName.ORGANISATION_DATA_VIEW_ONLY, dto.getOrganisationRole());
 
 	createLink(new Image("images/app/youtube.png"), "Manage YouTube Videos", false, messageMediaPanel,
 		new YoutubeVideosPlace("video"), UserRoleName.ORGANISATION_DATA_VIEW_ONLY, dto.getOrganisationRole());

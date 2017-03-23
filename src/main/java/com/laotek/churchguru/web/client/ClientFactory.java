@@ -20,17 +20,17 @@ import com.laotek.churchguru.web.client.activity.user.NewUserSetupView;
 import com.laotek.churchguru.web.client.activity.user.SingleUserView;
 import com.laotek.churchguru.web.client.activity.user.UserProfilesView;
 import com.laotek.churchguru.web.client.activity.website.WebsiteView;
-import com.laotek.churchguru.web.client.activity.website.audio.AudioMessageNewView;
-import com.laotek.churchguru.web.client.activity.website.audio.AudioMessagesView;
-import com.laotek.churchguru.web.client.activity.website.audio.cat.AudioMessageCategoriesView;
-import com.laotek.churchguru.web.client.activity.website.audio.cat.AudioMessageCategoryNewView;
-import com.laotek.churchguru.web.client.activity.website.audio.cust.AudioMessageCustomerDetailsView;
-import com.laotek.churchguru.web.client.activity.website.audio.cust.AudioMessageCustomersView;
-import com.laotek.churchguru.web.client.activity.website.audio.notif.AudioMessageNotificationsView;
+import com.laotek.churchguru.web.client.activity.website.audio.MediaMessageNewView;
+import com.laotek.churchguru.web.client.activity.website.audio.MediaMessagesView;
+import com.laotek.churchguru.web.client.activity.website.audio.cat.MediaMessageCategoriesView;
+import com.laotek.churchguru.web.client.activity.website.audio.cat.MediaMessageCategoryNewView;
+import com.laotek.churchguru.web.client.activity.website.audio.cust.MediaMessageCustomerDetailsView;
+import com.laotek.churchguru.web.client.activity.website.audio.cust.MediaMessageCustomersView;
+import com.laotek.churchguru.web.client.activity.website.audio.notif.MediaMessageNotificationsView;
 import com.laotek.churchguru.web.client.activity.website.audio.speaker.AudioMessageSpeakerNewView;
 import com.laotek.churchguru.web.client.activity.website.audio.speaker.AudioMessageSpeakersView;
 import com.laotek.churchguru.web.client.activity.website.gal.AudioMessageGalleryNewView;
-import com.laotek.churchguru.web.client.activity.website.gal.AudioMessageGalleryView;
+import com.laotek.churchguru.web.client.activity.website.gal.MediaMessageGalleryView;
 
 public interface ClientFactory {
     EventBus getEventBus();
@@ -63,23 +63,23 @@ public interface ClientFactory {
 
     NewUserSetupView getNewUserSetupView();
 
-    AudioMessageCategoriesView getEStoreCategoriesView();
+    MediaMessageCategoriesView getEStoreCategoriesView();
 
-    AudioMessageCategoryNewView getEStoreCategoryNewView();
+    MediaMessageCategoryNewView getEStoreCategoryNewView();
 
-    AudioMessageCustomerDetailsView getEStoreCustomerDetailsView();
+    MediaMessageCustomerDetailsView getEStoreCustomerDetailsView();
 
-    AudioMessageCustomersView getEStoreCustomersView();
+    MediaMessageCustomersView getEStoreCustomersView();
 
     AudioMessageGalleryNewView getEStoreGalleryNewView();
 
-    AudioMessageGalleryView getEStoreGalleryView();
+    MediaMessageGalleryView getEStoreGalleryView();
 
-    AudioMessageNewView getEStoreMessageNewView();
+    MediaMessageNewView getEStoreMessageNewView();
 
-    AudioMessagesView getEStoreMessagesView();
+    MediaMessagesView getEStoreMessagesView();
 
-    AudioMessageNotificationsView getEStoreNotificationsView();
+    MediaMessageNotificationsView getEStoreNotificationsView();
 
     AudioMessageSpeakerNewView getEStoreSpeakerNewView();
 

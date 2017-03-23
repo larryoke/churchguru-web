@@ -28,7 +28,7 @@ public class AddMenu extends Composite {
 	    MenuBar dropdown = new MenuBar(true);
 	    dropdown.setAnimationEnabled(true);
 
-	    dropdown.addItem("Welcome", new ScheduledCommand() {
+	    dropdown.addItem("Manage Mobile Application", new ScheduledCommand() {
 		@Override
 		public void execute() {
 		    ApplicationContext.getInstance().getPlaceController().goTo(new GeneralChurchAppPlace("churchApp"));

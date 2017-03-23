@@ -40,8 +40,9 @@ public class AboutUsActivity extends DetailActivity implements AboutUsView.Prese
 	    @Override
 	    public void onSuccess(AboutUseDetailsResult result) {
 		view.showForm(result.getOrgName(), result.getAboutUsMessage(), result.getAboutPastorMessage(),
-			result.getFullAddress(), result.getServiceTimes(), result.getWebsiteUrl(),
-			result.getGoogleApiKey(), result.getLatitude(), result.getLongitude());
+			result.getFullAddress(), result.getServiceTimes(), result.getWebsiteUrl(), result.isFacebook(),
+			result.isTwitter(), result.isYoutube(), result.getGoogleApiKey(), result.getLatitude(),
+			result.getLongitude());
 	    }
 	});
 

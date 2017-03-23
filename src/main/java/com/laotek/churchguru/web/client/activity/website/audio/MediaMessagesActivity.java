@@ -1,4 +1,4 @@
-package com.laotek.churchguru.web.client.activity.website;
+package com.laotek.churchguru.web.client.activity.website.audio;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
@@ -9,17 +9,18 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.laotek.churchguru.web.client.ApplicationContext;
 import com.laotek.churchguru.web.client.ClientFactory;
 import com.laotek.churchguru.web.client.UserContext;
-import com.laotek.churchguru.web.client.activity.media.youtube.CreateNewYoutubeVideoAction;
-import com.laotek.churchguru.web.client.activity.media.youtube.CreateNewYoutubeVideoResult;
-import com.laotek.churchguru.web.client.activity.website.audio.MediaMessageNewPlace;
+import com.laotek.churchguru.web.client.activity.audio.CreateNewAudioMessageAction;
+import com.laotek.churchguru.web.client.activity.audio.CreateNewAudioMessageResult;
+import com.laotek.churchguru.web.client.activity.audio.GetAudioMessagesAction;
+import com.laotek.churchguru.web.client.activity.audio.GetAudioMessagesResult;
 
-public class WebsiteActivity extends AbstractActivity implements WebsiteView.Presenter {
+public class MediaMessagesActivity extends AbstractActivity implements MediaMessagesView.Presenter {
 
     private ClientFactory clientFactory;
-    private WebsiteView view;
     private String name;
+    private MediaMessagesView view;
 
-    public WebsiteActivity(WebsitePlace place, ClientFactory clientFactory) {
+    public MediaMessagesActivity(MediaMessagesPlace place, ClientFactory clientFactory) {
 	this.name = place.getName();
 	this.clientFactory = clientFactory;
     }
@@ -29,12 +30,13 @@ public class WebsiteActivity extends AbstractActivity implements WebsiteView.Pre
      */
     @Override
     public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
-	view = clientFactory.getWebsiteView();
+	view = clientFactory.getEStoreMessagesView();
 	view.setPresenter(this);
 	view.initTab();
 	containerWidget.setWidget(view.asWidget());
 	view.init();
 	view.initWidgets();
+	getMessages();
     }
 
     /**
@@ -52,20 +54,36 @@ public class WebsiteActivity extends AbstractActivity implements WebsiteView.Pre
 	clientFactory.getPlaceController().goTo(place);
     }
 
+    private void getMessages() {
+	GetAudioMessagesAction action = new GetAudioMessagesAction();
+	UserContext.getInstance().decorateClientSessionId(action);
+	UserContext.getInstance().getDispatchClient().execute(action, new AsyncCallback<GetAudioMessagesResult>() {
+	    @Override
+	    public void onFailure(Throwable throwable) {
+	    }
+
+	    @Override
+	    public void onSuccess(GetAudioMessagesResult result) {
+		view.init(result.getMessages());
+	    }
+	});
+
+    }
+
     @Override
     public void createMessage(String title) {
-	// This call is also used in ListeningMessagesActivity
-	CreateNewYoutubeVideoAction action = new CreateNewYoutubeVideoAction(title);
+	// This call is also used in WebsiteActivity
+	CreateNewAudioMessageAction action = new CreateNewAudioMessageAction(title);
 	UserContext.getInstance().decorateClientSessionId(action);
 	UserContext.getInstance().getDispatchClient().execute(action,
-		new AsyncCallback<CreateNewYoutubeVideoResult>() {
+		new AsyncCallback<CreateNewAudioMessageResult>() {
 		    @Override
 		    public void onFailure(Throwable throwable) {
 			Window.alert("A server error occured when attempting to create a new message.");
 		    }
 
 		    @Override
-		    public void onSuccess(CreateNewYoutubeVideoResult result) {
+		    public void onSuccess(CreateNewAudioMessageResult result) {
 			ApplicationContext.getInstance().getPlaceController()
 				.goTo(new MediaMessageNewPlace(result.getNewMessageID()));
 		    }

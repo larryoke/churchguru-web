@@ -25,7 +25,7 @@ import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.PostNo
 import com.laotek.churchguru.web.client.activity.media.youtube.CreateNewYoutubeVideoAction;
 import com.laotek.churchguru.web.client.activity.media.youtube.CreateNewYoutubeVideoResult;
 import com.laotek.churchguru.web.client.activity.media.youtube.YoutubeVideoNewPlace;
-import com.laotek.churchguru.web.client.activity.website.audio.AudioMessageNewPlace;
+import com.laotek.churchguru.web.client.activity.website.audio.MediaMessageNewPlace;
 
 public abstract class BaseMainMenuContext {
 
@@ -179,7 +179,7 @@ public abstract class BaseMainMenuContext {
 				@Override
 				public void onSuccess(CreateNewAudioMessageResult result) {
 				    ApplicationContext.getInstance().getPlaceController()
-					    .goTo(new AudioMessageNewPlace(result.getNewMessageID()));
+					    .goTo(new MediaMessageNewPlace(result.getNewMessageID()));
 				}
 			    });
 		}

@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.laotek.churchguru.daos.org.OrganisationDao;
-import com.laotek.churchguru.web.client.activity.website.audio.cat.GetAudioMessageCategoriesAction;
-import com.laotek.churchguru.web.client.activity.website.audio.cat.GetAudioMessageCategoriesResult;
+import com.laotek.churchguru.web.client.activity.website.audio.cat.GetMediaMessageCategoriesAction;
+import com.laotek.churchguru.web.client.activity.website.audio.cat.GetMessageCategoriesResult;
 import com.laotek.churchguru.web.server.handler.AbstractCommandHandler;
 import com.laotek.churchguru.web.shared.listening.AudioMessageCategoryDto;
 
@@ -17,25 +17,25 @@ import net.customware.gwt.dispatch.shared.DispatchException;
 
 @Component
 public class GetListeningCategoriesHandler extends AbstractCommandHandler
-	implements ActionHandler<GetAudioMessageCategoriesAction, GetAudioMessageCategoriesResult> {
+	implements ActionHandler<GetMediaMessageCategoriesAction, GetMessageCategoriesResult> {
 
     @Autowired
     private OrganisationDao organisationDao;
 
     @Override
-    public GetAudioMessageCategoriesResult execute(GetAudioMessageCategoriesAction action, ExecutionContext context)
+    public GetMessageCategoriesResult execute(GetMediaMessageCategoriesAction action, ExecutionContext context)
 	    throws DispatchException {
 	List<AudioMessageCategoryDto> categoryDtos = null;// mapCategoryDto(categories);
-	return new GetAudioMessageCategoriesResult(categoryDtos);
+	return new GetMessageCategoriesResult(categoryDtos);
     }
 
     @Override
-    public Class<GetAudioMessageCategoriesAction> getActionType() {
-	return GetAudioMessageCategoriesAction.class;
+    public Class<GetMediaMessageCategoriesAction> getActionType() {
+	return GetMediaMessageCategoriesAction.class;
     }
 
     @Override
-    public void rollback(GetAudioMessageCategoriesAction action, GetAudioMessageCategoriesResult result,
+    public void rollback(GetMediaMessageCategoriesAction action, GetMessageCategoriesResult result,
 	    ExecutionContext context) throws DispatchException {
     }
 

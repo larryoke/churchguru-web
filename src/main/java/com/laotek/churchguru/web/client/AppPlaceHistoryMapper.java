@@ -21,28 +21,28 @@ import com.laotek.churchguru.web.client.activity.user.NewUserSetupPlace;
 import com.laotek.churchguru.web.client.activity.user.SingleUserPlace;
 import com.laotek.churchguru.web.client.activity.user.UserProfilesPlace;
 import com.laotek.churchguru.web.client.activity.website.WebsitePlace;
-import com.laotek.churchguru.web.client.activity.website.audio.AudioMessageNewPlace;
-import com.laotek.churchguru.web.client.activity.website.audio.AudioMessagesPlace;
-import com.laotek.churchguru.web.client.activity.website.audio.cat.AudioMessageCategoriesPlace;
-import com.laotek.churchguru.web.client.activity.website.audio.cat.AudioMessageCategoryNewPlace;
-import com.laotek.churchguru.web.client.activity.website.audio.cust.AudioMessageCustomerDetailsPlace;
-import com.laotek.churchguru.web.client.activity.website.audio.cust.AudioMessageCustomersPlace;
-import com.laotek.churchguru.web.client.activity.website.audio.notif.AudioMessageNotificationsPlace;
+import com.laotek.churchguru.web.client.activity.website.audio.MediaMessageNewPlace;
+import com.laotek.churchguru.web.client.activity.website.audio.MediaMessagesPlace;
+import com.laotek.churchguru.web.client.activity.website.audio.cat.MediaMessageCategoriesPlace;
+import com.laotek.churchguru.web.client.activity.website.audio.cat.MediaMessageCategoryNewPlace;
+import com.laotek.churchguru.web.client.activity.website.audio.cust.MediaMessageCustomerDetailsPlace;
+import com.laotek.churchguru.web.client.activity.website.audio.cust.MediaMessageCustomersPlace;
+import com.laotek.churchguru.web.client.activity.website.audio.notif.MediaMessageNotificationsPlace;
 import com.laotek.churchguru.web.client.activity.website.audio.speaker.AudioMessageSpeakerNewPlace;
 import com.laotek.churchguru.web.client.activity.website.audio.speaker.AudioMessageSpeakersPlace;
 import com.laotek.churchguru.web.client.activity.website.gal.AudioMessageGalleryNewItemPlace;
-import com.laotek.churchguru.web.client.activity.website.gal.AudioMessageGalleryPlace;
+import com.laotek.churchguru.web.client.activity.website.gal.MediaMessageGalleryPlace;
 
 @WithTokenizers({ AccountQuotaPlace.Tokenizer.class, NewslettersChartPlace.Tokenizer.class,
 	WeeklyAttendanceChartPlace.Tokenizer.class, PeopleChartPlace.Tokenizer.class, AllUserPlace.Tokenizer.class,
 	SystemSettingsPlace.Tokenizer.class, SingleUserPlace.Tokenizer.class, LoginPlace.Tokenizer.class,
 	PasswordResetPlace.Tokenizer.class, NewUserSetupPlace.Tokenizer.class, UserProfilesPlace.Tokenizer.class,
 
-	AudioMessagesPlace.Tokenizer.class, AudioMessageNewPlace.Tokenizer.class,
-	AudioMessageGalleryPlace.Tokenizer.class, AudioMessageGalleryNewItemPlace.Tokenizer.class,
-	AudioMessageCustomersPlace.Tokenizer.class, AudioMessageCustomerDetailsPlace.Tokenizer.class,
-	AudioMessageCategoryNewPlace.Tokenizer.class, AudioMessageCategoriesPlace.Tokenizer.class,
-	AudioMessageNotificationsPlace.Tokenizer.class, AudioMessageSpeakerNewPlace.Tokenizer.class,
+	MediaMessagesPlace.Tokenizer.class, MediaMessageNewPlace.Tokenizer.class,
+	MediaMessageGalleryPlace.Tokenizer.class, AudioMessageGalleryNewItemPlace.Tokenizer.class,
+	MediaMessageCustomersPlace.Tokenizer.class, MediaMessageCustomerDetailsPlace.Tokenizer.class,
+	MediaMessageCategoryNewPlace.Tokenizer.class, MediaMessageCategoriesPlace.Tokenizer.class,
+	MediaMessageNotificationsPlace.Tokenizer.class, AudioMessageSpeakerNewPlace.Tokenizer.class,
 
 	YoutubeVideosPlace.Tokenizer.class, YoutubeVideoNewPlace.Tokenizer.class,
 

@@ -1,4 +1,4 @@
-package com.laotek.churchguru.web.client.activity.website.gal;
+package com.laotek.churchguru.web.client.activity.website.audio.cat;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
@@ -7,16 +7,14 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.laotek.churchguru.web.client.ClientFactory;
 import com.laotek.churchguru.web.client.UserContext;
-import com.laotek.churchguru.web.client.activity.GetOrgDetailAction;
-import com.laotek.churchguru.web.client.activity.GetOrgDetailResult;
 
-public class AudioMessageGalleryActivity extends AbstractActivity implements MediaMessageGalleryView.Presenter {
+public class MediaMessageCategoriesActivity extends AbstractActivity implements MediaMessageCategoriesView.Presenter {
 
     private ClientFactory clientFactory;
     private String name;
-    private MediaMessageGalleryView view;
+    private MediaMessageCategoriesView view;
 
-    public AudioMessageGalleryActivity(MediaMessageGalleryPlace place, ClientFactory clientFactory) {
+    public MediaMessageCategoriesActivity(MediaMessageCategoriesPlace place, ClientFactory clientFactory) {
 	this.name = place.getName();
 	this.clientFactory = clientFactory;
     }
@@ -26,13 +24,13 @@ public class AudioMessageGalleryActivity extends AbstractActivity implements Med
      */
     @Override
     public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
-	view = clientFactory.getEStoreGalleryView();
+	view = clientFactory.getEStoreCategoriesView();
 	view.setPresenter(this);
 	view.initTab();
 	containerWidget.setWidget(view.asWidget());
 	view.init();
 	view.initWidgets();
-	getGallery();
+	getCategories();
     }
 
     /**
@@ -50,18 +48,20 @@ public class AudioMessageGalleryActivity extends AbstractActivity implements Med
 	clientFactory.getPlaceController().goTo(place);
     }
 
-    private void getGallery() {
-	GetOrgDetailAction action = new GetOrgDetailAction();
+    private void getCategories() {
+	GetMediaMessageCategoriesAction action = new GetMediaMessageCategoriesAction();
 	UserContext.getInstance().decorateClientSessionId(action);
-	UserContext.getInstance().getDispatchClient().execute(action, new AsyncCallback<GetOrgDetailResult>() {
-	    @Override
-	    public void onFailure(Throwable throwable) {
-	    }
+	UserContext.getInstance().getDispatchClient().execute(action,
+		new AsyncCallback<GetMessageCategoriesResult>() {
+		    @Override
+		    public void onFailure(Throwable throwable) {
+		    }
 
-	    @Override
-	    public void onSuccess(GetOrgDetailResult result) {
-	    }
-	});
+		    @Override
+		    public void onSuccess(GetMessageCategoriesResult result) {
+			view.initCategories(result.getCategoryDtos());
+		    }
+		});
 
     }
 }

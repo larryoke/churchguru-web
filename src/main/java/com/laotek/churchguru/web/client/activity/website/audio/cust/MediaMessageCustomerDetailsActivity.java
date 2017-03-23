@@ -1,4 +1,4 @@
-package com.laotek.churchguru.web.client.activity.website.gal;
+package com.laotek.churchguru.web.client.activity.website.audio.cust;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
@@ -10,13 +10,14 @@ import com.laotek.churchguru.web.client.UserContext;
 import com.laotek.churchguru.web.client.activity.GetOrgDetailAction;
 import com.laotek.churchguru.web.client.activity.GetOrgDetailResult;
 
-public class AudioMessageGalleryActivity extends AbstractActivity implements MediaMessageGalleryView.Presenter {
+public class MediaMessageCustomerDetailsActivity extends AbstractActivity
+	implements MediaMessageCustomerDetailsView.Presenter {
 
     private ClientFactory clientFactory;
     private String name;
-    private MediaMessageGalleryView view;
+    private MediaMessageCustomerDetailsView view;
 
-    public AudioMessageGalleryActivity(MediaMessageGalleryPlace place, ClientFactory clientFactory) {
+    public MediaMessageCustomerDetailsActivity(MediaMessageCustomerDetailsPlace place, ClientFactory clientFactory) {
 	this.name = place.getName();
 	this.clientFactory = clientFactory;
     }
@@ -26,13 +27,13 @@ public class AudioMessageGalleryActivity extends AbstractActivity implements Med
      */
     @Override
     public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
-	view = clientFactory.getEStoreGalleryView();
+	view = clientFactory.getEStoreCustomerDetailsView();
 	view.setPresenter(this);
 	view.initTab();
 	containerWidget.setWidget(view.asWidget());
 	view.init();
 	view.initWidgets();
-	getGallery();
+	getCustomerDetails();
     }
 
     /**
@@ -50,7 +51,7 @@ public class AudioMessageGalleryActivity extends AbstractActivity implements Med
 	clientFactory.getPlaceController().goTo(place);
     }
 
-    private void getGallery() {
+    private void getCustomerDetails() {
 	GetOrgDetailAction action = new GetOrgDetailAction();
 	UserContext.getInstance().decorateClientSessionId(action);
 	UserContext.getInstance().getDispatchClient().execute(action, new AsyncCallback<GetOrgDetailResult>() {
