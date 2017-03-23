@@ -22,14 +22,11 @@ import com.googlecode.mgwt.ui.client.widget.progress.ProgressBar;
 import com.laotek.churchguru.model.shared.enums.sharedmob.ChurchAppTopicEnum;
 import com.laotek.churchguru.web.clientm.MobileFactory;
 import com.laotek.churchguru.web.clientm.activity.aboutus.AboutUsPlace;
-import com.laotek.churchguru.web.clientm.activity.facebook.FacebookPlace;
 import com.laotek.churchguru.web.clientm.activity.give.GivePlace;
 import com.laotek.churchguru.web.clientm.activity.message.titles.NoticeAndEventTitlesPlace;
 import com.laotek.churchguru.web.clientm.activity.pastorsdesk.PastorDeskPlace;
 import com.laotek.churchguru.web.clientm.activity.prayerrequest.PrayerRequestPlace;
-import com.laotek.churchguru.web.clientm.activity.twitter.TwitterPlace;
 import com.laotek.churchguru.web.clientm.activity.underconstruction.UnderConstructionPlace;
-import com.laotek.churchguru.web.clientm.activity.youtube.YoutubePlace;
 
 public class MobileHomeViewImpl implements MobileHomeView {
 
@@ -125,20 +122,6 @@ public class MobileHomeViewImpl implements MobileHomeView {
 		    }
 		    if (ChurchAppTopicEnum.NOTICES_AND_EVENTS.equals(current)) {
 			clientFactory.getPlaceController().goTo(new NoticeAndEventTitlesPlace(current.getDesc()));
-			return;
-		    }
-		    if (ChurchAppTopicEnum.FACEBOOK.equals(current)) {
-			clientFactory.getPlaceController().goTo(new FacebookPlace(current.getDesc()));
-
-			return;
-		    }
-		    if (ChurchAppTopicEnum.TWITTER.equals(current)) {
-			clientFactory.getPlaceController().goTo(new TwitterPlace(current.getDesc()));
-			return;
-		    }
-		    if (ChurchAppTopicEnum.YOUTUBE.equals(current)) {
-			clientFactory.getPlaceController().goTo(new YoutubePlace(current.getDesc()));
-
 			return;
 		    }
 		    if (ChurchAppTopicEnum.LISTEN.equals(current)) {
