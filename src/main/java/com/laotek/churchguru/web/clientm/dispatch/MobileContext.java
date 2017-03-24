@@ -1,10 +1,13 @@
 package com.laotek.churchguru.web.clientm.dispatch;
 
+import com.google.gwt.place.shared.PlaceController;
 import com.laotek.churchguru.web.clientm.MobileFactory;
 
 public class MobileContext {
 
     private static MobileContext mobileContext = new MobileContext();
+
+    private PlaceController placeController;
 
     private DispatchMobileClient dispatchClient;
 
@@ -18,6 +21,14 @@ public class MobileContext {
 
     public static MobileContext getInstance() {
 	return mobileContext;
+    }
+
+    public void initPlaceController(PlaceController placeController) {
+	this.placeController = placeController;
+    }
+
+    public PlaceController getPlaceController() {
+	return placeController;
     }
 
     public String getClientSessionId() {

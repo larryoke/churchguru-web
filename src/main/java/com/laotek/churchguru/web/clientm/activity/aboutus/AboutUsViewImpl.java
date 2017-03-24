@@ -19,11 +19,11 @@ import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.googlecode.mgwt.ui.client.MGWT;
 import com.googlecode.mgwt.ui.client.widget.list.widgetlist.WidgetList;
-import com.laotek.churchguru.web.client.ApplicationContext;
 import com.laotek.churchguru.web.clientm.activity.DetailViewGwtImpl;
 import com.laotek.churchguru.web.clientm.activity.facebook.FacebookPlace;
 import com.laotek.churchguru.web.clientm.activity.twitter.TwitterPlace;
 import com.laotek.churchguru.web.clientm.activity.youtube.YoutubePlace;
+import com.laotek.churchguru.web.clientm.dispatch.MobileContext;
 import com.laotek.churchguru.web.clientm.widget.HeaderLabel;
 
 public class AboutUsViewImpl extends DetailViewGwtImpl implements AboutUsView {
@@ -106,12 +106,24 @@ public class AboutUsViewImpl extends DetailViewGwtImpl implements AboutUsView {
 	socialMediaPanel.clear();
 	if (isFacebook) {
 	    socialMediaPanel.add(facebookImg);
+	    socialMediaPanel.add(new HTML("&nbsp;"));
+	    socialMediaPanel.add(new HTML("&nbsp;"));
+	    socialMediaPanel.add(new HTML("&nbsp;"));
+	    socialMediaPanel.add(new HTML("&nbsp;"));
 	}
 	if (isTwitter) {
 	    socialMediaPanel.add(twitterImg);
+	    socialMediaPanel.add(new HTML("&nbsp;"));
+	    socialMediaPanel.add(new HTML("&nbsp;"));
+	    socialMediaPanel.add(new HTML("&nbsp;"));
+	    socialMediaPanel.add(new HTML("&nbsp;"));
 	}
 	if (isYoutube) {
 	    socialMediaPanel.add(youtubeImg);
+	    socialMediaPanel.add(new HTML("&nbsp;"));
+	    socialMediaPanel.add(new HTML("&nbsp;"));
+	    socialMediaPanel.add(new HTML("&nbsp;"));
+	    socialMediaPanel.add(new HTML("&nbsp;"));
 	}
 
 	scrollPanel.setWidget(formContainer);
@@ -216,21 +228,21 @@ public class AboutUsViewImpl extends DetailViewGwtImpl implements AboutUsView {
 	facebookImg.addClickHandler(new ClickHandler() {
 	    @Override
 	    public void onClick(ClickEvent event) {
-		ApplicationContext.getInstance().getPlaceController().goTo(new FacebookPlace("youtube"));
+		MobileContext.getInstance().getPlaceController().goTo(new FacebookPlace("youtube"));
 	    }
 	});
 
 	twitterImg.addClickHandler(new ClickHandler() {
 	    @Override
 	    public void onClick(ClickEvent event) {
-		ApplicationContext.getInstance().getPlaceController().goTo(new TwitterPlace("twitter"));
+		MobileContext.getInstance().getPlaceController().goTo(new TwitterPlace("twitter"));
 	    }
 	});
 
 	youtubeImg.addClickHandler(new ClickHandler() {
 	    @Override
 	    public void onClick(ClickEvent event) {
-		ApplicationContext.getInstance().getPlaceController().goTo(new YoutubePlace("youtube"));
+		MobileContext.getInstance().getPlaceController().goTo(new YoutubePlace("youtube"));
 	    }
 	});
 	container.add(widget);

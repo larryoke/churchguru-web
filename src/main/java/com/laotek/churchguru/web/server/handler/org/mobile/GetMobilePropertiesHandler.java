@@ -51,14 +51,17 @@ public class GetMobilePropertiesHandler extends AbstractCommandHandler
 	    topics.add(
 		    new Topic(org.getNoticesAndEventsChurchAppTopic(), ++index, ChurchAppTopicEnum.NOTICES_AND_EVENTS));
 
-	if (org.isFacebookChurchAppTopicFlag())
-	    topics.add(new Topic(org.getFacebookChurchAppTopic(), ++index, ChurchAppTopicEnum.FACEBOOK));
-
-	if (org.isTwitterChurchAppTopicFlag())
-	    topics.add(new Topic(org.getTwitterChurchAppTopic(), ++index, ChurchAppTopicEnum.TWITTER));
-
-	if (org.isYoutubeChurchAppTopicFlag())
-	    topics.add(new Topic(org.getYoutubeChurchAppTopic(), ++index, ChurchAppTopicEnum.YOUTUBE));
+	// if (org.isFacebookChurchAppTopicFlag())
+	// topics.add(new Topic(org.getFacebookChurchAppTopic(), ++index,
+	// ChurchAppTopicEnum.FACEBOOK));
+	//
+	// if (org.isTwitterChurchAppTopicFlag())
+	// topics.add(new Topic(org.getTwitterChurchAppTopic(), ++index,
+	// ChurchAppTopicEnum.TWITTER));
+	//
+	// if (org.isYoutubeChurchAppTopicFlag())
+	// topics.add(new Topic(org.getYoutubeChurchAppTopic(), ++index,
+	// ChurchAppTopicEnum.YOUTUBE));
 
 	if (org.isListenChurchAppTopicFlag())
 	    topics.add(new Topic(org.getListenChurchAppTopic(), ++index, ChurchAppTopicEnum.LISTEN));

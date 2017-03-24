@@ -61,6 +61,7 @@ public class MobileEntry implements EntryPoint {
 
 	final MobileFactory clientFactory = new MobileFactoryImpl();
 	MobileContext.getInstance().setClientFactory(clientFactory);
+	MobileContext.getInstance().initPlaceController(clientFactory.getPlaceController());
 
 	// Start PlaceHistoryHandler with our PlaceHistoryMapper
 	MobilePlaceHistoryMapper historyMapper = GWT.create(MobilePlaceHistoryMapper.class);

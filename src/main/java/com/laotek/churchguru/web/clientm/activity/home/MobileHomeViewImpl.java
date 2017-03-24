@@ -126,12 +126,10 @@ public class MobileHomeViewImpl implements MobileHomeView {
 		    }
 		    if (ChurchAppTopicEnum.LISTEN.equals(current)) {
 			clientFactory.getPlaceController().goTo(new UnderConstructionPlace("uc"));
-
 			return;
 		    }
 		    if (ChurchAppTopicEnum.ABOUT_US.equals(current)) {
 			clientFactory.getPlaceController().goTo(new AboutUsPlace(current.getDesc()));
-
 			return;
 		    }
 
