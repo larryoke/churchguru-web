@@ -264,4 +264,5 @@ public class LoginAccess {
     private static native void log(final String message)/*-{
 							console.log('*********LoginAccess: ' + message + '**********');
 							}-*/;
+
 }

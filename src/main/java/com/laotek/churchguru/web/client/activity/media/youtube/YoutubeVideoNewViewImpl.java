@@ -13,7 +13,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.datepicker.client.DatePicker;
 import com.laotek.churchguru.web.client.ApplicationContext;
-import com.laotek.churchguru.web.client.activity.website.audio.BaseViewImpl;
+import com.laotek.churchguru.web.client.activity.website.media.BaseViewImpl;
 import com.laotek.churchguru.web.client.widget.RoundedCornerPanel;
 import com.laotek.churchguru.web.client.widget.TextItem;
 import com.laotek.churchguru.web.client.widget.TextLongItem;

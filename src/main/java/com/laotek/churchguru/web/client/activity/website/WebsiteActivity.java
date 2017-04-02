@@ -11,7 +11,7 @@ import com.laotek.churchguru.web.client.ClientFactory;
 import com.laotek.churchguru.web.client.UserContext;
 import com.laotek.churchguru.web.client.activity.media.youtube.CreateNewYoutubeVideoAction;
 import com.laotek.churchguru.web.client.activity.media.youtube.CreateNewYoutubeVideoResult;
-import com.laotek.churchguru.web.client.activity.website.audio.MediaMessageNewPlace;
+import com.laotek.churchguru.web.client.activity.website.media.MediaMessageNewPlace;
 
 public class WebsiteActivity extends AbstractActivity implements WebsiteView.Presenter {
 

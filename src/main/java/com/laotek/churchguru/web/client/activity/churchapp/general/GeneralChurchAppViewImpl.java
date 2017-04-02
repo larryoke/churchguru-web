@@ -36,23 +36,22 @@ import com.laotek.churchguru.model.shared.enums.UserRoleName;
 import com.laotek.churchguru.model.shared.enums.sharedmob.ChurchAppTopicEnum;
 import com.laotek.churchguru.web.client.ApplicationContext;
 import com.laotek.churchguru.web.client.UserContext;
-import com.laotek.churchguru.web.client.activity.audio.CreateNewAudioMessageAction;
-import com.laotek.churchguru.web.client.activity.audio.CreateNewAudioMessageResult;
 import com.laotek.churchguru.web.client.activity.churchapp.UpdateType;
 import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.EnumNoticeOrEventAction;
 import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.GetCurrentNoticesAndEventsHistoryPlace;
 import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.NoticeAndEventAction;
 import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.NoticeAndEventActionResult;
 import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.PostNoticeOrEventChurchAppPlace;
+import com.laotek.churchguru.web.client.activity.media.CreateNewMediaMessageAction;
+import com.laotek.churchguru.web.client.activity.media.CreateNewMediaMessageResult;
 import com.laotek.churchguru.web.client.activity.media.youtube.YoutubeVideoNewPlace;
-import com.laotek.churchguru.web.client.activity.website.audio.MediaMessageNewPlace;
-import com.laotek.churchguru.web.client.activity.website.audio.MediaMessagesPlace;
+import com.laotek.churchguru.web.client.activity.website.media.MediaMessageNewPlace;
+import com.laotek.churchguru.web.client.activity.website.media.MediaMessagesPlace;
 import com.laotek.churchguru.web.client.widget.CheckBoxItem;
 import com.laotek.churchguru.web.client.widget.CheckBoxItemHandler;
 import com.laotek.churchguru.web.client.widget.RichTextToolbar;
 import com.laotek.churchguru.web.client.widget.RoundedCornerPanel;
 import com.laotek.churchguru.web.client.widget.TextItem;
-import com.laotek.churchguru.web.client.widget.TextLongItem;
 import com.laotek.churchguru.web.shared.OrganisationDto;
 import com.laotek.churchguru.web.shared.UserDto;
 
@@ -221,7 +220,7 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
 		dto.isPastorDeskChurchAppTopicFlag(), dto.getPastorDeskMessage()), "Pastor's Desk");
 
 	tabPanel.add(initMessageDownloadTopic(churchAppListen, dto.getListenChurchAppTopic(),
-		dto.isListenChurchAppTopicFlag()), "Downloads");
+		dto.isListenChurchAppTopicFlag()), "Messages");
 
 	tabPanel.add(initPrayerRequestTopic(churchAppPrayerRequest, dto.getPrayerRequestChurchAppTopic(),
 		dto.isPrayerRequestChurchAppTopicFlag()), "Prayer Request");
@@ -424,25 +423,25 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
     protected void createNewListeningMessageLink(FlexTable panel, UserRoleName minimumUserRoleName,
 	    UserRoleName currentUserRoleName) {
 	int row = panel.getRowCount();
-	Anchor link = new Anchor("Post new audio message");
+	Anchor link = new Anchor("Post new media message");
 	panel.setWidget(row, 1, link);
 	link.addClickHandler(new ClickHandler() {
 	    @Override
 	    public void onClick(ClickEvent event) {
-		String subject = Window.prompt("Please provide the title of the new audio message to be uploaded", "");
+		String subject = Window.prompt("Please provide the title of the new media message to be uploaded", "");
 		if (subject != null && !subject.trim().equals("")) {
 
-		    CreateNewAudioMessageAction action = new CreateNewAudioMessageAction(subject);
+		    CreateNewMediaMessageAction action = new CreateNewMediaMessageAction(subject);
 		    UserContext.getInstance().decorateClientSessionId(action);
 		    UserContext.getInstance().getDispatchClient().execute(action,
-			    new AsyncCallback<CreateNewAudioMessageResult>() {
+			    new AsyncCallback<CreateNewMediaMessageResult>() {
 				@Override
 				public void onFailure(Throwable throwable) {
 				    Window.alert("A server error occured when attempting to create a new message.");
 				}
 
 				@Override
-				public void onSuccess(CreateNewAudioMessageResult result) {
+				public void onSuccess(CreateNewMediaMessageResult result) {
 				    ApplicationContext.getInstance().getPlaceController()
 					    .goTo(new MediaMessageNewPlace(result.getNewMessageID()));
 				}
@@ -531,7 +530,7 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
 
 	UserDto dto = UserContext.getInstance().getUserDto();
 
-	createLink(new Image("images/app/download.png"), "Manage Audio Message", panel, new MediaMessagesPlace("audio"),
+	createLink(new Image("images/app/download.png"), "Manage Media Message", panel, new MediaMessagesPlace("media"),
 		UserRoleName.ORGANISATION_DATA_VIEW_ONLY, dto.getOrganisationRole());
 
 	createNewListeningMessageLink(panel, UserRoleName.ORGANISATION_DATA_VIEW_ONLY, dto.getOrganisationRole());
@@ -954,7 +953,7 @@ public class GeneralChurchAppViewImpl implements GeneralChurchAppView {
 
     private void initSocialMediaURL(final GeneralChurchAppTopic topic, final String label, final String url,
 	    FlexTable panel, int row) {
-	TextLongItem urlItem = new TextLongItem();
+	TextItem urlItem = new TextItem();
 	urlItem.getTextbox().setReadOnly(true);
 	urlItem.setValue(url);
 	urlItem.addClickHandler(new ClickHandler() {

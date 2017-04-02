@@ -16,7 +16,7 @@ import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.laotek.churchguru.web.client.ApplicationContext;
-import com.laotek.churchguru.web.client.activity.website.audio.BaseViewImpl;
+import com.laotek.churchguru.web.client.activity.website.media.BaseViewImpl;
 import com.laotek.churchguru.web.client.widget.RoundedCornerPanel;
 import com.laotek.churchguru.web.shared.youtube.YoutubeVideoDto;
 

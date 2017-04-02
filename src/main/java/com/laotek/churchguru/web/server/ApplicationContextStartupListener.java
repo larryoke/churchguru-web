@@ -1,6 +1,8 @@
 package com.laotek.churchguru.web.server;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -13,6 +15,9 @@ import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
+import com.google.firebase.auth.FirebaseCredentials;
 import com.laotek.churchguru.daos.notification.NotificationDao;
 import com.laotek.churchguru.daos.org.OrganisationDao;
 import com.laotek.churchguru.daos.user.UserAuditDao;
@@ -69,6 +74,14 @@ public class ApplicationContextStartupListener implements ServletContextListener
     @Value("${org.identifier}")
     private String orgIdentifier;
 
+    @Autowired
+    @Value("${firebase.service.account.key}")
+    private String firebaseServiceAccountKey;
+
+    @Autowired
+    @Value("${firebase.database.url}")
+    private String firebaseDatabaseUrl;
+
     @Override
     public void contextInitialized(ServletContextEvent event) {
 	try {
@@ -90,9 +103,22 @@ public class ApplicationContextStartupListener implements ServletContextListener
 
 	    notificationDao.load();
 
+	    initFirebase();
+
 	} catch (Exception e) {
 	    throw new RuntimeException(e);
 	}
+    }
+
+    private void initFirebase() throws FileNotFoundException {
+	FileInputStream serviceAccount = new FileInputStream(
+		System.getProperty("user.home") + "/.churchguru-deploy/firebase/" + firebaseServiceAccountKey);
+
+	FirebaseOptions options = new FirebaseOptions.Builder()
+		.setCredential(FirebaseCredentials.fromCertificate(serviceAccount)).setDatabaseUrl(firebaseDatabaseUrl)
+		.build();
+
+	FirebaseApp.initializeApp(options);
     }
 
     @Override

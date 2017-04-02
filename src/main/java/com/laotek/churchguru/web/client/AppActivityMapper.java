@@ -39,28 +39,30 @@ import com.laotek.churchguru.web.client.activity.user.UserProfilesActivity;
 import com.laotek.churchguru.web.client.activity.user.UserProfilesPlace;
 import com.laotek.churchguru.web.client.activity.website.WebsiteActivity;
 import com.laotek.churchguru.web.client.activity.website.WebsitePlace;
-import com.laotek.churchguru.web.client.activity.website.audio.MediaMessageNewActivity;
-import com.laotek.churchguru.web.client.activity.website.audio.MediaMessageNewPlace;
-import com.laotek.churchguru.web.client.activity.website.audio.MediaMessagesActivity;
-import com.laotek.churchguru.web.client.activity.website.audio.MediaMessagesPlace;
-import com.laotek.churchguru.web.client.activity.website.audio.cat.MediaMessageCategoriesActivity;
-import com.laotek.churchguru.web.client.activity.website.audio.cat.MediaMessageCategoriesPlace;
-import com.laotek.churchguru.web.client.activity.website.audio.cat.MediaMessageCategoryNewActivity;
-import com.laotek.churchguru.web.client.activity.website.audio.cat.MediaMessageCategoryNewPlace;
-import com.laotek.churchguru.web.client.activity.website.audio.cust.MediaMessageCustomerDetailsActivity;
-import com.laotek.churchguru.web.client.activity.website.audio.cust.MediaMessageCustomerDetailsPlace;
-import com.laotek.churchguru.web.client.activity.website.audio.cust.MediaMessageCustomersActivity;
-import com.laotek.churchguru.web.client.activity.website.audio.cust.MediaMessageCustomersPlace;
-import com.laotek.churchguru.web.client.activity.website.audio.notif.MediaMessageNotificationsActivity;
-import com.laotek.churchguru.web.client.activity.website.audio.notif.MediaMessageNotificationsPlace;
-import com.laotek.churchguru.web.client.activity.website.audio.speaker.MediaMessageSpeakerNewActivity;
-import com.laotek.churchguru.web.client.activity.website.audio.speaker.MediaMessageSpeakerNewPlace;
-import com.laotek.churchguru.web.client.activity.website.audio.speaker.MediaMessageSpeakersActivity;
-import com.laotek.churchguru.web.client.activity.website.audio.speaker.MediaMessageSpeakersPlace;
 import com.laotek.churchguru.web.client.activity.website.gal.MediaMessageGalleryActivity;
 import com.laotek.churchguru.web.client.activity.website.gal.MediaMessageGalleryNewItemActivity;
 import com.laotek.churchguru.web.client.activity.website.gal.MediaMessageGalleryNewItemPlace;
 import com.laotek.churchguru.web.client.activity.website.gal.MediaMessageGalleryPlace;
+import com.laotek.churchguru.web.client.activity.website.media.MediaMessageNewActivity;
+import com.laotek.churchguru.web.client.activity.website.media.MediaMessageNewPlace;
+import com.laotek.churchguru.web.client.activity.website.media.MediaMessagesActivity;
+import com.laotek.churchguru.web.client.activity.website.media.MediaMessagesPlace;
+import com.laotek.churchguru.web.client.activity.website.media.cat.MediaMessageCategoriesActivity;
+import com.laotek.churchguru.web.client.activity.website.media.cat.MediaMessageCategoriesPlace;
+import com.laotek.churchguru.web.client.activity.website.media.cat.MediaMessageCategoryNewActivity;
+import com.laotek.churchguru.web.client.activity.website.media.cat.MediaMessageCategoryNewPlace;
+import com.laotek.churchguru.web.client.activity.website.media.cust.MediaMessageCustomerDetailsActivity;
+import com.laotek.churchguru.web.client.activity.website.media.cust.MediaMessageCustomerDetailsPlace;
+import com.laotek.churchguru.web.client.activity.website.media.cust.MediaMessageCustomersActivity;
+import com.laotek.churchguru.web.client.activity.website.media.cust.MediaMessageCustomersPlace;
+import com.laotek.churchguru.web.client.activity.website.media.loading.MediaMessagesLoadingActivity;
+import com.laotek.churchguru.web.client.activity.website.media.loading.MediaMessagesLoadingPlace;
+import com.laotek.churchguru.web.client.activity.website.media.notif.MediaMessageNotificationsActivity;
+import com.laotek.churchguru.web.client.activity.website.media.notif.MediaMessageNotificationsPlace;
+import com.laotek.churchguru.web.client.activity.website.media.speaker.MediaMessageSpeakerNewActivity;
+import com.laotek.churchguru.web.client.activity.website.media.speaker.MediaMessageSpeakerNewPlace;
+import com.laotek.churchguru.web.client.activity.website.media.speaker.MediaMessageSpeakersActivity;
+import com.laotek.churchguru.web.client.activity.website.media.speaker.MediaMessageSpeakersPlace;
 
 public class AppActivityMapper implements ActivityMapper {
     private ClientFactory clientFactory;
@@ -128,6 +130,9 @@ public class AppActivityMapper implements ActivityMapper {
 
 	else if (place instanceof MediaMessageNewPlace)
 	    return new MediaMessageNewActivity((MediaMessageNewPlace) place, clientFactory);
+
+	else if (place instanceof MediaMessagesLoadingPlace)
+	    return new MediaMessagesLoadingActivity((MediaMessagesLoadingPlace) place, clientFactory);
 
 	else if (place instanceof MediaMessageGalleryPlace)
 	    return new MediaMessageGalleryActivity((MediaMessageGalleryPlace) place, clientFactory);

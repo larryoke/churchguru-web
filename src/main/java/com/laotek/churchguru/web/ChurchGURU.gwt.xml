@@ -5,7 +5,6 @@
   <inherits name="com.google.gwt.user.theme.clean.Clean"/>
   <inherits name="net.customware.gwt.dispatch.Dispatch"/>
   <inherits name="com.google.gwt.inject.Inject" />
-  <inherits name="elemental.Elemental" />
   
   <inherits name="com.laotek.churchguru.model.shared.SharedModel"/>
   <inherits name="com.laotek.churchguru.daos.shared.SharedServices"/>

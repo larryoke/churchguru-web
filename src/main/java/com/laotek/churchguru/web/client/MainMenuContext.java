@@ -23,7 +23,7 @@ import com.laotek.churchguru.web.client.activity.user.AllUserPlace;
 import com.laotek.churchguru.web.client.activity.user.NewUserDialog;
 import com.laotek.churchguru.web.client.activity.user.NewUserProfileDialog;
 import com.laotek.churchguru.web.client.activity.user.UserProfilesPlace;
-import com.laotek.churchguru.web.client.activity.website.audio.MediaMessagesPlace;
+import com.laotek.churchguru.web.client.activity.website.media.MediaMessagesPlace;
 import com.laotek.churchguru.web.shared.UserDto;
 
 public class MainMenuContext extends BaseMainMenuContext {
@@ -113,8 +113,8 @@ public class MainMenuContext extends BaseMainMenuContext {
 		new MediaMessagesPlace("messages"), UserRoleName.ORGANISATION_DATA_VIEW_ONLY,
 		dto.getOrganisationRole());
 
-	createLink(new Image("images/app/download.png"), "Manage Audio Message", false, messageMediaPanel,
-		new MediaMessagesPlace("audio"), UserRoleName.ORGANISATION_DATA_VIEW_ONLY, dto.getOrganisationRole());
+	createLink(new Image("images/app/download.png"), "Manage Media Message", false, messageMediaPanel,
+		new MediaMessagesPlace("media"), UserRoleName.ORGANISATION_DATA_VIEW_ONLY, dto.getOrganisationRole());
 
 	createLink(new Image("images/app/youtube.png"), "Manage YouTube Videos", false, messageMediaPanel,
 		new YoutubeVideosPlace("video"), UserRoleName.ORGANISATION_DATA_VIEW_ONLY, dto.getOrganisationRole());

@@ -39,28 +39,30 @@ import com.laotek.churchguru.web.client.activity.user.UserProfilesView;
 import com.laotek.churchguru.web.client.activity.user.UserProfilesViewImpl;
 import com.laotek.churchguru.web.client.activity.website.WebsiteView;
 import com.laotek.churchguru.web.client.activity.website.WebsiteViewImpl;
-import com.laotek.churchguru.web.client.activity.website.audio.MediaMessageNewView;
-import com.laotek.churchguru.web.client.activity.website.audio.MediaMessageNewViewImpl;
-import com.laotek.churchguru.web.client.activity.website.audio.MediaMessagesView;
-import com.laotek.churchguru.web.client.activity.website.audio.MediaMessagesViewImpl;
-import com.laotek.churchguru.web.client.activity.website.audio.cat.MediaMessageCategoriesView;
-import com.laotek.churchguru.web.client.activity.website.audio.cat.MediaMessageCategoriesViewImpl;
-import com.laotek.churchguru.web.client.activity.website.audio.cat.MediaMessageCategoryNewView;
-import com.laotek.churchguru.web.client.activity.website.audio.cat.MediaMessageCategoryNewViewImpl;
-import com.laotek.churchguru.web.client.activity.website.audio.cust.MediaMessageCustomerDetailsView;
-import com.laotek.churchguru.web.client.activity.website.audio.cust.MediaMessageCustomerDetailsViewImpl;
-import com.laotek.churchguru.web.client.activity.website.audio.cust.MediaMessageCustomersView;
-import com.laotek.churchguru.web.client.activity.website.audio.cust.MediaMessageCustomersViewImpl;
-import com.laotek.churchguru.web.client.activity.website.audio.notif.MediaMessageNotificationsView;
-import com.laotek.churchguru.web.client.activity.website.audio.notif.MediaMessageNotificationsViewImpl;
-import com.laotek.churchguru.web.client.activity.website.audio.speaker.MediaMessageSpeakerNewView;
-import com.laotek.churchguru.web.client.activity.website.audio.speaker.MediaMessageSpeakerNewViewImpl;
-import com.laotek.churchguru.web.client.activity.website.audio.speaker.MediaMessageSpeakersView;
-import com.laotek.churchguru.web.client.activity.website.audio.speaker.MediaMessageSpeakersViewImpl;
 import com.laotek.churchguru.web.client.activity.website.gal.MediaMessageGalleryNewView;
 import com.laotek.churchguru.web.client.activity.website.gal.MediaMessageGalleryNewViewImpl;
 import com.laotek.churchguru.web.client.activity.website.gal.MediaMessageGalleryView;
 import com.laotek.churchguru.web.client.activity.website.gal.MediaMessageGalleryViewImpl;
+import com.laotek.churchguru.web.client.activity.website.media.MediaMessageNewView;
+import com.laotek.churchguru.web.client.activity.website.media.MediaMessageNewViewImpl;
+import com.laotek.churchguru.web.client.activity.website.media.MediaMessagesView;
+import com.laotek.churchguru.web.client.activity.website.media.MediaMessagesViewImpl;
+import com.laotek.churchguru.web.client.activity.website.media.cat.MediaMessageCategoriesView;
+import com.laotek.churchguru.web.client.activity.website.media.cat.MediaMessageCategoriesViewImpl;
+import com.laotek.churchguru.web.client.activity.website.media.cat.MediaMessageCategoryNewView;
+import com.laotek.churchguru.web.client.activity.website.media.cat.MediaMessageCategoryNewViewImpl;
+import com.laotek.churchguru.web.client.activity.website.media.cust.MediaMessageCustomerDetailsView;
+import com.laotek.churchguru.web.client.activity.website.media.cust.MediaMessageCustomerDetailsViewImpl;
+import com.laotek.churchguru.web.client.activity.website.media.cust.MediaMessageCustomersView;
+import com.laotek.churchguru.web.client.activity.website.media.cust.MediaMessageCustomersViewImpl;
+import com.laotek.churchguru.web.client.activity.website.media.loading.MediaMessagesLoadingView;
+import com.laotek.churchguru.web.client.activity.website.media.loading.MediaMessagesLoadingViewImpl;
+import com.laotek.churchguru.web.client.activity.website.media.notif.MediaMessageNotificationsView;
+import com.laotek.churchguru.web.client.activity.website.media.notif.MediaMessageNotificationsViewImpl;
+import com.laotek.churchguru.web.client.activity.website.media.speaker.MediaMessageSpeakerNewView;
+import com.laotek.churchguru.web.client.activity.website.media.speaker.MediaMessageSpeakerNewViewImpl;
+import com.laotek.churchguru.web.client.activity.website.media.speaker.MediaMessageSpeakersView;
+import com.laotek.churchguru.web.client.activity.website.media.speaker.MediaMessageSpeakersViewImpl;
 
 public class ClientFactoryImpl implements ClientFactory {
     private EventBus eventBus = new SimpleEventBus();
@@ -116,6 +118,8 @@ public class ClientFactoryImpl implements ClientFactory {
     private YoutubeVideoNewView youtubeVideoNewView = new YoutubeVideoNewViewImpl();
 
     private YoutubeVideosView youtubeVideosView = new YoutubeVideosViewImpl();
+
+    private MediaMessagesLoadingView mediaMessagesLoadingView = new MediaMessagesLoadingViewImpl();
 
     @Override
     public EventBus getEventBus() {
@@ -322,6 +326,12 @@ public class ClientFactoryImpl implements ClientFactory {
     @Override
     public YoutubeVideosView getYoutubeView() {
 	return youtubeVideosView;
+    }
+
+    @Override
+    public MediaMessagesLoadingView getMediaMessagesLoadingView() {
+	// TODO Auto-generated method stub
+	return mediaMessagesLoadingView;
     }
 
 }

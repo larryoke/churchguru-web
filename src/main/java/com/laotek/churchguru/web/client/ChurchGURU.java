@@ -4,10 +4,12 @@ import java.util.Date;
 
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.activity.shared.ActivityMapper;
+import com.google.gwt.core.client.Callback;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
+import com.google.gwt.core.client.ScriptInjector;
 import com.google.gwt.event.logical.shared.ResizeEvent;
 import com.google.gwt.event.logical.shared.ResizeHandler;
 import com.google.gwt.event.shared.EventBus;
@@ -187,8 +189,29 @@ public class ChurchGURU implements EntryPoint {
 								       // days
 			now.setTime(nowLong);
 			Cookies.setCookie("orgSubDomain", result.getOrganisationDto().getOrgDomain(), now);
+
+			ScriptInjector.fromUrl("https://www.gstatic.com/firebasejs/3.7.3/firebase.js")
+				.setWindow(ScriptInjector.TOP_WINDOW).setCallback(new Callback<Void, Exception>() {
+
+				    @Override
+				    public void onSuccess(Void vresult) {
+					log("inside onSuccess");
+					UserDto userDto = result.getUserDto();
+					firebaseInit(userDto.getFirebaseCustomToken(), userDto.getFirebaseDatabaseURL(),
+						userDto.getFirebaseApiKey(), userDto.getFirebaseAuthDomain(),
+						userDto.getFirebaseStorageBucket(),
+						userDto.getFirebaseMessagingSenderId());
+				    }
+
+				    @Override
+				    public void onFailure(Exception reason) {
+					log("exception loading the twitter widget javascript: " + reason);
+				    }
+				}).inject();
+
 		    }
 		});
+
 	    }
 	});
     }
@@ -207,6 +230,24 @@ public class ChurchGURU implements EntryPoint {
 	    // MainMenuContext.getInstance().showMenu();
 	}
     }
+
+    private native void firebaseInit(final String token, String databaseUrl, String apiKey, String authDomain,
+	    String storageBucket, String messagingSenderId) /*-{
+							    
+							    
+							    
+							    var config = {
+							    apiKey: apiKey,
+							    authDomain: authDomain,
+							    databaseURL: databaseUrl,
+							    storageBucket: storageBucket,
+							    messagingSenderId: messagingSenderId
+							    };
+							    
+							    $wnd.firebase.initializeApp(config);							   							    
+							    $wnd.firebase.auth().signInWithCustomToken(token);
+							    
+							    }-*/;
 
     private static native void log(final String message)/*-{
 							console.log(message);

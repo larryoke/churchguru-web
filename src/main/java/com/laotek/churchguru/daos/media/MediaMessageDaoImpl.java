@@ -33,7 +33,7 @@ public class MediaMessageDaoImpl extends BaseSessionFactory implements MediaMess
 
     @Override
     public MediaMessage getMessageByIdentifier(String identifier) {
-	Query query = getCurrentSession().createQuery("from AudioMessage m where m.identifier = :identifier");
+	Query query = getCurrentSession().createQuery("from MediaMessage m where m.identifier = :identifier");
 	query.setParameter("identifier", identifier);
 	MediaMessage message = (MediaMessage) query.uniqueResult();
 	return message;
@@ -56,7 +56,7 @@ public class MediaMessageDaoImpl extends BaseSessionFactory implements MediaMess
 	// setupe message with existing category
 	if (categoryIdentifier != null) {
 	    Query query = getCurrentSession()
-		    .createQuery("from AudioMessageCategory c Where c.identifier = :identifier");
+		    .createQuery("from MediaMessageCategory c Where c.identifier = :identifier");
 	    query.setParameter("identifier", categoryIdentifier);
 	    MediaMessageCategory eStoreCategory = (MediaMessageCategory) query.uniqueResult();
 	    eStoreMessage.seteStoreCategory(eStoreCategory);
@@ -66,7 +66,7 @@ public class MediaMessageDaoImpl extends BaseSessionFactory implements MediaMess
 	    // check just in case if the category name is existing
 	    String name = otherDetails.get("newCategoryName");
 	    Query query = getCurrentSession()
-		    .createQuery("from AudioMessageCategory c Where c.categoryName = :categoryName");
+		    .createQuery("from MediaMessageCategory c Where c.categoryName = :categoryName");
 	    query.setParameter("categoryName", name);
 	    MediaMessageCategory eStoreCategory = (MediaMessageCategory) query.uniqueResult();
 
@@ -86,7 +86,7 @@ public class MediaMessageDaoImpl extends BaseSessionFactory implements MediaMess
 	String speakerIdentifier = otherDetails.get("existingSpeakerIdentifier");
 	if (speakerIdentifier != null) {
 	    Query query = getCurrentSession()
-		    .createQuery("from AudioMessageSpeaker s Where s.identifier = :identifier");
+		    .createQuery("from MediaMessageSpeaker s Where s.identifier = :identifier");
 	    query.setParameter("identifier", speakerIdentifier);
 	    MediaMessageSpeaker eStoreSpeaker = (MediaMessageSpeaker) query.uniqueResult();
 	    eStoreMessage.setEStoreSpeaker(eStoreSpeaker);
@@ -97,7 +97,7 @@ public class MediaMessageDaoImpl extends BaseSessionFactory implements MediaMess
 	    String forenames = otherDetails.get("newSpeakerForenames");
 	    String surname = otherDetails.get("newSpeakerSurname");
 	    Query query = getCurrentSession().createQuery(
-		    "from AudioMessageSpeaker s Where s.title = :title and s.forenames = :forenames and s.surname = :surname");
+		    "from MediaMessageSpeaker s Where s.title = :title and s.forenames = :forenames and s.surname = :surname");
 	    query.setParameter("title", title);
 	    query.setParameter("forenames", forenames);
 	    query.setParameter("surname", surname);
@@ -125,7 +125,7 @@ public class MediaMessageDaoImpl extends BaseSessionFactory implements MediaMess
     @Override
     public List<MediaMessage> getMessages() {
 	@SuppressWarnings("unchecked")
-	List<MediaMessage> list = getCurrentSession().createQuery("from AudioMessage e order by e.messageDate desc")
+	List<MediaMessage> list = getCurrentSession().createQuery("from MediaMessage e order by e.messageDate desc")
 		.list();
 	return list;
     }
@@ -133,21 +133,21 @@ public class MediaMessageDaoImpl extends BaseSessionFactory implements MediaMess
     @Override
     public List<MediaMessageSpeaker> getSpeakers() {
 	@SuppressWarnings("unchecked")
-	List<MediaMessageSpeaker> list = getCurrentSession().createQuery("from AudioMessageSpeaker ").list();
+	List<MediaMessageSpeaker> list = getCurrentSession().createQuery("from MediaMessageSpeaker ").list();
 	return list;
     }
 
     @Override
     public List<MediaMessageCategory> getCategories() {
 	@SuppressWarnings("unchecked")
-	List<MediaMessageCategory> list = getCurrentSession().createQuery("from AudioMessageCategory ").list();
+	List<MediaMessageCategory> list = getCurrentSession().createQuery("from MediaMessageCategory ").list();
 	return list;
     }
 
     @Override
     public List<MediaMessagePicture> getEStoreMessagePicture() {
 	@SuppressWarnings("unchecked")
-	List<MediaMessagePicture> list = getCurrentSession().createQuery("from AudioMessagePicture ").list();
+	List<MediaMessagePicture> list = getCurrentSession().createQuery("from MediaMessagePicture ").list();
 	return list;
     }
 }

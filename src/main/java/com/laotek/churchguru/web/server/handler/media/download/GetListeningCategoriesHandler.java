@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.laotek.churchguru.daos.org.OrganisationDao;
-import com.laotek.churchguru.web.client.activity.website.audio.cat.GetMediaMessageCategoriesAction;
-import com.laotek.churchguru.web.client.activity.website.audio.cat.GetMessageCategoriesResult;
+import com.laotek.churchguru.web.client.activity.website.media.cat.GetMediaMessageCategoriesAction;
+import com.laotek.churchguru.web.client.activity.website.media.cat.GetMessageCategoriesResult;
 import com.laotek.churchguru.web.server.handler.AbstractCommandHandler;
 import com.laotek.churchguru.web.shared.listening.MediaMessageCategoryDto;
 

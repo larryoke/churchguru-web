@@ -21,17 +21,18 @@ import com.laotek.churchguru.web.client.activity.user.NewUserSetupPlace;
 import com.laotek.churchguru.web.client.activity.user.SingleUserPlace;
 import com.laotek.churchguru.web.client.activity.user.UserProfilesPlace;
 import com.laotek.churchguru.web.client.activity.website.WebsitePlace;
-import com.laotek.churchguru.web.client.activity.website.audio.MediaMessageNewPlace;
-import com.laotek.churchguru.web.client.activity.website.audio.MediaMessagesPlace;
-import com.laotek.churchguru.web.client.activity.website.audio.cat.MediaMessageCategoriesPlace;
-import com.laotek.churchguru.web.client.activity.website.audio.cat.MediaMessageCategoryNewPlace;
-import com.laotek.churchguru.web.client.activity.website.audio.cust.MediaMessageCustomerDetailsPlace;
-import com.laotek.churchguru.web.client.activity.website.audio.cust.MediaMessageCustomersPlace;
-import com.laotek.churchguru.web.client.activity.website.audio.notif.MediaMessageNotificationsPlace;
-import com.laotek.churchguru.web.client.activity.website.audio.speaker.MediaMessageSpeakerNewPlace;
-import com.laotek.churchguru.web.client.activity.website.audio.speaker.MediaMessageSpeakersPlace;
 import com.laotek.churchguru.web.client.activity.website.gal.MediaMessageGalleryNewItemPlace;
 import com.laotek.churchguru.web.client.activity.website.gal.MediaMessageGalleryPlace;
+import com.laotek.churchguru.web.client.activity.website.media.MediaMessageNewPlace;
+import com.laotek.churchguru.web.client.activity.website.media.MediaMessagesPlace;
+import com.laotek.churchguru.web.client.activity.website.media.cat.MediaMessageCategoriesPlace;
+import com.laotek.churchguru.web.client.activity.website.media.cat.MediaMessageCategoryNewPlace;
+import com.laotek.churchguru.web.client.activity.website.media.cust.MediaMessageCustomerDetailsPlace;
+import com.laotek.churchguru.web.client.activity.website.media.cust.MediaMessageCustomersPlace;
+import com.laotek.churchguru.web.client.activity.website.media.loading.MediaMessagesLoadingPlace;
+import com.laotek.churchguru.web.client.activity.website.media.notif.MediaMessageNotificationsPlace;
+import com.laotek.churchguru.web.client.activity.website.media.speaker.MediaMessageSpeakerNewPlace;
+import com.laotek.churchguru.web.client.activity.website.media.speaker.MediaMessageSpeakersPlace;
 
 @WithTokenizers({ AccountQuotaPlace.Tokenizer.class, NewslettersChartPlace.Tokenizer.class,
 	WeeklyAttendanceChartPlace.Tokenizer.class, PeopleChartPlace.Tokenizer.class, AllUserPlace.Tokenizer.class,
@@ -43,6 +44,7 @@ import com.laotek.churchguru.web.client.activity.website.gal.MediaMessageGallery
 	MediaMessageCustomersPlace.Tokenizer.class, MediaMessageCustomerDetailsPlace.Tokenizer.class,
 	MediaMessageCategoryNewPlace.Tokenizer.class, MediaMessageCategoriesPlace.Tokenizer.class,
 	MediaMessageNotificationsPlace.Tokenizer.class, MediaMessageSpeakerNewPlace.Tokenizer.class,
+	MediaMessagesLoadingPlace.Tokenizer.class,
 
 	YoutubeVideosPlace.Tokenizer.class, YoutubeVideoNewPlace.Tokenizer.class,
 

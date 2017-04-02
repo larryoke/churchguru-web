@@ -26,6 +26,13 @@ public class UserDto implements IsSerializable {
     private UserRoleName organisationRole;
     private UserRoleName notificationRole;
 
+    private String firebaseApiKey;
+    private String firebaseAuthDomain;
+    private String firebaseDatabaseURL;
+    private String firebaseStorageBucket;
+    private String firebaseMessagingSenderId;
+    private String firebaseCustomToken;
+
     public UserDto() {
     }
 
@@ -169,4 +176,51 @@ public class UserDto implements IsSerializable {
 	this.notificationRole = notificationRole;
     }
 
+    public String getFirebaseApiKey() {
+	return firebaseApiKey;
+    }
+
+    public void setFirebaseApiKey(String firebaseApiKey) {
+	this.firebaseApiKey = firebaseApiKey;
+    }
+
+    public String getFirebaseAuthDomain() {
+	return firebaseAuthDomain;
+    }
+
+    public void setFirebaseAuthDomain(String firebaseAuthDomain) {
+	this.firebaseAuthDomain = firebaseAuthDomain;
+    }
+
+    public String getFirebaseDatabaseURL() {
+	return firebaseDatabaseURL;
+    }
+
+    public void setFirebaseDatabaseURL(String firebaseDatabaseURL) {
+	this.firebaseDatabaseURL = firebaseDatabaseURL;
+    }
+
+    public String getFirebaseStorageBucket() {
+	return firebaseStorageBucket;
+    }
+
+    public void setFirebaseStorageBucket(String firebaseStorageBucket) {
+	this.firebaseStorageBucket = firebaseStorageBucket;
+    }
+
+    public String getFirebaseMessagingSenderId() {
+	return firebaseMessagingSenderId;
+    }
+
+    public void setFirebaseMessagingSenderId(String firebaseMessagingSenderId) {
+	this.firebaseMessagingSenderId = firebaseMessagingSenderId;
+    }
+
+    public void setFirebaseCustomToken(String firebaseCustomToken) {
+	this.firebaseCustomToken = firebaseCustomToken;
+    }
+
+    public String getFirebaseCustomToken() {
+	return firebaseCustomToken;
+    }
 }

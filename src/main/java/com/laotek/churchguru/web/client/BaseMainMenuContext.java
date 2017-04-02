@@ -16,16 +16,16 @@ import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.Image;
 import com.laotek.churchguru.model.shared.enums.UserRoleName;
-import com.laotek.churchguru.web.client.activity.audio.CreateNewAudioMessageAction;
-import com.laotek.churchguru.web.client.activity.audio.CreateNewAudioMessageResult;
 import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.EnumNoticeOrEventAction;
 import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.NoticeAndEventAction;
 import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.NoticeAndEventActionResult;
 import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.PostNoticeOrEventChurchAppPlace;
+import com.laotek.churchguru.web.client.activity.media.CreateNewMediaMessageAction;
+import com.laotek.churchguru.web.client.activity.media.CreateNewMediaMessageResult;
 import com.laotek.churchguru.web.client.activity.media.youtube.CreateNewYoutubeVideoAction;
 import com.laotek.churchguru.web.client.activity.media.youtube.CreateNewYoutubeVideoResult;
 import com.laotek.churchguru.web.client.activity.media.youtube.YoutubeVideoNewPlace;
-import com.laotek.churchguru.web.client.activity.website.audio.MediaMessageNewPlace;
+import com.laotek.churchguru.web.client.activity.website.media.MediaMessageNewPlace;
 
 public abstract class BaseMainMenuContext {
 
@@ -154,7 +154,7 @@ public abstract class BaseMainMenuContext {
 	int row = panel.getRowCount();
 	image.setWidth("30px");
 	panel.setWidget(row, 0, image);
-	Anchor link = new Anchor("Post new audio message");
+	Anchor link = new Anchor("Post new media message");
 	panel.setWidget(row, 1, link);
 	panel.getCellFormatter().setHeight(row, 0, "30px");
 	panel.getCellFormatter().setWidth(row, 0, "30px");
@@ -164,20 +164,20 @@ public abstract class BaseMainMenuContext {
 	link.addClickHandler(new ClickHandler() {
 	    @Override
 	    public void onClick(ClickEvent event) {
-		String subject = Window.prompt("Please provide the title of the new audio message to be uploaded", "");
+		String subject = Window.prompt("Please provide the title of the new media message to be uploaded", "");
 		if (subject != null && !subject.trim().equals("")) {
 
-		    CreateNewAudioMessageAction action = new CreateNewAudioMessageAction(subject);
+		    CreateNewMediaMessageAction action = new CreateNewMediaMessageAction(subject);
 		    UserContext.getInstance().decorateClientSessionId(action);
 		    UserContext.getInstance().getDispatchClient().execute(action,
-			    new AsyncCallback<CreateNewAudioMessageResult>() {
+			    new AsyncCallback<CreateNewMediaMessageResult>() {
 				@Override
 				public void onFailure(Throwable throwable) {
 				    Window.alert("A server error occured when attempting to create a new message.");
 				}
 
 				@Override
-				public void onSuccess(CreateNewAudioMessageResult result) {
+				public void onSuccess(CreateNewMediaMessageResult result) {
 				    ApplicationContext.getInstance().getPlaceController()
 					    .goTo(new MediaMessageNewPlace(result.getNewMessageID()));
 				}

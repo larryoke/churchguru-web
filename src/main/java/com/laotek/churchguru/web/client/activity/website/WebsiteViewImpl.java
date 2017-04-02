@@ -9,10 +9,10 @@ import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.laotek.churchguru.web.client.ApplicationContext;
-import com.laotek.churchguru.web.client.activity.website.audio.MediaMessagesPlace;
-import com.laotek.churchguru.web.client.activity.website.audio.BaseViewImpl;
-import com.laotek.churchguru.web.client.activity.website.audio.cat.MediaMessageCategoriesPlace;
-import com.laotek.churchguru.web.client.activity.website.audio.speaker.MediaMessageSpeakersPlace;
+import com.laotek.churchguru.web.client.activity.website.media.BaseViewImpl;
+import com.laotek.churchguru.web.client.activity.website.media.MediaMessagesPlace;
+import com.laotek.churchguru.web.client.activity.website.media.cat.MediaMessageCategoriesPlace;
+import com.laotek.churchguru.web.client.activity.website.media.speaker.MediaMessageSpeakersPlace;
 import com.laotek.churchguru.web.client.widget.RoundedCornerPanel;
 
 public class WebsiteViewImpl extends BaseViewImpl implements WebsiteView {

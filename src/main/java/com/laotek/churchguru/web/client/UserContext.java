@@ -13,6 +13,7 @@ public class UserContext {
     private String clientSessionId;
 
     private String emailAddress;
+    private String firebaseCustomToken;
 
     private UserDto userDto = new UserDto();
 
@@ -58,6 +59,14 @@ public class UserContext {
 
     public void setUserDto(UserDto userDto) {
 	this.userDto = userDto;
+    }
+
+    public String getFirebaseCustomToken() {
+	return firebaseCustomToken;
+    }
+
+    public void setFirebaseCustomToken(String firebaseCustomToken) {
+	this.firebaseCustomToken = firebaseCustomToken;
     }
 
 }
