@@ -26,7 +26,7 @@ public class MediaMessagesLoadingActivity extends AbstractActivity implements Me
 	view.setPresenter(this);
 	view.initTab();
 	containerWidget.setWidget(view.asWidget());
-	view.init(place.getName());
+	view.init(place.getUploadType(), place.getIdentity());
 	view.initWidgets();
     }
 

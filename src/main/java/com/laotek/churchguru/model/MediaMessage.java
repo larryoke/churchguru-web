@@ -46,6 +46,12 @@ public class MediaMessage {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
 
+    @Column(nullable = true, unique = false)
+    private String descPictureUrl;
+
+    @Column(nullable = true, unique = false)
+    private String mediaMessageUrl;
+
     @ManyToOne
     @JoinColumn
     private MediaMessageSpeaker eStoreSpeaker;
@@ -53,10 +59,6 @@ public class MediaMessage {
     @ManyToOne
     @JoinColumn
     private MediaMessageCategory eStoreCategory;
-
-    @ManyToOne
-    @JoinColumn
-    private MediaMessagePicture eStoreMessagePicture;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false, unique = false)
@@ -169,14 +171,6 @@ public class MediaMessage {
 	this.eStoreCategory = eStoreCategory;
     }
 
-    public MediaMessagePicture geteStoreMessagePicture() {
-	return eStoreMessagePicture;
-    }
-
-    public void seteStoreMessagePicture(MediaMessagePicture eStoreMessagePicture) {
-	this.eStoreMessagePicture = eStoreMessagePicture;
-    }
-
     public List<MediaMemberMessage> geteStoreMemberMessages() {
 	return eStoreMemberMessages;
     }
@@ -191,5 +185,21 @@ public class MediaMessage {
 
     public void setMessageDate(Date messageDate) {
 	this.messageDate = messageDate;
+    }
+
+    public String getDescPictureUrl() {
+	return descPictureUrl;
+    }
+
+    public void setDescPictureUrl(String descPictureUrl) {
+	this.descPictureUrl = descPictureUrl;
+    }
+
+    public String getMediaMessageUrl() {
+	return mediaMessageUrl;
+    }
+
+    public void setMediaMessageUrl(String mediaMessageUrl) {
+	this.mediaMessageUrl = mediaMessageUrl;
     }
 }

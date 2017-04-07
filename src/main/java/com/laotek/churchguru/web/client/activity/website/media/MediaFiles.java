@@ -7,7 +7,6 @@ public class MediaFiles {
     private FileUpload mediaUploadFile = new FileUpload();
     private FileUpload speakerUploadFile = new FileUpload();
     private FileUpload descriptionUploadFile = new FileUpload();
-    private MediaFileCurrentUpload mediaFileCurrentUpload;
 
     private static MediaFiles mediaFiles = new MediaFiles();
 
@@ -39,13 +38,5 @@ public class MediaFiles {
 
     public FileUpload getDescriptionUploadFile() {
 	return descriptionUploadFile;
-    }
-
-    public MediaFileCurrentUpload getMediaFileCurrentUpload() {
-	return mediaFileCurrentUpload;
-    }
-
-    public void setMediaFileCurrentUpload(MediaFileCurrentUpload mediaFileCurrentUpload) {
-	this.mediaFileCurrentUpload = mediaFileCurrentUpload;
     }
 }

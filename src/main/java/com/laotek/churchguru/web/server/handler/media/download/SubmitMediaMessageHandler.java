@@ -40,11 +40,15 @@ public class SubmitMediaMessageHandler extends AbstractCommandHandler
 	message.setLastUpdatedDate(new Date());
 	message.setMessageDate(action.getMessageDate());
 
+	String newSpeakerIdentifier = null;
+	String newCategoryIdentifier = null;
+
 	Map<String, String> otherDetails = new HashMap<String, String>();
 	if (action.getExistingSpeaker() != null) {
 	    otherDetails.put("existingSpeakerIdentifier", action.getExistingSpeaker());
 	} else {
-	    otherDetails.put("newSpeakerIdentifier", RandomStringUtils.random(20, true, true));
+	    newSpeakerIdentifier = RandomStringUtils.random(20, true, true);
+	    otherDetails.put("newSpeakerIdentifier", newSpeakerIdentifier);
 	    otherDetails.put("newSpeakerTitle", action.getNewSpeaker().getTitle().name());
 	    otherDetails.put("newSpeakerForenames", action.getNewSpeaker().getForenames());
 	    otherDetails.put("newSpeakerSurname", action.getNewSpeaker().getSurname());
@@ -54,13 +58,16 @@ public class SubmitMediaMessageHandler extends AbstractCommandHandler
 	if (action.getExistingCategory() != null) {
 	    otherDetails.put("existingCategoryIdentifier", action.getExistingCategory());
 	} else {
-	    otherDetails.put("newCategoryIdentifier", RandomStringUtils.random(20, true, true));
+	    newCategoryIdentifier = RandomStringUtils.random(20, true, true);
+	    otherDetails.put("newCategoryIdentifier", newCategoryIdentifier);
 	    otherDetails.put("newCategoryName", action.getNewCategory());
 	}
 
 	eStoreDao.updateMessage(message, otherDetails);
 
-	return new SubmitMediaMessageResult(map(message));
+	SubmitMediaMessageResult result = new SubmitMediaMessageResult(map(message));
+	result.setNewSpeakerIdentity(newSpeakerIdentifier);
+	return result;
     }
 
     private MediaMessageDto map(MediaMessage message) {
@@ -77,8 +84,8 @@ public class SubmitMediaMessageHandler extends AbstractCommandHandler
     }
 
     @Override
-    public void rollback(SubmitMediaMessageAction action, SubmitMediaMessageResult result,
-	    ExecutionContext context) throws DispatchException {
+    public void rollback(SubmitMediaMessageAction action, SubmitMediaMessageResult result, ExecutionContext context)
+	    throws DispatchException {
     }
 
     private String reformatWorkersWithFreeAccessToMessage(List<String> ids) {

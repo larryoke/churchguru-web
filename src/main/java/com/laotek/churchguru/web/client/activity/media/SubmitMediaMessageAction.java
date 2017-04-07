@@ -11,6 +11,7 @@ import net.customware.gwt.dispatch.shared.Action;
 public class SubmitMediaMessageAction extends AbstractDispatchAction
 	implements Action<SubmitMediaMessageResult>, HasOrganisationViewRole {
 
+    private String uploadType;
     private String identifier;
     private FullnameDto newSpeaker = new FullnameDto();
     private String speakerDesc;
@@ -116,6 +117,14 @@ public class SubmitMediaMessageAction extends AbstractDispatchAction
 
     public void setMessageDate(Date messageDate) {
 	this.messageDate = messageDate;
+    }
+
+    public String getUploadType() {
+	return uploadType;
+    }
+
+    public void setUploadType(String uploadType) {
+	this.uploadType = uploadType;
     }
 
 }

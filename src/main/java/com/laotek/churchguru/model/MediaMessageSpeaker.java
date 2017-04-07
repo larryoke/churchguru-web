@@ -41,6 +41,9 @@ public class MediaMessageSpeaker {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
 
+    @Column(nullable = true, unique = false)
+    private String pictureUrl;
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
 
@@ -112,5 +115,13 @@ public class MediaMessageSpeaker {
 
     public void setDescription(String description) {
 	this.description = description;
+    }
+
+    public String getPictureUrl() {
+	return pictureUrl;
+    }
+
+    public void setPictureUrl(String pictureUrl) {
+	this.pictureUrl = pictureUrl;
     }
 }

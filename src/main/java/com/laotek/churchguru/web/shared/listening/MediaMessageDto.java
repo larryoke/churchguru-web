@@ -11,6 +11,7 @@ public class MediaMessageDto implements Serializable, IsSerializable {
     private String identifier;
     private String title;
     private String description;
+    private String descriptionPictureURL;
     private String location;
     private int salePoints;
 
@@ -19,7 +20,6 @@ public class MediaMessageDto implements Serializable, IsSerializable {
     private String lastUpdatedDate;
     private MediaMessageSpeakerDto speakerDto;
     private MediaMessageCategoryDto categoryDto;
-    private MediaMessagePictureDto pictureDto;
 
     public String getIdentifier() {
 	return identifier;
@@ -89,14 +89,6 @@ public class MediaMessageDto implements Serializable, IsSerializable {
 	this.categoryDto = categoryDto;
     }
 
-    public MediaMessagePictureDto getPictureDto() {
-	return pictureDto;
-    }
-
-    public void setPictureDto(MediaMessagePictureDto pictureDto) {
-	this.pictureDto = pictureDto;
-    }
-
     public Date getMessageDate() {
 	return messageDate;
     }
@@ -111,6 +103,14 @@ public class MediaMessageDto implements Serializable, IsSerializable {
 
     public void setMessageDateAsString(String messageDateAsString) {
 	this.messageDateAsString = messageDateAsString;
+    }
+
+    public String getDescriptionPictureURL() {
+	return descriptionPictureURL;
+    }
+
+    public void setDescriptionPictureURL(String descriptionPictureURL) {
+	this.descriptionPictureURL = descriptionPictureURL;
     }
 
 }

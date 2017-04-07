@@ -3,9 +3,8 @@ package com.laotek.churchguru.daos.media;
 import java.util.List;
 import java.util.Map;
 
-import com.laotek.churchguru.model.MediaMessageCategory;
 import com.laotek.churchguru.model.MediaMessage;
-import com.laotek.churchguru.model.MediaMessagePicture;
+import com.laotek.churchguru.model.MediaMessageCategory;
 import com.laotek.churchguru.model.MediaMessageSpeaker;
 
 public interface MediaMessageDao {
@@ -19,7 +18,11 @@ public interface MediaMessageDao {
 
     List<MediaMessageCategory> getCategories();
 
-    List<MediaMessagePicture> getEStoreMessagePicture();
-
     void updateMessage(MediaMessage eStoreMessage, Map<String, String> otherDetails);
+
+    void updateSpeakerPictureURL(String identifier, String pictureURL);
+
+    void updateDescPictureURL(String identifier, String pictureURL);
+
+    void updateMediaMessageURL(String identifier, String mediaURL);
 }

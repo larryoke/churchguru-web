@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 import com.laotek.churchguru.daos.media.MediaMessageDao;
 import com.laotek.churchguru.model.MediaMessage;
 import com.laotek.churchguru.model.MediaMessageCategory;
-import com.laotek.churchguru.model.MediaMessagePicture;
 import com.laotek.churchguru.model.MediaMessageSpeaker;
 import com.laotek.churchguru.web.client.activity.media.GetMediaMessageAction;
 import com.laotek.churchguru.web.client.activity.media.GetMediaMessageResult;
@@ -35,12 +34,9 @@ public class GetMediaMessageHandler extends AbstractCommandHandler
 
 	List<MediaMessageCategory> categories = eStoreDao.getCategories();
 
-	List<MediaMessagePicture> pictures = eStoreDao.getEStoreMessagePicture();
-
 	List<MediaMessageSpeaker> speakers = eStoreDao.getSpeakers();
 
-	return new GetMediaMessageResult(mapMessages(message), mapSpeakers(speakers), mapCategories(categories),
-		mapMessagePictures(pictures));
+	return new GetMediaMessageResult(mapMessages(message), mapSpeakers(speakers), mapCategories(categories));
     }
 
     @Override

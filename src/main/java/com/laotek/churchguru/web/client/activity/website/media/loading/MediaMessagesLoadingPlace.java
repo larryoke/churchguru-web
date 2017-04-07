@@ -4,25 +4,33 @@ import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceTokenizer;
 
 public class MediaMessagesLoadingPlace extends Place {
-    private String name;
+    private String uploadType;
+    private String identity;
 
-    public MediaMessagesLoadingPlace(String token) {
-	this.name = token;
+    public MediaMessagesLoadingPlace(String uploadType, String identity) {
+	this.uploadType = uploadType;
+	this.identity = identity;
     }
 
-    public String getName() {
-	return name;
+    public String getIdentity() {
+	return identity;
+    }
+
+    public String getUploadType() {
+	return uploadType;
     }
 
     public static class Tokenizer implements PlaceTokenizer<MediaMessagesLoadingPlace> {
 	@Override
 	public String getToken(MediaMessagesLoadingPlace place) {
-	    return place.getName();
+	    return place.getUploadType() + ":" + place.getIdentity();
 	}
 
 	@Override
 	public MediaMessagesLoadingPlace getPlace(String token) {
-	    return new MediaMessagesLoadingPlace(token);
+	    String uploadType = token.split(":")[0];
+	    String identity = token.split(":")[1];
+	    return new MediaMessagesLoadingPlace(uploadType, identity);
 	}
     }
 }

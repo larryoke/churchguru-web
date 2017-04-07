@@ -5,7 +5,6 @@ import java.util.Map;
 
 import com.laotek.churchguru.web.shared.listening.MediaMessageCategoryDto;
 import com.laotek.churchguru.web.shared.listening.MediaMessageDto;
-import com.laotek.churchguru.web.shared.listening.MediaMessagePictureDto;
 import com.laotek.churchguru.web.shared.listening.MediaMessageSpeakerDto;
 
 import net.customware.gwt.dispatch.shared.Result;
@@ -15,18 +14,16 @@ public class GetMediaMessageResult implements Result {
     private MediaMessageDto message;
     private List<MediaMessageSpeakerDto> speakers;
     private List<MediaMessageCategoryDto> categories;
-    private List<MediaMessagePictureDto> pictures;
     private Map<String, Boolean> workersSelectedForFreeMessages;
 
     public GetMediaMessageResult() {
     }
 
     public GetMediaMessageResult(MediaMessageDto message, List<MediaMessageSpeakerDto> speakers,
-	    List<MediaMessageCategoryDto> categories, List<MediaMessagePictureDto> pictures) {
+	    List<MediaMessageCategoryDto> categories) {
 	this.message = message;
 	this.speakers = speakers;
 	this.categories = categories;
-	this.pictures = pictures;
 	this.setWorkersSelectedForFreeMessages(workersSelectedForFreeMessages);
     }
 
@@ -44,10 +41,6 @@ public class GetMediaMessageResult implements Result {
 
     public void setCategories(List<MediaMessageCategoryDto> categories) {
 	this.categories = categories;
-    }
-
-    public List<MediaMessagePictureDto> getPictures() {
-	return pictures;
     }
 
     public Map<String, Boolean> getWorkersSelectedForFreeMessages() {

@@ -10,6 +10,7 @@ public class MediaMessageSpeakerDto implements Serializable {
     private FullnameDto fullnameDto;
     private String description;
     private String identifier;
+    private String pictureURL;
 
     public FullnameDto getFullnameDto() {
 	return fullnameDto;
@@ -33,6 +34,14 @@ public class MediaMessageSpeakerDto implements Serializable {
 
     public void setIdentifier(String identifier) {
 	this.identifier = identifier;
+    }
+
+    public String getPictureURL() {
+	return pictureURL;
+    }
+
+    public void setPictureURL(String pictureURL) {
+	this.pictureURL = pictureURL;
     }
 
 }

@@ -6,7 +6,7 @@ import com.google.gwt.user.client.ui.IsWidget;
 public interface MediaMessagesLoadingView extends IsWidget {
     void setPresenter(Presenter presenter);
 
-    void init(String messageID);
+    void init(String uploadType, String identity);
 
     void initTab();
 

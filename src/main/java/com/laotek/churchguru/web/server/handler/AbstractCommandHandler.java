@@ -9,13 +9,12 @@ import java.util.List;
 import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.util.StringUtils;
 
+import com.laotek.churchguru.model.Donation;
+import com.laotek.churchguru.model.LogoItem;
 import com.laotek.churchguru.model.MediaMember;
 import com.laotek.churchguru.model.MediaMessage;
 import com.laotek.churchguru.model.MediaMessageCategory;
-import com.laotek.churchguru.model.MediaMessagePicture;
 import com.laotek.churchguru.model.MediaMessageSpeaker;
-import com.laotek.churchguru.model.Donation;
-import com.laotek.churchguru.model.LogoItem;
 import com.laotek.churchguru.model.NoticeAndEvent;
 import com.laotek.churchguru.model.Organisation;
 import com.laotek.churchguru.model.User;
@@ -31,7 +30,6 @@ import com.laotek.churchguru.web.shared.PhoneDto;
 import com.laotek.churchguru.web.shared.UserDto;
 import com.laotek.churchguru.web.shared.listening.MediaMessageCategoryDto;
 import com.laotek.churchguru.web.shared.listening.MediaMessageDto;
-import com.laotek.churchguru.web.shared.listening.MediaMessagePictureDto;
 import com.laotek.churchguru.web.shared.listening.MediaMessageSpeakerDto;
 import com.laotek.churchguru.web.shared.youtube.YoutubeVideoDto;
 
@@ -100,17 +98,6 @@ public abstract class AbstractCommandHandler {
 	return dtos;
     }
 
-    protected List<MediaMessagePictureDto> mapMessagePictures(List<MediaMessagePicture> eStoreMessagePictures) {
-	List<MediaMessagePictureDto> dtos = new ArrayList<MediaMessagePictureDto>();
-	for (MediaMessagePicture picture : eStoreMessagePictures) {
-	    MediaMessagePictureDto dto = new MediaMessagePictureDto();
-	    dto.setName(picture.getPictureName());
-	    dtos.add(dto);
-	}
-	return dtos;
-
-    }
-
     protected List<MediaMessageCategoryDto> mapCategories(List<MediaMessageCategory> categories) {
 	List<MediaMessageCategoryDto> dtos = new ArrayList<MediaMessageCategoryDto>();
 	for (MediaMessageCategory category : categories) {
@@ -130,12 +117,14 @@ public abstract class AbstractCommandHandler {
 	dto.setLocation(message.getLocation());
 	dto.setSalePoints(message.getSalePointPerMessage());
 	dto.setMessageDate(message.getMessageDate());
+	dto.setDescriptionPictureURL(message.getDescPictureUrl());
 	dto.setMessageDateAsString(new SimpleDateFormat("dd-MM-yyyy").format(message.getMessageDate()));
 
 	MediaMessageSpeaker speaker = message.getEStoreSpeaker();
 	if (speaker != null) {
 	    MediaMessageSpeakerDto speakerDto = new MediaMessageSpeakerDto();
 	    speakerDto.setDescription(speaker.getDescription());
+	    speakerDto.setPictureURL(speaker.getPictureUrl());
 
 	    FullnameDto fullnameDto = new FullnameDto();
 	    fullnameDto.setTitle(speaker.getTitle());
@@ -153,13 +142,6 @@ public abstract class AbstractCommandHandler {
 	    categoryDto.setIdentifier(category.getIdentifier());
 	    categoryDto.setName(category.getCategoryName());
 	    dto.setCategoryDto(categoryDto);
-	}
-
-	MediaMessagePicture picture = message.geteStoreMessagePicture();
-	if (picture != null) {
-	    MediaMessagePictureDto pictureDto = new MediaMessagePictureDto();
-	    pictureDto.setName(picture.getPictureName());
-	    pictureDto.setIdentifier(picture.getIdentifier());
 	}
 	return dto;
     }

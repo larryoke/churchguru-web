@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.laotek.churchguru.daos.BaseSessionFactory;
 import com.laotek.churchguru.model.MediaMessage;
 import com.laotek.churchguru.model.MediaMessageCategory;
-import com.laotek.churchguru.model.MediaMessagePicture;
 import com.laotek.churchguru.model.MediaMessageSpeaker;
 import com.laotek.churchguru.model.shared.enums.Title;
 
@@ -145,9 +144,22 @@ public class MediaMessageDaoImpl extends BaseSessionFactory implements MediaMess
     }
 
     @Override
-    public List<MediaMessagePicture> getEStoreMessagePicture() {
-	@SuppressWarnings("unchecked")
-	List<MediaMessagePicture> list = getCurrentSession().createQuery("from MediaMessagePicture ").list();
-	return list;
+    public void updateSpeakerPictureURL(String identifier, String pictureURL) {
+	Query query = getCurrentSession().createQuery("from MediaMessageSpeaker s Where s.identifier = :identifier");
+	query.setParameter("identifier", identifier);
+	MediaMessageSpeaker eStoreSpeaker = (MediaMessageSpeaker) query.uniqueResult();
+	eStoreSpeaker.setPictureUrl(pictureURL);
+    }
+
+    @Override
+    public void updateDescPictureURL(String identifier, String pictureURL) {
+	MediaMessage message = getMessageByIdentifier(identifier);
+	message.setDescPictureUrl(pictureURL);
+    }
+
+    @Override
+    public void updateMediaMessageURL(String identifier, String mediaURL) {
+	MediaMessage message = getMessageByIdentifier(identifier);
+	message.setMediaMessageUrl(mediaURL);
     }
 }

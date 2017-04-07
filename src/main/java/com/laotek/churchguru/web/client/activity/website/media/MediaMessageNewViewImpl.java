@@ -1,9 +1,9 @@
 package com.laotek.churchguru.web.client.activity.website.media;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -15,25 +15,22 @@ import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.datepicker.client.DatePicker;
 import com.laotek.churchguru.web.client.ApplicationContext;
 import com.laotek.churchguru.web.client.activity.media.SubmitMediaMessageAction;
-import com.laotek.churchguru.web.client.widget.CheckBoxItem;
 import com.laotek.churchguru.web.client.widget.FullnameItem;
 import com.laotek.churchguru.web.client.widget.RoundedCornerPanel;
 import com.laotek.churchguru.web.client.widget.SelectItem;
 import com.laotek.churchguru.web.client.widget.TextItem;
 import com.laotek.churchguru.web.shared.listening.MediaMessageCategoryDto;
 import com.laotek.churchguru.web.shared.listening.MediaMessageDto;
-import com.laotek.churchguru.web.shared.listening.MediaMessagePictureDto;
 import com.laotek.churchguru.web.shared.listening.MediaMessageSpeakerDto;
 
 public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessageNewView {
-
-    private static final String ADD_NEW_DESCRIPTION_PHOTO = "Add New Description Photo";
 
     private static final String ADD_NEW_CATEGORY = "Add New Category";
 
@@ -43,21 +40,19 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 
     private HTML messageTitle = new HTML();
 
+    private Image speakerImage = new Image();
+
+    private Map<Integer, String> speakerImageURLs = new HashMap<Integer, String>();
+
     private SelectItem speakerSelect = new SelectItem("Speaker", true);
 
     private SelectItem categorySelect = new SelectItem("Category", true);
-
-    private SelectItem descPhotoSelect = new SelectItem("Description Photo", false);
 
     private SelectItem chargePerMessageSelect = new SelectItem("Charge Per Message", true);
 
     private TextItem location = new TextItem("Location", false);
 
-    private CheckBoxItem notifyOnlineMembers = new CheckBoxItem("Notify online members", false);
-    private CheckBoxItem notifyFullMembers = new CheckBoxItem("Notify all full Members", false);
-    private CheckBoxItem notifyGuests = new CheckBoxItem("Notify guests", false);
-    private CheckBoxItem notifyWorkers = new CheckBoxItem("Notify workers", false);
-    private CheckBoxItem notifyNonWorkers = new CheckBoxItem("Notify non-workers", false);
+    private Image descImage = new Image();
 
     private TextItem categoryName = new TextItem("Category Name", true);
 
@@ -85,14 +80,6 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 
 	youHaveErrorsMessage.setStylePrimaryName("errorMessage");
 	pleasePickADate.setStylePrimaryName("errorMessage");
-
-	mediaFiles.getSpeakerUploadFile().addChangeHandler(new ChangeHandler() {
-	    @Override
-	    public void onChange(ChangeEvent event) {
-		mediaFiles.setMediaFileCurrentUpload(MediaFileCurrentUpload.SPEAKER);
-		submit();
-	    }
-	});
     }
 
     @Override
@@ -109,7 +96,6 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 	mainPanel.setWidget(2, 0, addCategoryPanel());
 	mainPanel.getFlexCellFormatter().setHorizontalAlignment(2, 0, HasHorizontalAlignment.ALIGN_CENTER);
 
-	descPhotoSelect.clear();
 	mainPanel.setWidget(3, 0, addDescriptionAndPhotoPanel());
 	mainPanel.getFlexCellFormatter().setHorizontalAlignment(3, 0, HasHorizontalAlignment.ALIGN_CENTER);
 
@@ -158,13 +144,15 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 
     @Override
     public void initNewMessage(MediaMessageDto dto, List<MediaMessageSpeakerDto> speakers,
-	    List<MediaMessageCategoryDto> categories, List<MediaMessagePictureDto> pictures,
-	    Map<String, Boolean> workersSelectedForFreeMessages) {
+	    List<MediaMessageCategoryDto> categories, Map<String, Boolean> workersSelectedForFreeMessages) {
 	messageIdentifier = dto.getIdentifier();
 	messageTitle.setHTML("<h2>" + dto.getTitle().toUpperCase() + "</h2><br/>");
 
 	descArea.setValue(dto.getDescription());
 	location.setValue(dto.getLocation());
+	if (null != dto.getDescriptionPictureURL() && !"".equals(dto.getDescriptionPictureURL())) {
+	    descImage.setUrl(dto.getDescriptionPictureURL());
+	}
 	messageDatePicker.setValue(dto.getMessageDate());
 
 	speakerSelect.clear();
@@ -176,6 +164,8 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 		speakerSelect.addItem(speaker.getFullnameDto().getFullname(), speaker.getIdentifier(),
 			speaker.getIdentifier().equals(sdto.getIdentifier()));
 	    } else {
+		int index = speakers.indexOf(speaker);
+		speakerImageURLs.put(index, speaker.getPictureURL());
 		speakerSelect.addItem(speaker.getFullnameDto().getFullname(), speaker.getIdentifier());
 	    }
 	}
@@ -193,16 +183,6 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 	    }
 	}
 	categorySelect.addItem(ADD_NEW_CATEGORY);
-
-	MediaMessagePictureDto pictureDto = dto.getPictureDto();
-	for (MediaMessagePictureDto picture : pictures) {
-	    if (pictureDto != null) {
-		descPhotoSelect.addItem(picture.getName(), picture.getIdentifier(),
-			picture.getIdentifier().equals(pictureDto.getIdentifier()));
-	    } else {
-		descPhotoSelect.addItem(picture.getName(), picture.getIdentifier());
-	    }
-	}
 
 	chargePerMessageSelect.clear();
 	chargePerMessageSelect.addItem("");
@@ -227,6 +207,15 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 	    speakerDescArea.setHeight("100px");
 	    newSpeakerPanel.add(speakerDescArea);
 	    newSpeakerPanel.add(mediaFiles.getSpeakerUploadFile());
+	    Button uploadSpeakerPic = new Button("Upload Speaker Picture");
+	    uploadSpeakerPic.addClickHandler(new ClickHandler() {
+		@Override
+		public void onClick(ClickEvent event) {
+		    submit("speaker");
+		}
+	    });
+	    newSpeakerPanel.add(new HTML("&nbsp;"));
+	    newSpeakerPanel.add(uploadSpeakerPic);
 	}
 
 	final VerticalPanel speakerPanel = new VerticalPanel();
@@ -241,11 +230,13 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 		    if (ADD_NEW_SPEAKER.equals(select)) {
 			speakerPanel.add(newSpeakerPanel);
 		    } else {
+			speakerImage.setUrl(speakerImageURLs.get(select));
 			speakerPanel.remove(newSpeakerPanel);
 		    }
 		}
 	    });
 	}
+	speakerPanel.add(speakerImage);
 	speakerPanel.add(speakerSelect);
 	return new RoundedCornerPanel("Speaker", speakerPanel);
     }
@@ -292,24 +283,19 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 	newDescAndPhotoPanel.add(messageDatePicker);
 
 	newDescAndPhotoPanel.add(new HTML("<br/>"));
-	newDescAndPhotoPanel.add(descPhotoSelect);
-
-	final VerticalPanel newPhotoPanel = new VerticalPanel();
-	newPhotoPanel.add(mediaFiles.getDescriptionUploadFile());
-
-	descPhotoSelect.addItem("");
-	descPhotoSelect.addItem(ADD_NEW_DESCRIPTION_PHOTO);
-	descPhotoSelect.addChangeHandler(new ChangeHandler() {
+	newDescAndPhotoPanel.add(descImage);
+	newDescAndPhotoPanel.add(mediaFiles.getDescriptionUploadFile());
+	Button uploadDescPic = new Button("Upload Description Picture");
+	uploadDescPic.addClickHandler(new ClickHandler() {
 	    @Override
-	    public void onChange(ChangeEvent event) {
-		String select = descPhotoSelect.getValue();
-		if (ADD_NEW_DESCRIPTION_PHOTO.equals(select)) {
-		    newDescAndPhotoPanel.add(newPhotoPanel);
-		} else {
-		    newDescAndPhotoPanel.remove(newPhotoPanel);
+	    public void onClick(ClickEvent event) {
+		if (mediaFiles.getDescriptionUploadFile().getFilename() != null) {
+		    submit("desc");
 		}
 	    }
 	});
+	newDescAndPhotoPanel.add(new HTML("&nbsp;"));
+	newDescAndPhotoPanel.add(uploadDescPic);
 
 	return new RoundedCornerPanel("Message Details", newDescAndPhotoPanel);
     }
@@ -330,6 +316,17 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 	mediaPanel.add(new HTML("<br/>"));
 
 	mediaPanel.add(mediaFiles.getMediaUploadFile());
+	mediaPanel.add(new HTML("&nbsp;"));
+	Button uploadMessagePic = new Button("Upload Message Media");
+	uploadMessagePic.addClickHandler(new ClickHandler() {
+	    @Override
+	    public void onClick(ClickEvent event) {
+		if (mediaFiles.getMediaUploadFile() != null) {
+		    submit("message");
+		}
+	    }
+	});
+	mediaPanel.add(uploadMessagePic);
 	return new RoundedCornerPanel("Media Upload", mediaPanel);
     }
 
@@ -345,64 +342,31 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
     }
 
     private Button addUploadButton() {
-	Button upload = new Button("Upload now");
+	Button upload = new Button("Save");
 	upload.addClickHandler(new ClickHandler() {
 
 	    @Override
 	    public void onClick(ClickEvent event) {
-		submit();
+		submit(null);
 	    }
 	});
 	return upload;
     }
 
-    private native void postSpeakerPhotoFile(final Element data) /*-{
-								 worker = new Worker('/workers/submit.js');
-								 worker.onmessage = function(e) {
-								 alert(e.data);
-								 }
-								 worker.postMessage(data.files[0]); 
-								 }-*/;
-
-    private native void postDescPictureFile(final Element data) /*-{
-								worker = new Worker('/workers/submit.js');
-								worker.onmessage = function(e) {
-								alert(e.data);
-								}
-								worker.postMessage(data.files[0]); 
-								}-*/;
-
-    private native void postMediaFile(final Element data) /*-{
-							  worker = new Worker('/workers/submit.js');
-							  worker.onmessage = function(e) {
-							  alert(e.data);
-							  }
-							  worker.postMessage(data.files[0]); 
-							  }-*/;
-
-    @Override
-    public void uploadPhotosByWorker() {
-    }
-
-    private void speakerPhotoFileUploadCallback() {
-    }
-
-    private void descPictureFileUploadCallback() {
-    }
-
-    private void submit() {
+    private void submit(String uploadType) {
 	if (messageDatePicker.getValue() == null) {
 	    errorMessageAndMainPanel.insert(youHaveErrorsMessage, 0);
 	    errorMessageAndMainPanel.insert(pleasePickADate, 0);
 	    ApplicationContext.getInstance().scrollSlowlyToTop();
 
-	} else if (categorySelect.validate() && speakerSelect.validate() && descPhotoSelect.validate()
-		&& chargePerMessageSelect.validate() && location.validate()) {
+	} else if (categorySelect.validate() && speakerSelect.validate() && chargePerMessageSelect.validate()
+		&& location.validate()) {
 
 	    errorMessageAndMainPanel.remove(youHaveErrorsMessage);
 	    errorMessageAndMainPanel.remove(pleasePickADate);
 
 	    SubmitMediaMessageAction action = new SubmitMediaMessageAction();
+	    action.setUploadType(uploadType);
 
 	    String speakerSelectValue = speakerSelect.getValue();
 	    if (ADD_NEW_SPEAKER.equals(speakerSelectValue) && newSpeakerFullnameItem.validate()) {

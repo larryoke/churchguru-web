@@ -19,7 +19,6 @@ import com.laotek.churchguru.web.client.activity.media.SubmitMediaMessageResult;
 import com.laotek.churchguru.web.client.activity.website.media.loading.MediaMessagesLoadingPlace;
 import com.laotek.churchguru.web.shared.listening.MediaMessageCategoryDto;
 import com.laotek.churchguru.web.shared.listening.MediaMessageDto;
-import com.laotek.churchguru.web.shared.listening.MediaMessagePictureDto;
 import com.laotek.churchguru.web.shared.listening.MediaMessageSpeakerDto;
 
 public class MediaMessageNewActivity extends AbstractActivity implements MediaMessageNewView.Presenter {
@@ -77,10 +76,9 @@ public class MediaMessageNewActivity extends AbstractActivity implements MediaMe
 		MediaMessageDto dto = result.getMessage();
 		List<MediaMessageSpeakerDto> speakers = result.getSpeakers();
 		List<MediaMessageCategoryDto> categories = result.getCategories();
-		List<MediaMessagePictureDto> pictures = result.getPictures();
 		Map<String, Boolean> workersSelectedForFreeMessages = result.getWorkersSelectedForFreeMessages();
 
-		view.initNewMessage(dto, speakers, categories, pictures, workersSelectedForFreeMessages);
+		view.initNewMessage(dto, speakers, categories, workersSelectedForFreeMessages);
 	    }
 	});
 
@@ -96,8 +94,18 @@ public class MediaMessageNewActivity extends AbstractActivity implements MediaMe
 
 	    @Override
 	    public void onSuccess(SubmitMediaMessageResult result) {
-		ApplicationContext.getInstance().getPlaceController()
-			.goTo(new MediaMessagesLoadingPlace(action.getIdentifier()));
+		if ("speaker".equals(action.getUploadType())) {
+		    ApplicationContext.getInstance().getPlaceController()
+			    .goTo(new MediaMessagesLoadingPlace("speaker", result.getNewSpeakerIdentity()));
+
+		} else if ("desc".equals(action.getUploadType())) {
+		    ApplicationContext.getInstance().getPlaceController()
+			    .goTo(new MediaMessagesLoadingPlace("desc", action.getIdentifier()));
+
+		} else if ("message".equals(action.getUploadType())) {
+		    ApplicationContext.getInstance().getPlaceController()
+			    .goTo(new MediaMessagesLoadingPlace("message", action.getIdentifier()));
+		}
 	    }
 	});
 
