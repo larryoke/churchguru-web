@@ -40,11 +40,11 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 
     private HTML messageTitle = new HTML();
 
-    private Image speakerImage = new Image();
-
-    private Map<Integer, String> speakerImageURLs = new HashMap<Integer, String>();
+    private Map<String, String> speakerImageURLs = new HashMap<String, String>();
 
     private SelectItem speakerSelect = new SelectItem("Speaker", true);
+
+    private FlexTable speakerPanel = new FlexTable();
 
     private SelectItem categorySelect = new SelectItem("Category", true);
 
@@ -77,7 +77,7 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
     private MediaFiles mediaFiles = MediaFiles.getInstance();
 
     public MediaMessageNewViewImpl() {
-
+	descImage.setWidth("200px");
 	youHaveErrorsMessage.setStylePrimaryName("errorMessage");
 	pleasePickADate.setStylePrimaryName("errorMessage");
     }
@@ -159,17 +159,15 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 	speakerSelect.addItem("");
 	MediaMessageSpeakerDto sdto = dto.getSpeakerDto();
 	for (MediaMessageSpeakerDto speaker : speakers) {
-
-	    if (sdto != null) {
-		speakerSelect.addItem(speaker.getFullnameDto().getFullname(), speaker.getIdentifier(),
-			speaker.getIdentifier().equals(sdto.getIdentifier()));
-	    } else {
-		int index = speakers.indexOf(speaker);
-		speakerImageURLs.put(index, speaker.getPictureURL());
-		speakerSelect.addItem(speaker.getFullnameDto().getFullname(), speaker.getIdentifier());
-	    }
+	    speakerImageURLs.put(speaker.getIdentifier(), speaker.getPictureURL());
+	    boolean toBeSelected = sdto != null && speaker.getIdentifier().equals(sdto.getIdentifier());
+	    speakerSelect.addItem(speaker.getFullnameDto().getFullname(), speaker.getIdentifier(), toBeSelected);
 	}
 	speakerSelect.addItem(ADD_NEW_SPEAKER);
+
+	Image speakerImage = new Image(sdto.getPictureURL());
+	speakerImage.setWidth("200px");
+	speakerPanel.setWidget(2, 0, speakerImage);
 
 	categorySelect.clear();
 	categorySelect.addItem("");
@@ -211,33 +209,39 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 	    uploadSpeakerPic.addClickHandler(new ClickHandler() {
 		@Override
 		public void onClick(ClickEvent event) {
-		    submit("speaker");
+		    if (Window.confirm("Are you sure you want to upload a picture for the speaker?")) {
+			submit("speaker");
+		    }
 		}
 	    });
 	    newSpeakerPanel.add(new HTML("&nbsp;"));
 	    newSpeakerPanel.add(uploadSpeakerPic);
 	}
 
-	final VerticalPanel speakerPanel = new VerticalPanel();
-	speakerPanel.add(
-		new HTML("Please select all or choose the group of people you want to be notified of this new media"));
-	speakerPanel.add(new HTML("<br/>"));
+	speakerPanel.setHTML(0, 0,
+		"Please select all or choose the group of people you want to be notified of this new media");
+	speakerPanel.setWidget(1, 0, new HTML("<br/>"));
 	{
 	    speakerSelect.addChangeHandler(new ChangeHandler() {
 		@Override
 		public void onChange(ChangeEvent event) {
 		    String select = speakerSelect.getValue();
 		    if (ADD_NEW_SPEAKER.equals(select)) {
-			speakerPanel.add(newSpeakerPanel);
+			speakerPanel.removeCell(2, 0);
+			speakerPanel.setWidget(4, 0, newSpeakerPanel);
 		    } else {
-			speakerImage.setUrl(speakerImageURLs.get(select));
-			speakerPanel.remove(newSpeakerPanel);
+			String url = speakerImageURLs.get(select);
+			if (url != null && !url.equals("")) {
+			    Image img = new Image(url);
+			    img.setWidth("200px");
+			    speakerPanel.setWidget(2, 0, img);
+			}
+			speakerPanel.removeCell(4, 0);
 		    }
 		}
 	    });
 	}
-	speakerPanel.add(speakerImage);
-	speakerPanel.add(speakerSelect);
+	speakerPanel.setWidget(3, 0, speakerSelect);
 	return new RoundedCornerPanel("Speaker", speakerPanel);
     }
 
@@ -290,7 +294,9 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 	    @Override
 	    public void onClick(ClickEvent event) {
 		if (mediaFiles.getDescriptionUploadFile().getFilename() != null) {
-		    submit("desc");
+		    if (Window.confirm("Are you sure you want to upload a picture for the message?")) {
+			submit("desc");
+		    }
 		}
 	    }
 	});
@@ -322,7 +328,9 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 	    @Override
 	    public void onClick(ClickEvent event) {
 		if (mediaFiles.getMediaUploadFile() != null) {
-		    submit("message");
+		    if (Window.confirm("Are you sure you want to upload a media file of the message now?")) {
+			submit("message");
+		    }
 		}
 	    }
 	});

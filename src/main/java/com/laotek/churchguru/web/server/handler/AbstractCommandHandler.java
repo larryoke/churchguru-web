@@ -87,6 +87,7 @@ public abstract class AbstractCommandHandler {
 	    MediaMessageSpeakerDto dto = new MediaMessageSpeakerDto();
 	    dto.setIdentifier(speaker.getIdentifier());
 	    dto.setDescription(speaker.getDescription());
+	    dto.setPictureURL(speaker.getPictureUrl());
 
 	    FullnameDto fullnameDto = new FullnameDto();
 	    fullnameDto.setTitle(speaker.getTitle());
