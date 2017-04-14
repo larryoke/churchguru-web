@@ -11,6 +11,8 @@ public enum MediaMessageStatus implements Serializable, IsSerializable {
 
     LOADING("Loading"),
 
+    LOADED("Loaded"),
+
     PUBLISHED("Published"),
 
     UNPUBLISHED("Unpublished");

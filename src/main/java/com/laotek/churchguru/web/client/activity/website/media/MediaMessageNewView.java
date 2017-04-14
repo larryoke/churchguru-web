@@ -25,6 +25,8 @@ public interface MediaMessageNewView extends IsWidget {
     public interface Presenter {
 	void submit(SubmitMediaMessageAction action);
 
+	void gotoPlayMedia(String identifier);
+
 	void goTo(Place place);
     }
 }

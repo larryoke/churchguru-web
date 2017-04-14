@@ -34,7 +34,7 @@ public class MediaMessagesLoadingViewImpl extends BaseViewImpl implements MediaM
 	mainPanel.setWidget(0, 0, messagePanels);
 	mainPanel.getFlexCellFormatter().setHorizontalAlignment(0, 0, HasHorizontalAlignment.ALIGN_CENTER);
 	return getMainLayout("images/app/download.png", "Manage Messages",
-		new RoundedCornerPanel("Loading Message...", messagePanels));
+		new RoundedCornerPanel("Upload Message...", messagePanels));
     }
 
     @Override

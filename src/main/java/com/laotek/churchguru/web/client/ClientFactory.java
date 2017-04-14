@@ -30,6 +30,7 @@ import com.laotek.churchguru.web.client.activity.website.media.cust.MediaMessage
 import com.laotek.churchguru.web.client.activity.website.media.cust.MediaMessageCustomersView;
 import com.laotek.churchguru.web.client.activity.website.media.loading.MediaMessagesLoadingView;
 import com.laotek.churchguru.web.client.activity.website.media.notif.MediaMessageNotificationsView;
+import com.laotek.churchguru.web.client.activity.website.media.play.MediaMessagePlayView;
 import com.laotek.churchguru.web.client.activity.website.media.speaker.MediaMessageSpeakerNewView;
 import com.laotek.churchguru.web.client.activity.website.media.speaker.MediaMessageSpeakersView;
 
@@ -81,6 +82,8 @@ public interface ClientFactory {
     MediaMessagesView getEStoreMessagesView();
 
     MediaMessagesLoadingView getMediaMessagesLoadingView();
+
+    MediaMessagePlayView getMediaMessagePlayView();
 
     MediaMessageNotificationsView getEStoreNotificationsView();
 

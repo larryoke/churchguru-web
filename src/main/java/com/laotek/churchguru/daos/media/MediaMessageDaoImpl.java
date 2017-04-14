@@ -13,6 +13,7 @@ import com.laotek.churchguru.daos.BaseSessionFactory;
 import com.laotek.churchguru.model.MediaMessage;
 import com.laotek.churchguru.model.MediaMessageCategory;
 import com.laotek.churchguru.model.MediaMessageSpeaker;
+import com.laotek.churchguru.model.shared.enums.MediaMessageStatus;
 import com.laotek.churchguru.model.shared.enums.Title;
 
 @Repository
@@ -23,7 +24,7 @@ public class MediaMessageDaoImpl extends BaseSessionFactory implements MediaMess
     public void createNewMessage(String messageId, String title) {
 	MediaMessage mediaMessage = new MediaMessage();
 	mediaMessage.setTitle(title);
-	mediaMessage.setDescription("desc...");
+	// mediaMessage.setDescription("desc...");
 	mediaMessage.setIdentifier(messageId);
 	mediaMessage.setCreatedDate(new Date());
 	mediaMessage.setLastUpdatedDate(new Date());
@@ -160,6 +161,7 @@ public class MediaMessageDaoImpl extends BaseSessionFactory implements MediaMess
     @Override
     public void updateMediaMessageURL(String identifier, String mediaURL) {
 	MediaMessage message = getMessageByIdentifier(identifier);
+	message.setMessageStatus(MediaMessageStatus.LOADED);
 	message.setMediaMessageUrl(mediaURL);
     }
 }

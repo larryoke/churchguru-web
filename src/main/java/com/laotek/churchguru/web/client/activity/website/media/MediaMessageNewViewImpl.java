@@ -10,6 +10,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HTML;
@@ -20,6 +21,8 @@ import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.datepicker.client.DatePicker;
+import com.laotek.churchguru.model.shared.enums.MediaMessageStatus;
+import com.laotek.churchguru.model.shared.enums.MediaType;
 import com.laotek.churchguru.web.client.ApplicationContext;
 import com.laotek.churchguru.web.client.activity.media.SubmitMediaMessageAction;
 import com.laotek.churchguru.web.client.widget.FullnameItem;
@@ -48,7 +51,11 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 
     private SelectItem categorySelect = new SelectItem("Category", true);
 
+    private SelectItem publishSelect = new SelectItem("Publish", true);
+
     private SelectItem chargePerMessageSelect = new SelectItem("Charge Per Message", true);
+
+    private TextItem publishStatus = new TextItem("Publish Status", false);
 
     private TextItem location = new TextItem("Location", false);
 
@@ -64,6 +71,8 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 
     private TextArea descArea = new TextArea();
 
+    private Anchor goToPlay = new Anchor("Go to play");
+
     private HTML youHaveErrorsMessage = new HTML("<h3>You have errors</h3>");
 
     private HTML pleasePickADate = new HTML("<h4>Please pick a date the message was delivered</h4>");
@@ -76,10 +85,25 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 
     private MediaFiles mediaFiles = MediaFiles.getInstance();
 
+    private static MediaType selectedMediaType;
+
+    private static String mediaUrl;
+
     public MediaMessageNewViewImpl() {
 	descImage.setWidth("200px");
 	youHaveErrorsMessage.setStylePrimaryName("errorMessage");
 	pleasePickADate.setStylePrimaryName("errorMessage");
+	publishStatus.disable();
+	goToPlay.addClickHandler(new ClickHandler() {
+	    @Override
+	    public void onClick(ClickEvent event) {
+		if (mediaUrl != null) {
+		    presenter.gotoPlayMedia(messageIdentifier);
+		} else {
+		    Window.alert("No uploaded media found");
+		}
+	    }
+	});
     }
 
     @Override
@@ -105,14 +129,17 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 	mainPanel.setWidget(5, 0, addMediaUploadPanel());
 	mainPanel.getFlexCellFormatter().setHorizontalAlignment(5, 0, HasHorizontalAlignment.ALIGN_CENTER);
 
+	mainPanel.setWidget(6, 0, addPublishStatusPanel());
+	mainPanel.getFlexCellFormatter().setHorizontalAlignment(6, 0, HasHorizontalAlignment.ALIGN_CENTER);
+
 	{
 	    HorizontalPanel butPanel = new HorizontalPanel();
 	    butPanel.add(createBackButton());
 	    butPanel.add(new HTML("&nbsp;"));
 	    butPanel.add(new HTML("&nbsp;"));
 	    butPanel.add(addUploadButton());
-	    mainPanel.setWidget(6, 0, butPanel);
-	    mainPanel.getFlexCellFormatter().setHorizontalAlignment(6, 0, HasHorizontalAlignment.ALIGN_CENTER);
+	    mainPanel.setWidget(7, 0, butPanel);
+	    mainPanel.getFlexCellFormatter().setHorizontalAlignment(7, 0, HasHorizontalAlignment.ALIGN_CENTER);
 	}
 
 	errorMessageAndMainPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
@@ -145,7 +172,10 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
     @Override
     public void initNewMessage(MediaMessageDto dto, List<MediaMessageSpeakerDto> speakers,
 	    List<MediaMessageCategoryDto> categories, Map<String, Boolean> workersSelectedForFreeMessages) {
+
 	messageIdentifier = dto.getIdentifier();
+	mediaUrl = dto.getMediaMessageUrl();
+
 	messageTitle.setHTML("<h2>" + dto.getTitle().toUpperCase() + "</h2><br/>");
 
 	descArea.setValue(dto.getDescription());
@@ -165,9 +195,11 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 	}
 	speakerSelect.addItem(ADD_NEW_SPEAKER);
 
-	Image speakerImage = new Image(sdto.getPictureURL());
-	speakerImage.setWidth("200px");
-	speakerPanel.setWidget(2, 0, speakerImage);
+	if (sdto != null && sdto.getPictureURL() != null && !"".equals(sdto.getPictureURL())) {
+	    Image speakerImage = new Image(sdto.getPictureURL());
+	    speakerImage.setWidth("200px");
+	    speakerPanel.setWidget(2, 0, speakerImage);
+	}
 
 	categorySelect.clear();
 	categorySelect.addItem("");
@@ -194,6 +226,24 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 	chargePerMessageSelect.addItem("8 points per message", "8", dto.getSalePoints() == 8);
 	chargePerMessageSelect.addItem("9 points per message", "9", dto.getSalePoints() == 9);
 	chargePerMessageSelect.addItem("10 points per message", "10", dto.getSalePoints() == 10);
+
+	publishStatus.setValue(dto.getStatus().getDesc());
+	publishSelect.clear();
+	publishSelect.addItem("");
+	if (MediaMessageStatus.LOADED.equals(dto.getStatus())) {
+	    publishSelect.addItem(MediaMessageStatus.LOADED.getDesc(), MediaMessageStatus.LOADED.name(), true);
+	    publishSelect.addItem("Publish", MediaMessageStatus.PUBLISHED.name(), false);
+
+	} else if (MediaMessageStatus.PUBLISHED.equals(dto.getStatus())) {
+	    publishSelect.addItem(MediaMessageStatus.PUBLISHED.getDesc(), MediaMessageStatus.PUBLISHED.name(), true);
+	    publishSelect.addItem("Unpublish", MediaMessageStatus.UNPUBLISHED.name(), false);
+
+	} else if (MediaMessageStatus.UNPUBLISHED.equals(dto.getStatus())) {
+	    publishSelect.addItem("Unpublish", MediaMessageStatus.UNPUBLISHED.name(), true);
+	    publishSelect.addItem("Publish", MediaMessageStatus.PUBLISHED.name(), false);
+	} else {
+	    publishSelect.addItem(dto.getStatus().getDesc(), dto.getStatus().name(), true);
+	}
     }
 
     private RoundedCornerPanel addSpeakerPanel() {
@@ -316,8 +366,22 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 	return new RoundedCornerPanel("Sales Charge Per Message", chargePanel);
     }
 
+    private RoundedCornerPanel addPublishStatusPanel() {
+	VerticalPanel publishSelectPanel = new VerticalPanel();
+	publishSelectPanel.add(new HTML(
+		"This enables you to publish and unpublish the media.<br/> When you publish, you make the media publically available"));
+	publishSelectPanel.add(publishStatus);
+	publishSelectPanel.add(new HTML("<br/>"));
+
+	publishSelectPanel.add(publishSelect);
+	return new RoundedCornerPanel("Publish or Unpublish", publishSelectPanel);
+    }
+
     private RoundedCornerPanel addMediaUploadPanel() {
 	VerticalPanel mediaPanel = new VerticalPanel();
+	mediaPanel.add(new HTML("<br/>"));
+	mediaPanel.add(goToPlay);
+	mediaPanel.add(new HTML("<br/>"));
 	mediaPanel.add(new HTML("Please select the media you want to upload"));
 	mediaPanel.add(new HTML("<br/>"));
 
@@ -327,7 +391,14 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 	uploadMessagePic.addClickHandler(new ClickHandler() {
 	    @Override
 	    public void onClick(ClickEvent event) {
-		if (mediaFiles.getMediaUploadFile() != null) {
+		if (!"".equals(mediaFiles.getMediaUploadFile().getFilename())
+			&& mediaFiles.getMediaUploadFile().getFilename() != null) {
+		    String filename = mediaFiles.getMediaUploadFile().getFilename().toLowerCase();
+		    if (filename.endsWith("mp3")) {
+			selectedMediaType = MediaType.MP3;
+		    } else if (filename.endsWith("mp4")) {
+			selectedMediaType = MediaType.MP4;
+		    }
 		    if (Window.confirm("Are you sure you want to upload a media file of the message now?")) {
 			submit("message");
 		    }
@@ -350,7 +421,7 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
     }
 
     private Button addUploadButton() {
-	Button upload = new Button("Save");
+	Button upload = new Button("Update");
 	upload.addClickHandler(new ClickHandler() {
 
 	    @Override
@@ -368,7 +439,7 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 	    ApplicationContext.getInstance().scrollSlowlyToTop();
 
 	} else if (categorySelect.validate() && speakerSelect.validate() && chargePerMessageSelect.validate()
-		&& location.validate()) {
+		&& location.validate() && publishSelect.validate()) {
 
 	    errorMessageAndMainPanel.remove(youHaveErrorsMessage);
 	    errorMessageAndMainPanel.remove(pleasePickADate);
@@ -398,6 +469,7 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 	    action.setIdentifier(messageIdentifier);
 	    action.setLocation(location.getValue());
 	    action.setBriefDescription(descArea.getValue());
+	    action.setMediaType(selectedMediaType);
 
 	    presenter.submit(action);
 	} else {

@@ -31,6 +31,7 @@ import com.laotek.churchguru.web.client.activity.website.media.cust.MediaMessage
 import com.laotek.churchguru.web.client.activity.website.media.cust.MediaMessageCustomersPlace;
 import com.laotek.churchguru.web.client.activity.website.media.loading.MediaMessagesLoadingPlace;
 import com.laotek.churchguru.web.client.activity.website.media.notif.MediaMessageNotificationsPlace;
+import com.laotek.churchguru.web.client.activity.website.media.play.MediaMessagePlayPlace;
 import com.laotek.churchguru.web.client.activity.website.media.speaker.MediaMessageSpeakerNewPlace;
 import com.laotek.churchguru.web.client.activity.website.media.speaker.MediaMessageSpeakersPlace;
 
@@ -44,7 +45,7 @@ import com.laotek.churchguru.web.client.activity.website.media.speaker.MediaMess
 	MediaMessageCustomersPlace.Tokenizer.class, MediaMessageCustomerDetailsPlace.Tokenizer.class,
 	MediaMessageCategoryNewPlace.Tokenizer.class, MediaMessageCategoriesPlace.Tokenizer.class,
 	MediaMessageNotificationsPlace.Tokenizer.class, MediaMessageSpeakerNewPlace.Tokenizer.class,
-	MediaMessagesLoadingPlace.Tokenizer.class,
+	MediaMessagesLoadingPlace.Tokenizer.class, MediaMessagePlayPlace.Tokenizer.class,
 
 	YoutubeVideosPlace.Tokenizer.class, YoutubeVideoNewPlace.Tokenizer.class,
 

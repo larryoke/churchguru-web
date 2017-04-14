@@ -37,6 +37,7 @@ public class SubmitMediaMessageHandler extends AbstractCommandHandler
 	message.setSalePointPerMessage(action.getSalesChargePerMessage());
 	message.setDescription(action.getBriefDescription());
 	message.setLocation(action.getLocation());
+	message.setMediaType(action.getMediaType());
 	message.setLastUpdatedDate(new Date());
 	message.setMessageDate(action.getMessageDate());
 

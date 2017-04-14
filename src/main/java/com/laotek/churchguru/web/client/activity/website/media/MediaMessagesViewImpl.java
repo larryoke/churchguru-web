@@ -110,7 +110,7 @@ public class MediaMessagesViewImpl extends BaseViewImpl implements MediaMessages
 		speakerDetails = fdto.getFullname();
 	    }
 	    cell(hPanel, speakerDetails, 120);
-	    cell(hPanel, "New", 60);
+	    cell(hPanel, dto.getStatus().getDesc(), 60);
 	    cell(hPanel, dto.getSalePoints(), 70);
 	    cell(hPanel, dto.getMessageDateAsString(), 100);
 	    cell(hPanel, dto.getLocation(), 100);

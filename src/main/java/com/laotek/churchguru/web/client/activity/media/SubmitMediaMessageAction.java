@@ -2,6 +2,7 @@ package com.laotek.churchguru.web.client.activity.media;
 
 import java.util.Date;
 
+import com.laotek.churchguru.model.shared.enums.MediaType;
 import com.laotek.churchguru.web.client.activity.AbstractDispatchAction;
 import com.laotek.churchguru.web.shared.FullnameDto;
 import com.laotek.churchguru.web.shared.role.org.HasOrganisationViewRole;
@@ -27,6 +28,8 @@ public class SubmitMediaMessageAction extends AbstractDispatchAction
     private int salesChargePerMessage;
 
     private Date messageDate;
+
+    private MediaType mediaType;
 
     public SubmitMediaMessageAction() {
     }
@@ -125,6 +128,14 @@ public class SubmitMediaMessageAction extends AbstractDispatchAction
 
     public void setUploadType(String uploadType) {
 	this.uploadType = uploadType;
+    }
+
+    public MediaType getMediaType() {
+	return mediaType;
+    }
+
+    public void setMediaType(MediaType mediaType) {
+	this.mediaType = mediaType;
     }
 
 }

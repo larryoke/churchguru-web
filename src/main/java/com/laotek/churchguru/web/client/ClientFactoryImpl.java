@@ -59,6 +59,8 @@ import com.laotek.churchguru.web.client.activity.website.media.loading.MediaMess
 import com.laotek.churchguru.web.client.activity.website.media.loading.MediaMessagesLoadingViewImpl;
 import com.laotek.churchguru.web.client.activity.website.media.notif.MediaMessageNotificationsView;
 import com.laotek.churchguru.web.client.activity.website.media.notif.MediaMessageNotificationsViewImpl;
+import com.laotek.churchguru.web.client.activity.website.media.play.MediaMessagePlayView;
+import com.laotek.churchguru.web.client.activity.website.media.play.MediaMessagePlayViewImpl;
 import com.laotek.churchguru.web.client.activity.website.media.speaker.MediaMessageSpeakerNewView;
 import com.laotek.churchguru.web.client.activity.website.media.speaker.MediaMessageSpeakerNewViewImpl;
 import com.laotek.churchguru.web.client.activity.website.media.speaker.MediaMessageSpeakersView;
@@ -120,6 +122,8 @@ public class ClientFactoryImpl implements ClientFactory {
     private YoutubeVideosView youtubeVideosView = new YoutubeVideosViewImpl();
 
     private MediaMessagesLoadingView mediaMessagesLoadingView = new MediaMessagesLoadingViewImpl();
+
+    private MediaMessagePlayView mediaMessagePlayView = new MediaMessagePlayViewImpl();
 
     @Override
     public EventBus getEventBus() {
@@ -330,8 +334,12 @@ public class ClientFactoryImpl implements ClientFactory {
 
     @Override
     public MediaMessagesLoadingView getMediaMessagesLoadingView() {
-	// TODO Auto-generated method stub
 	return mediaMessagesLoadingView;
+    }
+
+    @Override
+    public MediaMessagePlayView getMediaMessagePlayView() {
+	return mediaMessagePlayView;
     }
 
 }

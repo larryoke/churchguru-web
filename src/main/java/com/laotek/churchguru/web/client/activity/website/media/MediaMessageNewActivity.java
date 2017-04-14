@@ -6,6 +6,7 @@ import java.util.Map;
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
+import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
@@ -17,6 +18,7 @@ import com.laotek.churchguru.web.client.activity.media.GetMediaMessageResult;
 import com.laotek.churchguru.web.client.activity.media.SubmitMediaMessageAction;
 import com.laotek.churchguru.web.client.activity.media.SubmitMediaMessageResult;
 import com.laotek.churchguru.web.client.activity.website.media.loading.MediaMessagesLoadingPlace;
+import com.laotek.churchguru.web.client.activity.website.media.play.MediaMessagePlayPlace;
 import com.laotek.churchguru.web.shared.listening.MediaMessageCategoryDto;
 import com.laotek.churchguru.web.shared.listening.MediaMessageDto;
 import com.laotek.churchguru.web.shared.listening.MediaMessageSpeakerDto;
@@ -105,10 +107,17 @@ public class MediaMessageNewActivity extends AbstractActivity implements MediaMe
 		} else if ("message".equals(action.getUploadType())) {
 		    ApplicationContext.getInstance().getPlaceController()
 			    .goTo(new MediaMessagesLoadingPlace("message", action.getIdentifier()));
+		} else {
+		    History.back();
 		}
 	    }
 	});
 
+    }
+
+    @Override
+    public void gotoPlayMedia(String identifier) {
+	ApplicationContext.getInstance().getPlaceController().goTo(new MediaMessagePlayPlace(identifier));
     }
 
 }

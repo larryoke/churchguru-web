@@ -59,6 +59,8 @@ import com.laotek.churchguru.web.client.activity.website.media.loading.MediaMess
 import com.laotek.churchguru.web.client.activity.website.media.loading.MediaMessagesLoadingPlace;
 import com.laotek.churchguru.web.client.activity.website.media.notif.MediaMessageNotificationsActivity;
 import com.laotek.churchguru.web.client.activity.website.media.notif.MediaMessageNotificationsPlace;
+import com.laotek.churchguru.web.client.activity.website.media.play.MediaMessagePlayActivity;
+import com.laotek.churchguru.web.client.activity.website.media.play.MediaMessagePlayPlace;
 import com.laotek.churchguru.web.client.activity.website.media.speaker.MediaMessageSpeakerNewActivity;
 import com.laotek.churchguru.web.client.activity.website.media.speaker.MediaMessageSpeakerNewPlace;
 import com.laotek.churchguru.web.client.activity.website.media.speaker.MediaMessageSpeakersActivity;
@@ -133,6 +135,9 @@ public class AppActivityMapper implements ActivityMapper {
 
 	else if (place instanceof MediaMessagesLoadingPlace)
 	    return new MediaMessagesLoadingActivity((MediaMessagesLoadingPlace) place, clientFactory);
+
+	else if (place instanceof MediaMessagePlayPlace)
+	    return new MediaMessagePlayActivity((MediaMessagePlayPlace) place, clientFactory);
 
 	else if (place instanceof MediaMessageGalleryPlace)
 	    return new MediaMessageGalleryActivity((MediaMessageGalleryPlace) place, clientFactory);
