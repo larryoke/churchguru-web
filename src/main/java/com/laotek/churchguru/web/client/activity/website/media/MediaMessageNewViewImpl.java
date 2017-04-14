@@ -471,6 +471,9 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 	    action.setBriefDescription(descArea.getValue());
 	    action.setMediaType(selectedMediaType);
 
+	    MediaMessageStatus status = MediaMessageStatus.find(publishSelect.getValue());
+	    action.setStatus(status);
+
 	    presenter.submit(action);
 	} else {
 	    errorMessageAndMainPanel.insert(youHaveErrorsMessage, 0);

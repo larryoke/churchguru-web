@@ -28,9 +28,9 @@ public enum MediaMessageStatus implements Serializable, IsSerializable {
     }
 
     public static MediaMessageStatus find(String desc) {
-	for (MediaMessageStatus title : MediaMessageStatus.values()) {
-	    if (title.getDesc().equals(desc)) {
-		return title;
+	for (MediaMessageStatus status : MediaMessageStatus.values()) {
+	    if (status.getDesc().equals(desc)) {
+		return status;
 	    }
 	}
 	return null;
