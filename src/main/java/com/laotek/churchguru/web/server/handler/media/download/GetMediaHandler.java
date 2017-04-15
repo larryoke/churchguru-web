@@ -26,7 +26,7 @@ public class GetMediaHandler extends AbstractCommandHandler implements ActionHan
 
 	MediaMessage message = eStoreDao.getMessageByIdentifier(identifier);
 
-	return new GetMediaResult(message.getMediaMessageUrl(), message.getMediaType());
+	return new GetMediaResult(message.getMediaMessageUrl(), message.getTitle());
     }
 
     @Override

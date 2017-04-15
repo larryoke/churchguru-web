@@ -59,7 +59,7 @@ public class MediaMessagePlayActivity extends AbstractActivity implements MediaM
 
 	    @Override
 	    public void onSuccess(GetMediaResult result) {
-		view.init(result.getMediaUrl(), result.getMediaType());
+		view.init(result.getMediaUrl(), result.getTitle());
 	    }
 	});
 

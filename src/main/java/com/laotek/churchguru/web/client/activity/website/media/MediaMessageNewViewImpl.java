@@ -22,7 +22,6 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.datepicker.client.DatePicker;
 import com.laotek.churchguru.model.shared.enums.MediaMessageStatus;
-import com.laotek.churchguru.model.shared.enums.MediaType;
 import com.laotek.churchguru.web.client.ApplicationContext;
 import com.laotek.churchguru.web.client.activity.media.SubmitMediaMessageAction;
 import com.laotek.churchguru.web.client.widget.FullnameItem;
@@ -84,8 +83,6 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
     private TextArea speakerDescArea = new TextArea();
 
     private MediaFiles mediaFiles = MediaFiles.getInstance();
-
-    private static MediaType selectedMediaType;
 
     private static String mediaUrl;
 
@@ -175,6 +172,16 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 
 	messageIdentifier = dto.getIdentifier();
 	mediaUrl = dto.getMediaMessageUrl();
+	String mediaMessageUrl = dto.getMediaMessageUrl();
+	if (mediaMessageUrl != null && mediaMessageUrl.contains("mp3")) {
+	    goToPlay.setText("Play Audio");
+
+	} else if (mediaMessageUrl != null && mediaMessageUrl.contains("mp4")) {
+	    goToPlay.setText("Play Video");
+
+	} else {
+	    goToPlay.setText("No uploaded audio found");
+	}
 
 	messageTitle.setHTML("<h2>" + dto.getTitle().toUpperCase() + "</h2><br/>");
 
@@ -216,6 +223,7 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 
 	chargePerMessageSelect.clear();
 	chargePerMessageSelect.addItem("");
+	chargePerMessageSelect.addItem("0 point per message", "0", dto.getSalePoints() == 0);
 	chargePerMessageSelect.addItem("1 points per message", "1", dto.getSalePoints() == 1);
 	chargePerMessageSelect.addItem("2 points per message", "2", dto.getSalePoints() == 2);
 	chargePerMessageSelect.addItem("3 points per message", "3", dto.getSalePoints() == 3);
@@ -249,7 +257,6 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
     private RoundedCornerPanel addSpeakerPanel() {
 	final VerticalPanel newSpeakerPanel = new VerticalPanel();
 	{
-	    newSpeakerPanel.add(newSpeakerFullnameItem);
 	    newSpeakerPanel.add(newSpeakerFullnameItem);
 	    newSpeakerPanel.add(new HTML("Brief Description"));
 	    speakerDescArea.setHeight("100px");
@@ -393,12 +400,6 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 	    public void onClick(ClickEvent event) {
 		if (!"".equals(mediaFiles.getMediaUploadFile().getFilename())
 			&& mediaFiles.getMediaUploadFile().getFilename() != null) {
-		    String filename = mediaFiles.getMediaUploadFile().getFilename().toLowerCase();
-		    if (filename.endsWith("mp3")) {
-			selectedMediaType = MediaType.MP3;
-		    } else if (filename.endsWith("mp4")) {
-			selectedMediaType = MediaType.MP4;
-		    }
 		    if (Window.confirm("Are you sure you want to upload a media file of the message now?")) {
 			submit("message");
 		    }
@@ -469,9 +470,8 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 	    action.setIdentifier(messageIdentifier);
 	    action.setLocation(location.getValue());
 	    action.setBriefDescription(descArea.getValue());
-	    action.setMediaType(selectedMediaType);
 
-	    MediaMessageStatus status = MediaMessageStatus.find(publishSelect.getValue());
+	    MediaMessageStatus status = MediaMessageStatus.valueOf(publishSelect.getValue());
 	    action.setStatus(status);
 
 	    presenter.submit(action);

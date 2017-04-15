@@ -15,6 +15,7 @@ import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.laotek.churchguru.web.client.ApplicationContext;
+import com.laotek.churchguru.web.client.activity.website.media.play.MediaMessagePlayPlace;
 import com.laotek.churchguru.web.client.widget.RoundedCornerPanel;
 import com.laotek.churchguru.web.shared.FullnameDto;
 import com.laotek.churchguru.web.shared.listening.MediaMessageDto;
@@ -79,11 +80,13 @@ public class MediaMessagesViewImpl extends BaseViewImpl implements MediaMessages
 
 	HorizontalPanel hPanel = new HorizontalPanel();
 	cell(hPanel, "<b>Title</b>", 200);
+	cell(hPanel, "<b>Category</b>", 120);
 	cell(hPanel, "<b>Speaker</b>", 120);
 	cell(hPanel, "<b>Status</b>", 60);
 	cell(hPanel, "<b>Sales Points</b>", 70);
 	cell(hPanel, "<b>Date</b>", 100);
 	cell(hPanel, "<b>Location</b>", 100);
+	cell(hPanel, "<b>Media Type</b>", 50);
 	panelRows.add(hPanel);
 
 	for (final MediaMessageDto dto : dtos) {
@@ -103,7 +106,11 @@ public class MediaMessagesViewImpl extends BaseViewImpl implements MediaMessages
 		}
 	    });
 	    cell(hPanel, anchor, 200);
-
+	    if (dto.getCategoryDto() != null) {
+		cell(hPanel, dto.getCategoryDto().getName(), 120);
+	    } else {
+		cell(hPanel, "", 120);
+	    }
 	    String speakerDetails = "";
 	    if (dto.getSpeakerDto() != null && dto.getSpeakerDto().getFullnameDto() != null) {
 		FullnameDto fdto = dto.getSpeakerDto().getFullnameDto();
@@ -114,6 +121,25 @@ public class MediaMessagesViewImpl extends BaseViewImpl implements MediaMessages
 	    cell(hPanel, dto.getSalePoints(), 70);
 	    cell(hPanel, dto.getMessageDateAsString(), 100);
 	    cell(hPanel, dto.getLocation(), 100);
+	    if (dto.getMediaMessageUrl() != null) {
+		String mediaType = null;
+		if (dto.getMediaMessageUrl().contains("mp3")) {
+		    mediaType = "Audio";
+		} else {
+		    mediaType = "Video";
+		}
+		Anchor playAnchor = new Anchor(mediaType);
+		playAnchor.addClickHandler(new ClickHandler() {
+		    @Override
+		    public void onClick(ClickEvent event) {
+			ApplicationContext.getInstance().getPlaceController()
+				.goTo(new MediaMessagePlayPlace(dto.getIdentifier()));
+		    }
+		});
+		cell(hPanel, playAnchor, 50);
+	    } else {
+		cell(hPanel, "", 50);
+	    }
 	    panelRows.add(hPanel);
 	}
     }

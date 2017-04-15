@@ -10,7 +10,6 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
-import com.laotek.churchguru.model.shared.enums.MediaType;
 import com.laotek.churchguru.web.client.activity.website.media.BaseViewImpl;
 import com.laotek.churchguru.web.client.widget.RoundedCornerPanel;
 
@@ -49,21 +48,21 @@ public class MediaMessagePlayViewImpl extends BaseViewImpl implements MediaMessa
     }
 
     @Override
-    public void init(String mediaUrl, MediaType mediaType) {
+    public void init(String mediaUrl, String title) {
 	Window.setTitle("Play message ...");
-	messagePanels.setWidget(1, 0, new HTML("Message Media Play"));
+	messagePanels.setWidget(1, 0, new HTML(title));
 
 	messagePanels.getFlexCellFormatter().setHorizontalAlignment(1, 0, HasHorizontalAlignment.ALIGN_CENTER);
 
 	StringBuffer sb = new StringBuffer();
-	if (MediaType.MP3.equals(mediaType)) {
+	if (mediaUrl.contains("mp3")) {
 	    sb.append("<audio controls>");
 	    sb.append("<source src=\"");
 	    sb.append(mediaUrl);
 	    sb.append("\" type=\"audio/mpeg\">");
 	    sb.append("Your browser does not support the audio element.");
 	    sb.append("</audio>");
-	} else if (MediaType.MP4.equals(mediaType)) {
+	} else if (mediaUrl.contains("mp4")) {
 	    sb.append("<video width=\"400\" controls>");
 	    sb.append("<source src=\"");
 	    sb.append(mediaUrl);

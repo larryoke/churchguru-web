@@ -121,7 +121,6 @@ public abstract class AbstractCommandHandler {
 	dto.setMessageDate(message.getMessageDate());
 	dto.setDescriptionPictureURL(message.getDescPictureUrl());
 	dto.setMediaMessageUrl(message.getMediaMessageUrl());
-	dto.setMediaType(message.getMediaType());
 	dto.setMessageDateAsString(new SimpleDateFormat("dd-MM-yyyy").format(message.getMessageDate()));
 
 	MediaMessageSpeaker speaker = message.getEStoreSpeaker();

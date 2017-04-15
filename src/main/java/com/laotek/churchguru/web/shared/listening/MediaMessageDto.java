@@ -5,7 +5,6 @@ import java.util.Date;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
 import com.laotek.churchguru.model.shared.enums.MediaMessageStatus;
-import com.laotek.churchguru.model.shared.enums.MediaType;
 
 public class MediaMessageDto implements Serializable, IsSerializable {
 
@@ -18,7 +17,6 @@ public class MediaMessageDto implements Serializable, IsSerializable {
     private int salePoints;
 
     private MediaMessageStatus status;
-    private MediaType mediaType;
     private String mediaMessageUrl;
 
     private Date messageDate;
@@ -125,14 +123,6 @@ public class MediaMessageDto implements Serializable, IsSerializable {
 
     public void setStatus(MediaMessageStatus status) {
 	this.status = status;
-    }
-
-    public MediaType getMediaType() {
-	return mediaType;
-    }
-
-    public void setMediaType(MediaType mediaType) {
-	this.mediaType = mediaType;
     }
 
     public String getMediaMessageUrl() {

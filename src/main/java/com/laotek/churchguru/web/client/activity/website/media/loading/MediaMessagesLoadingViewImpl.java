@@ -193,6 +193,7 @@ public class MediaMessagesLoadingViewImpl extends BaseViewImpl implements MediaM
 			         
 			        // Just listening for progress/state changes, this is legal.
 			        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, function(snapshot) {
+			        	alert('in progress');
 			          	var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;						
 			             $wnd.onProgressReport = @com.laotek.churchguru.web.client.activity.website.media.loading.MediaMessagesLoadingViewImpl::onProgressReport(*)( progress);
 			        });

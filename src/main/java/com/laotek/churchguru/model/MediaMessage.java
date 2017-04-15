@@ -18,7 +18,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.laotek.churchguru.model.shared.enums.MediaMessageStatus;
-import com.laotek.churchguru.model.shared.enums.MediaType;
 
 @Entity
 public class MediaMessage {
@@ -43,10 +42,6 @@ public class MediaMessage {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, unique = false)
     private MediaMessageStatus messageStatus = MediaMessageStatus.NEW;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = true, unique = false)
-    private MediaType mediaType;
 
     @Column(nullable = false, columnDefinition = "TEXT")
     private String description = "...";
@@ -198,14 +193,6 @@ public class MediaMessage {
 
     public void setMessageDate(Date messageDate) {
 	this.messageDate = messageDate;
-    }
-
-    public MediaType getMediaType() {
-	return mediaType;
-    }
-
-    public void setMediaType(MediaType mediaType) {
-	this.mediaType = mediaType;
     }
 
     public String getDescPictureUrl() {
