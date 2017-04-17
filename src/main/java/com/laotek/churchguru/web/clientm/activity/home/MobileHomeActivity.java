@@ -12,8 +12,8 @@ import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
 import com.laotek.churchguru.model.shared.enums.sharedmob.ChurchAppTopicEnum;
 import com.laotek.churchguru.web.clientm.MobileFactory;
 import com.laotek.churchguru.web.clientm.activity.aboutus.AboutUsPlace;
-import com.laotek.churchguru.web.clientm.activity.message.titles.NoticeAndEventTitlesActivity;
-import com.laotek.churchguru.web.clientm.activity.message.titles.NoticeAndEventTitlesPlace;
+import com.laotek.churchguru.web.clientm.activity.notice.titles.NoticeAndEventTitlesActivity;
+import com.laotek.churchguru.web.clientm.activity.notice.titles.NoticeAndEventTitlesPlace;
 import com.laotek.churchguru.web.clientm.dispatch.MobileContext;
 
 public class MobileHomeActivity extends MGWTAbstractActivity implements MobileHomeView.Presenter {

@@ -6,8 +6,11 @@ import com.laotek.churchguru.web.clientm.activity.aboutus.AboutUsView;
 import com.laotek.churchguru.web.clientm.activity.facebook.FacebookView;
 import com.laotek.churchguru.web.clientm.activity.give.GiveView;
 import com.laotek.churchguru.web.clientm.activity.home.MobileHomeView;
-import com.laotek.churchguru.web.clientm.activity.message.body.SingleNoticeAndEventView;
-import com.laotek.churchguru.web.clientm.activity.message.titles.NoticeAndEventTitlesView;
+import com.laotek.churchguru.web.clientm.activity.message.MessageView;
+import com.laotek.churchguru.web.clientm.activity.message.category.MessageCategoryMobView;
+import com.laotek.churchguru.web.clientm.activity.message.title.MessageTitleView;
+import com.laotek.churchguru.web.clientm.activity.notice.body.SingleNoticeAndEventView;
+import com.laotek.churchguru.web.clientm.activity.notice.titles.NoticeAndEventTitlesView;
 import com.laotek.churchguru.web.clientm.activity.pastorsdesk.PastorDeskView;
 import com.laotek.churchguru.web.clientm.activity.prayerrequest.PrayerRequestView;
 import com.laotek.churchguru.web.clientm.activity.twitter.TwitterView;
@@ -43,5 +46,11 @@ public interface MobileFactory {
     FacebookView getFacebookView();
 
     YoutubeView getYoutubeView();
+
+    MessageTitleView getMessageTitleView();
+
+    MessageCategoryMobView getMessageCategoryView();
+
+    MessageView getMessageView();
 
 }

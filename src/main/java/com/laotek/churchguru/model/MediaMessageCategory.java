@@ -76,4 +76,12 @@ public class MediaMessageCategory {
 	this.categoryName = categoryName;
     }
 
+    public Set<MediaMessage> getMessages() {
+	return messages;
+    }
+
+    public void setMessages(Set<MediaMessage> messages) {
+	this.messages = messages;
+    }
+
 }

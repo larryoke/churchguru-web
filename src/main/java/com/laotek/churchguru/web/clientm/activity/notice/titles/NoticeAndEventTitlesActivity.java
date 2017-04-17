@@ -1,4 +1,4 @@
-package com.laotek.churchguru.web.clientm.activity.message.titles;
+package com.laotek.churchguru.web.clientm.activity.notice.titles;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import com.googlecode.mgwt.ui.client.widget.list.celllist.CellSelectedHandler;
 import com.laotek.churchguru.web.clientm.MobileFactory;
 import com.laotek.churchguru.web.clientm.activity.DetailActivity;
 import com.laotek.churchguru.web.clientm.activity.home.MobileHomePlace;
-import com.laotek.churchguru.web.clientm.activity.message.body.SingleNoticeAndEventPlace;
+import com.laotek.churchguru.web.clientm.activity.notice.body.SingleNoticeAndEventPlace;
 import com.laotek.churchguru.web.clientm.dispatch.MobileContext;
 
 public class NoticeAndEventTitlesActivity extends DetailActivity implements

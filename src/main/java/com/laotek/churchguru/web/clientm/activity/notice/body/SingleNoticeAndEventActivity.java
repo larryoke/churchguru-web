@@ -1,4 +1,4 @@
-package com.laotek.churchguru.web.clientm.activity.message.body;
+package com.laotek.churchguru.web.clientm.activity.notice.body;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;

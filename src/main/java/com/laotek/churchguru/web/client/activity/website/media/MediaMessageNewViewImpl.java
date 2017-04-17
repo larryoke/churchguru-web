@@ -84,6 +84,8 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 
     private MediaFiles mediaFiles = MediaFiles.getInstance();
 
+    private VerticalPanel newSpeakerPanel = new VerticalPanel();
+
     private static String mediaUrl;
 
     public MediaMessageNewViewImpl() {
@@ -255,8 +257,8 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
     }
 
     private RoundedCornerPanel addSpeakerPanel() {
-	final VerticalPanel newSpeakerPanel = new VerticalPanel();
 	{
+	    newSpeakerPanel.clear();
 	    newSpeakerPanel.add(newSpeakerFullnameItem);
 	    newSpeakerPanel.add(new HTML("Brief Description"));
 	    speakerDescArea.setHeight("100px");

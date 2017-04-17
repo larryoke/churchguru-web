@@ -145,6 +145,15 @@ public class MediaMessageDaoImpl extends BaseSessionFactory implements MediaMess
     }
 
     @Override
+    public MediaMessageCategory getCategory(String identifier) {
+	Query query = getCurrentSession().createQuery("from MediaMessageCategory s Where s.identifier = :identifier");
+	query.setParameter("identifier", identifier);
+	MediaMessageCategory category = (MediaMessageCategory) query.uniqueResult();
+	category.getMessages().size();
+	return category;
+    }
+
+    @Override
     public void updateSpeakerPictureURL(String identifier, String pictureURL) {
 	Query query = getCurrentSession().createQuery("from MediaMessageSpeaker s Where s.identifier = :identifier");
 	query.setParameter("identifier", identifier);

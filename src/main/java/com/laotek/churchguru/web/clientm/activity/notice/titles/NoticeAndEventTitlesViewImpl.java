@@ -1,4 +1,4 @@
-package com.laotek.churchguru.web.clientm.activity.message.titles;
+package com.laotek.churchguru.web.clientm.activity.notice.titles;
 
 import java.util.List;
 
@@ -20,12 +20,10 @@ import com.googlecode.mgwt.ui.client.widget.list.celllist.CellList;
 import com.googlecode.mgwt.ui.client.widget.list.celllist.HasCellSelectedHandler;
 import com.laotek.churchguru.web.clientm.activity.DetailViewGwtImpl;
 
-public class NoticeAndEventTitlesViewImpl extends DetailViewGwtImpl implements
-	NoticeAndEventTitlesView {
+public class NoticeAndEventTitlesViewImpl extends DetailViewGwtImpl implements NoticeAndEventTitlesView {
 
     private CellList<NoticeAndEventDto> cellList;
-    private Image img = new Image("/uploadedphotos/photos/org/messages?width="
-	    + Window.getClientWidth());
+    private Image img = new Image("/uploadedphotos/photos/org/messages?width=" + Window.getClientWidth());
 
     private PreviousitemImageButton newer = new PreviousitemImageButton();
     private NextitemImageButton older = new NextitemImageButton();
@@ -43,8 +41,7 @@ public class NoticeAndEventTitlesViewImpl extends DetailViewGwtImpl implements
 	BasicCell<NoticeAndEventDto> cell = new BasicCell<NoticeAndEventDto>() {
 	    @Override
 	    public String getDisplayString(NoticeAndEventDto model) {
-		if ("".equals(model.getEventDate())
-			|| model.getEventDate() == null) {
+		if ("".equals(model.getEventDate()) || model.getEventDate() == null) {
 		    return model.getTitle();
 		}
 		return model.getTitle() + " - " + model.getEventDate();
@@ -59,7 +56,6 @@ public class NoticeAndEventTitlesViewImpl extends DetailViewGwtImpl implements
 	cell.setStylename("headerLabel");
 
 	img.setWidth("100%");
-	// img.setHeight("100px");
 	container.add(img);
 	container.add(cellList);
 
@@ -107,22 +103,18 @@ public class NoticeAndEventTitlesViewImpl extends DetailViewGwtImpl implements
 	buttonPanelSections.setWidth("100%");
 	buttonPanelSections.clear();
 	if (previous && next) {
-	    buttonPanelSections
-		    .setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
+	    buttonPanelSections.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
 	    buttonPanelSections.add(newer);
 	    buttonPanelSections.add(new HTML("&nbsp;"));
-	    buttonPanelSections
-		    .setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
+	    buttonPanelSections.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 	    buttonPanelSections.add(older);
 	    buttonPanelSections.add(new HTML("&nbsp;"));
 	    buttonPanelSections.add(new HTML("&nbsp;"));
 	} else if (previous) {
-	    buttonPanelSections
-		    .setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+	    buttonPanelSections.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 	    buttonPanelSections.add(newer);
 	} else if (next) {
-	    buttonPanelSections
-		    .setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+	    buttonPanelSections.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 	    buttonPanelSections.add(older);
 	}
 	buttonPanel.add(buttonPanelSections);
@@ -173,16 +165,16 @@ public class NoticeAndEventTitlesViewImpl extends DetailViewGwtImpl implements
     }
 
     private native void handleOnLoad(JavaScriptObject jso) /*-{
-
+							   
 							   var instance=this;
-
+							   
 							   var func = function() {
-
-							   instance.@com.laotek.churchguru.web.clientm.activity.message.titles.NoticeAndEventTitlesViewImpl::refreshPull()();
-
+							   
+							   instance.@com.laotek.churchguru.web.clientm.activity.notice.titles.NoticeAndEventTitlesViewImpl::refreshPull()();
+							   
 							   };
-
+							   
 							   jso.addEventListener("load", func, true);
-
+							   
 							   }-*/;
 }

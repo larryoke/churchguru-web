@@ -1,4 +1,4 @@
-package com.laotek.churchguru.web.clientm.activity.message.body;
+package com.laotek.churchguru.web.clientm.activity.notice.body;
 
 import net.customware.gwt.dispatch.shared.Action;
 

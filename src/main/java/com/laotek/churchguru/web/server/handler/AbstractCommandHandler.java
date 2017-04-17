@@ -22,7 +22,7 @@ import com.laotek.churchguru.model.YoutubeVideo;
 import com.laotek.churchguru.model.shared.enums.LogoItemType;
 import com.laotek.churchguru.web.client.activity.churchapp.noticeandevent.NoticeOrEventDto;
 import com.laotek.churchguru.web.client.activity.donation.DonationDto;
-import com.laotek.churchguru.web.clientm.activity.message.titles.NoticeAndEventDto;
+import com.laotek.churchguru.web.clientm.activity.notice.titles.NoticeAndEventDto;
 import com.laotek.churchguru.web.server.UserRoleHelper;
 import com.laotek.churchguru.web.shared.FullnameDto;
 import com.laotek.churchguru.web.shared.OrganisationDto;
@@ -161,9 +161,9 @@ public abstract class AbstractCommandHandler {
 	return dto;
     }
 
-    protected List<com.laotek.churchguru.web.clientm.activity.message.titles.NoticeAndEventDto> mapMessageTitles(
+    protected List<com.laotek.churchguru.web.clientm.activity.notice.titles.NoticeAndEventDto> mapMessageTitles(
 	    List<NoticeAndEvent> instantMessages) {
-	List<com.laotek.churchguru.web.clientm.activity.message.titles.NoticeAndEventDto> messages = new ArrayList<com.laotek.churchguru.web.clientm.activity.message.titles.NoticeAndEventDto>();
+	List<com.laotek.churchguru.web.clientm.activity.notice.titles.NoticeAndEventDto> messages = new ArrayList<com.laotek.churchguru.web.clientm.activity.notice.titles.NoticeAndEventDto>();
 	for (NoticeAndEvent letter : instantMessages) {
 	    messages.add(mapMessageTitle(letter));
 	}

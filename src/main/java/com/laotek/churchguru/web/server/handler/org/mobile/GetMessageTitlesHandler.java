@@ -13,9 +13,9 @@ import com.laotek.churchguru.daos.mobile.instantmessage.NoticeAndEventDao;
 import com.laotek.churchguru.daos.org.OrganisationDao;
 import com.laotek.churchguru.model.NoticeAndEvent;
 import com.laotek.churchguru.model.shared.enums.BrowseMessagesType;
-import com.laotek.churchguru.web.clientm.activity.message.titles.GetNoticeAndEventTitlesAction;
-import com.laotek.churchguru.web.clientm.activity.message.titles.GetNoticeAndEventTitlesResult;
-import com.laotek.churchguru.web.clientm.activity.message.titles.NoticeAndEventDto;
+import com.laotek.churchguru.web.clientm.activity.notice.titles.GetNoticeAndEventTitlesAction;
+import com.laotek.churchguru.web.clientm.activity.notice.titles.GetNoticeAndEventTitlesResult;
+import com.laotek.churchguru.web.clientm.activity.notice.titles.NoticeAndEventDto;
 import com.laotek.churchguru.web.server.handler.AbstractCommandHandler;
 
 @Component

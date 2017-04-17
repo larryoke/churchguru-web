@@ -120,6 +120,9 @@ public class MediaMessagesLoadingViewImpl extends BaseViewImpl implements MediaM
 			     
 			     	var uploadTask = ref.put(data.files[0]).then(
 			     		function(snapshot) {
+			          		var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;						
+			             		$wnd.onProgressReport = @com.laotek.churchguru.web.client.activity.website.media.loading.MediaMessagesLoadingViewImpl::onProgressReport(*)( progress);
+			          		
 			          		switch (snapshot.state) {			     			     
 			               		case 'paused':
 			               			console.log('Upload is paused');
@@ -128,7 +131,7 @@ public class MediaMessagesLoadingViewImpl extends BaseViewImpl implements MediaM
 			                    	     console.log('Upload is running');
 			                    	     break;		     			     
 			                    	case  'success':
-			                    	     console.log('Upload is running');			     
+			                    	     console.log('Upload is done');			     
 			               			var downloadURL = snapshot.downloadURL;			     
 			               			$wnd.onComplete = @com.laotek.churchguru.web.client.activity.website.media.loading.MediaMessagesLoadingViewImpl::onComplete(*)(uploadType, identity , downloadURL);		       
 			                    	     	break;			     			     
@@ -192,7 +195,7 @@ public class MediaMessagesLoadingViewImpl extends BaseViewImpl implements MediaM
 			         
 			         
 			        // Just listening for progress/state changes, this is legal.
-			        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, function(snapshot) {
+			        uploadTask.on($wnd.firebase.storage.TaskEvent.STATE_CHANGED, function(snapshot) {
 			        	alert('in progress');
 			          	var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;						
 			             $wnd.onProgressReport = @com.laotek.churchguru.web.client.activity.website.media.loading.MediaMessagesLoadingViewImpl::onProgressReport(*)( progress);

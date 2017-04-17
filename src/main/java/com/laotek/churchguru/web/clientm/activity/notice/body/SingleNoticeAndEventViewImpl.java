@@ -1,4 +1,4 @@
-package com.laotek.churchguru.web.clientm.activity.message.body;
+package com.laotek.churchguru.web.clientm.activity.notice.body;
 
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Window;
@@ -10,12 +10,10 @@ import com.googlecode.mgwt.ui.client.widget.list.widgetlist.WidgetList;
 import com.laotek.churchguru.web.clientm.activity.DetailViewGwtImpl;
 import com.laotek.churchguru.web.clientm.widget.HeaderLabel;
 
-public class SingleNoticeAndEventViewImpl extends DetailViewGwtImpl implements
-	SingleNoticeAndEventView {
+public class SingleNoticeAndEventViewImpl extends DetailViewGwtImpl implements SingleNoticeAndEventView {
 
     private FlowPanel formContainer = new FlowPanel();
-    private Image img = new Image("/uploadedphotos/photos/org/messages?width="
-	    + Window.getClientWidth());
+    private Image img = new Image("/uploadedphotos/photos/org/messages?width=" + Window.getClientWidth());
 
     public SingleNoticeAndEventViewImpl() {
 
@@ -31,8 +29,7 @@ public class SingleNoticeAndEventViewImpl extends DetailViewGwtImpl implements
     }
 
     @Override
-    public void showForm(String title, String message, String eventDateAndTime,
-	    String createdTimeDesc) {
+    public void showForm(String title, String message, String eventDateAndTime, String createdTimeDesc) {
 
 	formContainer.clear();
 	WidgetList messagePanel = new WidgetList();
@@ -72,17 +69,17 @@ public class SingleNoticeAndEventViewImpl extends DetailViewGwtImpl implements
     }
 
     private native void handleOnLoad(JavaScriptObject jso) /*-{
-
+							   
 							   var instance=this;
-
+							   
 							   var func = function() {
-
-							   instance.@com.laotek.churchguru.web.clientm.activity.message.body.SingleNoticeAndEventViewImpl::refreshPull()();
-
+							   
+							   instance.@com.laotek.churchguru.web.clientm.activity.notice.body.SingleNoticeAndEventViewImpl::refreshPull()();
+							   
 							   };
-
+							   
 							   jso.addEventListener("load", func, true);
-
+							   
 							   }-*/;
 
 }

@@ -9,9 +9,9 @@ import org.springframework.stereotype.Component;
 
 import com.laotek.churchguru.daos.mobile.instantmessage.NoticeAndEventDao;
 import com.laotek.churchguru.model.NoticeAndEvent;
-import com.laotek.churchguru.web.clientm.activity.message.body.GetSingleNoticeAndEventAction;
-import com.laotek.churchguru.web.clientm.activity.message.body.GetSingleNoticeAndEventResult;
-import com.laotek.churchguru.web.clientm.activity.message.titles.NoticeAndEventDto;
+import com.laotek.churchguru.web.clientm.activity.notice.body.GetSingleNoticeAndEventAction;
+import com.laotek.churchguru.web.clientm.activity.notice.body.GetSingleNoticeAndEventResult;
+import com.laotek.churchguru.web.clientm.activity.notice.titles.NoticeAndEventDto;
 import com.laotek.churchguru.web.server.handler.AbstractCommandHandler;
 
 @Component

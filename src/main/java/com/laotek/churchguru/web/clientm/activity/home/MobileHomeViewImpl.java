@@ -23,10 +23,10 @@ import com.laotek.churchguru.model.shared.enums.sharedmob.ChurchAppTopicEnum;
 import com.laotek.churchguru.web.clientm.MobileFactory;
 import com.laotek.churchguru.web.clientm.activity.aboutus.AboutUsPlace;
 import com.laotek.churchguru.web.clientm.activity.give.GivePlace;
-import com.laotek.churchguru.web.clientm.activity.message.titles.NoticeAndEventTitlesPlace;
+import com.laotek.churchguru.web.clientm.activity.message.category.MessageCategoryPlace;
+import com.laotek.churchguru.web.clientm.activity.notice.titles.NoticeAndEventTitlesPlace;
 import com.laotek.churchguru.web.clientm.activity.pastorsdesk.PastorDeskPlace;
 import com.laotek.churchguru.web.clientm.activity.prayerrequest.PrayerRequestPlace;
-import com.laotek.churchguru.web.clientm.activity.underconstruction.UnderConstructionPlace;
 
 public class MobileHomeViewImpl implements MobileHomeView {
 
@@ -111,6 +111,10 @@ public class MobileHomeViewImpl implements MobileHomeView {
 			clientFactory.getPlaceController().goTo(new PastorDeskPlace(current.getDesc()));
 			return;
 		    }
+		    if (ChurchAppTopicEnum.LISTEN.equals(current)) {
+			clientFactory.getPlaceController().goTo(new MessageCategoryPlace("messageCategory"));
+			return;
+		    }
 		    if (ChurchAppTopicEnum.PRAYER_REQUEST.equals(current)) {
 			clientFactory.getPlaceController().goTo(new PrayerRequestPlace(current.getDesc()));
 
@@ -122,10 +126,6 @@ public class MobileHomeViewImpl implements MobileHomeView {
 		    }
 		    if (ChurchAppTopicEnum.NOTICES_AND_EVENTS.equals(current)) {
 			clientFactory.getPlaceController().goTo(new NoticeAndEventTitlesPlace(current.getDesc()));
-			return;
-		    }
-		    if (ChurchAppTopicEnum.LISTEN.equals(current)) {
-			clientFactory.getPlaceController().goTo(new UnderConstructionPlace("uc"));
 			return;
 		    }
 		    if (ChurchAppTopicEnum.ABOUT_US.equals(current)) {

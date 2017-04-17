@@ -1,4 +1,4 @@
-package com.laotek.churchguru.web.clientm.activity.message.titles;
+package com.laotek.churchguru.web.clientm.activity.notice.titles;
 
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceTokenizer;
