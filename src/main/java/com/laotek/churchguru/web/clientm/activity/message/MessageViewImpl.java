@@ -53,14 +53,16 @@ public class MessageViewImpl extends DetailViewGwtImpl implements MessageView {
 	Scheduler.get().scheduleDeferred(new ScheduledCommand() {
 	    @Override
 	    public void execute() {
-		speakerPic.setUrl(dto.getSpeakerPictureUrl());
-		speakerPic.setWidth("100%");
+		if (dto.getSpeakerPictureUrl() != null) {
+		    speakerPic.setUrl(dto.getSpeakerPictureUrl());
+		    speakerPic.setWidth("90%");
+		}
 		speakerName.setHTML(dto.getSpeakerFullname());
 		speakerDesc.setHTML(dto.getSpeakerDesc());
 
 		if (dto.getDescUrl() != null) {
 		    Image mediaPic = new Image(dto.getDescUrl());
-		    mediaPic.setWidth("100%");
+		    mediaPic.setWidth("90%");
 		    mediaDescPanel.add(mediaPic);
 		} else {
 		    mediaDescPanel.clear();
