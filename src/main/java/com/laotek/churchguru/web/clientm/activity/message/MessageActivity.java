@@ -25,7 +25,6 @@ public class MessageActivity extends DetailActivity implements MessageView.Prese
 	super.start(panel, eventBus);
 	view = mobileFactory.getMessageView();
 	view.setPresenter(this);
-	view.getHeader().setText("View under construction");
 	panel.setWidget(view);
 
 	GetMessageMobAction action = new GetMessageMobAction(place.getMessageIdentifier());
@@ -36,8 +35,11 @@ public class MessageActivity extends DetailActivity implements MessageView.Prese
 
 	    @Override
 	    public void onSuccess(GetMessageMobResult result) {
-		view.showForm(result.getDto());
-		view.refresh();
+		if (result.getDto() != null && result.getDto().getTitle() != null) {
+		    view.getHeader().setText(result.getDto().getTitle());
+		    view.showForm(result.getDto());
+		    view.refresh();
+		}
 	    }
 	});
     }

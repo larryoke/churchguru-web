@@ -1,9 +1,12 @@
 package com.laotek.churchguru.web.clientm.activity.message;
 
 import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.SimplePanel;
 import com.googlecode.mgwt.ui.client.MGWT;
 import com.googlecode.mgwt.ui.client.widget.list.widgetlist.WidgetList;
 import com.laotek.churchguru.web.clientm.activity.DetailViewGwtImpl;
@@ -17,10 +20,11 @@ public class MessageViewImpl extends DetailViewGwtImpl implements MessageView {
 
     private Image speakerPic = new Image();
     private HTML speakerDesc = new HTML();
-    private HTML player = new HTML();
 
-    private Image mediaPic = new Image();
     private HTML mediaDesc = new HTML();
+
+    private SimplePanel mediaDescPanel = new SimplePanel();
+    private SimplePanel mediaPlayerPanel = new SimplePanel();
 
     public MessageViewImpl() {
 
@@ -35,6 +39,7 @@ public class MessageViewImpl extends DetailViewGwtImpl implements MessageView {
 
 	formContainer.add(new HTML("&nbsp;"));
 
+	scrollPanel.setWidget(formContainer);
     }
 
     @Override
@@ -43,48 +48,62 @@ public class MessageViewImpl extends DetailViewGwtImpl implements MessageView {
     }
 
     @Override
-    public void showForm(MessageMobDto dto) {
-	scrollPanel.setWidget(formContainer);
-	speakerPic.setUrl(dto.getSpeakerPictureUrl());
-	speakerPic.setWidth("100%");
-	speakerName.setHTML(dto.getSpeakerFullname());
-	speakerDesc.setHTML(dto.getSpeakerDesc());
+    public void showForm(final MessageMobDto dto) {
 
-	mediaPic.setUrl(dto.getDescUrl());
-	mediaPic.setWidth("100%");
+	Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+	    @Override
+	    public void execute() {
+		speakerPic.setUrl(dto.getSpeakerPictureUrl());
+		speakerPic.setWidth("100%");
+		speakerName.setHTML(dto.getSpeakerFullname());
+		speakerDesc.setHTML(dto.getSpeakerDesc());
 
-	String mediaUrl = dto.getMediaUrl();
-	StringBuffer sb = new StringBuffer();
-	if (mediaUrl.contains("mp3")) {
-	    sb.append("<audio controls>");
-	    sb.append("<source src=\"");
-	    sb.append(mediaUrl);
-	    sb.append("\" type=\"audio/mpeg\">");
-	    sb.append("Your browser does not support the audio element.");
-	    sb.append("</audio>");
-	} else if (mediaUrl.contains("mp4")) {
-	    sb.append("<video width=\"400\" controls>");
-	    sb.append("<source src=\"");
-	    sb.append(mediaUrl);
-	    sb.append("\" type=\"video/mp4\">");
-	    sb.append("Your browser does not support HTML5 video.");
-	    sb.append("</video>");
-	}
-	player.setHTML(sb.toString());
+		if (dto.getDescUrl() != null) {
+		    Image mediaPic = new Image(dto.getDescUrl());
+		    mediaPic.setWidth("100%");
+		    mediaDescPanel.add(mediaPic);
+		} else {
+		    mediaDescPanel.clear();
+		}
+
+		String mediaUrl = dto.getMediaUrl();
+		StringBuffer sb = new StringBuffer();
+		if (mediaUrl.contains("mp3")) {
+		    sb.append("<audio controls>");
+		    sb.append("<source src=\"");
+		    sb.append(mediaUrl);
+		    sb.append("\" type=\"audio/mpeg\">");
+		    sb.append("Your browser does not support the audio element.");
+		    sb.append("</audio>");
+		} else if (mediaUrl.contains("mp4")) {
+		    sb.append("<video width=\"400\" controls>");
+		    sb.append("<source src=\"");
+		    sb.append(mediaUrl);
+		    sb.append("\" type=\"video/mp4\">");
+		    sb.append("Your browser does not support HTML5 video.");
+		    sb.append("</video>");
+		} else {
+		    sb.append("&nbsp;");
+		}
+		HTML player = new HTML();
+		player.setHTML(sb.toString());
+		mediaPlayerPanel.setWidget(player);
+	    }
+	});
 
     }
 
     private void addMedia(FlowPanel container) {
 	WidgetList widget = new WidgetList();
 	widget.setHeader(new HeaderLabel("Media"));
-	widget.add(player);
+	widget.add(mediaPlayerPanel);
 	container.add(widget);
     }
 
     private void addDesc(FlowPanel container) {
 	WidgetList widget = new WidgetList();
-	widget.setHeader(new HeaderLabel("Description"));
-	widget.add(mediaPic);
+	widget.setHeader(new HeaderLabel("About this message"));
+	widget.add(mediaDescPanel);
 	mediaDesc.setStylePrimaryName("normalLabel");
 	widget.add(mediaDesc);
 	container.add(widget);
