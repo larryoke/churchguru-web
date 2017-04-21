@@ -286,7 +286,9 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 		public void onChange(ChangeEvent event) {
 		    String select = speakerSelect.getValue();
 		    if (ADD_NEW_SPEAKER.equals(select)) {
-			speakerPanel.removeCell(2, 0);
+			if (speakerPanel.isCellPresent(2, 0)) {
+			    speakerPanel.removeCell(2, 0);
+			}
 			speakerPanel.setWidget(4, 0, newSpeakerPanel);
 		    } else {
 			String url = speakerImageURLs.get(select);
