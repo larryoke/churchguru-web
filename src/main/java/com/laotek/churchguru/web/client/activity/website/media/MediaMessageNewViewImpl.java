@@ -35,7 +35,6 @@ import com.laotek.churchguru.web.shared.listening.MediaMessageSpeakerDto;
 public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessageNewView {
 
     private static final String ADD_NEW_CATEGORY = "Add New Category";
-
     private static final String ADD_NEW_SPEAKER = "Add New Speaker";
 
     private Presenter presenter;
