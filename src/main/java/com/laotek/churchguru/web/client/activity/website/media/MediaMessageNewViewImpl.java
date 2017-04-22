@@ -153,8 +153,7 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 	    speakerImage.setWidth("200px");
 	    speakerPanel.setWidget(2, 0, speakerImage);
 	}
-	speakerPanel.setHTML(0, 0,
-		"Please select all or choose the group of people you want to be notified of this new media");
+	speakerPanel.setHTML(0, 0, "Please select speaker or enter details of new speaker");
 	speakerPanel.setWidget(1, 0, new HTML("<br/>"));
 
 	speakerSelect.clear();
@@ -171,17 +170,27 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 	    public void onChange(ChangeEvent event) {
 		String select = speakerSelect.getValue();
 		if (ADD_NEW_SPEAKER.equals(select)) {
+		    Window.alert("1");
 		    if (speakerPanel.isCellPresent(2, 0)) {
+			Window.alert("2");
 			speakerPanel.removeCell(2, 0);
 		    }
 
+		    Window.alert("3");
 		    VerticalPanel newSpeakerPanel = new VerticalPanel();
+		    Window.alert("4");
 		    newSpeakerPanel.add(newSpeakerFullnameItem);
+		    Window.alert("5");
 		    newSpeakerPanel.add(new HTML("Brief Description"));
+		    Window.alert("6");
 		    speakerDescArea.setHeight("100px");
+		    Window.alert("7");
 		    newSpeakerPanel.add(speakerDescArea);
+		    Window.alert("8");
 		    newSpeakerPanel.add(mediaFiles.getSpeakerUploadFile());
+		    Window.alert("9");
 		    Button uploadSpeakerPic = new Button("Upload Speaker Picture");
+		    Window.alert("10");
 		    uploadSpeakerPic.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
@@ -190,9 +199,13 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 			    }
 			}
 		    });
+		    Window.alert("11");
 		    newSpeakerPanel.add(new HTML("&nbsp;"));
+		    Window.alert("12");
 		    newSpeakerPanel.add(uploadSpeakerPic);
+		    Window.alert("13");
 		    speakerPanel.setWidget(4, 0, newSpeakerPanel);
+		    Window.alert("14");
 
 		} else {
 		    String url = speakerImageURLs.get(select);
