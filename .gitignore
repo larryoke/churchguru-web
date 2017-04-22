@@ -25,6 +25,8 @@ src/main/resources/static/images/.DS_Store
 src/main/resources/static/images/app/.DS_Store
 src/main/webapp/.DS_Store
 src/main/webapp/WEB-INF/
+src/main/webapp/comm/comm.nocache.js
+
 
 **/gwt-unitCache
 **/resources/static/comm/
