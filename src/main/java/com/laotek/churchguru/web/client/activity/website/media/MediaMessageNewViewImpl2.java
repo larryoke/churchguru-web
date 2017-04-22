@@ -32,28 +32,44 @@ import com.laotek.churchguru.web.shared.listening.MediaMessageCategoryDto;
 import com.laotek.churchguru.web.shared.listening.MediaMessageDto;
 import com.laotek.churchguru.web.shared.listening.MediaMessageSpeakerDto;
 
-public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessageNewView {
+public class MediaMessageNewViewImpl2 extends BaseViewImpl implements MediaMessageNewView {
 
     private static final String ADD_NEW_CATEGORY = "Add New Category";
     private static final String ADD_NEW_SPEAKER = "Add New Speaker";
 
     private Presenter presenter;
 
-    private Map<String, String> speakerImageURLs = new HashMap<String, String>();
+    private HTML messageTitle = new HTML();
 
-    private SelectItem publishSelect = new SelectItem("Publish", true);
+    private Map<String, String> speakerImageURLs = new HashMap<String, String>();
 
     private SelectItem speakerSelect = new SelectItem("Speaker", true);
 
+    private FlexTable speakerPanel = new FlexTable();
+
+    private SelectItem categorySelect = new SelectItem("Category", true);
+
+    private SelectItem publishSelect = new SelectItem("Publish", true);
+
+    private SelectItem chargePerMessageSelect = new SelectItem("Charge Per Message", true);
+
+    private TextItem publishStatus = new TextItem("Publish Status", false);
+
     private TextItem location = new TextItem("Location", false);
+
+    private Image descImage = new Image();
 
     private TextItem categoryName = new TextItem("Category Name", true);
 
-    private SelectItem chargePerMessageSelect = new SelectItem("Charge Per Message", true);
+    private DatePicker messageDatePicker = new DatePicker();
 
     private FlexTable mainPanel = new FlexTable();
 
     private VerticalPanel errorMessageAndMainPanel = new VerticalPanel();
+
+    private TextArea descArea = new TextArea();
+
+    private Anchor goToPlay = new Anchor("Go to play");
 
     private HTML youHaveErrorsMessage = new HTML("<h3>You have errors</h3>");
 
@@ -64,65 +80,70 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
     private FullnameItem newSpeakerFullnameItem = new FullnameItem(true);
 
     private TextArea speakerDescArea = new TextArea();
-    private TextArea descArea = new TextArea();
-    private SelectItem categorySelect = new SelectItem("Category", true);
-    private DatePicker messageDatePicker = new DatePicker();
+
     private MediaFiles mediaFiles = MediaFiles.getInstance();
 
-    public MediaMessageNewViewImpl() {
+    private VerticalPanel newSpeakerPanel = new VerticalPanel();
+
+    private static String mediaUrl;
+
+    public MediaMessageNewViewImpl2() {
+	descImage.setWidth("200px");
 	youHaveErrorsMessage.setStylePrimaryName("errorMessage");
 	pleasePickADate.setStylePrimaryName("errorMessage");
+	publishStatus.disable();
+	goToPlay.addClickHandler(new ClickHandler() {
+	    @Override
+	    public void onClick(ClickEvent event) {
+		if (mediaUrl != null) {
+		    presenter.gotoPlayMedia(messageIdentifier);
+		} else {
+		    Window.alert("No uploaded media found");
+		}
+	    }
+	});
     }
 
     @Override
     public Widget asWidget() {
+
+	mainPanel.setBorderWidth(0);
+
+	mainPanel.setWidget(0, 0, messageTitle);
+	mainPanel.getFlexCellFormatter().setHorizontalAlignment(0, 0, HasHorizontalAlignment.ALIGN_CENTER);
+
+	mainPanel.setWidget(1, 0, addSpeakerPanel());
+	mainPanel.getFlexCellFormatter().setHorizontalAlignment(1, 0, HasHorizontalAlignment.ALIGN_CENTER);
+
+	mainPanel.setWidget(2, 0, addCategoryPanel());
+	mainPanel.getFlexCellFormatter().setHorizontalAlignment(2, 0, HasHorizontalAlignment.ALIGN_CENTER);
+
+	mainPanel.setWidget(3, 0, addDescriptionAndPhotoPanel());
+	mainPanel.getFlexCellFormatter().setHorizontalAlignment(3, 0, HasHorizontalAlignment.ALIGN_CENTER);
+
+	mainPanel.setWidget(4, 0, addDownloadChargePanel());
+	mainPanel.getFlexCellFormatter().setHorizontalAlignment(4, 0, HasHorizontalAlignment.ALIGN_CENTER);
+
+	mainPanel.setWidget(5, 0, addMediaUploadPanel());
+	mainPanel.getFlexCellFormatter().setHorizontalAlignment(5, 0, HasHorizontalAlignment.ALIGN_CENTER);
+
+	mainPanel.setWidget(6, 0, addPublishStatusPanel());
+	mainPanel.getFlexCellFormatter().setHorizontalAlignment(6, 0, HasHorizontalAlignment.ALIGN_CENTER);
+
+	{
+	    HorizontalPanel butPanel = new HorizontalPanel();
+	    butPanel.add(createBackButton());
+	    butPanel.add(new HTML("&nbsp;"));
+	    butPanel.add(new HTML("&nbsp;"));
+	    butPanel.add(addUploadButton());
+	    mainPanel.setWidget(7, 0, butPanel);
+	    mainPanel.getFlexCellFormatter().setHorizontalAlignment(7, 0, HasHorizontalAlignment.ALIGN_CENTER);
+	}
+
 	errorMessageAndMainPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 	errorMessageAndMainPanel.add(mainPanel);
 
 	return getMainLayout("images/app/download.png", "Manage Messages", errorMessageAndMainPanel);
-    }
-
-    private HorizontalPanel addButtonPanel() {
-	HorizontalPanel butPanel = new HorizontalPanel();
-	butPanel.add(createBackButton());
-	butPanel.add(new HTML("&nbsp;"));
-	butPanel.add(new HTML("&nbsp;"));
-	butPanel.add(addUploadButton());
-	return butPanel;
-    }
-
-    @Override
-    public void initNewMessage(MediaMessageDto dto, List<MediaMessageSpeakerDto> speakers,
-	    List<MediaMessageCategoryDto> categories, Map<String, Boolean> workersSelectedForFreeMessages) {
-
-	messageIdentifier = dto.getIdentifier();
-
-	mainPanel.setBorderWidth(0);
-
-	mainPanel.setWidget(0, 0, new HTML("<h2>" + dto.getTitle().toUpperCase() + "</h2><br/>"));
-	mainPanel.getFlexCellFormatter().setHorizontalAlignment(0, 0, HasHorizontalAlignment.ALIGN_CENTER);
-
-	mainPanel.setWidget(1, 0, addSpeakerPanel(dto.getSpeakerDto(), speakers));
-	mainPanel.getFlexCellFormatter().setHorizontalAlignment(1, 0, HasHorizontalAlignment.ALIGN_CENTER);
-
-	mainPanel.setWidget(2, 0, addCategoryPanel(dto.getCategoryDto(), categories));
-	mainPanel.getFlexCellFormatter().setHorizontalAlignment(2, 0, HasHorizontalAlignment.ALIGN_CENTER);
-
-	mainPanel.setWidget(3, 0, addDescriptionAndPhotoPanel(dto));
-	mainPanel.getFlexCellFormatter().setHorizontalAlignment(3, 0, HasHorizontalAlignment.ALIGN_CENTER);
-
-	mainPanel.setWidget(4, 0, addDownloadChargePanel(dto));
-	mainPanel.getFlexCellFormatter().setHorizontalAlignment(4, 0, HasHorizontalAlignment.ALIGN_CENTER);
-
-	mainPanel.setWidget(5, 0, addMediaUploadPanel(dto));
-	mainPanel.getFlexCellFormatter().setHorizontalAlignment(5, 0, HasHorizontalAlignment.ALIGN_CENTER);
-
-	mainPanel.setWidget(6, 0, addPublishStatusPanel(dto));
-	mainPanel.getFlexCellFormatter().setHorizontalAlignment(6, 0, HasHorizontalAlignment.ALIGN_CENTER);
-
-	mainPanel.setWidget(7, 0, addButtonPanel());
-	mainPanel.getFlexCellFormatter().setHorizontalAlignment(7, 0, HasHorizontalAlignment.ALIGN_CENTER);
-
     }
 
     @Override
@@ -146,19 +167,35 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 
     }
 
-    private RoundedCornerPanel addSpeakerPanel(MediaMessageSpeakerDto sdto, List<MediaMessageSpeakerDto> speakers) {
-	final FlexTable speakerPanel = new FlexTable();
-	if (sdto != null && sdto.getPictureURL() != null && !"".equals(sdto.getPictureURL())) {
-	    Image speakerImage = new Image(sdto.getPictureURL());
-	    speakerImage.setWidth("200px");
-	    speakerPanel.setWidget(2, 0, speakerImage);
+    @Override
+    public void initNewMessage(MediaMessageDto dto, List<MediaMessageSpeakerDto> speakers,
+	    List<MediaMessageCategoryDto> categories, Map<String, Boolean> workersSelectedForFreeMessages) {
+
+	messageIdentifier = dto.getIdentifier();
+	mediaUrl = dto.getMediaMessageUrl();
+	String mediaMessageUrl = dto.getMediaMessageUrl();
+	if (mediaMessageUrl != null && mediaMessageUrl.contains("mp3")) {
+	    goToPlay.setText("Play Audio");
+
+	} else if (mediaMessageUrl != null && mediaMessageUrl.contains("mp4")) {
+	    goToPlay.setText("Play Video");
+
+	} else {
+	    goToPlay.setText("No uploaded audio found");
 	}
-	speakerPanel.setHTML(0, 0,
-		"Please select all or choose the group of people you want to be notified of this new media");
-	speakerPanel.setWidget(1, 0, new HTML("<br/>"));
+
+	messageTitle.setHTML("<h2>" + dto.getTitle().toUpperCase() + "</h2><br/>");
+
+	descArea.setValue(dto.getDescription());
+	location.setValue(dto.getLocation());
+	if (null != dto.getDescriptionPictureURL() && !"".equals(dto.getDescriptionPictureURL())) {
+	    descImage.setUrl(dto.getDescriptionPictureURL());
+	}
+	messageDatePicker.setValue(dto.getMessageDate());
 
 	speakerSelect.clear();
 	speakerSelect.addItem("");
+	MediaMessageSpeakerDto sdto = dto.getSpeakerDto();
 	for (MediaMessageSpeakerDto speaker : speakers) {
 	    speakerImageURLs.put(speaker.getIdentifier(), speaker.getPictureURL());
 	    boolean toBeSelected = sdto != null && speaker.getIdentifier().equals(sdto.getIdentifier());
@@ -166,73 +203,15 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 	}
 	speakerSelect.addItem(ADD_NEW_SPEAKER);
 
-	speakerSelect.addChangeHandler(new ChangeHandler() {
-	    @Override
-	    public void onChange(ChangeEvent event) {
-		String select = speakerSelect.getValue();
-		if (ADD_NEW_SPEAKER.equals(select)) {
-		    if (speakerPanel.isCellPresent(2, 0)) {
-			speakerPanel.removeCell(2, 0);
-		    }
-
-		    VerticalPanel newSpeakerPanel = new VerticalPanel();
-		    newSpeakerPanel.add(newSpeakerFullnameItem);
-		    newSpeakerPanel.add(new HTML("Brief Description"));
-		    speakerDescArea.setHeight("100px");
-		    newSpeakerPanel.add(speakerDescArea);
-		    newSpeakerPanel.add(mediaFiles.getSpeakerUploadFile());
-		    Button uploadSpeakerPic = new Button("Upload Speaker Picture");
-		    uploadSpeakerPic.addClickHandler(new ClickHandler() {
-			@Override
-			public void onClick(ClickEvent event) {
-			    if (Window.confirm("Are you sure you want to upload a picture for the speaker?")) {
-				submit("speaker");
-			    }
-			}
-		    });
-		    newSpeakerPanel.add(new HTML("&nbsp;"));
-		    newSpeakerPanel.add(uploadSpeakerPic);
-		    speakerPanel.setWidget(4, 0, newSpeakerPanel);
-
-		} else {
-		    String url = speakerImageURLs.get(select);
-		    if (url != null && !url.equals("")) {
-			Image img = new Image(url);
-			img.setWidth("200px");
-			speakerPanel.setWidget(2, 0, img);
-		    }
-		    speakerPanel.removeCell(4, 0);
-		}
-	    }
-	});
-
-	speakerPanel.setWidget(3, 0, speakerSelect);
-	return new RoundedCornerPanel("Speaker", speakerPanel);
-    }
-
-    private RoundedCornerPanel addCategoryPanel(MediaMessageCategoryDto cdto,
-	    List<MediaMessageCategoryDto> categories) {
-
-	final VerticalPanel categoryPanel = new VerticalPanel();
-	categoryPanel.add(
-		new HTML("Please select all or choose the group of people you want to be notified of this new media"));
-	categoryPanel.add(new HTML("<br/>"));
+	if (sdto != null && sdto.getPictureURL() != null && !"".equals(sdto.getPictureURL())) {
+	    Image speakerImage = new Image(sdto.getPictureURL());
+	    speakerImage.setWidth("200px");
+	    speakerPanel.setWidget(2, 0, speakerImage);
+	}
 
 	categorySelect.clear();
-	categorySelect.addChangeHandler(new ChangeHandler() {
-	    @Override
-	    public void onChange(ChangeEvent event) {
-		String select = categorySelect.getValue();
-		if (ADD_NEW_CATEGORY.equals(select)) {
-		    categoryPanel.add(categoryName);
-		} else {
-		    categoryPanel.remove(categoryName);
-		}
-	    }
-	});
-	categoryPanel.add(categorySelect);
-
 	categorySelect.addItem("");
+	MediaMessageCategoryDto cdto = dto.getCategoryDto();
 	for (MediaMessageCategoryDto category : categories) {
 	    if (cdto != null) {
 		categorySelect.addItem(category.getName(), category.getIdentifier(),
@@ -243,14 +222,116 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 	}
 	categorySelect.addItem(ADD_NEW_CATEGORY);
 
+	chargePerMessageSelect.clear();
+	chargePerMessageSelect.addItem("");
+	chargePerMessageSelect.addItem("0 point per message", "0", dto.getSalePoints() == 0);
+	chargePerMessageSelect.addItem("1 points per message", "1", dto.getSalePoints() == 1);
+	chargePerMessageSelect.addItem("2 points per message", "2", dto.getSalePoints() == 2);
+	chargePerMessageSelect.addItem("3 points per message", "3", dto.getSalePoints() == 3);
+	chargePerMessageSelect.addItem("4 points per message", "4", dto.getSalePoints() == 4);
+	chargePerMessageSelect.addItem("5 points per message", "5", dto.getSalePoints() == 5);
+	chargePerMessageSelect.addItem("6 points per message", "6", dto.getSalePoints() == 6);
+	chargePerMessageSelect.addItem("7 points per message", "7", dto.getSalePoints() == 7);
+	chargePerMessageSelect.addItem("8 points per message", "8", dto.getSalePoints() == 8);
+	chargePerMessageSelect.addItem("9 points per message", "9", dto.getSalePoints() == 9);
+	chargePerMessageSelect.addItem("10 points per message", "10", dto.getSalePoints() == 10);
+
+	publishStatus.setValue(dto.getStatus().getDesc());
+	publishSelect.clear();
+	publishSelect.addItem("");
+	if (MediaMessageStatus.LOADED.equals(dto.getStatus())) {
+	    publishSelect.addItem(MediaMessageStatus.LOADED.getDesc(), MediaMessageStatus.LOADED.name(), true);
+	    publishSelect.addItem("Publish", MediaMessageStatus.PUBLISHED.name(), false);
+
+	} else if (MediaMessageStatus.PUBLISHED.equals(dto.getStatus())) {
+	    publishSelect.addItem(MediaMessageStatus.PUBLISHED.getDesc(), MediaMessageStatus.PUBLISHED.name(), true);
+	    publishSelect.addItem("Unpublish", MediaMessageStatus.UNPUBLISHED.name(), false);
+
+	} else if (MediaMessageStatus.UNPUBLISHED.equals(dto.getStatus())) {
+	    publishSelect.addItem("Unpublish", MediaMessageStatus.UNPUBLISHED.name(), true);
+	    publishSelect.addItem("Publish", MediaMessageStatus.PUBLISHED.name(), false);
+	} else {
+	    publishSelect.addItem(dto.getStatus().getDesc(), dto.getStatus().name(), true);
+	}
+    }
+
+    private RoundedCornerPanel addSpeakerPanel() {
+	{
+	    newSpeakerPanel.clear();
+	    newSpeakerPanel.add(newSpeakerFullnameItem);
+	    newSpeakerPanel.add(new HTML("Brief Description"));
+	    speakerDescArea.setHeight("100px");
+	    newSpeakerPanel.add(speakerDescArea);
+	    newSpeakerPanel.add(mediaFiles.getSpeakerUploadFile());
+	    Button uploadSpeakerPic = new Button("Upload Speaker Picture");
+	    uploadSpeakerPic.addClickHandler(new ClickHandler() {
+		@Override
+		public void onClick(ClickEvent event) {
+		    if (Window.confirm("Are you sure you want to upload a picture for the speaker?")) {
+			submit("speaker");
+		    }
+		}
+	    });
+	    newSpeakerPanel.add(new HTML("&nbsp;"));
+	    newSpeakerPanel.add(uploadSpeakerPic);
+	}
+
+	speakerPanel.setHTML(0, 0,
+		"Please select all or choose the group of people you want to be notified of this new media");
+	speakerPanel.setWidget(1, 0, new HTML("<br/>"));
+	{
+	    speakerSelect.addChangeHandler(new ChangeHandler() {
+		@Override
+		public void onChange(ChangeEvent event) {
+		    String select = speakerSelect.getValue();
+		    if (ADD_NEW_SPEAKER.equals(select)) {
+			Window.alert("1");
+			if (speakerPanel.isCellPresent(2, 0)) {
+			    Window.alert("2");
+			    speakerPanel.removeCell(2, 0);
+			    Window.alert("3");
+			}
+			speakerPanel.setWidget(4, 0, newSpeakerPanel);
+		    } else {
+			String url = speakerImageURLs.get(select);
+			if (url != null && !url.equals("")) {
+			    Image img = new Image(url);
+			    img.setWidth("200px");
+			    speakerPanel.setWidget(2, 0, img);
+			}
+			speakerPanel.removeCell(4, 0);
+		    }
+		}
+	    });
+	}
+	speakerPanel.setWidget(3, 0, speakerSelect);
+	return new RoundedCornerPanel("Speaker", speakerPanel);
+    }
+
+    private RoundedCornerPanel addCategoryPanel() {
+
+	final VerticalPanel categoryPanel = new VerticalPanel();
+	categoryPanel.add(
+		new HTML("Please select all or choose the group of people you want to be notified of this new media"));
+	categoryPanel.add(new HTML("<br/>"));
+	{
+	    categorySelect.addChangeHandler(new ChangeHandler() {
+		@Override
+		public void onChange(ChangeEvent event) {
+		    String select = categorySelect.getValue();
+		    if (ADD_NEW_CATEGORY.equals(select)) {
+			categoryPanel.add(categoryName);
+		    } else {
+			categoryPanel.remove(categoryName);
+		    }
+		}
+	    });
+	}
+	categoryPanel.add(categorySelect);
 	return new RoundedCornerPanel("Category", categoryPanel);
     }
 
-    private RoundedCornerPanel addDescriptionAndPhotoPanel(MediaMessageDto dto) {
-	descArea.setText("");
-	descArea.setValue(dto.getDescription());
-	location.setValue(dto.getLocation());
-
+    private RoundedCornerPanel addDescriptionAndPhotoPanel() {
 	final VerticalPanel newDescAndPhotoPanel = new VerticalPanel();
 	newDescAndPhotoPanel.add(
 		new HTML("Please select all or choose the group of people you want to be notified of this new media"));
@@ -265,17 +346,11 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 
 	newDescAndPhotoPanel.add(new HTML("<br/>"));
 	newDescAndPhotoPanel.add(new HTML("Date and Time"));
-	messageDatePicker.setValue(dto.getMessageDate());
 	messageDatePicker.setYearArrowsVisible(true);
 	newDescAndPhotoPanel.add(messageDatePicker);
 
 	newDescAndPhotoPanel.add(new HTML("<br/>"));
-	if (null != dto.getDescriptionPictureURL() && !"".equals(dto.getDescriptionPictureURL())) {
-	    Image descImage = new Image();
-	    descImage.setWidth("200px");
-	    descImage.setUrl(dto.getDescriptionPictureURL());
-	    newDescAndPhotoPanel.add(descImage);
-	}
+	newDescAndPhotoPanel.add(descImage);
 	newDescAndPhotoPanel.add(mediaFiles.getDescriptionUploadFile());
 	Button uploadDescPic = new Button("Upload Description Picture");
 	uploadDescPic.addClickHandler(new ClickHandler() {
@@ -294,50 +369,17 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 	return new RoundedCornerPanel("Message Details", newDescAndPhotoPanel);
     }
 
-    private RoundedCornerPanel addDownloadChargePanel(MediaMessageDto dto) {
-	chargePerMessageSelect.clear();
-	chargePerMessageSelect.addItem("");
-	chargePerMessageSelect.addItem("0 point per message", "0", dto.getSalePoints() == 0);
-	chargePerMessageSelect.addItem("1 points per message", "1", dto.getSalePoints() == 1);
-	chargePerMessageSelect.addItem("2 points per message", "2", dto.getSalePoints() == 2);
-	chargePerMessageSelect.addItem("3 points per message", "3", dto.getSalePoints() == 3);
-	chargePerMessageSelect.addItem("4 points per message", "4", dto.getSalePoints() == 4);
-	chargePerMessageSelect.addItem("5 points per message", "5", dto.getSalePoints() == 5);
-	chargePerMessageSelect.addItem("6 points per message", "6", dto.getSalePoints() == 6);
-	chargePerMessageSelect.addItem("7 points per message", "7", dto.getSalePoints() == 7);
-	chargePerMessageSelect.addItem("8 points per message", "8", dto.getSalePoints() == 8);
-	chargePerMessageSelect.addItem("9 points per message", "9", dto.getSalePoints() == 9);
-	chargePerMessageSelect.addItem("10 points per message", "10", dto.getSalePoints() == 10);
-
+    private RoundedCornerPanel addDownloadChargePanel() {
 	VerticalPanel chargePanel = new VerticalPanel();
 	chargePanel.add(
 		new HTML("Please select all or choose the group of people you want to be notified of this new media"));
 	chargePanel.add(new HTML("<br/>"));
+
 	chargePanel.add(chargePerMessageSelect);
 	return new RoundedCornerPanel("Sales Charge Per Message", chargePanel);
     }
 
-    private RoundedCornerPanel addPublishStatusPanel(MediaMessageDto dto) {
-	TextItem publishStatus = new TextItem("Publish Status", false);
-	publishStatus.disable();
-	publishStatus.setValue(dto.getStatus().getDesc());
-	publishSelect.clear();
-	publishSelect.addItem("");
-	if (MediaMessageStatus.LOADED.equals(dto.getStatus())) {
-	    publishSelect.addItem(MediaMessageStatus.LOADED.getDesc(), MediaMessageStatus.LOADED.name(), true);
-	    publishSelect.addItem("Publish", MediaMessageStatus.PUBLISHED.name(), false);
-
-	} else if (MediaMessageStatus.PUBLISHED.equals(dto.getStatus())) {
-	    publishSelect.addItem(MediaMessageStatus.PUBLISHED.getDesc(), MediaMessageStatus.PUBLISHED.name(), true);
-	    publishSelect.addItem("Unpublish", MediaMessageStatus.UNPUBLISHED.name(), false);
-
-	} else if (MediaMessageStatus.UNPUBLISHED.equals(dto.getStatus())) {
-	    publishSelect.addItem("Unpublish", MediaMessageStatus.UNPUBLISHED.name(), true);
-	    publishSelect.addItem("Publish", MediaMessageStatus.PUBLISHED.name(), false);
-	} else {
-	    publishSelect.addItem(dto.getStatus().getDesc(), dto.getStatus().name(), true);
-	}
-
+    private RoundedCornerPanel addPublishStatusPanel() {
 	VerticalPanel publishSelectPanel = new VerticalPanel();
 	publishSelectPanel.add(new HTML(
 		"This enables you to publish and unpublish the media.<br/> When you publish, you make the media publically available"));
@@ -348,29 +390,7 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 	return new RoundedCornerPanel("Publish or Unpublish", publishSelectPanel);
     }
 
-    private RoundedCornerPanel addMediaUploadPanel(final MediaMessageDto dto) {
-	Anchor goToPlay = new Anchor("Go to play");
-	String mediaMessageUrl = dto.getMediaMessageUrl();
-	if (mediaMessageUrl != null && mediaMessageUrl.contains("mp3")) {
-	    goToPlay.setText("Play Audio");
-
-	} else if (mediaMessageUrl != null && mediaMessageUrl.contains("mp4")) {
-	    goToPlay.setText("Play Video");
-
-	} else {
-	    goToPlay.setText("No uploaded audio found");
-	}
-
-	goToPlay.addClickHandler(new ClickHandler() {
-	    @Override
-	    public void onClick(ClickEvent event) {
-		if (dto.getMediaMessageUrl() != null) {
-		    presenter.gotoPlayMedia(messageIdentifier);
-		} else {
-		    Window.alert("No uploaded media found");
-		}
-	    }
-	});
+    private RoundedCornerPanel addMediaUploadPanel() {
 	VerticalPanel mediaPanel = new VerticalPanel();
 	mediaPanel.add(new HTML("<br/>"));
 	mediaPanel.add(goToPlay);
