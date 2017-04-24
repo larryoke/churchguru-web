@@ -166,7 +166,7 @@ public class AboutUsViewImpl extends DetailViewGwtImpl implements AboutUsView {
     }
 
     private void addChurchPicture(FlowPanel container) {
-	Image givePic = new Image("/uploadedphotos/photos/org/aboutus?width=" + Window.getClientWidth());
+	Image givePic = new Image("/uploadedphotos/photos/org/aboutus");
 	givePic.setWidth("100%");
 	// givePic.setHeight("100px");
 	container.add(givePic);
@@ -182,7 +182,7 @@ public class AboutUsViewImpl extends DetailViewGwtImpl implements AboutUsView {
     }
 
     private void addAboutPastorPicture(FlowPanel container) {
-	Image pic = new Image("/uploadedphotos/photos/org/aboutpastor?width=" + Window.getClientWidth());
+	Image pic = new Image("/uploadedphotos/photos/org/aboutpastor");
 	pic.setWidth("100%");
 	container.add(pic);
 	container.add(new HTML("&nbsp;"));

@@ -129,6 +129,17 @@ textarea.gwt-TextArea{
 	width:100%;
 }
 
+.mgwt-WidgetList-Entry{
+	background-color:white;
+	border: 1px solid #abadb0;
+	border-bottom:none;
+}
+
+.centeredWidget{
+	margin:0 auto;
+	width:90%
+}
+
 
 .dottedBorder{
 	border-width:1px;

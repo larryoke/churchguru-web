@@ -142,18 +142,6 @@ public class UploadServiceController {
 
     }
 
-    // @RequestMapping(value = "/org/home", method = RequestMethod.GET)
-    // public void getChurchAppHomeProfileLogo(HttpServletRequest request,
-    // HttpServletResponse response) throws Exception {
-    //
-    // int size = 250;
-    //
-    // LogoItem galleryItem = photoDao
-    // .getPhoto(LogoItemType.CHURCH_APP_PROFILE_PIC);
-    //
-    // getImage(response, size, galleryItem);
-    // }
-
     @RequestMapping(value = "/org/home", method = RequestMethod.GET)
     public void getChurchAppHomeProfileLogo(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
@@ -245,57 +233,25 @@ public class UploadServiceController {
 	response.getOutputStream().write(baos.toByteArray());
     }
 
-    // private void getImage(HttpServletResponse response, int width,
-    // LogoItem galleryItem) throws IOException {
-    // if (galleryItem != null && galleryItem.getBase64Data() != null
-    // && !galleryItem.getBase64Data().equals("")) {
-    // byte[] bytes = Base64Utils.fromBase64(galleryItem.getBase64Data());
-    //
-    // BufferedImage scaledImage = Scalr.resize(
-    // ImageIO.read(new ByteArrayInputStream(bytes)),
-    // Scalr.Method.ULTRA_QUALITY, Scalr.Mode.FIT_TO_WIDTH, width,
-    // Scalr.OP_ANTIALIAS);
-    //
-    // int defaultWidth = 300;
-    //
-    // if (width > defaultWidth) {
-    //
-    // int height = scaledImage.getHeight();
-    //
-    // BufferedImage scaledImage2 = Scalr.resize(
-    // ImageIO.read(new ByteArrayInputStream(bytes)),
-    // Scalr.Method.BALANCED, Scalr.Mode.FIT_EXACT, width,
-    // height, Scalr.OP_GRAYSCALE);
-    //
-    // scaledImage = new BufferedImage(width, height,
-    // BufferedImage.OPAQUE);
-    //
-    // int xposition = getXPosition(defaultWidth, width);
-    //
-    // Graphics graphic = scaledImage.getGraphics();
-    // graphic.drawImage(scaledImage2, 0, 0, null);
-    // graphic.drawImage(scaledImage, xposition, 0, null);
-    // }
-    //
-    // ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    //
-    // if (galleryItem.getContentType().contains("png")) {
-    // ImageIO.write(scaledImage, "png", baos);
-    // } else {
-    // ImageIO.write(scaledImage, "jpg", baos);
-    // }
-    //
-    // response.setBufferSize(10240);
-    // response.setContentType(galleryItem.getContentType());
-    // response.setContentLength(baos.toByteArray().length);
-    // response.setHeader("Content-Length",
-    // String.valueOf(baos.toByteArray().length));
-    // response.setHeader("Content-Disposition", "inline; filename=\""
-    // + galleryItem.getFilename() + "\"");
-    // response.getOutputStream().write(baos.toByteArray());
-    //
-    // }
-    // }
+    private void getImage(HttpServletResponse response, LogoItem galleryItem) throws IOException {
+	byte[] bytes = Base64Utils.fromBase64(galleryItem.getBase64Data());
+	BufferedImage img = ImageIO.read(new ByteArrayInputStream(bytes));
+
+	ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+	if (galleryItem.getContentType().contains("png")) {
+	    ImageIO.write(img, "png", baos);
+	} else {
+	    ImageIO.write(img, "jpg", baos);
+	}
+
+	response.setBufferSize(10240);
+	response.setContentType(galleryItem.getContentType());
+	response.setContentLength(baos.toByteArray().length);
+	response.setHeader("Content-Length", String.valueOf(baos.toByteArray().length));
+	response.setHeader("Content-Disposition", "inline; filename=\"" + galleryItem.getFilename() + "\"");
+	response.getOutputStream().write(baos.toByteArray());
+    }
 
     @RequestMapping(value = "/org/pastordesk", method = RequestMethod.GET)
     public void getPastorDeskPhoto(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -304,7 +260,7 @@ public class UploadServiceController {
 
 	LogoItem galleryItem = photoDao.getPhoto(LogoItemType.PASTORS_DESK_PHOTO);
 
-	getImage(response, galleryItem, width);
+	getImage(response, galleryItem);
     }
 
     @RequestMapping(value = "/org/aboutpastor", method = RequestMethod.GET)
@@ -314,7 +270,7 @@ public class UploadServiceController {
 
 	LogoItem galleryItem = photoDao.getPhoto(LogoItemType.ABOUT_PASTOR_PHOTO);
 
-	getImage(response, galleryItem, width);
+	getImage(response, galleryItem);
     }
 
     @RequestMapping(value = "/org/prayerrequest", method = RequestMethod.GET)
@@ -324,7 +280,7 @@ public class UploadServiceController {
 
 	LogoItem galleryItem = photoDao.getPhoto(LogoItemType.PRAYER_REQUEST);
 
-	getImage(response, galleryItem, width);
+	getImage(response, galleryItem);
     }
 
     @RequestMapping(value = "/org/twitter", method = RequestMethod.GET)
@@ -334,7 +290,7 @@ public class UploadServiceController {
 
 	LogoItem galleryItem = photoDao.getPhoto(LogoItemType.TWITTER_PHOTO);
 
-	getImage(response, galleryItem, width);
+	getImage(response, galleryItem);
     }
 
     @RequestMapping(value = "/org/facebook", method = RequestMethod.GET)
@@ -344,7 +300,7 @@ public class UploadServiceController {
 
 	LogoItem galleryItem = photoDao.getPhoto(LogoItemType.FACEBOOK_PHOTO);
 
-	getImage(response, galleryItem, width);
+	getImage(response, galleryItem);
     }
 
     @RequestMapping(value = "/org/messages", method = RequestMethod.GET)
@@ -354,7 +310,7 @@ public class UploadServiceController {
 
 	LogoItem galleryItem = photoDao.getPhoto(LogoItemType.MESSAGES_PHOTO);
 
-	getImage(response, galleryItem, width);
+	getImage(response, galleryItem);
     }
 
     @RequestMapping(value = "/org/listen", method = RequestMethod.GET)
@@ -364,7 +320,7 @@ public class UploadServiceController {
 
 	LogoItem galleryItem = photoDao.getPhoto(LogoItemType.LISTEN);
 
-	getImage(response, galleryItem, width);
+	getImage(response, galleryItem);
     }
 
     @RequestMapping(value = "/org/youtube", method = RequestMethod.GET)
@@ -374,7 +330,7 @@ public class UploadServiceController {
 
 	LogoItem galleryItem = photoDao.getPhoto(LogoItemType.YOUTUBE);
 
-	getImage(response, galleryItem, width);
+	getImage(response, galleryItem);
     }
 
     @RequestMapping(value = "/org/aboutus", method = RequestMethod.GET)
@@ -384,7 +340,7 @@ public class UploadServiceController {
 
 	LogoItem galleryItem = photoDao.getPhoto(LogoItemType.ABOUT_US_PHOTO);
 
-	getImage(response, galleryItem, width);
+	getImage(response, galleryItem);
     }
 
     @RequestMapping(value = "/org/give", method = RequestMethod.GET)
@@ -394,7 +350,7 @@ public class UploadServiceController {
 
 	LogoItem galleryItem = photoDao.getPhoto(LogoItemType.GIVE_PHOTO);
 
-	getImage(response, galleryItem, width);
+	getImage(response, galleryItem);
     }
 
     @RequestMapping(value = "/org/website", method = RequestMethod.GET)
@@ -404,7 +360,7 @@ public class UploadServiceController {
 
 	LogoItem galleryItem = photoDao.getPhoto(LogoItemType.WEBSITE);
 
-	getImage(response, galleryItem, width);
+	getImage(response, galleryItem);
     }
 
     @RequestMapping(value = "/org/name", method = RequestMethod.GET)
@@ -424,34 +380,6 @@ public class UploadServiceController {
     private int getXPosition(int innerWidth, int outerWidth) {
 	return (outerWidth - innerWidth) / 2;
     }
-
-    // private void getImage(HttpServletResponse response, int size,
-    // LogoItem galleryItem) throws IOException {
-    // if (galleryItem != null && galleryItem.getBase64Data() != null
-    // && !galleryItem.getBase64Data().equals("")) {
-    // byte[] bytes = Base64Utils.fromBase64(galleryItem.getBase64Data());
-    // BufferedImage scaledImage = Scalr.resize(
-    // ImageIO.read(new ByteArrayInputStream(bytes)),
-    // Mode.AUTOMATIC, size);
-    // ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    //
-    // if (galleryItem.getContentType().contains("png")) {
-    // ImageIO.write(scaledImage, "png", baos);
-    // } else {
-    // ImageIO.write(scaledImage, "jpg", baos);
-    // }
-    //
-    // response.setBufferSize(10240);
-    // response.setContentType(galleryItem.getContentType());
-    // response.setContentLength(baos.toByteArray().length);
-    // response.setHeader("Content-Length",
-    // String.valueOf(baos.toByteArray().length));
-    // response.setHeader("Content-Disposition", "inline; filename=\""
-    // + galleryItem.getFilename() + "\"");
-    // response.getOutputStream().write(baos.toByteArray());
-    //
-    // }
-    // }
 
     private static final Map<RenderingHints.Key, Object> RenderingProperties = new HashMap<RenderingHints.Key, Object>();
     static {

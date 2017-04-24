@@ -40,42 +40,50 @@ public class MessageViewImpl extends DetailViewGwtImpl implements MessageView {
 		formContainer.clear();
 
 		// Media
-		String mediaUrl = dto.getMediaUrl();
-		HTML player = getPlayer(mediaUrl);
+		// player.setStylePrimaryName("centeredWidget");
 		WidgetList widget = new WidgetList();
 		widget.setHeader(new HeaderLabel("Media"));
-		widget.add(player);
 		formContainer.add(widget);
+		String mediaUrl = dto.getMediaUrl();
+		HTML player = getPlayer(mediaUrl);
+		formContainer.add(player);
 
 		// About message
 		widget = new WidgetList();
 		widget.setHeader(new HeaderLabel("About this message"));
+		formContainer.add(widget);
+
 		if (dto.getDescUrl() != null) {
 		    Image mediaPic = new Image(dto.getDescUrl());
-		    mediaPic.setWidth("90%");
-		    widget.add(mediaPic);
+		    mediaPic.setWidth("100%");
+		    formContainer.add(mediaPic);
 		}
 
 		if (dto.getDesc() != null) {
+		    widget = new WidgetList();
 		    widget.add(new HTML(dto.getDesc()));
+		    formContainer.add(widget);
 		}
-		formContainer.add(widget);
 
 		// Speaker
 		widget = new WidgetList();
 		widget.setHeader(new HeaderLabel("Speaker"));
+		formContainer.add(widget);
 		if (dto.getSpeakerPictureUrl() != null) {
 		    Image image = new Image(dto.getSpeakerPictureUrl());
-		    image.setWidth("90%");
-		    widget.add(image);
+		    image.setWidth("100%");
+		    formContainer.add(image);
 		}
 		if (dto.getSpeakerFullname() != null) {
+		    widget = new WidgetList();
 		    widget.add(new HTML(dto.getSpeakerFullname()));
+		    formContainer.add(widget);
 		}
 		if (dto.getSpeakerDesc() != null) {
+		    widget = new WidgetList();
 		    widget.add(new HTML(dto.getSpeakerDesc()));
+		    formContainer.add(widget);
 		}
-		formContainer.add(widget);
 	    }
 	});
 

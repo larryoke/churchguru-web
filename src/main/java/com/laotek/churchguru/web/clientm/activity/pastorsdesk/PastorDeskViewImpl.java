@@ -1,7 +1,6 @@
 package com.laotek.churchguru.web.clientm.activity.pastorsdesk;
 
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Image;
@@ -36,7 +35,7 @@ public class PastorDeskViewImpl extends DetailViewGwtImpl implements PastorDeskV
 	WidgetList widget = new WidgetList();
 	HTML html = new HTML(message);
 	html.setStylePrimaryName("normalLabel");
-	Image pastorsDeskPic = new Image("/uploadedphotos/photos/org/pastordesk?width=" + Window.getClientWidth());
+	Image pastorsDeskPic = new Image("/uploadedphotos/photos/org/pastordesk");
 	pastorsDeskPic.setWidth("100%");
 	// pastorsDeskPic.setHeight("200px");
 	formContainer.add(pastorsDeskPic);

@@ -153,7 +153,6 @@ public class MediaMessageNewViewImpl extends BaseViewImpl implements MediaMessag
 	    speakerImage.setWidth("200px");
 	    speakerPanel.setWidget(2, 0, speakerImage);
 	}
-	Window.alert("Testing");
 
 	speakerPanel.setHTML(0, 0, "Please select speaker or enter details of new speaker");
 	speakerPanel.setWidget(1, 0, new HTML("<br/>"));
