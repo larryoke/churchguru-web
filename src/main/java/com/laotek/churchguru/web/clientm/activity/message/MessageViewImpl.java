@@ -118,14 +118,14 @@ public class MessageViewImpl extends DetailViewGwtImpl implements MessageView {
     private HTML getPlayer(String mediaUrl) {
 	StringBuffer sb = new StringBuffer();
 	if (mediaUrl.contains("mp3")) {
-	    sb.append("<audio controls>");
+	    sb.append("<audio width=\"100%\" controls>");
 	    sb.append("<source src=\"");
 	    sb.append(mediaUrl);
 	    sb.append("\" type=\"audio/mpeg\">");
 	    sb.append("Your browser does not support the audio element.");
 	    sb.append("</audio>");
 	} else if (mediaUrl.contains("mp4")) {
-	    sb.append("<video width=\"400\" controls>");
+	    sb.append("<video width=\"100%\" controls>");
 	    sb.append("<source src=\"");
 	    sb.append(mediaUrl);
 	    sb.append("\" type=\"video/mp4\">");
