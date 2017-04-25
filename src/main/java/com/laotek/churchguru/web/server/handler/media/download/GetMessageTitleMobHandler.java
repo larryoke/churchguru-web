@@ -35,6 +35,22 @@ public class GetMessageTitleMobHandler extends AbstractCommandHandler
 	    MessageTitleMobDto dto = new MessageTitleMobDto();
 	    dto.setIdentifier(message.getIdentifier());
 	    dto.setName(message.getTitle());
+	    String mediaUrl = message.getMediaMessageUrl();
+	    if (mediaUrl != null && mediaUrl.contains("mp3")) {
+		dto.setMediaType("Audio");
+
+	    } else if (mediaUrl != null && mediaUrl.contains("mp4")) {
+		dto.setMediaType("Video");
+	    }
+
+	    String descUrl = message.getDescPictureUrl();
+	    if (descUrl != null) {
+		dto.setDescPicUrl(descUrl);
+	    } else {
+		dto.setDescPicUrl("/uploadedphotos/photos/org/logo");
+	    }
+
+	    dto.setDescPicUrl(descUrl);
 	    dtos.add(dto);
 	}
 	return new GetMessageTitlesMobResult(category.getCategoryName(), dtos);

@@ -27,6 +27,8 @@ src/main/webapp/.DS_Store
 src/main/webapp/WEB-INF/
 src/main/webapp/comm/comm.nocache.js
 
+src/main/webapp/mobi/manifest.map
+src/main/webapp/mobi/mobi.nocache.js
 
 **/gwt-unitCache
 **/resources/static/comm/

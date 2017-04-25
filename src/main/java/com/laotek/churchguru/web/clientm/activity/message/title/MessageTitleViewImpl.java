@@ -7,10 +7,10 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.googlecode.mgwt.ui.client.MGWT;
-import com.googlecode.mgwt.ui.client.widget.list.celllist.BasicCell;
 import com.googlecode.mgwt.ui.client.widget.list.celllist.CellList;
 import com.googlecode.mgwt.ui.client.widget.list.celllist.HasCellSelectedHandler;
 import com.laotek.churchguru.web.clientm.activity.DetailViewGwtImpl;
+import com.laotek.churchguru.web.clientm.activity.message.category.MessageCell;
 
 public class MessageTitleViewImpl extends DetailViewGwtImpl implements MessageTitleView {
     private FlowPanel container = new FlowPanel();
@@ -18,7 +18,7 @@ public class MessageTitleViewImpl extends DetailViewGwtImpl implements MessageTi
     private CellList<MessageTitleMobDto> cellList;
 
     public MessageTitleViewImpl() {
-	BasicCell<MessageTitleMobDto> cell = new BasicCell<MessageTitleMobDto>() {
+	MessageCell<MessageTitleMobDto> cell = new MessageCell<MessageTitleMobDto>() {
 	    @Override
 	    public String getDisplayString(MessageTitleMobDto model) {
 		return model.getName();
@@ -27,6 +27,16 @@ public class MessageTitleViewImpl extends DetailViewGwtImpl implements MessageTi
 	    @Override
 	    public boolean canBeSelected(MessageTitleMobDto model) {
 		return true;
+	    }
+
+	    @Override
+	    public String getDescPicUrl(MessageTitleMobDto model) {
+		return model.getDescPicUrl();
+	    }
+
+	    @Override
+	    public String getMediaType(MessageTitleMobDto model) {
+		return model.getMediaType();
 	    }
 	};
 	cellList = new CellList<MessageTitleMobDto>(cell);
