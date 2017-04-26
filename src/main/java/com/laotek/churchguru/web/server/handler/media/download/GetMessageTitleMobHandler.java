@@ -49,8 +49,6 @@ public class GetMessageTitleMobHandler extends AbstractCommandHandler
 	    } else {
 		dto.setDescPicUrl("/uploadedphotos/photos/org/logo");
 	    }
-
-	    dto.setDescPicUrl(descUrl);
 	    dtos.add(dto);
 	}
 	return new GetMessageTitlesMobResult(category.getCategoryName(), dtos);

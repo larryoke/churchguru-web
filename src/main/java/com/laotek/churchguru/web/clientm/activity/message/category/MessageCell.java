@@ -19,10 +19,10 @@ public abstract class MessageCell<T> extends BasicCell<T> {
 	sb.append("<td align=left  width=30></td>");
 	sb.append("<td align=left  width=100%>");
 
-	sb.append("<div>");
+	sb.append("<div class=\"headerLabel\">");
 	sb.append("<b>" + displayString + "</b>");
 	sb.append("</div>");
-	sb.append("<div>");
+	sb.append("<div class=\"headerLabel\">");
 	sb.append("<small><i>" + mediaType + "</i></small>");
 	sb.append("</div>");
 
