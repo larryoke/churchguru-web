@@ -46,6 +46,10 @@ public class GetMessageTitleMobHandler extends AbstractCommandHandler
 	    String descUrl = message.getDescPictureUrl();
 	    if (descUrl != null) {
 		dto.setDescPicUrl(descUrl);
+
+	    } else if (message.geteStoreSpeaker().getPictureUrl() != null) {
+		dto.setDescPicUrl(message.geteStoreSpeaker().getPictureUrl());
+
 	    } else {
 		dto.setDescPicUrl("/uploadedphotos/photos/org/logo");
 	    }
