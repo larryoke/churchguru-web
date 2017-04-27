@@ -27,13 +27,14 @@ public class GetMessageCategoriesMobHandler extends AbstractCommandHandler
     @Override
     public GetMessageCategoriesMobResult execute(GetMessageCategoriesMobAction action, ExecutionContext context)
 	    throws DispatchException {
-	List<MediaMessageCategory> categories = mediaMessageDao.getCategories();
+	List<MediaMessageCategory> categories = mediaMessageDao.getPublishedCategories();
 	List<MessageCategoryMobDto> categoryDtos = new ArrayList<MessageCategoryMobDto>();
 
 	for (MediaMessageCategory cat : categories) {
 	    MessageCategoryMobDto dto = new MessageCategoryMobDto();
 	    dto.setIdentifier(cat.getIdentifier());
 	    dto.setName(cat.getCategoryName());
+	    dto.setCount(cat.getMessages().size());
 	    categoryDtos.add(dto);
 	}
 	return new GetMessageCategoriesMobResult(categoryDtos);

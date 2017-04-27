@@ -1,92 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?><permutations>
-<permutation name="3889D0ED281A582ECBF4875B2D489752">
+<permutation name="20CBEA6682A3DF1B14D788546AF4FA89">
 <mgwt.formfactor>tablet</mgwt.formfactor>
-<mgwt.density>mid</mgwt.density>
+<mgwt.density>xhigh</mgwt.density>
 <mgwt.os>ios</mgwt.os>
 </permutation>
-<permutation name="0128FA95A1355F53EE5AA2443C1113BB">
+<permutation name="A3B26E3077D7B8EA2B4F7D56287CD9D9">
 <mgwt.os>android</mgwt.os>
 <mgwt.formfactor>tablet</mgwt.formfactor>
-<mgwt.density>mid</mgwt.density>
+<mgwt.density>high</mgwt.density>
 </permutation>
-<permutation name="16B8EF4396FCCE00FD72E1E08FD6235B">
+<permutation name="FE189E46F175AD9AF60A72EFA6C07128">
 <mgwt.formfactor>desktop</mgwt.formfactor>
 <mgwt.density>high</mgwt.density>
 <mgwt.os>ios</mgwt.os>
 </permutation>
-<permutation name="2A7C0B5DDFF6EC92C9F25DA418D3074A">
-<mgwt.os>android</mgwt.os>
-<mgwt.formfactor>phone</mgwt.formfactor>
-<mgwt.density>xhigh</mgwt.density>
-</permutation>
-<permutation name="C5E80657C0F287DC4B29EA57AED51E78">
-<mgwt.formfactor>tablet</mgwt.formfactor>
-<mgwt.density>xhigh</mgwt.density>
-<mgwt.os>ios</mgwt.os>
-</permutation>
-<permutation name="F6D88265C49408658FD7BC06060B1C25">
-<mgwt.formfactor>phone</mgwt.formfactor>
-<mgwt.density>xhigh</mgwt.density>
-<mgwt.os>ios</mgwt.os>
-</permutation>
-<permutation name="37EF4CBDE8078137306E750258FBFCE4">
-<mgwt.formfactor>phone</mgwt.formfactor>
-<mgwt.density>high</mgwt.density>
-<mgwt.os>ios</mgwt.os>
-</permutation>
-<permutation name="BDF392E10353ADC77DDC8854031C3769">
+<permutation name="44091751D9DABD7877DFB96FD4F410E1">
 <mgwt.os>android</mgwt.os>
 <mgwt.formfactor>tablet</mgwt.formfactor>
 <mgwt.density>xhigh</mgwt.density>
 </permutation>
-<permutation name="D299F6CEFD3A98CDDAA273DD906CB757">
+<permutation name="B8847B0763BFF5B50F71B4F165ECCB12">
+<mgwt.density>mid</mgwt.density>
+<mgwt.formfactor>phone</mgwt.formfactor>
+<mgwt.os>ios</mgwt.os>
+</permutation>
+<permutation name="269F5B8008CB87B5FBCAACE51A0DD556">
 <mgwt.formfactor>desktop</mgwt.formfactor>
 <mgwt.density>xhigh</mgwt.density>
 <mgwt.os>ios</mgwt.os>
 </permutation>
-<permutation name="5BEE408F3879E2FB39063FA031DC3907">
+<permutation name="30DEBBD620E123025301EF7520ADD618">
+<mgwt.os>android</mgwt.os>
+<mgwt.formfactor>phone</mgwt.formfactor>
+<mgwt.density>xhigh</mgwt.density>
+</permutation>
+<permutation name="EE9E3C26B6056732D727E2BF7D5F50A3">
+<mgwt.os>android</mgwt.os>
+<mgwt.density>mid</mgwt.density>
+<mgwt.formfactor>phone</mgwt.formfactor>
+</permutation>
+<permutation name="54E040FA4991EDA2323D325BF7E5B2E3">
+<mgwt.os>android</mgwt.os>
 <mgwt.formfactor>tablet</mgwt.formfactor>
-<mgwt.density>high</mgwt.density>
-<mgwt.os>ios</mgwt.os>
-</permutation>
-<permutation name="00DE78BD1F112E071D1AB33D8CDEFF9E">
-<mgwt.os>android</mgwt.os>
-<mgwt.density>mid</mgwt.density>
-<mgwt.formfactor>phone</mgwt.formfactor>
-</permutation>
-<permutation name="6E9E66C4750DE7A3A1B266BC67568882">
-<mgwt.formfactor>desktop</mgwt.formfactor>
-<mgwt.density>mid</mgwt.density>
-<mgwt.os>ios</mgwt.os>
-</permutation>
-<permutation name="F7D0B999FDC78F56060057CD15AC92E0">
-<mgwt.os>android</mgwt.os>
-<mgwt.formfactor>phone</mgwt.formfactor>
-<mgwt.density>high</mgwt.density>
-</permutation>
-<permutation name="14DF72F32ADF321496437FFC02A8AB13">
-<mgwt.formfactor>desktop</mgwt.formfactor>
-<mgwt.os>android</mgwt.os>
-<mgwt.density>high</mgwt.density>
-</permutation>
-<permutation name="0406E3BD6E5AD8FFE61C7EB28CF9AC3A">
-<mgwt.formfactor>desktop</mgwt.formfactor>
-<mgwt.os>android</mgwt.os>
 <mgwt.density>mid</mgwt.density>
 </permutation>
-<permutation name="56451FA44445217448949E803D3EDBAA">
-<mgwt.density>mid</mgwt.density>
-<mgwt.formfactor>phone</mgwt.formfactor>
-<mgwt.os>ios</mgwt.os>
-</permutation>
-<permutation name="22FB538682F24F53ED1D933B76422621">
+<permutation name="95510B61CE75682EBBCD88A20043E283">
 <mgwt.formfactor>desktop</mgwt.formfactor>
 <mgwt.os>android</mgwt.os>
 <mgwt.density>xhigh</mgwt.density>
 </permutation>
-<permutation name="B9F8545835A68F393A875BE107F73705">
+<permutation name="F5FD0946282F9E8EE956BAE854B2AB9C">
+<mgwt.formfactor>desktop</mgwt.formfactor>
 <mgwt.os>android</mgwt.os>
+<mgwt.density>mid</mgwt.density>
+</permutation>
+<permutation name="1129258F079BA5221CAA129898EA01C8">
+<mgwt.formfactor>phone</mgwt.formfactor>
+<mgwt.density>xhigh</mgwt.density>
+<mgwt.os>ios</mgwt.os>
+</permutation>
+<permutation name="C143334A3CC8A8BF37E6BA35E686F4DA">
+<mgwt.formfactor>desktop</mgwt.formfactor>
+<mgwt.os>android</mgwt.os>
+<mgwt.density>high</mgwt.density>
+</permutation>
+<permutation name="3B2B9B994E3F053CF69FDCD3835824FC">
+<mgwt.formfactor>phone</mgwt.formfactor>
+<mgwt.density>high</mgwt.density>
+<mgwt.os>ios</mgwt.os>
+</permutation>
+<permutation name="32C60A08C1E537DF430F6F613F247848">
+<mgwt.formfactor>desktop</mgwt.formfactor>
+<mgwt.density>mid</mgwt.density>
+<mgwt.os>ios</mgwt.os>
+</permutation>
+<permutation name="750989D122283E36C39FC8156304F2FA">
 <mgwt.formfactor>tablet</mgwt.formfactor>
+<mgwt.density>mid</mgwt.density>
+<mgwt.os>ios</mgwt.os>
+</permutation>
+<permutation name="6E5C24C92D5B1291A31D97F735B1D82C">
+<mgwt.formfactor>tablet</mgwt.formfactor>
+<mgwt.density>high</mgwt.density>
+<mgwt.os>ios</mgwt.os>
+</permutation>
+<permutation name="E0A576ED93661B2A56C2AE6878CC251D">
+<mgwt.os>android</mgwt.os>
+<mgwt.formfactor>phone</mgwt.formfactor>
 <mgwt.density>high</mgwt.density>
 </permutation>
 </permutations>

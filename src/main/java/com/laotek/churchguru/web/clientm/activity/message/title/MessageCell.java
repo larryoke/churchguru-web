@@ -1,4 +1,4 @@
-package com.laotek.churchguru.web.clientm.activity.message.category;
+package com.laotek.churchguru.web.clientm.activity.message.title;
 
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.googlecode.mgwt.ui.client.widget.list.celllist.BasicCell;

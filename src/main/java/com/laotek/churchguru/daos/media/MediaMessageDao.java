@@ -18,6 +18,8 @@ public interface MediaMessageDao {
 
     List<MediaMessageCategory> getCategories();
 
+    List<MediaMessageCategory> getPublishedCategories();
+
     MediaMessageCategory getCategory(String identifier);
 
     void updateMessage(MediaMessage eStoreMessage, Map<String, String> otherDetails);

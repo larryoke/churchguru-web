@@ -10,7 +10,6 @@ import com.googlecode.mgwt.ui.client.MGWT;
 import com.googlecode.mgwt.ui.client.widget.list.celllist.CellList;
 import com.googlecode.mgwt.ui.client.widget.list.celllist.HasCellSelectedHandler;
 import com.laotek.churchguru.web.clientm.activity.DetailViewGwtImpl;
-import com.laotek.churchguru.web.clientm.activity.message.category.MessageCell;
 
 public class MessageTitleViewImpl extends DetailViewGwtImpl implements MessageTitleView {
     private FlowPanel container = new FlowPanel();

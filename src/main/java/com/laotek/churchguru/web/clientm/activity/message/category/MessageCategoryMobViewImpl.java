@@ -7,7 +7,6 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.googlecode.mgwt.ui.client.MGWT;
-import com.googlecode.mgwt.ui.client.widget.list.celllist.BasicCell;
 import com.googlecode.mgwt.ui.client.widget.list.celllist.CellList;
 import com.googlecode.mgwt.ui.client.widget.list.celllist.HasCellSelectedHandler;
 import com.laotek.churchguru.web.clientm.activity.DetailViewGwtImpl;
@@ -18,7 +17,7 @@ public class MessageCategoryMobViewImpl extends DetailViewGwtImpl implements Mes
     private CellList<MessageCategoryMobDto> cellList;
 
     public MessageCategoryMobViewImpl() {
-	BasicCell<MessageCategoryMobDto> cell = new BasicCell<MessageCategoryMobDto>() {
+	MessageCatCell<MessageCategoryMobDto> cell = new MessageCatCell<MessageCategoryMobDto>() {
 	    @Override
 	    public String getDisplayString(MessageCategoryMobDto model) {
 		return model.getName();
@@ -27,6 +26,11 @@ public class MessageCategoryMobViewImpl extends DetailViewGwtImpl implements Mes
 	    @Override
 	    public boolean canBeSelected(MessageCategoryMobDto model) {
 		return true;
+	    }
+
+	    @Override
+	    public int getCount(MessageCategoryMobDto model) {
+		return model.getCount();
 	    }
 	};
 	cellList = new CellList<MessageCategoryMobDto>(cell);

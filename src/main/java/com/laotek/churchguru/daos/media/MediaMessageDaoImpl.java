@@ -138,9 +138,26 @@ public class MediaMessageDaoImpl extends BaseSessionFactory implements MediaMess
     }
 
     @Override
-    public List<MediaMessageCategory> getCategories() {
+    public List<MediaMessageCategory> getPublishedCategories() {
+	Query query = getCurrentSession().createQuery(
+		"select cat from MediaMessageCategory cat join cat.messages messages where messages.messageStatus = :status");
+	query.setParameter("status", MediaMessageStatus.PUBLISHED);
 	@SuppressWarnings("unchecked")
-	List<MediaMessageCategory> list = getCurrentSession().createQuery("from MediaMessageCategory ").list();
+	List<MediaMessageCategory> list = query.list();
+	for (MediaMessageCategory cat : list) {
+	    cat.getMessages().size();
+	}
+	return list;
+    }
+
+    @Override
+    public List<MediaMessageCategory> getCategories() {
+	Query query = getCurrentSession().createQuery("from MediaMessageCategory cat ");
+	@SuppressWarnings("unchecked")
+	List<MediaMessageCategory> list = query.list();
+	for (MediaMessageCategory cat : list) {
+	    cat.getMessages().size();
+	}
 	return list;
     }
 

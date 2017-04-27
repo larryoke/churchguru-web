@@ -8,6 +8,7 @@ public class MessageCategoryMobDto implements Serializable {
      */
     private static final long serialVersionUID = 1L;
     private String name;
+    private int count;
     private String identifier;
 
     public String getName() {
@@ -24,5 +25,13 @@ public class MessageCategoryMobDto implements Serializable {
 
     public void setIdentifier(String identifier) {
 	this.identifier = identifier;
+    }
+
+    public int getCount() {
+	return count;
+    }
+
+    public void setCount(int count) {
+	this.count = count;
     }
 }
