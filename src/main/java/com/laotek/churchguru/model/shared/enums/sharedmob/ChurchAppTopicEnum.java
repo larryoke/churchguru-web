@@ -19,19 +19,24 @@ public enum ChurchAppTopicEnum implements Serializable, IsSerializable {
 
     YOUTUBE("youtube"), ABOUT_US("aboutUs");
 
+    private String key;
     private String desc;
 
     private ChurchAppTopicEnum(String desc) {
-	this.desc = desc;
+	this.key = desc;
+    }
+
+    public String getKey() {
+	return key;
     }
 
     public String getDesc() {
 	return desc;
     }
 
-    public static ChurchAppTopicEnum find(String desc) {
+    public static ChurchAppTopicEnum find(String key) {
 	for (ChurchAppTopicEnum title : ChurchAppTopicEnum.values()) {
-	    if (title.getDesc().equals(desc)) {
+	    if (title.getKey().equals(key)) {
 		return title;
 	    }
 	}

@@ -5,7 +5,7 @@ import java.util.List;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.googlecode.mgwt.dom.client.event.tap.HasTapHandlers;
-import com.laotek.churchguru.web.clientm.MobileFactory;
+import com.googlecode.mgwt.ui.client.widget.list.celllist.HasCellSelectedHandler;
 
 public interface MobileHomeView extends IsWidget {
     void setPresenter(Presenter presenter);
@@ -14,8 +14,9 @@ public interface MobileHomeView extends IsWidget {
 
     HasTapHandlers getAboutButton();
 
-    void setTopics(List<Topic> createTopicsList, int width,
-	    MobileFactory clientFactory);
+    HasCellSelectedHandler getCellSelectedHandler();
+
+    void setTopics(List<Topic> createTopicsList);
 
     void onLoad();
 

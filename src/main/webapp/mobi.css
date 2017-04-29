@@ -196,3 +196,10 @@ body.portrait {
   margin: 0; padding: 0;
   background-image: url("/communicator/images/app/mob_bg.jpg");
 }
+
+.topicCell {
+    background-image: url("/images/app/blendForCell.png");
+    background-repeat: repeat-x;
+    height:100%;
+    width:100%;
+}
