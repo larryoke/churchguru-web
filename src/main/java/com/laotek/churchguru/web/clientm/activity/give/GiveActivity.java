@@ -51,46 +51,38 @@ public class GiveActivity extends DetailActivity implements GiveView.Presenter {
     }
 
     @Override
-    public void submit(Map<String, String> giveDetails,
-	    Map<DonationType, BigDecimal> payments) {
+    public void submit(Map<String, String> giveDetails, Map<DonationType, BigDecimal> payments) {
 	SubmitDonationDetailsAction action = new SubmitDonationDetailsAction();
 	action.setDetails(giveDetails);
 	action.setPayments(payments);
-	MobileContext
-		.getInstance()
-		.getDispatchClient()
-		.execute(action,
-			new AsyncCallback<SubmitDonationDetailsResult>() {
+	MobileContext.getInstance().getDispatchClient().execute(action,
+		new AsyncCallback<SubmitDonationDetailsResult>() {
 
+		    @Override
+		    public void onFailure(Throwable caught) {
+			view.showErrorMessage(caught.getMessage());
+			view.showForm();
+		    }
+
+		    @Override
+		    public void onSuccess(SubmitDonationDetailsResult result) {
+
+			if (Window.confirm("Please confirm access to Paypal: " + result.getPaypalApprovalUrl())) {
+			    view.goTo(result.getPaypalApprovalUrl());
+			}
+
+			// redirect app screen to home because paypal
+			// screen is popped up
+			Scheduler.get().scheduleDeferred(new ScheduledCommand() {
 			    @Override
-			    public void onFailure(Throwable caught) {
-				view.showErrorMessage(caught.getMessage());
-				view.showForm();
-			    }
-
-			    @Override
-			    public void onSuccess(
-				    SubmitDonationDetailsResult result) {
-
-				view.goTo(result.getPaypalApprovalUrl());
-
-				// redirect app screen to home because paypal
-				// screen is popped up
-				Scheduler.get().scheduleDeferred(
-					new ScheduledCommand() {
-					    @Override
-					    public void execute() {
-						MobileContext
-							.getInstance()
-							.getClientFactory()
-							.getPlaceController()
-							.goTo(new MobileHomePlace(
-								"home"));
-					    }
-					});
-
+			    public void execute() {
+				MobileContext.getInstance().getClientFactory().getPlaceController()
+					.goTo(new MobileHomePlace("home"));
 			    }
 			});
+
+		    }
+		});
 
 	view.pleaseWaitLoadingPaypal();
     }
