@@ -185,9 +185,9 @@ public class GiveViewImpl extends DetailViewGwtImpl implements GiveView {
     }
 
     @Override
-    public void goTo(String approvalUrl) {
-	Window.Location.replace("access.paypal://somehost?approvalUrl=" + approvalUrl);
-    }
+    public native void goTo(String approvalUrl) /*-{
+						window.location = 'access.paypal://somehost?approvalUrl=' + approvalUrl;				       
+						}-*/;
 
     private void addThanksPanel(FlowPanel thanksContainer) {
 	HTML spacer = new HTML("");
