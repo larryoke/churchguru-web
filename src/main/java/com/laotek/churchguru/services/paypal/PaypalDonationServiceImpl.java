@@ -32,8 +32,7 @@ import com.paypal.base.rest.PayPalRESTException;
 @Service
 public class PaypalDonationServiceImpl implements DonationService {
 
-    private static Logger LOG = LoggerFactory
-	    .getLogger(PaypalDonationServiceImpl.class);
+    private static Logger LOG = LoggerFactory.getLogger(PaypalDonationServiceImpl.class);
 
     @Value("${logoImage}")
     private String logoImage;
@@ -56,23 +55,21 @@ public class PaypalDonationServiceImpl implements DonationService {
     }
 
     @Override
-    public Payment createPaypalDonation(Donation donation, String returnUrl,
-	    String cancelUrl) {
-	LOG.debug("createDonation->");
+    public Payment createPaypalDonation(Donation donation, String returnUrl, String cancelUrl) {
+	LOG.debug("createPaypalDonation->");
 	try {
 	    if (!isAccessTokenValid()) {
 		tokenCredential = createToken();
 	    }
 	    String accessToken = createAccessToken();
 	    if (webProfileName == null) {
-		webProfileName = createWebProfileExperience(accessToken,
-			orgName);
+		webProfileName = createWebProfileExperience(accessToken, orgName);
 	    }
-	    Payment createdPayment = createDonationPayment(donation, returnUrl,
-		    cancelUrl, webProfileName, accessToken);
-	    LOG.debug("<-createDonation");
+	    Payment createdPayment = createDonationPayment(donation, returnUrl, cancelUrl, webProfileName, accessToken);
+	    LOG.debug("<-createPaypalDonation");
 	    return createdPayment;
 	} catch (Exception e) {
+	    System.out.println(e.getMessage());
 	    e.printStackTrace();
 	    throw new PaypalServiceException(e.getMessage());
 	}
@@ -85,15 +82,12 @@ public class PaypalDonationServiceImpl implements DonationService {
 	return false;
     }
 
-    private OAuthTokenCredential createToken() throws PayPalRESTException,
-	    IOException {
-	return Payment.initConfig(new FileInputStream(System
-		.getProperty("user.home")
-		+ "/.churchguru-deploy/paypal/church.paypal.properties"));
+    private OAuthTokenCredential createToken() throws PayPalRESTException, IOException {
+	return Payment.initConfig(new FileInputStream(
+		System.getProperty("user.home") + "/.churchguru-deploy/paypal/church.paypal.properties"));
     }
 
-    private String createWebProfileExperience(String accessToken,
-	    String siteName) throws PayPalRESTException {
+    private String createWebProfileExperience(String accessToken, String siteName) throws PayPalRESTException {
 
 	WebProfile webProfile = null;
 	List<WebProfile> profiles = WebProfile.getList(accessToken);
@@ -113,9 +107,8 @@ public class PaypalDonationServiceImpl implements DonationService {
 
     }
 
-    private Payment createDonationPayment(Donation donation, String returnUrl,
-	    String cancelUrl, String experienceId, String accessToken)
-	    throws PayPalRESTException {
+    private Payment createDonationPayment(Donation donation, String returnUrl, String cancelUrl, String experienceId,
+	    String accessToken) throws PayPalRESTException {
 	List<Transaction> transactions = createDonationPayment(donation);
 
 	Payer payer = new Payer();
@@ -136,8 +129,8 @@ public class PaypalDonationServiceImpl implements DonationService {
 	return createdPayment;
     }
 
-    private Payment createDonationPayment(Donation donation,
-	    String experienceId, String accessToken) throws PayPalRESTException {
+    private Payment createDonationPayment(Donation donation, String experienceId, String accessToken)
+	    throws PayPalRESTException {
 	List<Transaction> transactions = createDonationPayment(donation);
 
 	Payer payer = new Payer();

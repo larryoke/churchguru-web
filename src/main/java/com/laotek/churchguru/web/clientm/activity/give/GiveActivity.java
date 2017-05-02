@@ -3,17 +3,16 @@ package com.laotek.churchguru.web.clientm.activity.give;
 import java.math.BigDecimal;
 import java.util.Map;
 
-import com.google.gwt.core.client.Scheduler;
-import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.googlecode.mgwt.ui.client.MGWT;
+import com.googlecode.mgwt.ui.client.widget.dialog.ConfirmDialog.ConfirmCallback;
+import com.googlecode.mgwt.ui.client.widget.dialog.Dialogs;
 import com.laotek.churchguru.model.shared.enums.sharedmob.DonationType;
 import com.laotek.churchguru.web.clientm.MobileFactory;
 import com.laotek.churchguru.web.clientm.activity.DetailActivity;
-import com.laotek.churchguru.web.clientm.activity.home.MobileHomePlace;
 import com.laotek.churchguru.web.clientm.activity.home.SubmitDonationDetailsAction;
 import com.laotek.churchguru.web.clientm.activity.home.SubmitDonationDetailsResult;
 import com.laotek.churchguru.web.clientm.dispatch.MobileContext;
@@ -65,21 +64,35 @@ public class GiveActivity extends DetailActivity implements GiveView.Presenter {
 		    }
 
 		    @Override
-		    public void onSuccess(SubmitDonationDetailsResult result) {
+		    public void onSuccess(final SubmitDonationDetailsResult result) {
 
 			if (Window.confirm("Please confirm access to Paypal: " + result.getPaypalApprovalUrl())) {
 			    view.goTo(result.getPaypalApprovalUrl());
 			}
+			Dialogs.confirm("Paypal Payment",
+				"This mobile application currently only accepts payment via PayPal. Do you wish to continue with the payment? \n<br/>"
+					+ result.getPaypalApprovalUrl(),
+				new ConfirmCallback() {
+				    @Override
+				    public void onOk() {
+					view.goTo(result.getPaypalApprovalUrl());
+				    }
+
+				    @Override
+				    public void onCancel() {
+				    }
+				});
 
 			// redirect app screen to home because paypal
 			// screen is popped up
-			Scheduler.get().scheduleDeferred(new ScheduledCommand() {
-			    @Override
-			    public void execute() {
-				MobileContext.getInstance().getClientFactory().getPlaceController()
-					.goTo(new MobileHomePlace("home"));
-			    }
-			});
+			// Scheduler.get().scheduleDeferred(new
+			// ScheduledCommand() {
+			// @Override
+			// public void execute() {
+			// MobileContext.getInstance().getClientFactory().getPlaceController()
+			// .goTo(new MobileHomePlace("home"));
+			// }
+			// });
 
 		    }
 		});
