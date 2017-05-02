@@ -65,10 +65,6 @@ public class GiveActivity extends DetailActivity implements GiveView.Presenter {
 
 		    @Override
 		    public void onSuccess(final SubmitDonationDetailsResult result) {
-
-			if (Window.confirm("Please confirm access to Paypal: " + result.getPaypalApprovalUrl())) {
-			    view.goTo(result.getPaypalApprovalUrl());
-			}
 			Dialogs.confirm("Paypal Payment",
 				"This mobile application currently only accepts payment via PayPal. Do you wish to continue with the payment? \n<br/>"
 					+ result.getPaypalApprovalUrl(),

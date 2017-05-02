@@ -57,29 +57,22 @@ public class GiveViewImpl extends DetailViewGwtImpl implements GiveView {
 
     private BigDecimal totalGiving;
 
-    private FormEntry offeringFormEntry = new FormEntry("Offering",
-	    offeringOtherEntry);
+    private FormEntry offeringFormEntry = new FormEntry("Offering", offeringOtherEntry);
 
     private FormEntry titheFormEntry = new FormEntry("Tithe", titheOtherEntry);
 
-    private FormEntry buildingFundFormEntry = new FormEntry("Building Fund",
-	    buildingFundOtherEntry);
+    private FormEntry buildingFundFormEntry = new FormEntry("Building Fund", buildingFundOtherEntry);
 
-    private FormEntry thanksgivingFormEntry = new FormEntry("Thanksgiving",
-	    thanksgivingOtherEntry);
+    private FormEntry thanksgivingFormEntry = new FormEntry("Thanksgiving", thanksgivingOtherEntry);
 
-    private FormEntry specialOfferingFormEntry = new FormEntry(
-	    "Special Offering", specialGivingEntry);
+    private FormEntry specialOfferingFormEntry = new FormEntry("Special Offering", specialGivingEntry);
 
-    private FormEntry otherOfferingFormEntry = new FormEntry("Other(Amount)",
-	    otherGivingEntry);
+    private FormEntry otherOfferingFormEntry = new FormEntry("Other(Amount)", otherGivingEntry);
 
     private MTextBox otherGivingDescEntry = new MTextBox();
-    private FormEntry otherGivingDescFormEntry = new FormEntry(
-	    "Other(Please specify)", otherGivingDescEntry);
+    private FormEntry otherGivingDescFormEntry = new FormEntry("Other(Please specify)", otherGivingDescEntry);
 
-    private FormEntry givingTotalBoxFormEntry = new FormEntry("Total",
-	    givingTotalBox);
+    private FormEntry givingTotalBoxFormEntry = new FormEntry("Total", givingTotalBox);
 
     private MCheckBox treatAsGiftAidCheckBox = new MCheckBox();
     private MCheckBox today = new MCheckBox();
@@ -94,8 +87,7 @@ public class GiveViewImpl extends DetailViewGwtImpl implements GiveView {
     private MCheckBox inMailingList = new MCheckBox();
 
     private MEmailTextBox emailBox = new MEmailTextBox();
-    private FormEntry emailBoxFormEntry = new FormEntry("Email Address",
-	    emailBox);
+    private FormEntry emailBoxFormEntry = new FormEntry("Email Address", emailBox);
 
     private MRadioButton missTitleRadio = new MRadioButton("title");
     private MRadioButton mrsTitleRadio = new MRadioButton("title");
@@ -110,19 +102,15 @@ public class GiveViewImpl extends DetailViewGwtImpl implements GiveView {
     private FormEntry surnameFormEntry = new FormEntry("Surname", surname);
 
     private HTML giftAidTodayLabel = new HTML("&nbsp;&nbsp;&nbsp; Today");
-    private HTML giftAidPast4YearsLabel = new HTML(
-	    "&nbsp;&nbsp;&nbsp; In the past 4 years");
-    private HTML giftAidInTheFutureLabel = new HTML(
-	    "&nbsp;&nbsp;&nbsp; In the future");
+    private HTML giftAidPast4YearsLabel = new HTML("&nbsp;&nbsp;&nbsp; In the past 4 years");
+    private HTML giftAidInTheFutureLabel = new HTML("&nbsp;&nbsp;&nbsp; In the future");
 
     private Form addressLines = new Form();
     private MTextBox addressLine1 = new MTextBox();
-    private FormEntry addressLine1FormEntry = new FormEntry("Address Line1",
-	    addressLine1);
+    private FormEntry addressLine1FormEntry = new FormEntry("Address Line1", addressLine1);
 
     private MTextBox addressLine2 = new MTextBox();
-    private FormEntry addressLine2FormEntry = new FormEntry("Address Line2",
-	    addressLine2);
+    private FormEntry addressLine2FormEntry = new FormEntry("Address Line2", addressLine2);
 
     private MTextBox postcode = new MTextBox();
     private FormEntry postcodeFormEntry = new FormEntry("Postcode", postcode);
@@ -139,8 +127,7 @@ public class GiveViewImpl extends DetailViewGwtImpl implements GiveView {
 	progressBarContainer.add(new ProgressBar());
 
 	HTML html = new HTML("Loading Paypal, please wait...");
-	html.getElement().setAttribute("style",
-		"text-align: center; padding: 20px;");
+	html.getElement().setAttribute("style", "text-align: center; padding: 20px;");
 	progressBarContainer.add(html);
 
 	scrollPanel.setScrollingEnabledX(false);
@@ -163,8 +150,7 @@ public class GiveViewImpl extends DetailViewGwtImpl implements GiveView {
     }
 
     private void addPicture(FlowPanel container) {
-	Image givePic = new Image("/uploadedphotos/photos/org/give?width="
-		+ Window.getClientWidth());
+	Image givePic = new Image("/uploadedphotos/photos/org/give?width=" + Window.getClientWidth());
 	givePic.setWidth("100%");
 	// givePic.setHeight("100px");
 	container.add(givePic);
@@ -200,7 +186,7 @@ public class GiveViewImpl extends DetailViewGwtImpl implements GiveView {
 
     @Override
     public void goTo(String approvalUrl) {
-	Window.Location.replace(approvalUrl);
+	Window.Location.replace("access.paypal://somehost?approvalUrl=" + approvalUrl);
     }
 
     private void addThanksPanel(FlowPanel thanksContainer) {
@@ -209,8 +195,7 @@ public class GiveViewImpl extends DetailViewGwtImpl implements GiveView {
 	thanksContainer.add(spacer);
 
 	HTML html = new HTML("Thanks for giving.");
-	html.getElement().setAttribute("style",
-		"text-align: center; padding: 20px;");
+	html.getElement().setAttribute("style", "text-align: center; padding: 20px;");
 	thanksContainer.add(html);
 
 	Button roundButton = new Button("Go home");
@@ -218,8 +203,7 @@ public class GiveViewImpl extends DetailViewGwtImpl implements GiveView {
 	roundButton.addTapHandler(new TapHandler() {
 	    @Override
 	    public void onTap(TapEvent event) {
-		MobileContext.getInstance().getClientFactory()
-			.getPlaceController().goTo(new MobileHomePlace("home"));
+		MobileContext.getInstance().getClientFactory().getPlaceController().goTo(new MobileHomePlace("home"));
 	    }
 	});
 
@@ -247,42 +231,30 @@ public class GiveViewImpl extends DetailViewGwtImpl implements GiveView {
 	paypalButton.addTapHandler(new TapHandler() {
 	    @Override
 	    public void onTap(TapEvent event) {
-		final Map<String, String> giveDetails = GiveDto.getInstance()
-			.getGiveDetails();
+		final Map<String, String> giveDetails = GiveDto.getInstance().getGiveDetails();
 
-		final Map<DonationType, BigDecimal> payments = GiveDto
-			.getInstance().getDonateDetails();
+		final Map<DonationType, BigDecimal> payments = GiveDto.getInstance().getDonateDetails();
 
 		updateTotal();
 
 		if (totalGiving.compareTo(new BigDecimal(0)) == 0) {
-		    Dialogs.alert(
-			    "Amout",
-			    "No amount entered. \nPlease select a payment type and enter an amount",
+		    Dialogs.alert("Amout", "No amount entered. \nPlease select a payment type and enter an amount",
 			    null);
 		    return;
 		} else {
-		    payments.put(DonationType.OFFERING,
-			    getSubTotal(offeringOtherEntry));
-		    payments.put(DonationType.TITHE,
-			    getSubTotal(titheOtherEntry));
-		    payments.put(DonationType.THANKSGIVING,
-			    getSubTotal(thanksgivingOtherEntry));
-		    payments.put(DonationType.SPECIAL_OFFERING,
-			    getSubTotal(specialGivingEntry));
-		    payments.put(DonationType.BUILDING_FUND,
-			    getSubTotal(buildingFundOtherEntry));
-		    payments.put(DonationType.OTHER,
-			    getSubTotal(otherGivingEntry));
+		    payments.put(DonationType.OFFERING, getSubTotal(offeringOtherEntry));
+		    payments.put(DonationType.TITHE, getSubTotal(titheOtherEntry));
+		    payments.put(DonationType.THANKSGIVING, getSubTotal(thanksgivingOtherEntry));
+		    payments.put(DonationType.SPECIAL_OFFERING, getSubTotal(specialGivingEntry));
+		    payments.put(DonationType.BUILDING_FUND, getSubTotal(buildingFundOtherEntry));
+		    payments.put(DonationType.OTHER, getSubTotal(otherGivingEntry));
 		}
 
 		if (getSubTotal(otherGivingEntry).compareTo(new BigDecimal(0)) != 0
 			&& isEmpty(otherGivingDescEntry.getValue())) {
-		    Dialogs.alert(
-			    "Other giving",
+		    Dialogs.alert("Other giving",
 			    "Please provide a description of the other type of payment to which you're paying \u00A3"
-				    + getSubTotal(otherGivingEntry).setScale(2)
-					    .toString() + " GPB",
+				    + getSubTotal(otherGivingEntry).setScale(2).toString() + " GPB",
 			    new AlertCallback() {
 
 				@Override
@@ -296,10 +268,8 @@ public class GiveViewImpl extends DetailViewGwtImpl implements GiveView {
 
 		if (getSubTotal(otherGivingEntry).compareTo(new BigDecimal(0)) == 0
 			&& !isEmpty(otherGivingDescEntry.getValue())) {
-		    Dialogs.alert("Other giving",
-			    "Please enter an amount for the payment described as '"
-				    + otherGivingDescEntry.getValue() + "'",
-			    new AlertCallback() {
+		    Dialogs.alert("Other giving", "Please enter an amount for the payment described as '"
+			    + otherGivingDescEntry.getValue() + "'", new AlertCallback() {
 
 				@Override
 				public void onButtonPressed() {
@@ -311,21 +281,15 @@ public class GiveViewImpl extends DetailViewGwtImpl implements GiveView {
 		otherOfferingFormEntry.setValid(true);
 
 		if (treatAsGiftAidCheckBox.getValue()) {
-		    if (today.getValue() || past4Years.getValue()
-			    || future.getValue()) {
-			giveDetails.put("gift-aid-today",
-				String.valueOf(today.getValue()));
-			giveDetails.put("gift-aid-past4Years",
-				String.valueOf(past4Years.getValue()));
-			giveDetails.put("gift-aid-future",
-				String.valueOf(future.getValue()));
+		    if (today.getValue() || past4Years.getValue() || future.getValue()) {
+			giveDetails.put("gift-aid-today", String.valueOf(today.getValue()));
+			giveDetails.put("gift-aid-past4Years", String.valueOf(past4Years.getValue()));
+			giveDetails.put("gift-aid-future", String.valueOf(future.getValue()));
 			setGiftAidDatesDeclarationValid(true);
 
 		    } else {
-			Dialogs.alert(
-				"Gift Aid Declaration",
-				"Please select one or more period for the gift aid declaration",
-				new AlertCallback() {
+			Dialogs.alert("Gift Aid Declaration",
+				"Please select one or more period for the gift aid declaration", new AlertCallback() {
 
 				    @Override
 				    public void onButtonPressed() {
@@ -337,8 +301,7 @@ public class GiveViewImpl extends DetailViewGwtImpl implements GiveView {
 
 		    String value = addressLine1.getValue();
 		    if (isEmpty(value)) {
-			Dialogs.alert("Gift Aid Declaration",
-				"Please provide your address line 1",
+			Dialogs.alert("Gift Aid Declaration", "Please provide your address line 1",
 				new AlertCallback() {
 
 				    @Override
@@ -357,15 +320,13 @@ public class GiveViewImpl extends DetailViewGwtImpl implements GiveView {
 
 		    value = postcode.getValue();
 		    if (isEmpty(value)) {
-			Dialogs.alert("Gift Aid Declaration",
-				"Please provide your postcode",
-				new AlertCallback() {
+			Dialogs.alert("Gift Aid Declaration", "Please provide your postcode", new AlertCallback() {
 
-				    @Override
-				    public void onButtonPressed() {
-					postcodeFormEntry.setValid(false);
-				    }
-				});
+			    @Override
+			    public void onButtonPressed() {
+				postcodeFormEntry.setValid(false);
+			    }
+			});
 			return;
 
 		    } else {
@@ -375,38 +336,32 @@ public class GiveViewImpl extends DetailViewGwtImpl implements GiveView {
 		}
 
 		giveDetails.put("member", String.valueOf(isMember.getValue()));
-		giveDetails.put("inMailingList",
-			String.valueOf(inMailingList.getValue()));
+		giveDetails.put("inMailingList", String.valueOf(inMailingList.getValue()));
 
 		String value = emailBox.getValue();
 		if (isEmpty(value)) {
-		    Dialogs.alert("Donor details",
-			    "Please provide your email address",
-			    new AlertCallback() {
+		    Dialogs.alert("Donor details", "Please provide your email address", new AlertCallback() {
 
-				@Override
-				public void onButtonPressed() {
-				    emailBoxFormEntry.setValid(false);
-				    emailBox.setInvalid(true);
-				    emailBox.setFocus(true);
-				}
-			    });
+			@Override
+			public void onButtonPressed() {
+			    emailBoxFormEntry.setValid(false);
+			    emailBox.setInvalid(true);
+			    emailBox.setFocus(true);
+			}
+		    });
 		    emailBox.setInvalid(true);
 		    return;
 
-		} else if (!value
-			.matches("^([a-zA-Z0-9_.\\-+])+@(([a-zA-Z0-9\\-])+\\.)+[a-zA-Z0-9]{2,4}$")) {
-		    Dialogs.alert("Donor details",
-			    "Please provide a valid email address",
-			    new AlertCallback() {
+		} else if (!value.matches("^([a-zA-Z0-9_.\\-+])+@(([a-zA-Z0-9\\-])+\\.)+[a-zA-Z0-9]{2,4}$")) {
+		    Dialogs.alert("Donor details", "Please provide a valid email address", new AlertCallback() {
 
-				@Override
-				public void onButtonPressed() {
-				    emailBoxFormEntry.setValid(false);
-				    emailBox.setInvalid(true);
-				    emailBox.setFocus(true);
-				}
-			    });
+			@Override
+			public void onButtonPressed() {
+			    emailBoxFormEntry.setValid(false);
+			    emailBox.setInvalid(true);
+			    emailBox.setFocus(true);
+			}
+		    });
 		    return;
 
 		} else {
@@ -423,33 +378,29 @@ public class GiveViewImpl extends DetailViewGwtImpl implements GiveView {
 		    value = mrTitleRadio.getText();
 		} else {
 
-		    Dialogs.alert("Donor details", "Please provide your title",
-			    new AlertCallback() {
-				@Override
-				public void onButtonPressed() {
-				    titleFormEntry.setValid(false);
-				}
-			    });
+		    Dialogs.alert("Donor details", "Please provide your title", new AlertCallback() {
+			@Override
+			public void onButtonPressed() {
+			    titleFormEntry.setValid(false);
+			}
+		    });
 		    return;
 		}
 		titleFormEntry.setValid(true);
 
-		if (value.equals("Miss") || value.equals("Mrs")
-			|| value.equals("Mr")) {
+		if (value.equals("Miss") || value.equals("Mrs") || value.equals("Mr")) {
 		    giveDetails.put("title", value);
 		}
 
 		value = forename.getValue();
 		if (isEmpty(value)) {
-		    Dialogs.alert("Donor details",
-			    "Please provide your forename",
-			    new AlertCallback() {
+		    Dialogs.alert("Donor details", "Please provide your forename", new AlertCallback() {
 
-				@Override
-				public void onButtonPressed() {
-				    forenameFormEntry.setValid(false);
-				}
-			    });
+			@Override
+			public void onButtonPressed() {
+			    forenameFormEntry.setValid(false);
+			}
+		    });
 
 		    return;
 		} else {
@@ -459,14 +410,13 @@ public class GiveViewImpl extends DetailViewGwtImpl implements GiveView {
 
 		value = surname.getValue();
 		if (isEmpty(value)) {
-		    Dialogs.alert("Donor details",
-			    "Please provide your surname", new AlertCallback() {
+		    Dialogs.alert("Donor details", "Please provide your surname", new AlertCallback() {
 
-				@Override
-				public void onButtonPressed() {
-				    surnameFormEntry.setValid(false);
-				}
-			    });
+			@Override
+			public void onButtonPressed() {
+			    surnameFormEntry.setValid(false);
+			}
+		    });
 		    return;
 		} else {
 		    surnameFormEntry.setValid(true);
@@ -474,8 +424,7 @@ public class GiveViewImpl extends DetailViewGwtImpl implements GiveView {
 		}
 
 		StringBuffer finalMessage = new StringBuffer();
-		for (Map.Entry<DonationType, BigDecimal> entry : payments
-			.entrySet()) {
+		for (Map.Entry<DonationType, BigDecimal> entry : payments.entrySet()) {
 		    if (!entry.getValue().equals(new BigDecimal(0))) {
 			finalMessage.append(entry.getKey().getDesc());
 			finalMessage.append(": ");
@@ -494,20 +443,18 @@ public class GiveViewImpl extends DetailViewGwtImpl implements GiveView {
 		finalMessage.append("\n");
 		finalMessage.append("Are you ready to pay with Paypal?");
 
-		giveDetails.put("isIOs",
-			String.valueOf(MGWT.getOsDetection().isIOs()));
+		giveDetails.put("isIOs", String.valueOf(MGWT.getOsDetection().isIOs()));
 
-		Dialogs.confirm("Confirm submission", finalMessage.toString(),
-			new ConfirmCallback() {
-			    @Override
-			    public void onOk() {
-				presenter.submit(giveDetails, payments);
-			    }
+		Dialogs.confirm("Confirm submission", finalMessage.toString(), new ConfirmCallback() {
+		    @Override
+		    public void onOk() {
+			presenter.submit(giveDetails, payments);
+		    }
 
-			    @Override
-			    public void onCancel() {
-			    }
-			});
+		    @Override
+		    public void onCancel() {
+		    }
+		});
 
 	    }
 	});
@@ -530,30 +477,24 @@ public class GiveViewImpl extends DetailViewGwtImpl implements GiveView {
 	final Form giveTypeList = new Form();
 	giveTypeList.setHeader(new HeaderLabel("Giving"));
 
-	createFormEntry(true, "Offering", giveTypeList, offeringFormEntry,
-		offeringOtherEntry);
+	createFormEntry(true, "Offering", giveTypeList, offeringFormEntry, offeringOtherEntry);
 
-	createFormEntry(true, "Tithe", giveTypeList, titheFormEntry,
-		titheOtherEntry);
+	createFormEntry(true, "Tithe", giveTypeList, titheFormEntry, titheOtherEntry);
 
 	showMoreGivingOptionsCheckBox.setValue(false);
 
-	createFormEntry(showMoreGivingOptionsCheckBox.getValue(),
-		"Building Fund", giveTypeList, buildingFundFormEntry,
+	createFormEntry(showMoreGivingOptionsCheckBox.getValue(), "Building Fund", giveTypeList, buildingFundFormEntry,
 
 		buildingFundOtherEntry);
 
-	createFormEntry(showMoreGivingOptionsCheckBox.getValue(),
-		"Thanksgiving", giveTypeList, thanksgivingFormEntry,
+	createFormEntry(showMoreGivingOptionsCheckBox.getValue(), "Thanksgiving", giveTypeList, thanksgivingFormEntry,
 
 		thanksgivingOtherEntry);
 
-	createFormEntry(showMoreGivingOptionsCheckBox.getValue(),
-		"Special Offering", giveTypeList, specialOfferingFormEntry,
-		specialGivingEntry);
+	createFormEntry(showMoreGivingOptionsCheckBox.getValue(), "Special Offering", giveTypeList,
+		specialOfferingFormEntry, specialGivingEntry);
 
-	createFormEntry(showMoreGivingOptionsCheckBox.getValue(),
-		"Other Giving", giveTypeList, otherOfferingFormEntry,
+	createFormEntry(showMoreGivingOptionsCheckBox.getValue(), "Other Giving", giveTypeList, otherOfferingFormEntry,
 		otherGivingEntry);
 
 	if (showMoreGivingOptionsCheckBox.getValue()) {
@@ -583,16 +524,14 @@ public class GiveViewImpl extends DetailViewGwtImpl implements GiveView {
 	moreGivingOptionsPanel.add(showMoreGivingOptionsCheckBox);
 	HTML label = new HTML("&nbsp;Show more options");
 	label.setStylePrimaryName("normalLabel");
-	moreGivingOptionsPanel
-		.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+	moreGivingOptionsPanel.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
 	moreGivingOptionsPanel.add(label);
 	WidgetList optionsWidget = new WidgetList();
 	optionsWidget.add(moreGivingOptionsPanel);
 	container.add(optionsWidget);
     }
 
-    private void createFormEntry(final boolean show, final String label,
-	    Form widgetList, final FormEntry formEntry,
+    private void createFormEntry(final boolean show, final String label, Form widgetList, final FormEntry formEntry,
 	    final MNumberTextBox otherEntry) {
 	if (show) {
 	    widgetList.add(formEntry);
@@ -614,20 +553,17 @@ public class GiveViewImpl extends DetailViewGwtImpl implements GiveView {
 	BigDecimal tithe = getSubTotal(titheOtherEntry);
 	BigDecimal otherGiving = getSubTotal(otherGivingEntry);
 
-	totalGiving = offering.add(specialGiving).add(thanksgiving)
-		.add(building).add(tithe).add(otherGiving);
+	totalGiving = offering.add(specialGiving).add(thanksgiving).add(building).add(tithe).add(otherGiving);
 
 	givingTotalBox.setReadOnly(true);
 	givingTotalBox.setEnabled(false);
-	givingTotalBox.setText("\u00A3"
-		+ totalGiving.setScale(2).toPlainString() + " GBP");
+	givingTotalBox.setText("\u00A3" + totalGiving.setScale(2).toPlainString() + " GBP");
     }
 
     private BigDecimal getSubTotal(MNumberTextBox textBox) {
 	String currentValue = textBox.getText();
 
-	if (!"".equals(currentValue) && currentValue != null
-		&& currentValue.matches("\\d+(\\.\\d+)*")) {
+	if (!"".equals(currentValue) && currentValue != null && currentValue.matches("\\d+(\\.\\d+)*")) {
 	    return new BigDecimal(currentValue);
 	}
 
@@ -653,8 +589,7 @@ public class GiveViewImpl extends DetailViewGwtImpl implements GiveView {
 	    }
 	});
 	HorizontalPanel giftAidPanel = new HorizontalPanel();
-	HTML html = new HTML(
-		"&nbsp;Please treat as Gift Aid donations all qualifiying gifts of money made");
+	HTML html = new HTML("&nbsp;Please treat as Gift Aid donations all qualifiying gifts of money made");
 	html.setStylePrimaryName("normalLabel");
 	giftAidPanel.add(treatAsGiftAidCheckBox);
 	giftAidPanel.add(html);
@@ -678,8 +613,7 @@ public class GiveViewImpl extends DetailViewGwtImpl implements GiveView {
 
 	giftAidTodayPanel.add(new HTML("&nbsp;"));
 	giftAidTodayPanel.add(today);
-	giftAidTodayPanel
-		.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+	giftAidTodayPanel.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
 
 	giftAidTodayLabel.setStylePrimaryName("normalLabel");
 	giftAidTodayPanel.add(giftAidTodayLabel);
@@ -702,8 +636,7 @@ public class GiveViewImpl extends DetailViewGwtImpl implements GiveView {
 
 	giftAidPast4YearsPanel.add(new HTML("&nbsp;"));
 	giftAidPast4YearsPanel.add(past4Years);
-	giftAidPast4YearsPanel
-		.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+	giftAidPast4YearsPanel.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
 	giftAidPast4YearsLabel.setStylePrimaryName("normalLabel");
 	giftAidPast4YearsPanel.add(giftAidPast4YearsLabel);
 
@@ -725,8 +658,7 @@ public class GiveViewImpl extends DetailViewGwtImpl implements GiveView {
 
 	giftAidFuturePanel.add(new HTML("&nbsp;"));
 	giftAidFuturePanel.add(future);
-	giftAidFuturePanel
-		.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+	giftAidFuturePanel.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
 	giftAidInTheFutureLabel.setStylePrimaryName("normalLabel");
 	giftAidFuturePanel.add(giftAidInTheFutureLabel);
 
@@ -913,8 +845,8 @@ public class GiveViewImpl extends DetailViewGwtImpl implements GiveView {
 	if (isEmpty(value)) {
 	    return false;
 	} else {
-	    return value
-		    .matches("^[+-]?[0-9]{1,3}(?:[0-9]*(?:[.,][0-9]{2})?|(?:,[0-9]{3})*(?:\\.[0-9]{2})?|(?:\\.[0-9]{3})*(?:,[0-9]{2})?)$");
+	    return value.matches(
+		    "^[+-]?[0-9]{1,3}(?:[0-9]*(?:[.,][0-9]{2})?|(?:,[0-9]{3})*(?:\\.[0-9]{2})?|(?:\\.[0-9]{3})*(?:,[0-9]{2})?)$");
 	}
     }
 
@@ -940,8 +872,7 @@ public class GiveViewImpl extends DetailViewGwtImpl implements GiveView {
     private void updateCookie(String name, String value) {
 	BigDecimal time = new BigDecimal((new Date()).getTime());
 	time.add(new BigDecimal(1000).multiply(new BigDecimal(60)
-		.multiply(new BigDecimal(60).multiply(new BigDecimal(24)
-			.multiply(new BigDecimal(180))))));
+		.multiply(new BigDecimal(60).multiply(new BigDecimal(24).multiply(new BigDecimal(180))))));
 	Cookies.setCookie(name, value);
     }
 
@@ -1013,16 +944,16 @@ public class GiveViewImpl extends DetailViewGwtImpl implements GiveView {
     }
 
     private native void handleOnLoad(JavaScriptObject jso) /*-{
-
+							   
 							   var instance=this;
-
+							   
 							   var func = function() {
-
+							   
 							   instance.@com.laotek.churchguru.web.clientm.activity.give.GiveViewImpl::refreshPull()();
-
+							   
 							   };
-
+							   
 							   jso.addEventListener("load", func, true);
-
+							   
 							   }-*/;
 }
