@@ -69,7 +69,7 @@ public class GiveActivity extends DetailActivity implements GiveView.Presenter {
 		    @Override
 		    public void onSuccess(final SubmitDonationDetailsResult result) {
 			Dialogs.confirm("Paypal Payment",
-				"This mobile application currently only accepts payment via PayPal. Do you wish to continue with the payment? \n<br/>"
+				"This mobile application currently only accepts payment via PayPal. Do you wish to continue with the payment? \n"
 					+ result.getPaypalApprovalUrl(),
 				new ConfirmCallback() {
 				    @Override

@@ -186,7 +186,7 @@ public class GiveViewImpl extends DetailViewGwtImpl implements GiveView {
 
     @Override
     public native void goTo(String approvalUrl) /*-{
-						window.location = 'access.paypal://somehost?approvalUrl=' + approvalUrl;				       
+						window.location = 'trinitychapel://somehost?approvalUrl=' + approvalUrl;				       
 						}-*/;
 
     private void addThanksPanel(FlowPanel thanksContainer) {
