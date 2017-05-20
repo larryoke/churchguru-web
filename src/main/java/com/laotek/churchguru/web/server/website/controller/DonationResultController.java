@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.laotek.churchguru.daos.donation.DonationDao;
 import com.laotek.churchguru.model.Donation;
@@ -30,6 +31,7 @@ public class DonationResultController {
     private String metaHttp = "<meta http-equiv=\"refresh\" content=\"0; url=/%s\" />";
 
     @RequestMapping(value = "/paypal/cancelled", method = RequestMethod.GET)
+    @ResponseBody
     public String cancelledPayPalRequest(@RequestParam("identifier") String identifier,
 	    @RequestParam("platform") String platform) {
 	log.debug("cancelledPayPalRequest->");
@@ -52,6 +54,7 @@ public class DonationResultController {
     }
 
     @RequestMapping(value = "/paypal/success", method = RequestMethod.GET)
+    @ResponseBody
     public String successPaypalPayment(@RequestParam("identifier") String identifier,
 	    @RequestParam("PayerID") String payerId, @RequestParam("platform") String platform,
 	    HttpServletRequest request) {
@@ -65,10 +68,13 @@ public class DonationResultController {
 	    donationService.executePaypalDonation(donation.getPaymentId(), payerId);
 	    donationDao.completeDonation(identifier);
 
-	    if ("i".equalsIgnoreCase(platform)) {
-		return String.format(metaHttp, "thanksAndCloseIOSBrowserForPaypalMobile.htm");
-	    }
-	    return String.format(metaHttp, "thanksAndCloseAndroidBrowserForPaypalMobile.htm");
+	    // if ("i".equalsIgnoreCase(platform)) {
+	    // return String.format(metaHttp,
+	    // "thanksAndCloseIOSBrowserForPaypalMobile.htm");
+	    // }
+	    // return String.format(metaHttp,
+	    // "thanksAndCloseAndroidBrowserForPaypalMobile.htm");
+	    return getThanksAndCloseHTML();
 	}
 	log.debug("<-successPaypalPayment");
 	return null;
@@ -89,6 +95,28 @@ public class DonationResultController {
 		"<div class=\"paypal-exit-layout\"><a class=\"btn\" href=\"trinitychapel://extra\">Return to mobile app</a></div>");
 	sb.append(
 		"<div class=\"paypal-exit-layout\"><a class=\"btn\" href=\"javascript:history.go(-1)\">Return to Paypal</a></div>");
+	sb.append("</body>");
+	sb.append("</html>");
+	return sb.toString();
+    }
+
+    private String getThanksAndCloseHTML() {
+	StringBuffer sb = new StringBuffer();
+
+	sb.append("<html>");
+	sb.append("<head>");
+	sb.append("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">");
+	sb.append("<link type=\"text/css\" rel=\"stylesheet\" href=mobile.css>");
+	sb.append(
+		"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0,maximum-scale=1.0,user-scalable=0\" />");
+	sb.append("</head>");
+	sb.append("<body onload=\"window.close()\">");
+	sb.append("<div class=\"paypal-img-layout\"><img src=\"/uploadedphotos/photos/org/logo\" /></div>");
+	sb.append(
+		"<div class=\"paypal-exit-layout\"> <font size=\"4\">Thank you for your gift to the ministry. God bless you<br>");
+	sb.append("To continue, please return to the mobile app.</font></div>");
+	sb.append(
+		"<div class=\"paypal-exit-layout\"><a class=\"btn\" href=\"trinitychapel://extra\">Return to mobile app</a></div>");
 	sb.append("</body>");
 	sb.append("</html>");
 	return sb.toString();
