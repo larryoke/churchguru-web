@@ -42,10 +42,13 @@ public class DonationResultController {
 	    donationDao.cancelDonation(donation.getPaymentId());
 	}
 
-	if ("i".equalsIgnoreCase(platform)) {
-	    return String.format(metaHttp, "cancelAndCloseIOSBrowserForPaypalMobile.htm");
-	}
-	return String.format(metaHttp, "cancelAndCloseAndroidBrowserForPaypalMobile.htm");
+	// if ("i".equalsIgnoreCase(platform)) {
+	// return String.format(metaHttp,
+	// "cancelAndCloseIOSBrowserForPaypalMobile.htm");
+	// }
+	// return String.format(metaHttp,
+	// "cancelAndCloseAndroidBrowserForPaypalMobile.htm");
+	return getCancelAndCloseHTML();
     }
 
     @RequestMapping(value = "/paypal/success", method = RequestMethod.GET)
@@ -69,5 +72,25 @@ public class DonationResultController {
 	}
 	log.debug("<-successPaypalPayment");
 	return null;
+    }
+
+    private String getCancelAndCloseHTML() {
+	StringBuffer sb = new StringBuffer();
+	sb.append("<html>");
+	sb.append("<head>");
+	sb.append("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">");
+	sb.append("<link type=\"text/css\" rel=\"stylesheet\" href=mobile.css>");
+	sb.append("<meta name=\"viewport\"");
+	sb.append("content=\"width=device-width, initial-scale=1.0,maximum-scale=1.0,user-scalable=0\" />");
+	sb.append("</head>");
+	sb.append("<body onload=\"window.close()\">	");
+	sb.append("<div class=\"paypal-img-layout\"><img src=\"/uploadedphotos/photos/org/logo\" /></div>");
+	sb.append(
+		"<div class=\"paypal-exit-layout\"><a class=\"btn\" href=\"trinitychapel://extra\">Return to mobile app</a></div>");
+	sb.append(
+		"<div class=\"paypal-exit-layout\"><a class=\"btn\" href=\"javascript:history.go(-1)\">Return to Paypal</a></div>");
+	sb.append("</body>");
+	sb.append("</html>");
+	return sb.toString();
     }
 }
