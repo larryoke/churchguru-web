@@ -1,14 +1,14 @@
 package com.laotek.churchguru.web.clientm.dispatch;
 
-import net.customware.gwt.dispatch.client.ExceptionHandler;
-import net.customware.gwt.dispatch.shared.Action;
-import net.customware.gwt.dispatch.shared.Result;
-
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.InvocationException;
 import com.googlecode.mgwt.ui.client.MGWT;
 import com.googlecode.mgwt.ui.client.widget.dialog.Dialogs;
 import com.googlecode.mgwt.ui.client.widget.dialog.Dialogs.AlertCallback;
+
+import net.customware.gwt.dispatch.client.ExceptionHandler;
+import net.customware.gwt.dispatch.shared.Action;
+import net.customware.gwt.dispatch.shared.Result;
 
 public abstract class AbstractDispatchAsync implements DispatchAsync {
     private final ExceptionHandler exceptionHandler;
@@ -17,17 +17,14 @@ public abstract class AbstractDispatchAsync implements DispatchAsync {
 	this.exceptionHandler = exceptionHandler;
     }
 
-    protected <A extends Action<R>, R extends Result> void onFailure(A action,
-	    Throwable caught, final AsyncCallback<R> callback) {
-	if (exceptionHandler != null
-		&& exceptionHandler.onFailure(caught) == ExceptionHandler.Status.STOP) {
+    protected <A extends Action<R>, R extends Result> void onFailure(A action, Throwable caught,
+	    final AsyncCallback<R> callback) {
+	if (exceptionHandler != null && exceptionHandler.onFailure(caught) == ExceptionHandler.Status.STOP) {
 	    return;
 	}
 
 	if (caught instanceof InvocationException) {
-	    Dialogs.alert(
-		    "Server Connection Error",
-		    "There appears to be a connection problem. Please try again later",
+	    Dialogs.alert("Server Connection Error", "There appears to be a connection problem. Please try again later",
 		    new AlertCallback() {
 			@Override
 			public void onButtonPressed() {
@@ -43,8 +40,8 @@ public abstract class AbstractDispatchAsync implements DispatchAsync {
 	callback.onFailure(caught);
     }
 
-    protected <A extends Action<R>, R extends Result> void onSuccess(A action,
-	    R result, final AsyncCallback<R> callback) {
+    protected <A extends Action<R>, R extends Result> void onSuccess(A action, R result,
+	    final AsyncCallback<R> callback) {
 	callback.onSuccess(result);
     }
 
@@ -56,12 +53,7 @@ public abstract class AbstractDispatchAsync implements DispatchAsync {
 					  }-*/;
 
     private native void closeIOSApp() /*-{
-				      
-				      try {
-				      $wnd.webkit.messageHandlers.callbackHandler.postMessage("Send from JavaScript");				      
-				      } catch(err) {
-				      console.log('error');
-				      }				       
-				        }-*/;
+				      window.location = 'trinitychapel://somehost?closeIOS;				       
+				      }-*/;
 
 }
