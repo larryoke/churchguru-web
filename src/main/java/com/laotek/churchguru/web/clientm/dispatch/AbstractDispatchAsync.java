@@ -53,7 +53,7 @@ public abstract class AbstractDispatchAsync implements DispatchAsync {
 					  }-*/;
 
     private native void closeIOSApp() /*-{
-				      window.location = 'trinitychapel://somehost?closeIOS;				       
+				      window.location = 'trinitychapel://somehost?closeIOS';				       
 				      }-*/;
 
 }
