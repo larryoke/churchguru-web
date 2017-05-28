@@ -44,13 +44,10 @@ public class DonationResultController {
 	    donationDao.cancelDonation(donation.getPaymentId());
 	}
 
-	// if ("i".equalsIgnoreCase(platform)) {
-	// return String.format(metaHttp,
-	// "cancelAndCloseIOSBrowserForPaypalMobile.htm");
-	// }
-	// return String.format(metaHttp,
-	// "cancelAndCloseAndroidBrowserForPaypalMobile.htm");
-	return getCancelAndCloseHTML();
+	if ("i".equalsIgnoreCase(platform)) {
+	    return getCancelAndCloseHTML();
+	}
+	return String.format(metaHttp, "mobi.htm");
     }
 
     @RequestMapping(value = "/paypal/success", method = RequestMethod.GET)
@@ -68,13 +65,10 @@ public class DonationResultController {
 	    donationService.executePaypalDonation(donation.getPaymentId(), payerId);
 	    donationDao.completeDonation(identifier);
 
-	    // if ("i".equalsIgnoreCase(platform)) {
-	    // return String.format(metaHttp,
-	    // "thanksAndCloseIOSBrowserForPaypalMobile.htm");
-	    // }
-	    // return String.format(metaHttp,
-	    // "thanksAndCloseAndroidBrowserForPaypalMobile.htm");
-	    return getThanksAndCloseHTML();
+	    if ("i".equalsIgnoreCase(platform)) {
+		return getThanksAndCloseHTML();
+	    }
+	    return String.format(metaHttp, "mobi.htm");
 	}
 	log.debug("<-successPaypalPayment");
 	return null;
@@ -91,10 +85,15 @@ public class DonationResultController {
 	sb.append("</head>");
 	sb.append("<body onload=\"window.close()\">	");
 	sb.append("<div class=\"paypal-img-layout\"><img src=\"/uploadedphotos/photos/org/logo\" /></div>");
+	sb.append("<br/>");
+	sb.append("<br/>");
 	sb.append(
 		"<div class=\"paypal-exit-layout\"><a class=\"btn\" href=\"trinitychapel://extra\">Return to mobile app</a></div>");
+	sb.append("<br/>");
+	sb.append("<br/>");
 	sb.append(
 		"<div class=\"paypal-exit-layout\"><a class=\"btn\" href=\"javascript:history.go(-1)\">Return to Paypal</a></div>");
+	sb.append("<br/>");
 	sb.append("</body>");
 	sb.append("</html>");
 	return sb.toString();

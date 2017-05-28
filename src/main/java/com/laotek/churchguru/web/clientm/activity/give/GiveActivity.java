@@ -88,13 +88,15 @@ public class GiveActivity extends DetailActivity implements GiveView.Presenter {
 
 			// redirect app screen to home because paypal
 			// screen is popped up
-			Scheduler.get().scheduleDeferred(new ScheduledCommand() {
-			    @Override
-			    public void execute() {
-				MobileContext.getInstance().getClientFactory().getPlaceController()
-					.goTo(new MobileHomePlace("home"));
-			    }
-			});
+			if (MGWT.getOsDetection().isIOs()) {
+			    Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+				@Override
+				public void execute() {
+				    MobileContext.getInstance().getClientFactory().getPlaceController()
+					    .goTo(new MobileHomePlace("home"));
+				}
+			    });
+			}
 
 		    }
 		});

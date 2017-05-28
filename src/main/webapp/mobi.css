@@ -180,12 +180,14 @@ textarea.gwt-TextArea{
 }
 
 .paypal-img-layout{
+    margin: auto;
 	height:100px;
     padding:10px;
     align:center;
 }
 
 .paypal-exit-layout{
+    margin: auto;
 	height:80px;
     padding:10px;
     align:center;
