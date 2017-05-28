@@ -74,7 +74,11 @@ public class GiveActivity extends DetailActivity implements GiveView.Presenter {
 				new ConfirmCallback() {
 				    @Override
 				    public void onOk() {
-					view.goTo(result.getPaypalApprovalUrl());
+					if (MGWT.getOsDetection().isIOs()) {
+					    view.goTo(result.getPaypalApprovalUrl());
+					} else {
+					    Window.Location.replace(result.getPaypalApprovalUrl());
+					}
 				    }
 
 				    @Override
