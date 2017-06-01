@@ -65,8 +65,8 @@ public abstract class DetailViewGwtImpl implements DetailView {
 
 	headerPanel = new HeaderPanel();
 
+	headerBackButton = new PreviousitemImageButton();
 	if (hideBackButton) {
-	    headerBackButton = new PreviousitemImageButton();
 	    headerBackButton.setText("Back");
 	    headerBackButton.addTapHandler(new TapHandler() {
 		@Override
