@@ -51,8 +51,44 @@ public abstract class DetailViewGwtImpl implements DetailView {
 	headerPanel.add(title);
 	headerPanel.add(new FlexSpacer());
 
-	if (!MGWT.getOsDetection().isAndroid()
-		&& MGWT.getFormFactor().isPhone()) {
+	if (!MGWT.getOsDetection().isAndroid() && MGWT.getFormFactor().isPhone()) {
+	    headerPanel.add(new FixedSpacer());
+	}
+
+	main.add(headerPanel);
+	main.add(scrollPanel);
+    }
+
+    public DetailViewGwtImpl(boolean hideBackButton) {
+	main = new RootFlexPanel();
+	scrollPanel = new ScrollPanel();
+
+	headerPanel = new HeaderPanel();
+
+	if (hideBackButton) {
+	    headerBackButton = new PreviousitemImageButton();
+	    headerBackButton.setText("Back");
+	    headerBackButton.addTapHandler(new TapHandler() {
+		@Override
+		public void onTap(TapEvent event) {
+		    History.back();
+		}
+	    });
+
+	    headerPanel.add(headerBackButton);
+	}
+
+	headerPanel.add(new FixedSpacer(15));
+	Image logo = new Image("/uploadedphotos/photos/org/logo");
+	logo.setHeight("25px");
+	headerPanel.add(logo);
+
+	headerPanel.add(new FlexSpacer());
+	title = new HeaderTitle();
+	headerPanel.add(title);
+	headerPanel.add(new FlexSpacer());
+
+	if (!MGWT.getOsDetection().isAndroid() && MGWT.getFormFactor().isPhone()) {
 	    headerPanel.add(new FixedSpacer());
 	}
 

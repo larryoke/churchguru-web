@@ -3,19 +3,14 @@ package com.laotek.churchguru.web.clientm.activity.give;
 import java.math.BigDecimal;
 import java.util.Map;
 
-import com.google.gwt.core.client.Scheduler;
-import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.googlecode.mgwt.ui.client.MGWT;
-import com.googlecode.mgwt.ui.client.widget.dialog.ConfirmDialog.ConfirmCallback;
-import com.googlecode.mgwt.ui.client.widget.dialog.Dialogs;
 import com.laotek.churchguru.model.shared.enums.sharedmob.DonationType;
 import com.laotek.churchguru.web.clientm.MobileFactory;
 import com.laotek.churchguru.web.clientm.activity.DetailActivity;
-import com.laotek.churchguru.web.clientm.activity.home.MobileHomePlace;
 import com.laotek.churchguru.web.clientm.activity.home.SubmitDonationDetailsAction;
 import com.laotek.churchguru.web.clientm.activity.home.SubmitDonationDetailsResult;
 import com.laotek.churchguru.web.clientm.dispatch.MobileContext;
@@ -68,36 +63,7 @@ public class GiveActivity extends DetailActivity implements GiveView.Presenter {
 
 		    @Override
 		    public void onSuccess(final SubmitDonationDetailsResult result) {
-			Dialogs.confirm("Paypal Payment",
-				"This mobile application currently only accepts payment via PayPal. Do you wish to continue with the payment? \n"
-					+ result.getPaypalApprovalUrl(),
-				new ConfirmCallback() {
-				    @Override
-				    public void onOk() {
-					if (MGWT.getOsDetection().isIOs()) {
-					    view.goTo(result.getPaypalApprovalUrl());
-					} else {
-					    Window.Location.replace(result.getPaypalApprovalUrl());
-					}
-				    }
-
-				    @Override
-				    public void onCancel() {
-				    }
-				});
-
-			// redirect app screen to home because paypal
-			// screen is popped up
-			if (MGWT.getOsDetection().isIOs()) {
-			    Scheduler.get().scheduleDeferred(new ScheduledCommand() {
-				@Override
-				public void execute() {
-				    MobileContext.getInstance().getClientFactory().getPlaceController()
-					    .goTo(new MobileHomePlace("home"));
-				}
-			    });
-			}
-
+			Window.Location.replace(result.getPaypalApprovalUrl());
 		    }
 		});
 
