@@ -121,7 +121,7 @@ public class GiveViewImpl extends DetailViewGwtImpl implements GiveView {
 
     public GiveViewImpl() {
 
-	super(!MGWT.getOsDetection().isIPhone());
+	super(!MGWT.getOsDetection().isIOs());
 	HTML spacer = new HTML("");
 	spacer.setHeight("15px");
 	progressBarContainer.add(spacer);
