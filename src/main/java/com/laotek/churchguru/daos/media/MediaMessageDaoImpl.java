@@ -140,7 +140,7 @@ public class MediaMessageDaoImpl extends BaseSessionFactory implements MediaMess
     @Override
     public List<MediaMessageCategory> getPublishedCategories() {
 	Query query = getCurrentSession().createQuery(
-		"select cat from MediaMessageCategory cat join cat.messages messages where messages.messageStatus = :status");
+		"select distinct cat from MediaMessageCategory cat join cat.messages messages where messages.messageStatus = :status");
 	query.setParameter("status", MediaMessageStatus.PUBLISHED);
 	@SuppressWarnings("unchecked")
 	List<MediaMessageCategory> list = query.list();
