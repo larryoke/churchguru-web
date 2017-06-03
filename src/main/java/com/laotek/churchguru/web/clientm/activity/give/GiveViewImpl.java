@@ -120,8 +120,7 @@ public class GiveViewImpl extends DetailViewGwtImpl implements GiveView {
     private FlowPanel progressBarContainer = new FlowPanel();
 
     public GiveViewImpl() {
-
-	super(!MGWT.getOsDetection().isIOs());
+	// super(!MGWT.getOsDetection().isIOs());
 	HTML spacer = new HTML("");
 	spacer.setHeight("15px");
 	progressBarContainer.add(spacer);

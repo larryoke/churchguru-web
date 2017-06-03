@@ -59,6 +59,7 @@ public abstract class DetailViewGwtImpl implements DetailView {
 	main.add(scrollPanel);
     }
 
+    @Deprecated
     public DetailViewGwtImpl(boolean hideBackButton) {
 	main = new RootFlexPanel();
 	scrollPanel = new ScrollPanel();
