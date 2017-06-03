@@ -91,6 +91,10 @@ public class DonationResultController {
 	sb.append(
 		"<div class=\"paypal-exit-layout\"><a class=\"btn\" href=\"javascript:history.go(-1)\">Return to Paypal</a></div>");
 	sb.append("<br/>");
+	sb.append("<br/>");
+	sb.append("<br/>");
+	sb.append(
+		"<div class=\"paypal-exit-layout\"><a class=\"btn\" href=\"trinitychapel://extra\">Return to mobile app</a></div>");
 	sb.append("</body>");
 	sb.append("</html>");
 	return sb.toString();
@@ -111,6 +115,10 @@ public class DonationResultController {
 	sb.append(
 		"<div class=\"paypal-exit-layout\"> <font size=\"4\">Thank you for your gift to the ministry. God bless you<br>");
 	sb.append("To continue, please return to the mobile app.</font></div>");
+	sb.append("<br/>");
+	sb.append("<br/>");
+	sb.append(
+		"<div class=\"paypal-exit-layout\"><a class=\"btn\" href=\"trinitychapel://extra\">Return to mobile app</a></div>");
 	sb.append("</body>");
 	sb.append("</html>");
 	return sb.toString();
