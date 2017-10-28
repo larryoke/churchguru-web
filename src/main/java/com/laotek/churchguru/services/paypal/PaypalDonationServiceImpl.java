@@ -2,6 +2,7 @@ package com.laotek.churchguru.services.paypal;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -159,47 +160,60 @@ public class PaypalDonationServiceImpl implements DonationService {
 	ItemList itemList = new ItemList();
 	itemList.setItems(new ArrayList<Item>());
 
-	Item item = new Item();
-	item.setName(DonationType.OFFERING.getDesc());
-	item.setCurrency("GBP");
-	item.setQuantity("1");
-	item.setPrice(donation.getOffering().toPlainString());
-	itemList.getItems().add(item);
+	Item item = null;
+	if (donation.getOffering() != null && donation.getOffering().compareTo(BigDecimal.ZERO) > 0) {
+	    item = new Item();
+	    item.setName(DonationType.OFFERING.getDesc());
+	    item.setCurrency("GBP");
+	    item.setQuantity("1");
+	    item.setPrice(donation.getOffering().toPlainString());
+	    itemList.getItems().add(item);
+	}
 
-	item = new Item();
-	item.setName(DonationType.TITHE.getDesc());
-	item.setCurrency("GBP");
-	item.setQuantity("1");
-	item.setPrice(donation.getTithe().toPlainString());
-	itemList.getItems().add(item);
+	if (donation.getTithe() != null && donation.getTithe().compareTo(BigDecimal.ZERO) > 0) {
+	    item = new Item();
+	    item.setName(DonationType.TITHE.getDesc());
+	    item.setCurrency("GBP");
+	    item.setQuantity("1");
+	    item.setPrice(donation.getTithe().toPlainString());
+	    itemList.getItems().add(item);
+	}
 
-	item = new Item();
-	item.setName(DonationType.THANKSGIVING.getDesc());
-	item.setCurrency("GBP");
-	item.setQuantity("1");
-	item.setPrice(donation.getThanksGiving().toPlainString());
-	itemList.getItems().add(item);
+	if (donation.getThanksGiving() != null && donation.getThanksGiving().compareTo(BigDecimal.ZERO) > 0) {
+	    item = new Item();
+	    item.setName(DonationType.THANKSGIVING.getDesc());
+	    item.setCurrency("GBP");
+	    item.setQuantity("1");
+	    item.setPrice(donation.getThanksGiving().toPlainString());
+	    itemList.getItems().add(item);
+	}
 
-	item = new Item();
-	item.setName(DonationType.BUILDING_FUND.getDesc());
-	item.setCurrency("GBP");
-	item.setQuantity("1");
-	item.setPrice(donation.getBuildingFund().toPlainString());
-	itemList.getItems().add(item);
+	if (donation.getBuildingFund() != null && donation.getBuildingFund().compareTo(BigDecimal.ZERO) > 0) {
+	    item = new Item();
+	    item.setName(DonationType.BUILDING_FUND.getDesc());
+	    item.setCurrency("GBP");
+	    item.setQuantity("1");
+	    item.setPrice(donation.getBuildingFund().toPlainString());
+	    itemList.getItems().add(item);
+	}
 
-	item = new Item();
-	item.setName(DonationType.SPECIAL_OFFERING.getDesc());
-	item.setCurrency("GBP");
-	item.setQuantity("1");
-	item.setPrice(donation.getSpecialOffering().toPlainString());
-	itemList.getItems().add(item);
+	if (donation.getSpecialOffering() != null && donation.getSpecialOffering().compareTo(BigDecimal.ZERO) > 0) {
+	    item = new Item();
+	    item.setName(DonationType.SPECIAL_OFFERING.getDesc());
+	    item.setCurrency("GBP");
+	    item.setQuantity("1");
+	    item.setPrice(donation.getSpecialOffering().toPlainString());
+	    itemList.getItems().add(item);
+	}
 
-	item = new Item();
-	item.setName(DonationType.OTHER.getDesc());
-	item.setCurrency("GBP");
-	item.setQuantity("1");
-	item.setPrice(donation.getOtherOffering().toPlainString());
-	itemList.getItems().add(item);
+	if (donation.getOtherOffering() != null && donation.getOtherOffering().compareTo(BigDecimal.ZERO) > 0) {
+	    item = new Item();
+	    item.setName(DonationType.OTHER.getDesc());
+	    item.setCurrency("GBP");
+	    item.setQuantity("1");
+	    item.setPrice(donation.getOtherOffering().toPlainString());
+	    itemList.getItems().add(item);
+	}
 
 	Transaction transaction = new Transaction();
 	transaction.setAmount(amount);
