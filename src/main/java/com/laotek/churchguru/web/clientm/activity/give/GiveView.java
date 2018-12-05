@@ -8,20 +8,21 @@ import com.laotek.churchguru.web.clientm.activity.DetailView;
 
 public interface GiveView extends DetailView {
 
-    void setPresenter(Presenter presenter);
+	void setPresenter(Presenter presenter);
 
-    void pleaseWaitLoadingPaypal();
+	void pleaseWaitLoadingPaypal();
 
-    void showForm();
+	void showForm();
 
-    void showThanks();
+	void showThanks();
 
-    void showErrorMessage(String message);
+	void showErrorMessage(String message);
 
-    void goTo(String approvalUrl);
+	void goTo(String approvalUrl);
 
-    public interface Presenter {
-	void submit(Map<String, String> giveDetails,
-		Map<DonationType, BigDecimal> payments);
-    }
+	public interface Presenter {
+		void submit(Map<String, String> giveDetails, Map<DonationType, BigDecimal> payments);
+
+		void openPrivacyPolicy();
+	}
 }

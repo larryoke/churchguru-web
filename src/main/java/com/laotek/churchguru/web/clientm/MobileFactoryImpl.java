@@ -25,6 +25,8 @@ import com.laotek.churchguru.web.clientm.activity.pastorsdesk.PastorDeskView;
 import com.laotek.churchguru.web.clientm.activity.pastorsdesk.PastorDeskViewImpl;
 import com.laotek.churchguru.web.clientm.activity.prayerrequest.PrayerRequestView;
 import com.laotek.churchguru.web.clientm.activity.prayerrequest.PrayerRequestViewImpl;
+import com.laotek.churchguru.web.clientm.activity.privacypolicy.PrivacyPolicyView;
+import com.laotek.churchguru.web.clientm.activity.privacypolicy.PrivacyPolicyViewImpl;
 import com.laotek.churchguru.web.clientm.activity.twitter.TwitterView;
 import com.laotek.churchguru.web.clientm.activity.twitter.TwitterViewImpl;
 import com.laotek.churchguru.web.clientm.activity.underconstruction.UnderConstructionView;
@@ -35,152 +37,161 @@ import com.laotek.churchguru.web.clientm.activity.youtube.YoutubeView;
 import com.laotek.churchguru.web.clientm.activity.youtube.YoutubeViewImpl;
 
 public class MobileFactoryImpl implements MobileFactory {
-    private final EventBus eventBus = new SimpleEventBus();
-    private final PlaceController placeController = new PlaceController(eventBus);
+	private final EventBus eventBus = new SimpleEventBus();
+	private final PlaceController placeController = new PlaceController(eventBus);
 
-    private MobileHomeView mobileHomeView = null;
-    private GiveView giveView = null;
-    private AboutUsView aboutUsView = null;
-    private FacebookView facebookView = null;
-    private PastorDeskView pastorDeskView = null;
-    private NoticeAndEventTitlesView newsTitlesView = null;
-    private SingleNoticeAndEventView singleMessageView = null;
-    private WebsiteUrlView websiteUrlView = null;
-    private PrayerRequestView prayerRequestView = null;
-    private YoutubeView youtubeView = null;
-    private UnderConstructionView underConstructionView = null;
+	private MobileHomeView mobileHomeView = null;
+	private GiveView giveView = null;
+	private AboutUsView aboutUsView = null;
+	private FacebookView facebookView = null;
+	private PastorDeskView pastorDeskView = null;
+	private NoticeAndEventTitlesView newsTitlesView = null;
+	private SingleNoticeAndEventView singleMessageView = null;
+	private WebsiteUrlView websiteUrlView = null;
+	private PrayerRequestView prayerRequestView = null;
+	private YoutubeView youtubeView = null;
+	private UnderConstructionView underConstructionView = null;
 
-    private MessageView messageView = null;
-    private MessageCategoryMobView messageCategoryView = null;
-    private MessageTitleView messageTitleView = null;
+	private MessageView messageView = null;
+	private MessageCategoryMobView messageCategoryView = null;
+	private MessageTitleView messageTitleView = null;
+	private PrivacyPolicyView privacyPolicyView = null;
 
-    @Override
-    public EventBus getEventBus() {
-	return eventBus;
-    }
-
-    @Override
-    public PlaceController getPlaceController() {
-	return placeController;
-    }
-
-    @Override
-    public MobileHomeView getMobileHomeView() {
-	if (mobileHomeView == null) {
-	    mobileHomeView = new MobileHomeViewImpl();
+	@Override
+	public EventBus getEventBus() {
+		return eventBus;
 	}
-	return mobileHomeView;
-    }
 
-    @Override
-    public GiveView getGiveView() {
-	if (giveView == null) {
-	    giveView = new GiveViewImpl();
+	@Override
+	public PlaceController getPlaceController() {
+		return placeController;
 	}
-	return giveView;
-    }
 
-    @Override
-    public UnderConstructionView getUnderConstructionView() {
-	if (underConstructionView == null) {
-	    underConstructionView = new UnderConstructionViewImpl();
+	@Override
+	public MobileHomeView getMobileHomeView() {
+		if (mobileHomeView == null) {
+			mobileHomeView = new MobileHomeViewImpl();
+		}
+		return mobileHomeView;
 	}
-	return underConstructionView;
-    }
 
-    public AboutUsView getAboutUsView() {
-	if (aboutUsView == null) {
-	    aboutUsView = new AboutUsViewImpl();
+	@Override
+	public GiveView getGiveView() {
+		if (giveView == null) {
+			giveView = new GiveViewImpl();
+		}
+		return giveView;
 	}
-	return aboutUsView;
-    }
 
-    @Override
-    public TwitterView getTwitterView() {
-	return new TwitterViewImpl();
-    }
-
-    @Override
-    public FacebookView getFacebookView() {
-	if (facebookView == null) {
-	    facebookView = new FacebookViewImpl();
+	@Override
+	public UnderConstructionView getUnderConstructionView() {
+		if (underConstructionView == null) {
+			underConstructionView = new UnderConstructionViewImpl();
+		}
+		return underConstructionView;
 	}
-	return facebookView;
-    }
 
-    @Override
-    public PastorDeskView getPastorDeskView() {
-	if (pastorDeskView == null) {
-	    pastorDeskView = new PastorDeskViewImpl();
+	public AboutUsView getAboutUsView() {
+		if (aboutUsView == null) {
+			aboutUsView = new AboutUsViewImpl();
+		}
+		return aboutUsView;
 	}
-	return pastorDeskView;
-    }
 
-    @Override
-    public NoticeAndEventTitlesView getNewsTitlesView() {
-	if (newsTitlesView == null) {
-	    newsTitlesView = new NoticeAndEventTitlesViewImpl();
+	@Override
+	public TwitterView getTwitterView() {
+		return new TwitterViewImpl();
 	}
-	return newsTitlesView;
-    }
 
-    @Override
-    public SingleNoticeAndEventView getSingleMessageView() {
-	if (singleMessageView == null) {
-	    singleMessageView = new SingleNoticeAndEventViewImpl();
+	@Override
+	public FacebookView getFacebookView() {
+		if (facebookView == null) {
+			facebookView = new FacebookViewImpl();
+		}
+		return facebookView;
 	}
-	return singleMessageView;
-    }
 
-    @Override
-    public WebsiteUrlView getWebsiteUrlView() {
-	if (websiteUrlView == null) {
-	    websiteUrlView = new WebsiteUrlViewImpl();
+	@Override
+	public PastorDeskView getPastorDeskView() {
+		if (pastorDeskView == null) {
+			pastorDeskView = new PastorDeskViewImpl();
+		}
+		return pastorDeskView;
 	}
-	return websiteUrlView;
-    }
 
-    @Override
-    public PrayerRequestView getPrayerRequestView() {
-	if (prayerRequestView == null) {
-	    prayerRequestView = new PrayerRequestViewImpl();
+	@Override
+	public NoticeAndEventTitlesView getNewsTitlesView() {
+		if (newsTitlesView == null) {
+			newsTitlesView = new NoticeAndEventTitlesViewImpl();
+		}
+		return newsTitlesView;
 	}
-	return prayerRequestView;
-    }
 
-    @Override
-    public YoutubeView getYoutubeView() {
-	if (youtubeView == null) {
-	    youtubeView = new YoutubeViewImpl();
+	@Override
+	public SingleNoticeAndEventView getSingleMessageView() {
+		if (singleMessageView == null) {
+			singleMessageView = new SingleNoticeAndEventViewImpl();
+		}
+		return singleMessageView;
 	}
-	return youtubeView;
-    }
 
-    @Override
-    public MessageTitleView getMessageTitleView() {
-	if (messageTitleView == null) {
-	    messageTitleView = new MessageTitleViewImpl();
+	@Override
+	public WebsiteUrlView getWebsiteUrlView() {
+		if (websiteUrlView == null) {
+			websiteUrlView = new WebsiteUrlViewImpl();
+		}
+		return websiteUrlView;
 	}
-	return messageTitleView;
-    }
 
-    @Override
-    public MessageCategoryMobView getMessageCategoryView() {
-	if (messageCategoryView == null) {
-	    messageCategoryView = new MessageCategoryMobViewImpl();
+	@Override
+	public PrayerRequestView getPrayerRequestView() {
+		if (prayerRequestView == null) {
+			prayerRequestView = new PrayerRequestViewImpl();
+		}
+		return prayerRequestView;
 	}
-	return messageCategoryView;
-    }
 
-    @Override
-    public MessageView getMessageView() {
-	if (messageView == null) {
-	    messageView = new MessageViewImpl();
+	@Override
+	public YoutubeView getYoutubeView() {
+		if (youtubeView == null) {
+			youtubeView = new YoutubeViewImpl();
+		}
+		return youtubeView;
 	}
-	return messageView;
-    }
 
-    public void setMessageView(MessageView messageView) {
-	this.messageView = messageView;
-    }
+	@Override
+	public MessageTitleView getMessageTitleView() {
+		if (messageTitleView == null) {
+			messageTitleView = new MessageTitleViewImpl();
+		}
+		return messageTitleView;
+	}
+
+	@Override
+	public MessageCategoryMobView getMessageCategoryView() {
+		if (messageCategoryView == null) {
+			messageCategoryView = new MessageCategoryMobViewImpl();
+		}
+		return messageCategoryView;
+	}
+
+	@Override
+	public MessageView getMessageView() {
+		if (messageView == null) {
+			messageView = new MessageViewImpl();
+		}
+		return messageView;
+	}
+
+	public void setMessageView(MessageView messageView) {
+		this.messageView = messageView;
+	}
+
+	@Override
+	public PrivacyPolicyView getPrivacyPolicyView() {
+		if (privacyPolicyView == null) {
+			privacyPolicyView = new PrivacyPolicyViewImpl();
+		}
+		return privacyPolicyView;
+	}
 }

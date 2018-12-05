@@ -13,44 +13,47 @@ import com.laotek.churchguru.web.clientm.activity.notice.body.SingleNoticeAndEve
 import com.laotek.churchguru.web.clientm.activity.notice.titles.NoticeAndEventTitlesView;
 import com.laotek.churchguru.web.clientm.activity.pastorsdesk.PastorDeskView;
 import com.laotek.churchguru.web.clientm.activity.prayerrequest.PrayerRequestView;
+import com.laotek.churchguru.web.clientm.activity.privacypolicy.PrivacyPolicyView;
 import com.laotek.churchguru.web.clientm.activity.twitter.TwitterView;
 import com.laotek.churchguru.web.clientm.activity.underconstruction.UnderConstructionView;
 import com.laotek.churchguru.web.clientm.activity.website.WebsiteUrlView;
 import com.laotek.churchguru.web.clientm.activity.youtube.YoutubeView;
 
 public interface MobileFactory {
-    EventBus getEventBus();
+	EventBus getEventBus();
 
-    PlaceController getPlaceController();
+	PlaceController getPlaceController();
 
-    MobileHomeView getMobileHomeView();
+	MobileHomeView getMobileHomeView();
 
-    PrayerRequestView getPrayerRequestView();
+	PrayerRequestView getPrayerRequestView();
 
-    UnderConstructionView getUnderConstructionView();
+	UnderConstructionView getUnderConstructionView();
 
-    SingleNoticeAndEventView getSingleMessageView();
+	SingleNoticeAndEventView getSingleMessageView();
 
-    PastorDeskView getPastorDeskView();
+	PastorDeskView getPastorDeskView();
 
-    WebsiteUrlView getWebsiteUrlView();
+	WebsiteUrlView getWebsiteUrlView();
 
-    NoticeAndEventTitlesView getNewsTitlesView();
+	NoticeAndEventTitlesView getNewsTitlesView();
 
-    GiveView getGiveView();
+	GiveView getGiveView();
 
-    AboutUsView getAboutUsView();
+	AboutUsView getAboutUsView();
 
-    TwitterView getTwitterView();
+	TwitterView getTwitterView();
 
-    FacebookView getFacebookView();
+	FacebookView getFacebookView();
 
-    YoutubeView getYoutubeView();
+	YoutubeView getYoutubeView();
 
-    MessageTitleView getMessageTitleView();
+	MessageTitleView getMessageTitleView();
 
-    MessageCategoryMobView getMessageCategoryView();
+	MessageCategoryMobView getMessageCategoryView();
 
-    MessageView getMessageView();
+	MessageView getMessageView();
+
+	PrivacyPolicyView getPrivacyPolicyView();
 
 }
