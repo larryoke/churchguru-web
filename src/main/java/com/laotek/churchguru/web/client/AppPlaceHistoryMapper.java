@@ -36,21 +36,21 @@ import com.laotek.churchguru.web.client.activity.website.media.speaker.MediaMess
 import com.laotek.churchguru.web.client.activity.website.media.speaker.MediaMessageSpeakersPlace;
 
 @WithTokenizers({ AccountQuotaPlace.Tokenizer.class, NewslettersChartPlace.Tokenizer.class,
-	WeeklyAttendanceChartPlace.Tokenizer.class, PeopleChartPlace.Tokenizer.class, AllUserPlace.Tokenizer.class,
-	SystemSettingsPlace.Tokenizer.class, SingleUserPlace.Tokenizer.class, LoginPlace.Tokenizer.class,
-	PasswordResetPlace.Tokenizer.class, NewUserSetupPlace.Tokenizer.class, UserProfilesPlace.Tokenizer.class,
+		WeeklyAttendanceChartPlace.Tokenizer.class, PeopleChartPlace.Tokenizer.class, AllUserPlace.Tokenizer.class,
+		SystemSettingsPlace.Tokenizer.class, SingleUserPlace.Tokenizer.class, LoginPlace.Tokenizer.class,
+		PasswordResetPlace.Tokenizer.class, NewUserSetupPlace.Tokenizer.class, UserProfilesPlace.Tokenizer.class,
 
-	MediaMessagesPlace.Tokenizer.class, MediaMessageNewPlace.Tokenizer.class,
-	MediaMessageGalleryPlace.Tokenizer.class, MediaMessageGalleryNewItemPlace.Tokenizer.class,
-	MediaMessageCustomersPlace.Tokenizer.class, MediaMessageCustomerDetailsPlace.Tokenizer.class,
-	MediaMessageCategoryNewPlace.Tokenizer.class, MediaMessageCategoriesPlace.Tokenizer.class,
-	MediaMessageNotificationsPlace.Tokenizer.class, MediaMessageSpeakerNewPlace.Tokenizer.class,
-	MediaMessagesLoadingPlace.Tokenizer.class, MediaMessagePlayPlace.Tokenizer.class,
+		MediaMessagesPlace.Tokenizer.class, MediaMessageNewPlace.Tokenizer.class,
+		MediaMessageGalleryPlace.Tokenizer.class, MediaMessageGalleryNewItemPlace.Tokenizer.class,
+		MediaMessageCustomersPlace.Tokenizer.class, MediaMessageCustomerDetailsPlace.Tokenizer.class,
+		MediaMessageCategoryNewPlace.Tokenizer.class, MediaMessageCategoriesPlace.Tokenizer.class,
+		MediaMessageNotificationsPlace.Tokenizer.class, MediaMessageSpeakerNewPlace.Tokenizer.class,
+		MediaMessagesLoadingPlace.Tokenizer.class, MediaMessagePlayPlace.Tokenizer.class,
 
-	YoutubeVideosPlace.Tokenizer.class, YoutubeVideoNewPlace.Tokenizer.class,
+		YoutubeVideosPlace.Tokenizer.class, YoutubeVideoNewPlace.Tokenizer.class,
 
-	MediaMessageSpeakersPlace.Tokenizer.class, WebsitePlace.Tokenizer.class, DonationSearchPlace.Tokenizer.class,
-	GeneralChurchAppPlace.Tokenizer.class, PostNoticeOrEventChurchAppPlace.Tokenizer.class,
-	PreviewNoticeOrEventChurchAppPlace.Tokenizer.class, GetCurrentNoticesAndEventsHistoryPlace.Tokenizer.class })
+		MediaMessageSpeakersPlace.Tokenizer.class, WebsitePlace.Tokenizer.class, DonationSearchPlace.Tokenizer.class,
+		GeneralChurchAppPlace.Tokenizer.class, PostNoticeOrEventChurchAppPlace.Tokenizer.class,
+		PreviewNoticeOrEventChurchAppPlace.Tokenizer.class, GetCurrentNoticesAndEventsHistoryPlace.Tokenizer.class, })
 public interface AppPlaceHistoryMapper extends PlaceHistoryMapper {
 }
